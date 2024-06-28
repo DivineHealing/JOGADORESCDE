@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crônicas de Errat</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+</head>
+
+<body>
+    <style>
+        input[type=number]::-webkit-inner-spin-button{
+        appearance: none; 
+    }
+    </style>
+    <div class="valatributo">
+        <h1>Atributos do Personagem</h1>
+        <div class="atributo">
+            <label for="vida">Vida </label>
+            <labelat id="vidat">100</labelat>
+            <input id="vida" name="vida">
+    
+            <label for="mana">Mana</label>
+            <labelat id="manat">100</labelat>
+            <input id="mana" name="mana">
+    
+            <label for="vigor">Vigor</label>
+            <labelat id="vigort">100</labelat>
+            <input id="vigor" name="vigor">
+        </div>
+    </div>
+    
+    <p></p>
+    <div class="valstatus">
+        <h1>Valor de Status</h1>
+        <div class="atrstatus">
+            <label for="forca">Força</label>
+            <labelat id="forcat">0</labelat> 
+            <input type="number" id="forca" name="forca">
+
+            <label for="destreza">Destreza </label>
+            <labelat id="destrezat">0</labelat>
+            <input type="number" id="destreza">
+
+            <label for="inteligencia">Inteligencia</label>
+            <labelat id="inteligenciat">0</labelat>
+            <input type="number" id="inteligencia"> 
+
+            <label for="determinacao">Determinação </label>
+            <labelat id="determinacaot">0</labelat> 
+            <input id="determinacao"> 
+
+            <label for="percepcao">Percepção</label>
+            <labelat id="percepcaot">0</labelat>
+            <input type="number" id="percepcao">
+
+            <label for="carisma">Carisma</label>
+            <labelat id="carismat">0</labelat> 
+            <input type="number" id="carisma">
+    </div>
+
+    </div>
+    <div class="botao">
+        <button type="button" id="alterar"> Alterar valores</button>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
