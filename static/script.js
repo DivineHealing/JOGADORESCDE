@@ -1,17 +1,23 @@
-function alterar() {
-    const forca = parseFloat(document.getElementById('forca').value) || 0; // Status Força
+function alterar() { // função que ativa quando aperta o botão
+    const forca = parseFloat(document.getElementById('forca').value) || 0; // Declaração das variaveis que serão processadas, caso nao tiver, o valor sera zero.
+    const destreza = parseFloat(document.getElementById('destreza').value) || 0;
+    const inteligencia = parseFloat(document.getElementById('inteligencia').value) || 0;
+    const forcaE =parseFloat(document.getElementById('forcaE').value) || 0;
+    
 
-
-    fetch('/atrstatus', {
+    fetch('/atrstatus', { // Comunicação com o python
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ forca: forca})
+        body: JSON.stringify({ forca: forca, destreza:destreza, inteligencia:inteligencia, forcaE: forcaE}) // Variaveis que serão jogadas para o Python 
     })
     .then(response => response.json())
     .then(data => {
-        document.getElementById('forcat').textContent = `${data.javaforca.toLocaleString('pt-BR')}`;
+        document.getElementById('forcat').textContent = `${data.forca.toLocaleString('pt-BR')}`, // Esses aqui são o que joga para o Front, na tela do HTML
+        document.getElementById('destrezat').textContent = `${data.destreza.toLocaleString('pt-BR')}`,
+        document.getElementById('inteligenciat').textContent = `${data.inteligencia.toLocaleString('pt-BR')}` 
+        ;
     })
     .catch(error => {
         console.error('Erro:', error);

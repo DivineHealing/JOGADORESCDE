@@ -7,15 +7,19 @@ def home():
     return render_template('home.html')
 
 # CODIGO AQUI
-@main.route("/atrstatus", methods=['POST']) #LOCALIZA DE ONDE TA VINDO
-def atrstatus(javaret, att):
+@main.route("/atrstatus", methods=['POST'])
+def atrstatus():
     data = request.get_json() # AQUI PEGA O DADO
-    atributoescolhido = float(data.get(att)) #DADO
+    forca = float(data.get('forca'))
+    destreza =  float(data.get('destreza'))
+    inteligencia = float(data.get('inteligencia'))
 
-    return jsonify(javaret=atributoescolhido) # AQUI VAI JOGAR O DADO PRO FRONT
+    forcae = float(data.get('forcaE')) # Pega o valor do equipamento
+    forca += forcae # Soma o valor base com o Equipamento
 
-# PERA QUE FUDEU, TODOS EQUIPAMENTOS QUE DAO FORÇA, VAO TER QUE ESTAR AQUI, E VAI TER UM PRA CADA DESSE
+    return jsonify(forca=forca, destreza=destreza, inteligencia=inteligencia) # AQUI VAI JOGAR O DADO PRO FRONT
 
+# Fim do Codigo
 if __name__ == '__main__': 
     main.run(debug=True)
 
