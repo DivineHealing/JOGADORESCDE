@@ -8,7 +8,7 @@ def home():
 
 # CODIGO AQUI
 @main.route("/atrstatus", methods=['POST']) #LOCALIZA DE ONDE TA VINDO
-def atrstatus(javareet, att):
+def atrstatus(javaret, att):
     data = request.get_json() # AQUI PEGA O DADO
     atributoescolhido = float(data.get(att)) #DADO
 
