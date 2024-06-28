@@ -30,16 +30,30 @@ body {
     width: 20vw;
 }
 
-.valatributo h1, .valstatus h1 {
+.atrequipamento {  
+    display: grid;
+    grid-template-columns: 6vw 2vw 5vw;
+}
+
+.valequipamento {
+    font: times, serif;
+    background-color: #313131;
+    border-radius: 4vh;
+    border-color: rgb(0, 0, 0);
+    padding: 1vw;
+    width: 20vw;
+}
+
+.valatributo h1, .valstatus h1, .valequipamento h1 {
     color: white;
     font-style: italic;
 }
 
-.atributo label,  .atrstatus label{
+.atributo label,  .atrstatus label, .atrequipamento label{
     color: rgb(0, 255, 200);
 }
 
-.atrstatus labelat, .atributo labelat{
+.atrstatus labelat, .atributo labelat, .atrequipamento labelat{
     color: rgb(0, 195, 255);   
 }
 
@@ -112,4 +126,3 @@ button:after{
     top: 0;
     border-radius: 10px;
 }
-
