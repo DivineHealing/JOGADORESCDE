@@ -8,7 +8,6 @@ def home():
 
 # CODIGO AQUI
 
-#teste 123
 
 # NAO PASSAR DAQUI
 
