@@ -1,7 +1,4 @@
-
-
-border-radius: 4vh;
-border-color: rgb(0, 0, 0);
-padding: .5vw;
-width: 20vw;
-height: 15vw;
+def atrstatus():
+    data = request.get_json() # AQUI PEGA O DADO
+    forca = float(data.get('forca')) #DADO
+    return jsonify(forca=forca) # AQUI VAI JOGAR O DADO PRO FRONT
