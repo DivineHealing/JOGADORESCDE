@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, render_template, request
+info = {} #dicionario que ira receber os outros dicionarios de forma ordenada
 
 main = Flask(__name__)
 
@@ -10,13 +11,14 @@ def home():
 @main.route("/atrstatus", methods=['POST'])
 def atrstatus():
     data = request.get_json() # AQUI PEGA O DADO
+    info['attbase'] = data
     forca = float(data.get('forca'))
     destreza =  float(data.get('destreza'))
     inteligencia = float(data.get('inteligencia'))
     determinacao = float(data['determinacao'])
     percepcao = float(data['percepcao'])
     carisma = float(data['carisma'])
-    print(data)
+    print(info)
 
     forcae = float(data.get('forcaE')) # Pega o valor do equipamento
     forca += forcae # Soma o valor base com o Equipamento
