@@ -6,7 +6,8 @@ main = Flask(__name__)
 def home():
     return render_template('home.html')
 
-# CODIGO AQUI
+#supimpa
+#tijolao verde
 
 
 # NAO PASSAR DAQUI
