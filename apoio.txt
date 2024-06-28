@@ -2,3 +2,31 @@ def atrstatus():
     data = request.get_json() # AQUI PEGA O DADO
     forca = float(data.get('forca')) #DADO
     return jsonify(forca=forca) # AQUI VAI JOGAR O DADO PRO FRONT
+
+@main.route("/atrstatus", methods=['POST'])
+def atrstatus():
+    global data
+    data = request.get_json() # AQUI PEGA O DADO
+
+    forca = somartudo('forca')
+
+def somartudo(att):
+    att = float(data[att]) or 0 #atributo base(fixo)
+    eqp = float(data1[att]) or 0 #equipamento(fixo)
+    mis = float(data2[att]) or 0 #missao(fixo)
+    maes = float(data3[att]) or 0  #maestria(%)
+    raca = float[data4[att]] or 0 #raca(%)
+    hab = float[data5[att]] or 0 #habilidades(%) (a soma de todas as habilidades que buffam)
+    bep = float[data6[att]] or 0 #buff externo %
+    bef = float[data7[att]] or 0 #buff externo fixo
+
+    soma1 = att + eqp + mis
+    soma2 = soma1 + soma1 * (maes + raca) / 100
+    soma3 = soma2 + soma2 * hab / 100
+    extpor = floor(soma3 + soma3 * bep)
+    extfix = floor(soma3 + soma3 * bef)
+    if extfix >= expor:
+        final = extfix
+    else:
+        final = extpor
+    return final
