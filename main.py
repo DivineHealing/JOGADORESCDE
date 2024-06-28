@@ -7,8 +7,8 @@ def home():
     return render_template('home.html')
 
 # CODIGO AQUI
-#supimpa
-#tijolao verde
+
+@main.route("/atributos")
 
 # NAO PASSAR DAQUI
 
