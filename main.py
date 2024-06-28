@@ -8,11 +8,11 @@ def home():
 
 # CODIGO AQUI
 @main.route("/atrstatus", methods=['POST']) #LOCALIZA DE ONDE TA VINDO
-def atrstatus():
+def atrstatus(javaret, att):
     data = request.get_json() # AQUI PEGA O DADO
-    forca = float(data.get('forca')) #DADO
+    atributoescolhido = float(data.get(att)) #DADO
 
-    return jsonify(javaforca=forca) # AQUI VAI JOGAR O DADO PRO FRONT
+    return jsonify(javaret=atributoescolhido) # AQUI VAI JOGAR O DADO PRO FRONT
 
 # PERA QUE FUDEU, TODOS EQUIPAMENTOS QUE DAO FORÇA, VAO TER QUE ESTAR AQUI, E VAI TER UM PRA CADA DESSE
 
