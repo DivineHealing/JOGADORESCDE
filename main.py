@@ -21,7 +21,7 @@ def atrstatus():
     carisma = float(data['carisma'])
     criadojack = atributos(forca, destreza, inteligencia, determinacao, percepcao, carisma)
     info.append(criadojack) #retirar provavelmente quando tiver o banco de dedos
-    print(info)
+    print(criadojack.forca)
 
     forcae = float(data.get('forcaE')) # Pega o valor do equipamento
     forca += forcae # Soma o valor base com o Equipamento

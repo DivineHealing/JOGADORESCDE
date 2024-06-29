@@ -4,6 +4,6 @@ from dataclasses import dataclass
 @dataclass
 class Equipamento(): #teste apenas
     ativado: bool = False
-    bonusdeconjunto: Int = 0
+    bonusdeconjunto: int = 0
     att: atributos = atributos()
 
