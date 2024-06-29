@@ -29,6 +29,24 @@ def atrstatus():
     return jsonify(forca=forca, destreza=destreza, inteligencia=inteligencia, determinacao=determinacao, percepcao=percepcao,
                    carisma=carisma) # AQUI VAI JOGAR O DADO PRO FRONT
 
+@main.route("/redvida", methods=['POST'])
+def redvida():
+    data = request.get_json()
+    vida = float(data.get('vida'))
+    mana = float(data.get('mana'))
+    vigor = float(data.get('vigor'))
+    vidap = float(data.get('vidaP'))
+    manap = float(data.get('manaP'))
+    vigorp = float(data.get('vigorP'))
+    vidap -= vida
+    manap -= mana
+    vigorp -= vigor
+
+    if vida >= (vidap*1.33):
+        vidap = "Morreu"
+
+    return jsonify(vidab=vidap, manab=manap, vigorb=vigorp)
+
 # Fim do Codigo
 if __name__ == '__main__': 
     main.run(debug=True)

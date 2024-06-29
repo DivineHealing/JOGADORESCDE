@@ -12,81 +12,117 @@
     <style>
         input[type=number]::-webkit-inner-spin-button{
         appearance: none; 
+        
     }
     </style>
     <div class="valatributo">
-        <h1>Atributos do Personagem</h1>
-        <div class="atributo">
-            <label for="vida">Vida </label>
+        <h1>Atributos Vitais do Personagem</h1>
+        <div class="atributo" onchange="redvida()">
+            <label for="vida" >Vida: </label>
+            <input type= "number" id="vidaP" pattern="[0-9]+$"></input>
             <labelat id="vidat">100</labelat>
-            <input id="vida" name="vida">
+            <input onKeyPress= 'redvida()' id="vida" name="vida">
     
             <label for="mana">Mana</label>
+            <input type= "number" id="manaP" pattern="[0-9]+$"></input>
             <labelat id="manat">100</labelat>
             <input id="mana" name="mana">
     
             <label for="vigor">Vigor</label>
+            <input type= "number" id="vigorP" pattern="[0-9]+$"></input>
             <labelat id="vigort">100</labelat>
             <input id="vigor" name="vigor">
         </div>
     </div>
 
     <p></p>
-    <div class="valstatus">
-        <h1>Valor de Status</h1>
+    <div class="valstatus" onchange="alterar()">
+        <h1>Status Base do Personagem</h1>
         <div class="atrstatus">
             <label for="forca">Força</label>
             <labelat id="forcat">0</labelat> 
-            <input type="number" id="forca" placeholder="Valor da força" value="10">
+            <input type="number" id="forca" pattern="[0-9]+$">
 
             <label for="destreza">Destreza </label>
             <labelat id="destrezat">0</labelat>
-            <input type="number" id="destreza">
+            <input type="number" id="destreza" pattern="[0-9]+$">
 
             <label for="inteligencia">Inteligencia</label>
             <labelat id="inteligenciat">0</labelat>
-            <input type="number" id="inteligencia"> 
+            <input type="number" id="inteligencia" pattern="[0-9]+$"> 
 
             <label for="determinacao">Determinação </label>
-            <labelat id="determinacaot">0</labelat> 
-            <input id="determinacao"> 
+            <labelat id="determinacaot">0</labelat > 
+            <input type="number" id="determinacao" pattern="[0-9]+$"> 
 
             <label for="percepcao">Percepção</label>
             <labelat id="percepcaot">0</labelat>
-            <input type="number" id="percepcao">
+            <input type="number" id="percepcao" pattern="[0-9]+$">
             
             <label for="carisma">Carisma</label>
             <labelat id="carismat">0</labelat> 
-            <input type="number" id="carisma">
+            <input type="number" id="carisma" pattern="[0-9]+$">
         </div>
     </div>
         <p></p>
-    <div class="valequipamento">
-        <h1>Valor de Equipamentos</h1>
+    <div class="valequipamento" onchange="alterar()">
+        <h1>Status do Conjunto de Armadura</h1>
         <div class="atrequipamento">
-            <label for="forcaE">Força</label>
-            <labelat id="forcatE">0</labelat> 
-            <input type="number" id="forcaE" placeholder="Valor da força" value="10">
+            <label ></label>
+            <labelat id="forcaT"></labelat> 
+            <label for="forca">Elmo</label>
+            <label for="forca">Peitoral</label>
+            <label for="forca">Luvas</label>
+            <label for="forca">Calça</label>
+            <label for="forca">Bota</label>
             
-            <label for="destrezaE">Destreza</label>
-            <labelat id="destrezaE">0</labelat>
-            <input type="number" id="destrezaE" placeholder="valor da destreza" value="0">
-
-            <label for="inteligenciaE">Inteligencia</label>
-            <labelat id="inteligenciaE">0</labelat>
-            <input type="number" id="inteligenciaE" placeholder="valor da destreza" value="0">
-
+            <label >Força</label>
+            <labelat id="forcatT">0</labelat> 
+            <input type="number" id="forcaE" value="0" pattern="[0-9]+$">
+            <input type="number" id="forcaP" value="0" pattern="[0-9]+$">
+            <input type="number" id="forcaL" value="0" pattern="[0-9]+$">
+            <input type="number" id="forcaC" value="0" pattern="[0-9]+$">
+            <input type="number" id="forcaB" value="0" pattern="[0-9]+$">
+            
+            <label >Destreza</label>
+            <labelat id="destrezaT">0</labelat>
+            <input type="number" id="destrezaE" value="0" pattern="[0-9]+$">
+            <input type="number" id="destrezaP" value="0" pattern="[0-9]+$">
+            <input type="number" id="destrezaL" value="0" pattern="[0-9]+$">
+            <input type="number" id="destrezaC" value="0" pattern="[0-9]+$">
+            <input type="number" id="destrezaB" value="0" pattern="[0-9]+$">
+            
+            <label >Inteligencia</label>
+            <labelat id="inteligenciaT">0</labelat>
+            <input type="number" id="inteligenciaE" value="0" pattern="[0-9]+$">
+            <input type="number" id="inteligenciaP" value="0" pattern="[0-9]+$">
+            <input type="number" id="inteligenciaL" value="0" pattern="[0-9]+$">
+            <input type="number" id="inteligenciaC" value="0" pattern="[0-9]+$">
+            <input type="number" id="inteligenciaB" value="0" pattern="[0-9]+$">
+            
             <label for="determinacaoE">Determinação</label>
-            <labelat id="determinacaoE">0</labelat>
-            <input type="number" id="determinacaoE" placeholder="valor da destreza" value="0">
-
-            <label for="percepcaoE">percepção</label>
-            <labelat id="percepcaoE">0</labelat>
-            <input type="number" id="percepcaoE" placeholder="valor da destreza" value="0">
-
-            <label for="carismaE">Carisma</label>
-            <labelat id="carismaE">0</labelat>
-            <input type="number" id="carismaE" placeholder="valor da destreza" value="0">
+            <labelat id="determinacaoT">0</labelat>
+            <input type="number" id="determinacaoE" value="0" pattern="[0-9]+$">
+            <input type="number" id="determinacaoP" value="0" pattern="[0-9]+$">
+            <input type="number" id="determinacaoL" value="0" pattern="[0-9]+$">
+            <input type="number" id="determinacaoC" value="0" pattern="[0-9]+$">
+            <input type="number" id="determinacaoB" value="0" pattern="[0-9]+$">
+            
+            <label >percepção</label>
+            <labelat id="percepcaoT">0</labelat>
+            <input type="number" id="percepcaoE" value="0" pattern="[0-9]+$">
+            <input type="number" id="percepcaoP" value="0" pattern="[0-9]+$">
+            <input type="number" id="percepcaoL" value="0" pattern="[0-9]+$">
+            <input type="number" id="percepcaoC" value="0" pattern="[0-9]+$">
+            <input type="number" id="percepcaoB" value="0" pattern="[0-9]+$">
+            
+            <label >Carisma</label>
+            <labelat id="carismaT">0</labelat>
+            <input type="number" id="percepcaoE" value="0" pattern="[0-9]+$">
+            <input type="number" id="percepcaoP" value="0" pattern="[0-9]+$">
+            <input type="number" id="percepcaoL" value="0" pattern="[0-9]+$">
+            <input type="number" id="percepcaoC" value="0" pattern="[0-9]+$">
+            <input type="number" id="percepcaoB" value="0" pattern="[0-9]+$">
         </div>
     </div>
         <button onclick="alterar()"> Alterar valores</button>

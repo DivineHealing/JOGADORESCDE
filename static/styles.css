@@ -5,7 +5,7 @@ body {
 
 .atributo{
     display: grid;
-    grid-template-columns: 3vw 2vw 2vw; 
+    grid-template-columns: 2.5vw 5vw 3vw 5vw; 
 }
 .valatributo {
     font: times, bold;
@@ -13,7 +13,7 @@ body {
     border-radius: 4vh;
     border-color: rgb(0, 0, 0);
     padding: 1vw;
-    width: 20vw;
+    width: 23vw;
 }
 
 .atrstatus {  
@@ -32,7 +32,7 @@ body {
 
 .atrequipamento {  
     display: grid;
-    grid-template-columns: 6vw 2vw 5vw;
+    grid-template-columns: 6vw 2vw 5vw 5vw 5vw 5vw 5vw;
 }
 
 .valequipamento {
@@ -41,7 +41,7 @@ body {
     border-radius: 4vh;
     border-color: rgb(0, 0, 0);
     padding: 1vw;
-    width: 20vw;
+    width: 32.5vw;
 }
 
 .valatributo h1, .valstatus h1, .valequipamento h1 {
@@ -61,7 +61,7 @@ input {
     outline: none;
     color: #fff;
     background-color: rgb(0, 114, 114);
-    width: 10vh;
+    width: 8vh;
     height: 2vh;
     border-radius: 1vh;
 }
