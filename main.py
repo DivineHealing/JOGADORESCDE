@@ -72,7 +72,7 @@ def atrstatus():
     forcae = float(data.get('forcaE')) # Pega o valor do equipamento
     forca += forcae # Soma o valor base com o Equipamento
 
-    return jsonify(forcat=forca, destreza=destreza, inteligencia=inteligencia, determinacao=determinacao, percepcao=percepcao,
+    return jsonify(forca=forca, destreza=destreza, inteligencia=inteligencia, determinacao=determinacao, percepcao=percepcao,
                    carisma=carisma) # AQUI VAI JOGAR O DADO PRO FRONT
 
 @main.route("/redvida", methods=['POST'])

@@ -67,7 +67,7 @@ function alterar() { // função que ativa quando aperta o botão
         document.getElementById('inteligenciat').textContent = `${data.inteligencia.toLocaleString('pt-BR')}`,
         document.getElementById('determinacaot').textContent = `${data.determinacao.toLocaleString('pt-BR')}`,
         document.getElementById('percepcaot').textContent = `${data.percepcao.toLocaleString('pt-BR')}`,
-        document.getElementById('carismat').textContent = `${data.percepcao.toLocaleString('pt-BR')}`
+        document.getElementById('carismat').textContent = `${data.carisma.toLocaleString('pt-BR')}`
         ;
     })
     .catch(error => {
