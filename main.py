@@ -71,7 +71,13 @@ def atrstatus():
 
     conja = ConjArmadura(elmo, peitoral, luva, calca, bota)
     info.extend([attbase, conja]) #retirar provavelmente quando tiver o banco de dedos
-    forcaT = somaTodosAtt('forca', attbase, conja)
+    forcaCJ = conja.somarEquip('forca') #funcao da classe para somar os atributos equipamentos
+    destrezaCJ = conja.somarEquip('destreza')
+    inteligenciaCJ = conja.somarEquip('inteligencia')
+    determinacaoCJ = conja.somarEquip('determinacao')
+    percepcaoCJ = conja.somarEquip('percepcao')
+    carismaCJ = conja.somarEquip('carisma')
+    forcaT = somaTodosAtt('forca', attbase, conja) #funcao para pegar a soma total de todos atributos
     destrezaT = somaTodosAtt('destreza', attbase, conja)
     inteligenciaT = somaTodosAtt('inteligencia', attbase, conja)
     determinacaoT = somaTodosAtt('determinacao', attbase, conja)
@@ -81,7 +87,8 @@ def atrstatus():
 
     return jsonify(forca=forca, destreza=destreza, inteligencia=inteligencia, determinacao=determinacao, percepcao=percepcao,
                    carisma=carisma, forcaT=forcaT, destrezaT=destrezaT, inteligenciaT=inteligenciaT, determinacaoT=determinacaoT,
-                   percepcaoT=percepcaoT, carismaT=carismaT) # AQUI VAI JOGAR O DADO PRO FRONT
+                   percepcaoT=percepcaoT, carismaT=carismaT, forcaCJ=forcaCJ, destrezaCJ=destrezaCJ, inteligenciaCJ=inteligenciaCJ,
+                   determinacaoCJ=determinacaoCJ, percepcaoCJ=percepcaoCJ, carismaCJ=carismaCJ) # AQUI VAI JOGAR O DADO PRO FRONT
 
 @main.route("/redvida", methods=['POST'])
 def redvida():
