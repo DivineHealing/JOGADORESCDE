@@ -9,7 +9,7 @@ class ConjArmadura:
     calca: Equipamento
     bota: Equipamento
 
-    def somarEquip(self, escolha):
+    def somarEquip(self, escolha):  # pegara o total do atributo escolhido em todos os equipamentos
         total = (self.elmo.att.pegaValor(escolha) + self.peitoral.att.pegaValor(escolha) + self.luva.att.pegaValor(escolha) + self.calca.att.pegaValor(escolha) + 
                  self.bota.att.pegaValor(escolha))
         return total
