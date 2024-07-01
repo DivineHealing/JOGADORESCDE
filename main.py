@@ -14,9 +14,9 @@ def home():
 @main.route("/atrstatus", methods=['POST'])
 def atrstatus():
     data = request.get_json() # AQUI PEGA O DADO
-    forca = float(data.get('forca'))
-    destreza =  float(data.get('destreza'))
-    inteligencia = float(data.get('inteligencia'))
+    forca = float(data['forca'])
+    destreza =  float(data['destreza'])
+    inteligencia = float(data['inteligencia'])
     determinacao = float(data['determinacao'])
     percepcao = float(data['percepcao'])
     carisma = float(data['carisma'])
@@ -25,7 +25,7 @@ def atrstatus():
     efor = float(data['forcaE'])
     edes = float(data['destrezaE'])
     eint = float(data['inteligenciaE'])
-    edet = float(data['determinaçãoE'])
+    edet = float(data['determinacaoE'])
     eper = float(data['percepcaoE'])
     ecar = float(data['carismaE'])
     eclasse = Atributos(efor, edes, eint, edet, eper, ecar)
@@ -34,7 +34,7 @@ def atrstatus():
     pfor = float(data['forcaP'])
     pdes = float(data['destrezaP'])
     pint = float(data['inteligenciaP'])
-    pdet = float(data['determinaçãoP'])
+    pdet = float(data['determinacaoP'])
     pper = float(data['percepcaoP'])
     pcar = float(data['carismaP'])
     pclasse = Atributos(pfor, pdes, pint, pdet, pper, pcar)
@@ -43,34 +43,35 @@ def atrstatus():
     lfor = float(data['forcaL'])
     ldes = float(data['destrezaL'])
     lint = float(data['inteligenciaL'])
-    ldet = float(data['determinaçãoL'])
+    ldet = float(data['determinacaoL'])
     lper = float(data['percepcaoL'])
     lcar = float(data['carismaL'])
     lclasse = Atributos(lfor, ldes, lint, ldet, lper, lcar)
     luva = Equipamento(lclasse)
 
-    cfor = float(data['forcaP'])
-    cdes = float(data['destrezaP'])
-    cint = float(data['inteligenciaP'])
-    cdet = float(data['determinaçãoP'])
-    cper = float(data['percepcaoP'])
-    ccar = float(data['carismaP'])
+    cfor = float(data['forcaC'])
+    cdes = float(data['destrezaC'])
+    cint = float(data['inteligenciaC'])
+    cdet = float(data['determinacaoC'])
+    cper = float(data['percepcaoC'])
+    ccar = float(data['carismaC'])
     cclasse = Atributos(cfor, cdes, cint, cdet, cper, ccar)
     calca = Equipamento(cclasse)
 
     bfor = float(data['forcaB'])
     bdes = float(data['destrezaB'])
     bint = float(data['inteligenciaB'])
-    bdet = float(data['determinaçãoB'])
+    bdet = float(data['determinacaoB'])
     bper = float(data['percepcaoB'])
     bcar = float(data['carismaB'])
     bclasse = Atributos(bfor, bdes, bint, bdet, bper, bcar)
     bota = Equipamento(bclasse)
 
-    info.append(attbase, elmo, peitoral, luva, calca, bota) #retirar provavelmente quando tiver o banco de dedos
+    info.extend([attbase, elmo, peitoral, luva, calca, bota]) #retirar provavelmente quando tiver o banco de dedos
 
     forcae = float(data.get('forcaE')) # Pega o valor do equipamento
     forca += forcae # Soma o valor base com o Equipamento
+    print(f"teste")
 
     return jsonify(forca=forca, destreza=destreza, inteligencia=inteligencia, determinacao=determinacao, percepcao=percepcao,
                    carisma=carisma) # AQUI VAI JOGAR O DADO PRO FRONT
