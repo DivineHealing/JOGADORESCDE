@@ -66,6 +66,13 @@ function alterar() { // função que ativa quando aperta o botão
         document.getElementById('determinacaot').textContent = `${data.determinacao.toLocaleString('pt-BR')}`;
         document.getElementById('percepcaot').textContent = `${data.percepcao.toLocaleString('pt-BR')}`;
         document.getElementById('carismat').textContent = `${data.carisma.toLocaleString('pt-BR')}`;
+
+        document.getElementById('forcaT').textContent = `${data.forcaT.toLocaleString('pt-BR')}`;
+        document.getElementById('destrezaT').textContent = `${data.destrezaT.toLocaleString('pt-BR')}`;
+        document.getElementById('inteligenciaT').textContent = `${data.inteligenciaT.toLocaleString('pt-BR')}`;
+        document.getElementById('determinacaoT').textContent = `${data.determinacaoT.toLocaleString('pt-BR')}`;
+        document.getElementById('percepcaoT').textContent = `${data.percepcaoT.toLocaleString('pt-BR')}`;
+        document.getElementById('carismaT').textContent = `${data.carismaT.toLocaleString('pt-BR')}`;
     })
     .catch(error => {
         console.error('Erro:', error);
