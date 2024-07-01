@@ -1,6 +1,8 @@
 from flask import Flask, jsonify, render_template, request
 from lib.atributos import Atributos
 from lib.equipamentos import Equipamento
+from lib.conjarmadura import ConjArmadura
+from lib.utilitarios import somaTodosAtt
 
 info = [] #lista de controle
 
@@ -67,14 +69,19 @@ def atrstatus():
     bclasse = Atributos(bfor, bdes, bint, bdet, bper, bcar)
     bota = Equipamento(bclasse)
 
-    info.extend([attbase, elmo, peitoral, luva, calca, bota]) #retirar provavelmente quando tiver o banco de dedos
+    conja = ConjArmadura(elmo, peitoral, luva, calca, bota)
+    info.extend([attbase, conja]) #retirar provavelmente quando tiver o banco de dedos
+    forcaT = somaTodosAtt('forca', attbase, conja)
+    destrezaT = somaTodosAtt('destreza', attbase, conja)
+    inteligenciaT = somaTodosAtt('inteligencia', attbase, conja)
+    determinacaoT = somaTodosAtt('determinacao', attbase, conja)
+    percepcaoT = somaTodosAtt('percepcao', attbase, conja)
+    carismaT = somaTodosAtt('carisma', attbase, conja)
 
-    forcae = float(data.get('forcaE')) # Pega o valor do equipamento
-    forca += forcae # Soma o valor base com o Equipamento
-    print(f"teste")
 
     return jsonify(forca=forca, destreza=destreza, inteligencia=inteligencia, determinacao=determinacao, percepcao=percepcao,
-                   carisma=carisma) # AQUI VAI JOGAR O DADO PRO FRONT
+                   carisma=carisma, forcaT=forcaT, destrezaT=destrezaT, inteligenciaT=inteligenciaT, determinacaoT=determinacaoT,
+                   percepcaoT=percepcaoT, carismaT=carismaT) # AQUI VAI JOGAR O DADO PRO FRONT
 
 @main.route("/redvida", methods=['POST'])
 def redvida():
