@@ -68,15 +68,17 @@ def atrstatus():
     bcar = float(data['carismaB'])
     bclasse = Atributos(bfor, bdes, bint, bdet, bper, bcar)
     bota = Equipamento(bclasse)
-
     conja = ConjArmadura(elmo, peitoral, luva, calca, bota)
-    info.extend([attbase, conja]) #retirar provavelmente quando tiver o banco de dedos
+    
+    info.extend([attbase, conja]) #futuramente ira para a classe personagem/ retirar provavelmente quando tiver o banco de dedos
+
     forcaCJ = conja.somarEquip('forca') #funcao da classe para somar os atributos equipamentos
     destrezaCJ = conja.somarEquip('destreza')
     inteligenciaCJ = conja.somarEquip('inteligencia')
     determinacaoCJ = conja.somarEquip('determinacao')
     percepcaoCJ = conja.somarEquip('percepcao')
     carismaCJ = conja.somarEquip('carisma')
+
     forcaT = somaTodosAtt('forca', attbase, conja) #funcao para pegar a soma total de todos atributos
     destrezaT = somaTodosAtt('destreza', attbase, conja)
     inteligenciaT = somaTodosAtt('inteligencia', attbase, conja)
