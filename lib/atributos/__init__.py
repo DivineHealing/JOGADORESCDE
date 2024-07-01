@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 
 @dataclass
-class atributos():
+class Atributos():
     forca: float = 0
     destreza: float = 0
     inteligencia: float = 0

@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, render_template, request
-from lib.atributos import atributos
+from lib.atributos import Atributos
+from lib.equipamentos import Equipamento
 
 info = [] #lista de controle
 
@@ -19,14 +20,59 @@ def atrstatus():
     determinacao = float(data['determinacao'])
     percepcao = float(data['percepcao'])
     carisma = float(data['carisma'])
-    criadojack = atributos(forca, destreza, inteligencia, determinacao, percepcao, carisma)
-    info.append(criadojack) #retirar provavelmente quando tiver o banco de dedos
-    print(criadojack.forca)
+    attbase = Atributos(forca, destreza, inteligencia, determinacao, percepcao, carisma)
+    
+    efor = float(data['forcaE'])
+    edes = float(data['destrezaE'])
+    eint = float(data['inteligenciaE'])
+    edet = float(data['determinaçãoE'])
+    eper = float(data['percepcaoE'])
+    ecar = float(data['carismaE'])
+    eclasse = Atributos(efor, edes, eint, edet, eper, ecar)
+    elmo = Equipamento(eclasse)
+
+    pfor = float(data['forcaP'])
+    pdes = float(data['destrezaP'])
+    pint = float(data['inteligenciaP'])
+    pdet = float(data['determinaçãoP'])
+    pper = float(data['percepcaoP'])
+    pcar = float(data['carismaP'])
+    pclasse = Atributos(pfor, pdes, pint, pdet, pper, pcar)
+    peitoral = Equipamento(pclasse)
+
+    lfor = float(data['forcaL'])
+    ldes = float(data['destrezaL'])
+    lint = float(data['inteligenciaL'])
+    ldet = float(data['determinaçãoL'])
+    lper = float(data['percepcaoL'])
+    lcar = float(data['carismaL'])
+    lclasse = Atributos(lfor, ldes, lint, ldet, lper, lcar)
+    luva = Equipamento(lclasse)
+
+    cfor = float(data['forcaP'])
+    cdes = float(data['destrezaP'])
+    cint = float(data['inteligenciaP'])
+    cdet = float(data['determinaçãoP'])
+    cper = float(data['percepcaoP'])
+    ccar = float(data['carismaP'])
+    cclasse = Atributos(cfor, cdes, cint, cdet, cper, ccar)
+    calca = Equipamento(cclasse)
+
+    bfor = float(data['forcaB'])
+    bdes = float(data['destrezaB'])
+    bint = float(data['inteligenciaB'])
+    bdet = float(data['determinaçãoB'])
+    bper = float(data['percepcaoB'])
+    bcar = float(data['carismaB'])
+    bclasse = Atributos(bfor, bdes, bint, bdet, bper, bcar)
+    bota = Equipamento(bclasse)
+
+    info.append(attbase, elmo, peitoral, luva, calca, bota) #retirar provavelmente quando tiver o banco de dedos
 
     forcae = float(data.get('forcaE')) # Pega o valor do equipamento
     forca += forcae # Soma o valor base com o Equipamento
 
-    return jsonify(forca=forca, destreza=destreza, inteligencia=inteligencia, determinacao=determinacao, percepcao=percepcao,
+    return jsonify(forcat=forca, destreza=destreza, inteligencia=inteligencia, determinacao=determinacao, percepcao=percepcao,
                    carisma=carisma) # AQUI VAI JOGAR O DADO PRO FRONT
 
 @main.route("/redvida", methods=['POST'])
@@ -46,6 +92,7 @@ def redvida():
         vidap = "Morreu"
 
     return jsonify(vidab=vidap, manab=manap, vigorb=vigorp)
+
 
 # Fim do Codigo
 if __name__ == '__main__': 

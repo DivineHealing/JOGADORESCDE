@@ -1,9 +1,7 @@
-from lib.atributos import atributos
+from lib.atributos import Atributos
 from dataclasses import dataclass
 
 @dataclass
 class Equipamento(): #teste apenas
-    ativado: bool = False
-    bonusdeconjunto: int = 0
-    att: atributos = atributos()
+    att: Atributos
 
