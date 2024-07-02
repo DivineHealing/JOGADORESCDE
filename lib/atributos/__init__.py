@@ -11,7 +11,8 @@ class Atributos():
     carisma: float = 0
 
     def pegaValor(self, escolha:str):  # Ira retornar o valor do atributo escolhido
-        if escolha.lower() == 'forca':
+        return getattr(self, escolha)
+        '''if escolha.lower() == 'forca':
             return self.forca
         if escolha.lower() == 'destreza':
             return self.destreza
@@ -22,4 +23,4 @@ class Atributos():
         if escolha.lower() == 'percepcao':
             return self.percepcao
         if escolha.lower() == 'carisma':
-            return self.carisma 
+            return self.carisma'''

@@ -20,9 +20,19 @@ def somartudo(att):
         final = extpor
     return final
 
-
     ##############################################################
     é possivel transformar classes em dicionarios 
+
+funçao que talvez funcione para qualquer soma dos itens do mesmo conjunto
+def somarConj(self, escolha):
+    listsoma = []
+    for k, v in asdict(self).items:
+        if v == 'att': # att pode ser substituido por def, amp, etc...
+            listsoma.append(v[escolha])
+    return listsoma
+
+
+
     ##############################################################
 
     TERCA FEIRA
