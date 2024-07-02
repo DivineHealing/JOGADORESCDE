@@ -29,7 +29,7 @@ def somarConj(self, escolha):
     for k, v in asdict(self).items:
         if v == 'att': # att pode ser substituido por def, amp, etc...
             listsoma.append(v[escolha])
-    return listsoma
+    return sum(listsoma)
 
 
 
