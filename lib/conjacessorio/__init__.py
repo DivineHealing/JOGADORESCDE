@@ -19,5 +19,5 @@ class ConjAcessorio:
     def somarAces(self, escolha):  # pegara o total do atributo escolhido em todos os equipamentos
         total = (self.anel1.att.pegaValor(escolha) + self.anel2.att.pegaValor(escolha) + self.anel3.att.pegaValor(escolha) + self.anel4.att.pegaValor(escolha) +
                  self.bracd.att.pegaValor(escolha) + self.brace.att.pegaValor(escolha) + self.brind.att.pegaValor(escolha) + self.brine.att.pegaValor(escolha)+
-                 self.colar.att.pegaValor(escolha) + self.cint.att.pegaValor(escolha))
+                 self.colar.att.pegaValor(escolha) + self.capa.att.pegaValor(escolha) + self.cint.att.pegaValor(escolha))
         return total
