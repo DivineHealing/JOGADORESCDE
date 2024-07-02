@@ -2,6 +2,8 @@ from flask import Flask, jsonify, render_template, request
 from lib.atributos import Atributos
 from lib.equipamentos import Equipamento
 from lib.conjarmadura import ConjArmadura
+from lib.acessorio import Acessorio
+from lib.conjacessorio import ConjAcessorio
 from lib.utilitarios import somaTodosAtt
 
 info = [] #lista de controle
@@ -30,8 +32,8 @@ def atrstatus():
     edet = float(data['determinacaoE'])
     eper = float(data['percepcaoE'])
     ecar = float(data['carismaE'])
-    eclasse = Atributos(efor, edes, eint, edet, eper, ecar)
-    elmo = Equipamento(eclasse)
+    eclasatt = Atributos(efor, edes, eint, edet, eper, ecar) # criando classe de atributos do elmo
+    elmo = Equipamento(eclasatt) # criando objeto elmo
 
     pfor = float(data['forcaP'])
     pdes = float(data['destrezaP'])
@@ -39,8 +41,8 @@ def atrstatus():
     pdet = float(data['determinacaoP'])
     pper = float(data['percepcaoP'])
     pcar = float(data['carismaP'])
-    pclasse = Atributos(pfor, pdes, pint, pdet, pper, pcar)
-    peitoral = Equipamento(pclasse)
+    pclasatt = Atributos(pfor, pdes, pint, pdet, pper, pcar)  # criando classe de atributos do peitoral
+    peitoral = Equipamento(pclasatt) # criando objeto peitoral
 
     lfor = float(data['forcaL'])
     ldes = float(data['destrezaL'])
@@ -48,8 +50,8 @@ def atrstatus():
     ldet = float(data['determinacaoL'])
     lper = float(data['percepcaoL'])
     lcar = float(data['carismaL'])
-    lclasse = Atributos(lfor, ldes, lint, ldet, lper, lcar)
-    luva = Equipamento(lclasse)
+    lclasatt = Atributos(lfor, ldes, lint, ldet, lper, lcar)  # criando classe de atributos da luva
+    luva = Equipamento(lclasatt) # criando objeto luva
 
     cfor = float(data['forcaC'])
     cdes = float(data['destrezaC'])
@@ -57,8 +59,8 @@ def atrstatus():
     cdet = float(data['determinacaoC'])
     cper = float(data['percepcaoC'])
     ccar = float(data['carismaC'])
-    cclasse = Atributos(cfor, cdes, cint, cdet, cper, ccar)
-    calca = Equipamento(cclasse)
+    cclasatt = Atributos(cfor, cdes, cint, cdet, cper, ccar)  # criando classe de atributos da calca
+    calca = Equipamento(cclasatt)  # criando objeto calca
 
     bfor = float(data['forcaB'])
     bdes = float(data['destrezaB'])
@@ -66,11 +68,113 @@ def atrstatus():
     bdet = float(data['determinacaoB'])
     bper = float(data['percepcaoB'])
     bcar = float(data['carismaB'])
-    bclasse = Atributos(bfor, bdes, bint, bdet, bper, bcar)
-    bota = Equipamento(bclasse)
-    conja = ConjArmadura(elmo, peitoral, luva, calca, bota)
+    bclasatt = Atributos(bfor, bdes, bint, bdet, bper, bcar)  # criando classe de atributos da bota
+    bota = Equipamento(bclasatt)  # criando objeto bota
+
+    conja = ConjArmadura(elmo, peitoral, luva, calca, bota)  # criando objeto de conjunto de armadura
     
-    info.extend([attbase, conja]) #futuramente ira para a classe personagem/ retirar provavelmente quando tiver o banco de dedos
+    anfor1 = float(data['forcaAn1'])
+    andes1 = float(data['destrezaAn1'])
+    anint1 = float(data['inteligenciaAn1'])
+    andet1 = float(data['determinacaoAn1'])
+    anper1 = float(data['percepcaoAn1'])
+    ancar1 = float(data['carismaAn1'])
+    anclasatt1 = Atributos(anfor1, andes1, anint1, andet1, anper1, ancar1) # criando classe de atributos do anel 1
+    anel1 = Acessorio(anclasatt1)  # criando o objeto anel1
+
+    anfor2 = float(data['forcaAn2'])
+    andes2 = float(data['destrezaAn2'])
+    anint2 = float(data['inteligenciaAn2'])
+    andet2 = float(data['determinacaoAn2'])
+    anper2 = float(data['percepcaoAn2'])
+    ancar2 = float(data['carismaAn2'])
+    anclasatt2 = Atributos(anfor2, andes2, anint2, andet2, anper2, ancar2) # criando classe de atributos do anel 2
+    anel2 = Acessorio(anclasatt2)  # criando o objeto anel2
+
+    anfor3 = float(data['forcaAn3'])
+    andes3 = float(data['destrezaAn3'])
+    anint3 = float(data['inteligenciaAn3'])
+    andet3 = float(data['determinacaoAn3'])
+    anper3 = float(data['percepcaoAn3'])
+    ancar3 = float(data['carismaAn3'])
+    anclasatt3 = Atributos(anfor3, andes3, anint3, andet3, anper3, ancar3) # criando classe de atributos do anel 3
+    anel3 = Acessorio(anclasatt3)  # criando o objeto anel3
+
+    anfor4 = float(data['forcaAn4'])
+    andes4 = float(data['destrezaAn4'])
+    anint4 = float(data['inteligenciaAn4'])
+    andet4 = float(data['determinacaoAn4'])
+    anper4 = float(data['percepcaoAn4'])
+    ancar4 = float(data['carismaAn4'])
+    anclasatt4 = Atributos(anfor4, andes4, anint4, andet4, anper4, ancar4) # criando classe de atributos do anel 4
+    anel4 = Acessorio(anclasatt4)  # criando o objeto anel4
+
+    bcfor1 = float(data['forcaBc1'])
+    bcdes1 = float(data['destrezaBc1'])
+    bcint1 = float(data['inteligenciaBc1'])
+    bcdet1 = float(data['determinacaoBc1'])
+    bcper1 = float(data['percepcaoBc1'])
+    bccar1 = float(data['carismaBc1'])
+    bcclasatt1 = Atributos(bcfor1, bcdes1, bcint1, bcdet1, bcper1, bccar1) # criando classe de atributos do bracelete 1
+    brac1 = Acessorio(bcclasatt1)  # criando o objeto bracelete1
+
+    bcfor2 = float(data['forcaBc2'])
+    bcdes2 = float(data['destrezaBc2'])
+    bcint2 = float(data['inteligenciaBc2'])
+    bcdet2 = float(data['determinacaoBc2'])
+    bcper2 = float(data['percepcaoBc2'])
+    bccar2 = float(data['carismaBc2'])
+    bcclasatt2 = Atributos(bcfor2, bcdes2, bcint2, bcdet2, bcper2, bccar2) # criando classe de atributos do bracelete 2
+    brac2 = Acessorio(bcclasatt2)  # criando o objeto bracelete2
+
+    brfor1 = float(data['forcaBr1'])
+    brdes1 = float(data['destrezaBr1'])
+    brint1 = float(data['inteligenciaBr1'])
+    brdet1 = float(data['determinacaoBr1'])
+    brper1 = float(data['percepcaoBr1'])
+    brcar1 = float(data['carismaBr1'])
+    brclasatt1 = Atributos(brfor1, brdes1, brint1, brdet1, brper1, brcar1) # criando classe de atributos do brinco 1
+    brinc1 = Acessorio(brclasatt1)  # criando o objeto brinco 1
+
+    brfor2 = float(data['forcaBr2'])
+    brdes2 = float(data['destrezaBr2'])
+    brint2 = float(data['inteligenciaBr2'])
+    brdet2 = float(data['determinacaoBr2'])
+    brper2 = float(data['percepcaoBr2'])
+    brcar2 = float(data['carismaBr2'])
+    brclasatt2 = Atributos(brfor2, brdes2, brint2, brdet2, brper2, brcar2) # criando classe de atributos do brinco 2
+    brinc2 = Acessorio(brclasatt2)  # criando o objeto brinco 2
+
+    cofor = float(data['forcaCo'])
+    codes = float(data['destrezaCo'])
+    coint = float(data['inteligenciaCo'])
+    codet = float(data['determinacaoCo'])
+    coper = float(data['percepcaoCo'])
+    cocar = float(data['carismaCo'])
+    coclasatt = Atributos(cofor, codes, coint, codet, coper, cocar) # criando classe de atributos do colar
+    colar = Acessorio(coclasatt)  # criando o objeto colar  
+
+    cafor = float(data['forcaCa'])
+    cades = float(data['destrezaCa'])
+    caint = float(data['inteligenciaCa'])
+    cadet = float(data['determinacaoCa'])
+    caper = float(data['percepcaoCa'])
+    cacar = float(data['carismaCa'])
+    caclasatt = Atributos(cafor, cades, caint, cadet, caper, cacar) # criando classe de atributos do colar
+    capa = Acessorio(caclasatt)  # criando o objeto colar  
+
+    cifor = float(data['forcaCi'])
+    cides = float(data['destrezaCi'])
+    ciint = float(data['inteligenciaCi'])
+    cidet = float(data['determinacaoCi'])
+    ciper = float(data['percepcaoCi'])
+    cicar = float(data['carismaCi'])
+    ciclasatt = Atributos(cifor, cides, ciint, cidet, ciper, cicar) # criando classe de atributos do colar
+    cinto = Acessorio(ciclasatt)  # criando o objeto colar  
+    
+    conjac = ConjAcessorio(anel1, anel2, anel3, anel4, brac1, brac2, brinc1, brinc2, colar, capa, cinto)
+
+    info.extend([attbase, conja, conjac]) #futuramente ira para a classe personagem/ retirar provavelmente quando tiver o banco de dedos
 
     forcaCJ = conja.somarEquip('forca') #funcao da classe para somar os atributos equipamentos
     destrezaCJ = conja.somarEquip('destreza')
@@ -79,7 +183,14 @@ def atrstatus():
     percepcaoCJ = conja.somarEquip('percepcao')
     carismaCJ = conja.somarEquip('carisma')
 
-    forcaT = somaTodosAtt('forca', attbase, conja) #funcao para pegar a soma total de todos atributos
+    forcaAc = conjac.somarAces('forca') #funcao da classe para somar os atributos dos acessorios
+    destrezaAc = conjac.somarAces('destreza')
+    inteligenciaAc = conjac.somarAces('inteligencia')
+    determinacaaAc = conjac.somarAces('determinacao')
+    percepcaaAc = conjac.somarAces('percepcao')
+    carismaAc = conjac.somarAces('carisma')
+
+    forcaT = somaTodosAtt('forca', attbase, conja) #funcao para pegar a soma total de todos atributos(personagem, equipamento, acessorio)
     destrezaT = somaTodosAtt('destreza', attbase, conja)
     inteligenciaT = somaTodosAtt('inteligencia', attbase, conja)
     determinacaoT = somaTodosAtt('determinacao', attbase, conja)
@@ -90,7 +201,8 @@ def atrstatus():
     return jsonify(forca=forca, destreza=destreza, inteligencia=inteligencia, determinacao=determinacao, percepcao=percepcao,
                    carisma=carisma, forcaT=forcaT, destrezaT=destrezaT, inteligenciaT=inteligenciaT, determinacaoT=determinacaoT,
                    percepcaoT=percepcaoT, carismaT=carismaT, forcaCJ=forcaCJ, destrezaCJ=destrezaCJ, inteligenciaCJ=inteligenciaCJ,
-                   determinacaoCJ=determinacaoCJ, percepcaoCJ=percepcaoCJ, carismaCJ=carismaCJ) # AQUI VAI JOGAR O DADO PRO FRONT
+                   determinacaoCJ=determinacaoCJ, percepcaoCJ=percepcaoCJ, carismaCJ=carismaCJ, forcaAc=forcaAc, destrezaAc=destrezaAc,
+                   inteligenciaAc=inteligenciaAc, determinacaaAc=determinacaaAc, percepcaaAc=percepcaaAc, carismaAc=carismaAc) # AQUI VAI JOGAR O DADO PRO FRONT
 
 @main.route("/redvida", methods=['POST'])
 def redvida():
