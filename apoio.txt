@@ -20,6 +20,9 @@ def somartudo(att):
         final = extpor
     return final
 
+
+    ##############################################################
+    é possivel transformar classes em dicionarios 
     ##############################################################
 
     TERCA FEIRA
