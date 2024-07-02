@@ -186,8 +186,8 @@ def atrstatus():
     forcaAc = conjac.somarAces('forca') #funcao da classe para somar os atributos dos acessorios
     destrezaAc = conjac.somarAces('destreza')
     inteligenciaAc = conjac.somarAces('inteligencia')
-    determinacaaAc = conjac.somarAces('determinacao')
-    percepcaaAc = conjac.somarAces('percepcao')
+    determinacaoAc = conjac.somarAces('determinacao')
+    percepcaoAc = conjac.somarAces('percepcao')
     carismaAc = conjac.somarAces('carisma')
 
     forcaT = somaTodosAtt('forca', attbase, conja, conjac) #funcao para pegar a soma total de todos atributos(personagem, equipamento, acessorio)
@@ -202,7 +202,7 @@ def atrstatus():
                    carisma=carisma, forcaT=forcaT, destrezaT=destrezaT, inteligenciaT=inteligenciaT, determinacaoT=determinacaoT,
                    percepcaoT=percepcaoT, carismaT=carismaT, forcaCJ=forcaCJ, destrezaCJ=destrezaCJ, inteligenciaCJ=inteligenciaCJ,
                    determinacaoCJ=determinacaoCJ, percepcaoCJ=percepcaoCJ, carismaCJ=carismaCJ, forcaAc=forcaAc, destrezaAc=destrezaAc,
-                   inteligenciaAc=inteligenciaAc, determinacaaAc=determinacaaAc, percepcaaAc=percepcaaAc, carismaAc=carismaAc) # AQUI VAI JOGAR O DADO PRO FRONT
+                   inteligenciaAc=inteligenciaAc, determinacaoAc=determinacaoAc, percepcaoAc=percepcaoAc, carismaAc=carismaAc) # AQUI VAI JOGAR O DADO PRO FRONT
 
 @main.route("/redvida", methods=['POST'])
 def redvida():
