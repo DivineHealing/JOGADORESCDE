@@ -75,6 +75,46 @@
             <input type="number" id="carisma" value="0" pattern="[0-9]+$">
         </div>
     </div>
+    <p></p>
+    <div class="valarma" onchange="alterar()">
+        <h1>Status das Armas</h1>
+        <div class="atrarma">
+            <label></label>
+            <labelat></labelat> 
+            <label>Arma Pri.</label>
+            <label>Arma Sec.</label>
+            
+            <label >Força</label>
+            <labelat id="forcaAR">0</labelat> 
+            <input type="number" id="forcaAp" value="0" pattern="[0-9]+$">
+            <input type="number" id="forcaAs" value="0" pattern="[0-9]+$">
+            
+            <label >Destreza</label>
+            <labelat id="destrezaAr">0</labelat>
+            <input type="number" id="destrezaAp" value="0" pattern="[0-9]+$">
+            <input type="number" id="destrezaAs" value="0" pattern="[0-9]+$">
+            
+            <label >Inteligencia</label>
+            <labelat id="inteligenciaAr">0</labelat>
+            <input type="number" id="inteligenciaAp" value="0" pattern="[0-9]+$">
+            <input type="number" id="inteligenciaAs" value="0" pattern="[0-9]+$">
+            
+            <label>Determinação</label>
+            <labelat id="determinacaoAr">0</labelat>
+            <input type="number" id="determinacaoAp" value="0" pattern="[0-9]+$">
+            <input type="number" id="determinacaoAs" value="0" pattern="[0-9]+$">
+            
+            <label >Percepção</label>
+            <labelat id="percepcaoAr">0</labelat>
+            <input type="number" id="percepcaoAp" value="0" pattern="[0-9]+$">
+            <input type="number" id="percepcaoAs" value="0" pattern="[0-9]+$">
+            
+            <label >Carisma</label>
+            <labelat id="carismaAr">0</labelat>
+            <input type="number" id="carismaAp" value="0" pattern="[0-9]+$">
+            <input type="number" id="carismaAs" value="0" pattern="[0-9]+$">
+        </div>
+    </div>
         <p></p>
     <div class="valequipamento" onchange="alterar()">
         <h1>Status do Conjunto de Armadura</h1>
@@ -139,8 +179,8 @@
 <p></p>
     <div class="valacessorio" onchange="alterar()">
         <h1>Status do Conjunto de Armadura</h1>
-        <div class="atreacessorio">
-            <labelat id="forcaAc"></labelat> 
+        <div class="atracessorio">
+            <labelat id="forcaAce"></labelat> 
             <label>Total</label>
             <label>Anel 1</label>
             <label>Anel 2</label>
@@ -240,6 +280,7 @@
         </div>
     </div>
     <p></p>
+    
     <button onclick="alterar()"> Alterar valores</button>
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>

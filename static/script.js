@@ -6,6 +6,26 @@ function alterar() { // função que ativa quando aperta o botão
     const percepcao = parseFloat(document.getElementById('percepcao').value) || 0;
     const carisma = parseFloat(document.getElementById('carisma').value) || 0;
 
+    // ARMA
+
+    const forcaAp = parseFloat(document.getElementById('forcaAp').value) || 0;
+    const forcaAs = parseFloat(document.getElementById('forcaAs').value) || 0;
+
+    const destrezaAp = parseFloat(document.getElementById('destrezaAp').value) || 0;
+    const destrezaAs = parseFloat(document.getElementById('destrezaAs').value) || 0;
+
+    const inteligenciaAp = parseFloat(document.getElementById('inteligenciaAp').value) || 0;
+    const inteligenciaAs = parseFloat(document.getElementById('inteligenciaAs').value) || 0;
+
+    const determinacaoAp = parseFloat(document.getElementById('determinacaoAp').value) || 0;
+    const determinacaoAs = parseFloat(document.getElementById('determinacaoAs').value) || 0;
+
+    const percepcaoAp = parseFloat(document.getElementById('percepcaoAp').value) || 0;
+    const percepcaoAs = parseFloat(document.getElementById('percepcaoAs').value) || 0;
+
+    const carismaAp = parseFloat(document.getElementById('carismaAp').value) || 0;
+    const carismaAs = parseFloat(document.getElementById('carismaAs').value) || 0;
+
     // CONJUNTO
     const forcaE = parseFloat(document.getElementById('forcaE').value) || 0;
     const forcaP = parseFloat(document.getElementById('forcaP').value) || 0;
@@ -42,7 +62,6 @@ function alterar() { // função que ativa quando aperta o botão
     const carismaL = parseFloat(document.getElementById('carismaL').value) || 0;
     const carismaC = parseFloat(document.getElementById('carismaC').value) || 0;
     const carismaB = parseFloat(document.getElementById('carismaB').value) || 0;
-
 
     // ACESSORIOS
     const forcaAn1 = parseFloat(document.getElementById('forcaAn1').value) || 0;
@@ -126,6 +145,9 @@ function alterar() { // função que ativa quando aperta o botão
         body: JSON.stringify({ 
             forca: forca, destreza: destreza, inteligencia: inteligencia, determinacao: determinacao, percepcao: percepcao, carisma: carisma,
 
+            forcaAp:forcaAp, forcaAs:forcaAs, destrezaAp:destrezaAp, destrezaAs:destrezaAs, inteligenciaAp:inteligenciaAp, inteligenciaAs:inteligenciaAs,
+            determinacaoAp:determinacaoAp, determinacaoAs:determinacaoAs, percepcaoAp:percepcaoAp, percepcaoAs:percepcaoAs, carismaAp:carismaAp, carismaAs:carismaAs,
+
             forcaE:forcaE, forcaP:forcaP, forcaL:forcaL, forcaC:forcaC, forcaB:forcaB, 
             destrezaE:destrezaE, destrezaP:destrezaP, destrezaL:destrezaL, destrezaC:destrezaC, destrezaB:destrezaB,
             inteligenciaE:inteligenciaE, inteligenciaP:inteligenciaP, inteligenciaL:inteligenciaL, inteligenciaC:inteligenciaC, inteligenciaB:inteligenciaB,
@@ -139,6 +161,8 @@ function alterar() { // função que ativa quando aperta o botão
             determinacaoAn1:determinacaoAn1, determinacaoAn2:determinacaoAn2, determinacaoAn3:determinacaoAn3, determinacaoAn4:determinacaoAn4, determinacaoBc1:determinacaoBc1, determinacaoBc2:determinacaoBc2, determinacaoBr1:determinacaoBr1, determinacaoBr2:determinacaoBr2, determinacaoCo:determinacaoCo, determinacaoCa:determinacaoCa, determinacaoCi:determinacaoCi,
             percepcaoAn1:percepcaoAn1, percepcaoAn2:percepcaoAn2, percepcaoAn3:percepcaoAn3, percepcaoAn4:percepcaoAn4, percepcaoBc1:percepcaoBc1, percepcaoBc2:percepcaoBc2, percepcaoBr1:percepcaoBr1, percepcaoBr2:percepcaoBr2, percepcaoCo:percepcaoCo, percepcaoCa:percepcaoCa, percepcaoCi:percepcaoCi,
             carismaAn1:carismaAn1, carismaAn2:carismaAn2, carismaAn3:carismaAn3, carismaAn4:carismaAn4, carismaBc1:carismaBc1, carismaBc2:carismaBc2, carismaBr1:carismaBr1, carismaBr2:carismaBr2, carismaCo:carismaCo, carismaCi:carismaCi, carismaCa:carismaCa
+
+
         })
     })
     .then(response => response.json())
@@ -170,6 +194,15 @@ function alterar() { // função que ativa quando aperta o botão
         document.getElementById('determinacaoAc').textContent = `${data.determinacaoAc.toLocaleString('pt-BR')}`;
         document.getElementById('percepcaoAc').textContent = `${data.percepcaoAc.toLocaleString('pt-BR')}`;
         document.getElementById('carismaAc').textContent = `${data.carismaAc.toLocaleString('pt-BR')}`;
+
+        document.getElementById('forcaAr').textContent = `${data.forcaAr.toLocaleString('pt-BR')}`;
+        document.getElementById('destrezaAr').textContent = `${data.destrezaAr.toLocaleString('pt-BR')}`;
+        document.getElementById('inteligenciaAr').textContent = `${data.inteligenciaAr.toLocaleString('pt-BR')}`;
+        document.getElementById('determinacaoAr').textContent = `${data.determinacaoAr.toLocaleString('pt-BR')}`;
+        document.getElementById('percepcaoAr').textContent = `${data.percepcaoAr.toLocaleString('pt-BR')}`;
+        document.getElementById('carismaAr').textContent = `${data.carismaAr.toLocaleString('pt-BR')}`;
+
+        
 
 
     })

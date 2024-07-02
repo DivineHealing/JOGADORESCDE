@@ -44,17 +44,31 @@ body {
     width: 32.5vw;
 }
 
-.valatributo h1, .valstatus h1, .valequipamento h1, .valacessorio h1{
+.valatributo h1, .valstatus h1, .valequipamento h1, .valacessorio h1, .valarma h1{
     color: white;
     font-style: italic;
 }
 
-.atributo label,  .atrstatus label, .atrequipamento label, .atreacessorio label{
+.atributo label,  .atrstatus label, .atrequipamento label, .atracessorio label, .atrarma label{
     color: rgb(0, 255, 200);
 }
 
-.atrstatus labelat, .atributo labelat, .atrequipamento labelat, .atreacessorio labelat{
+.atrstatus labelat, .atributo labelat, .atrequipamento labelat, .atracessorio labelat, .atrarma labelat{
     color: rgb(0, 195, 255);   
+}
+
+.valarma {
+    font: times, serif;
+    background-color: #313131;
+    border-radius: 4vh;
+    border-color: rgb(0, 0, 0);
+    padding: 1vw;
+    width: 17.5vw;
+}
+
+.atrarma {  
+    display: grid;
+    grid-template-columns: 6vw 2vw 5vw 5vw;
 }
 
 input {
@@ -78,7 +92,7 @@ labeltot {
     padding: 1vw;
     width: 63.5vw;
 }
-.atreacessorio {
+.atracessorio {
     display: grid;
     grid-template-columns: 6vw 3vw 5vw 5vw 5vw 5vw 5vw 5vw 5vw 5vw 5vw 5vw 5vw;
 }
