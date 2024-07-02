@@ -44,16 +44,16 @@ body {
     width: 32.5vw;
 }
 
-.valatributo h1, .valstatus h1, .valequipamento h1 {
+.valatributo h1, .valstatus h1, .valequipamento h1, .valacessorio h1{
     color: white;
     font-style: italic;
 }
 
-.atributo label,  .atrstatus label, .atrequipamento label{
+.atributo label,  .atrstatus label, .atrequipamento label, .atreacessorio label{
     color: rgb(0, 255, 200);
 }
 
-.atrstatus labelat, .atributo labelat, .atrequipamento labelat{
+.atrstatus labelat, .atributo labelat, .atrequipamento labelat, .atreacessorio labelat{
     color: rgb(0, 195, 255);   
 }
 
@@ -68,6 +68,19 @@ input {
 
 labeltot {
     color: orange;
+}
+
+.valacessorio {  
+    font: times, serif;
+    background-color: #313131;
+    border-radius: 4vh;
+    border-color: rgb(0, 0, 0);
+    padding: 1vw;
+    width: 63.5vw;
+}
+.atreacessorio {
+    display: grid;
+    grid-template-columns: 6vw 3vw 5vw 5vw 5vw 5vw 5vw 5vw 5vw 5vw 5vw 5vw 5vw;
 }
 
 button{

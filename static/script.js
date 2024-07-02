@@ -6,6 +6,7 @@ function alterar() { // função que ativa quando aperta o botão
     const percepcao = parseFloat(document.getElementById('percepcao').value) || 0;
     const carisma = parseFloat(document.getElementById('carisma').value) || 0;
 
+    // CONJUNTO
     const forcaE = parseFloat(document.getElementById('forcaE').value) || 0;
     const forcaP = parseFloat(document.getElementById('forcaP').value) || 0;
     const forcaL = parseFloat(document.getElementById('forcaL').value) || 0;
@@ -41,6 +42,81 @@ function alterar() { // função que ativa quando aperta o botão
     const carismaL = parseFloat(document.getElementById('carismaL').value) || 0;
     const carismaC = parseFloat(document.getElementById('carismaC').value) || 0;
     const carismaB = parseFloat(document.getElementById('carismaB').value) || 0;
+
+
+    // ACESSORIOS
+    const forcaAn1 = parseFloat(document.getElementById('forcaAn1').value) || 0;
+    const forcaAn2 = parseFloat(document.getElementById('forcaAn2').value) || 0;
+    const forcaAn3 = parseFloat(document.getElementById('forcaAn3').value) || 0;
+    const forcaAn4 = parseFloat(document.getElementById('forcaAn4').value) || 0;
+    const forcaBc1 = parseFloat(document.getElementById('forcaBc1').value) || 0;
+    const forcaBc2 = parseFloat(document.getElementById('forcaBc2').value) || 0;
+    const forcaBr1 = parseFloat(document.getElementById('forcaBr1').value) || 0;
+    const forcaBr2 = parseFloat(document.getElementById('forcaBr2').value) || 0;
+    const forcaCo = parseFloat(document.getElementById('forcaCo').value) || 0;
+    const forcaCa = parseFloat(document.getElementById('forcaCa').value) || 0;
+    const forcaCi = parseFloat(document.getElementById('forcaCi').value) || 0;
+
+    const destrezaAn1 = parseFloat(document.getElementById('destrezaAn1').value) || 0;
+    const destrezaAn2 = parseFloat(document.getElementById('destrezaAn2').value) || 0;
+    const destrezaAn3 = parseFloat(document.getElementById('destrezaAn3').value) || 0;
+    const destrezaAn4 = parseFloat(document.getElementById('destrezaAn4').value) || 0;
+    const destrezaBc1 = parseFloat(document.getElementById('destrezaBc1').value) || 0;
+    const destrezaBc2 = parseFloat(document.getElementById('destrezaBc2').value) || 0;
+    const destrezaBr1 = parseFloat(document.getElementById('destrezaBr1').value) || 0;
+    const destrezaBr2 = parseFloat(document.getElementById('destrezaBr2').value) || 0;
+    const destrezaCo = parseFloat(document.getElementById('destrezaCo').value) || 0;
+    const destrezaCa = parseFloat(document.getElementById('destrezaCa').value) || 0;
+    const destrezaCi = parseFloat(document.getElementById('destrezaCi').value) || 0;
+
+    const inteligenciaAn1 = parseFloat(document.getElementById('inteligenciaAn1').value) || 0;
+    const inteligenciaAn2 = parseFloat(document.getElementById('inteligenciaAn2').value) || 0;
+    const inteligenciaAn3 = parseFloat(document.getElementById('inteligenciaAn3').value) || 0;
+    const inteligenciaAn4 = parseFloat(document.getElementById('inteligenciaAn4').value) || 0;
+    const inteligenciaBc1 = parseFloat(document.getElementById('inteligenciaBc1').value) || 0;
+    const inteligenciaBc2 = parseFloat(document.getElementById('inteligenciaBc2').value) || 0;
+    const inteligenciaBr1 = parseFloat(document.getElementById('inteligenciaBr1').value) || 0;
+    const inteligenciaBr2 = parseFloat(document.getElementById('inteligenciaBr2').value) || 0;
+    const inteligenciaCo = parseFloat(document.getElementById('inteligenciaCo').value) || 0;
+    const inteligenciaCa = parseFloat(document.getElementById('inteligenciaCa').value) || 0;
+    const inteligenciaCi = parseFloat(document.getElementById('inteligenciaCi').value) || 0;
+
+    const determinacaoAn1 = parseFloat(document.getElementById('determinacaoAn1').value) || 0;
+    const determinacaoAn2 = parseFloat(document.getElementById('determinacaoAn2').value) || 0;
+    const determinacaoAn3 = parseFloat(document.getElementById('determinacaoAn3').value) || 0;
+    const determinacaoAn4 = parseFloat(document.getElementById('determinacaoAn4').value) || 0;
+    const determinacaoBc1 = parseFloat(document.getElementById('determinacaoBc1').value) || 0;
+    const determinacaoBc2 = parseFloat(document.getElementById('determinacaoBc2').value) || 0;
+    const determinacaoBr1 = parseFloat(document.getElementById('determinacaoBr1').value) || 0;
+    const determinacaoBr2 = parseFloat(document.getElementById('determinacaoBr2').value) || 0;
+    const determinacaoCo = parseFloat(document.getElementById('determinacaoCo').value) || 0;
+    const determinacaoCa = parseFloat(document.getElementById('determinacaoCa').value) || 0;
+    const determinacaoCi = parseFloat(document.getElementById('determinacaoCi').value) || 0;
+
+    const percepcaoAn1 = parseFloat(document.getElementById('percepcaoAn1').value) || 0;
+    const percepcaoAn2 = parseFloat(document.getElementById('percepcaoAn2').value) || 0;
+    const percepcaoAn3 = parseFloat(document.getElementById('percepcaoAn3').value) || 0;
+    const percepcaoAn4 = parseFloat(document.getElementById('percepcaoAn4').value) || 0;
+    const percepcaoBc1 = parseFloat(document.getElementById('percepcaoBc1').value) || 0;
+    const percepcaoBc2 = parseFloat(document.getElementById('percepcaoBc2').value) || 0;
+    const percepcaoBr1 = parseFloat(document.getElementById('percepcaoBr1').value) || 0;
+    const percepcaoBr2 = parseFloat(document.getElementById('percepcaoBr2').value) || 0;
+    const percepcaoCo = parseFloat(document.getElementById('percepcaoCo').value) || 0;
+    const percepcaoCa = parseFloat(document.getElementById('percepcaoCa').value) || 0;
+    const percepcaoCi = parseFloat(document.getElementById('percepcaoCi').value) || 0;
+
+    const carismaAn1 = parseFloat(document.getElementById('carismaAn1').value) || 0;
+    const carismaAn2 = parseFloat(document.getElementById('carismaAn2').value) || 0;
+    const carismaAn3 = parseFloat(document.getElementById('carismaAn3').value) || 0;
+    const carismaAn4 = parseFloat(document.getElementById('carismaAn4').value) || 0;
+    const carismaBc1 = parseFloat(document.getElementById('carismaBc1').value) || 0;
+    const carismaBc2 = parseFloat(document.getElementById('carismaBc2').value) || 0;
+    const carismaBr1 = parseFloat(document.getElementById('carismaBr1').value) || 0;
+    const carismaBr2 = parseFloat(document.getElementById('carismaBr2').value) || 0;
+    const carismaCo = parseFloat(document.getElementById('carismaCo').value) || 0;
+    const carismaCi = parseFloat(document.getElementById('carismaCi').value) || 0;
+    const carismaCa = parseFloat(document.getElementById('carismaCa').value) || 0;
+
     
     fetch('/atrstatus', {
         method: 'POST',
@@ -55,7 +131,14 @@ function alterar() { // função que ativa quando aperta o botão
             inteligenciaE:inteligenciaE, inteligenciaP:inteligenciaP, inteligenciaL:inteligenciaL, inteligenciaC:inteligenciaC, inteligenciaB:inteligenciaB,
             determinacaoE:determinacaoE, determinacaoP:determinacaoP, determinacaoL:determinacaoL, determinacaoC:determinacaoC, determinacaoB:determinacaoB,
             percepcaoE:percepcaoE, percepcaoP:percepcaoP, percepcaoL:percepcaoL, percepcaoC:percepcaoC, percepcaoB:percepcaoB,
-            carismaE:carismaE, carismaP:carismaP, carismaL:carismaL, carismaC:carismaC, carismaB:carismaB
+            carismaE:carismaE, carismaP:carismaP, carismaL:carismaL, carismaC:carismaC, carismaB:carismaB,
+
+            forcaAn1:forcaAn1, forcaAn2:forcaAn2, forcaAn3:forcaAn3, forcaAn4:forcaAn4, forcaBc1:forcaBc1, forcaBc2:forcaBc2, forcaBr1:forcaBr1, forcaBr2:forcaBr2, forcaCo:forcaCo, forcaCa:forcaCa, forcaCi:forcaCi,
+            destrezaAn1:destrezaAn1, destrezaAn2:destrezaAn2, destrezaAn3:destrezaAn3, destrezaAn4:destrezaAn4, destrezaBc1:destrezaBc1, destrezaBc2:destrezaBc2, destrezaBr1:destrezaBr1, destrezaBr2:destrezaBr2, destrezaCo:destrezaCo, destrezaCa:destrezaCa, destrezaCi:destrezaCi,
+            inteligenciaAn1:inteligenciaAn1, inteligenciaAn2:inteligenciaAn2, inteligenciaAn3:inteligenciaAn3, inteligenciaAn4:inteligenciaAn4, inteligenciaBc1:inteligenciaBc1, inteligenciaBc2:inteligenciaBc2, inteligenciaBr1:inteligenciaBr1, inteligenciaBr2:inteligenciaBr2, inteligenciaCo:inteligenciaCo, inteligenciaCa:inteligenciaCa, inteligenciaCi:inteligenciaCi,
+            determinacaoAn1:determinacaoAn1, determinacaoAn2:determinacaoAn2, determinacaoAn3:determinacaoAn3, determinacaoAn4:determinacaoAn4, determinacaoBc1:determinacaoBc1, determinacaoBc2:determinacaoBc2, determinacaoBr1:determinacaoBr1, determinacaoBr2:determinacaoBr2, determinacaoCo:determinacaoCo, determinacaoCa:determinacaoCa, determinacaoCi:determinacaoCi,
+            percepcaoAn1:percepcaoAn1, percepcaoAn2:percepcaoAn2, percepcaoAn3:percepcaoAn3, percepcaoAn4:percepcaoAn4, percepcaoBc1:percepcaoBc1, percepcaoBc2:percepcaoBc2, percepcaoBr1:percepcaoBr1, percepcaoBr2:percepcaoBr2, percepcaoCo:percepcaoCo, percepcaoCa:percepcaoCa, percepcaoCi:percepcaoCi,
+            carismaAn1:carismaAn1, carismaAn2:carismaAn2, carismaAn3:carismaAn3, carismaAn4:carismaAn4, carismaBc1:carismaBc1, carismaBc2:carismaBc2, carismaBr1:carismaBr1, carismaBr2:carismaBr2, carismaCo:carismaCo, carismaCi:carismaCi, carismaCa:carismaCa
         })
     })
     .then(response => response.json())
@@ -73,6 +156,22 @@ function alterar() { // função que ativa quando aperta o botão
         document.getElementById('determinacaoT').textContent = `${data.determinacaoT.toLocaleString('pt-BR')}`;
         document.getElementById('percepcaoT').textContent = `${data.percepcaoT.toLocaleString('pt-BR')}`;
         document.getElementById('carismaT').textContent = `${data.carismaT.toLocaleString('pt-BR')}`;
+
+        document.getElementById('forcaCJ').textContent = `${data.forcaCJ.toLocaleString('pt-BR')}`;
+        document.getElementById('destrezaCJ').textContent = `${data.destrezaCJ.toLocaleString('pt-BR')}`;
+        document.getElementById('inteligenciaCJ').textContent = `${data.inteligenciaCJ.toLocaleString('pt-BR')}`;
+        document.getElementById('determinacaoCJ').textContent = `${data.determinacaoCJ.toLocaleString('pt-BR')}`;
+        document.getElementById('percepcaoCJ').textContent = `${data.percepcaoCJ.toLocaleString('pt-BR')}`;
+        document.getElementById('carismaCJ').textContent = `${data.carismaCJ.toLocaleString('pt-BR')}`;
+
+        document.getElementById('forcaAc').textContent = `${data.forcaAc.toLocaleString('pt-BR')}`;
+        document.getElementById('destrezaAc').textContent = `${data.destrezaAc.toLocaleString('pt-BR')}`;
+        document.getElementById('inteligenciaAc').textContent = `${data.inteligenciaAc.toLocaleString('pt-BR')}`;
+        document.getElementById('determinacaoAc').textContent = `${data.determinacaoAc.toLocaleString('pt-BR')}`;
+        document.getElementById('percepcaoAc').textContent = `${data.percepcaoAc.toLocaleString('pt-BR')}`;
+        document.getElementById('carismaAc').textContent = `${data.carismaAc.toLocaleString('pt-BR')}`;
+
+
     })
     .catch(error => {
         console.error('Erro:', error);
