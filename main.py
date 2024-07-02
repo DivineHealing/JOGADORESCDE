@@ -190,12 +190,12 @@ def atrstatus():
     percepcaaAc = conjac.somarAces('percepcao')
     carismaAc = conjac.somarAces('carisma')
 
-    forcaT = somaTodosAtt('forca', attbase, conja) #funcao para pegar a soma total de todos atributos(personagem, equipamento, acessorio)
-    destrezaT = somaTodosAtt('destreza', attbase, conja)
-    inteligenciaT = somaTodosAtt('inteligencia', attbase, conja)
-    determinacaoT = somaTodosAtt('determinacao', attbase, conja)
-    percepcaoT = somaTodosAtt('percepcao', attbase, conja)
-    carismaT = somaTodosAtt('carisma', attbase, conja)
+    forcaT = somaTodosAtt('forca', attbase, conja, conjac) #funcao para pegar a soma total de todos atributos(personagem, equipamento, acessorio)
+    destrezaT = somaTodosAtt('destreza', attbase, conja, conjac)
+    inteligenciaT = somaTodosAtt('inteligencia', attbase, conja, conjac)
+    determinacaoT = somaTodosAtt('determinacao', attbase, conja, conjac)
+    percepcaoT = somaTodosAtt('percepcao', attbase, conja, conjac)
+    carismaT = somaTodosAtt('carisma', attbase, conja, conjac)
 
 
     return jsonify(forca=forca, destreza=destreza, inteligencia=inteligencia, determinacao=determinacao, percepcao=percepcao,
