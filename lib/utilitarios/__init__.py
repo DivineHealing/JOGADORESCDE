@@ -14,7 +14,7 @@ def somaTodosAtt(escolha, atributo, conjuntoarmadura, conjuntoacessorio, armaseq
     arma = armasequipadas.somarArmaAtt(escolha)
     maes = maestrias.att.pegaValor(escolha)
     mis = missoes.att.pegaValor(escolha)
-    soma1 = att + equip + ace + arma + mis
-    soma2 = soma1 + soma1 * maes / 100
-    return floor(soma2)
+    soma1 = att + equip + ace + arma + mis + maes
+    #soma2 = soma1 + soma1 * maes / 100
+    return floor(soma1)
     
