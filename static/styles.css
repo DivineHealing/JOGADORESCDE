@@ -5,15 +5,15 @@ body {
 
 .atributo{
     display: grid;
-    grid-template-columns: 2.5vw 5vw 3vw 5vw; 
+    grid-template-columns: 5vw 5vw 5.5vw 5.5vw 5.5vw 5.5vw 5.5vw; 
 }
 .valatributo {
     font: times, bold;
     background-color: #313131;
     border-radius: 4vh;
     border-color: rgb(0, 0, 0);
-    padding: 1vw;
-    width: 16vw;
+    padding: 1.5vw;
+    width: 40vw;
 }
 
 .atrstatus {  

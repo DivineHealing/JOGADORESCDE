@@ -257,20 +257,32 @@ def atrstatus():
 @main.route("/redvida", methods=['POST'])
 def redvida():
     data = request.get_json()
-    vida = float(data.get('vida'))
-    mana = float(data.get('mana'))
-    vigor = float(data.get('vigor'))
-    vidap = float(data.get('vidaP'))
-    manap = float(data.get('manaP'))
-    vigorp = float(data.get('vigorP'))
-    vidap -= vida
-    manap -= mana
-    vigorp -= vigor
+    vidaB = float(data.get('vidaB'))
+    manaB = float(data.get('manaB'))
+    vigorB = float(data.get('vigorB'))
+    vidaE = float(data.get('vidaE'))
+    manaE = float(data.get('manaE'))
+    vigorE = float(data.get('vigorE'))
+    vidaM = float(data.get('vidaM'))
+    manaM = float(data.get('manaM'))
+    vigorM = float(data.get('vigorM'))
+    vidaTo = float(data.get('vidaTo'))
+    manaTo = float(data.get('manaTo'))
+    vigorTo = float(data.get('vigorTo'))
+    dano = float(data('dano'))
+    gastoM = float(data('dano'))
+    gastoV = float(data('dano'))
+    
+    vidaTo = vidaB + vidaE
+    manaTo = manaB + manaE + manaB*manaM
+    vigorTo = vigorB + vigorE + vigorB*vigorM
+    
+    vidaAt = vidaTo - dano
 
-    if vida >= (vidap*1.33):
+    if vidaTo >= (vidaTo*1.33):
         vidap = "Morreu"
 
-    return jsonify(vidab=vidap, manab=manap, vigorb=vigorp)
+    return jsonify(vidaTo=vidaTo, manaTo=manaTo, vigorTo=vigorTo)
 
 
 # Fim do Codigo
