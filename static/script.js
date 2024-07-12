@@ -6,8 +6,23 @@ function alterar() { // função que ativa quando aperta o botão
     const percepcao = parseFloat(document.getElementById('percepcao').value) || 0;
     const carisma = parseFloat(document.getElementById('carisma').value) || 0;
 
-    // ARMA
+    //MAESTRIAS
+    const forcaMT = parseFloat(document.getElementById('forcaMT').value) || 0
+    const destrezaMT = parseFloat(document.getElementById('destrezaMT').value) || 0
+    const inteligenciaMT = parseFloat(document.getElementById('inteligenciaMT').value) || 0
+    const determinacaoMT =  parseFloat(document.getElementById('determinacaoMT').value) || 0
+    const percepcaoMT = parseFloat(document.getElementById('percepcaoMT').value) || 0
+    const carismaMT = parseFloat(document.getElementById('carismaMT').value) || 0
 
+    //MISSÕES
+    const forcaMS = parseFloat(document.getElementById('forcaMS').value) || 0
+    const destrezaMS = parseFloat(document.getElementById('destrezaMS').value) || 0
+    const inteligenciaMS = parseFloat(document.getElementById('inteligenciaMS').value) || 0
+    const determinacaoMS =  parseFloat(document.getElementById('determinacaoMS').value) || 0
+    const percepcaoMS = parseFloat(document.getElementById('percepcaoMS').value) || 0
+    const carismaMS = parseFloat(document.getElementById('carismaMS').value) || 0
+
+    // ARMA
     const forcaAp = parseFloat(document.getElementById('forcaAp').value) || 0;
     const forcaAs = parseFloat(document.getElementById('forcaAs').value) || 0;
 
@@ -144,6 +159,10 @@ function alterar() { // função que ativa quando aperta o botão
         },
         body: JSON.stringify({ 
             forca: forca, destreza: destreza, inteligencia: inteligencia, determinacao: determinacao, percepcao: percepcao, carisma: carisma,
+
+            forcaMT:forcaMT, destrezaMT:destrezaMT, inteligenciaMT:inteligenciaMT, determinacaoMT:determinacaoMT, percepcaoMT:percepcaoMT, carismaMT:carismaMT,
+            
+            forcaMS:forcaMS, destrezaMS:destrezaMS, inteligenciaMS:inteligenciaMS, determinacaoMS:determinacaoMS, percepcaoMS:percepcaoMS, carismaMS:carismaMS,
 
             forcaAp:forcaAp, forcaAs:forcaAs, destrezaAp:destrezaAp, destrezaAs:destrezaAs, inteligenciaAp:inteligenciaAp, inteligenciaAs:inteligenciaAs,
             determinacaoAp:determinacaoAp, determinacaoAs:determinacaoAs, percepcaoAp:percepcaoAp, percepcaoAs:percepcaoAs, carismaAp:carismaAp, carismaAs:carismaAs,

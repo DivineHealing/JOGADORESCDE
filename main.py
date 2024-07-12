@@ -7,6 +7,8 @@ from lib.conjacessorio import ConjAcessorio
 from lib.utilitarios import somaTodosAtt
 from lib.arma import Arma
 from lib.armasemmaos import ArmasEmMaos
+from lib.maestrias import Maestrias
+from lib.missoes import Missoes
 
 info = [] #lista de controle
 
@@ -193,10 +195,27 @@ def atrstatus():
     ascar = float(data['carismaAs'])
     asclassatt = Atributos(asfor, asdes, asint, asdet, asper, ascar)  # criando o objeto dos atributos da arma secundaria
     armasecundaria = Arma(asclassatt, False)  # criando o objeto arma secundaria
-
     armasequip = ArmasEmMaos(armaprincipal, armasecundaria) #criando objeto das armas em mãos 
 
-    info.extend([attbase, conja, conjac, armasequip]) #futuramente ira para a classe personagem/ retirar provavelmente quando tiver o banco de dedos
+    mtfor = float(data['forcaMT'])
+    mtdes = float(data['destrezaMT'])
+    mtint = float(data['inteligenciaMT'])
+    mtdet = float(data['determinacaoMT'])
+    mtper = float(data['percepcaoMT'])
+    mtcar = float(data['carismaMT'])
+    mtclassatt = Atributos(mtfor, mtdes, mtint, mtdet, mtper, mtcar)  # criando o objeto dos atributos das maestrias(%)
+    maes = Maestrias(mtclassatt)  # criando objeto das maestrias
+
+    msfor = float(data['forcaMS'])
+    msdes = float(data['destrezaMS'])
+    msint = float(data['inteligenciaMS'])
+    msdet = float(data['determinacaoMS'])
+    msper = float(data['percepcaoMS'])
+    mscar = float(data['carismaMS'])
+    msclassatt = Atributos(msfor, msdes, msint, msdet, msper, mscar)  # criando o objeto dos atributos das missões
+    mis = Missoes(msclassatt)  # criando objeto das missões
+
+    info.extend([attbase, conja, conjac, armasequip, maes]) #futuramente ira para a classe personagem/ retirar provavelmente quando tiver o banco de dedos
 
     forcaCJ = conja.somarEquip('forca') #funcao da classe para somar os atributos equipamentos
     destrezaCJ = conja.somarEquip('destreza')
@@ -219,12 +238,12 @@ def atrstatus():
     percepcaoAc = conjac.somarAces('percepcao')
     carismaAc = conjac.somarAces('carisma')
 
-    forcaT = somaTodosAtt('forca', attbase, conja, conjac, armasequip) #funcao para pegar a soma total de todos atributos(personagem, equipamento, acessorio)
-    destrezaT = somaTodosAtt('destreza', attbase, conja, conjac, armasequip)
-    inteligenciaT = somaTodosAtt('inteligencia', attbase, conja, conjac, armasequip)
-    determinacaoT = somaTodosAtt('determinacao', attbase, conja, conjac, armasequip)
-    percepcaoT = somaTodosAtt('percepcao', attbase, conja, conjac, armasequip)
-    carismaT = somaTodosAtt('carisma', attbase, conja, conjac, armasequip)
+    forcaT = somaTodosAtt('forca', attbase, conja, conjac, armasequip, maes, mis) #funcao para pegar a soma total de todos atributos(personagem, equipamento, acessorio)
+    destrezaT = somaTodosAtt('destreza', attbase, conja, conjac, armasequip, maes, mis)
+    inteligenciaT = somaTodosAtt('inteligencia', attbase, conja, conjac, armasequip, maes, mis)
+    determinacaoT = somaTodosAtt('determinacao', attbase, conja, conjac, armasequip, maes, mis)
+    percepcaoT = somaTodosAtt('percepcao', attbase, conja, conjac, armasequip, maes, mis)
+    carismaT = somaTodosAtt('carisma', attbase, conja, conjac, armasequip, maes, mis)
 
 
     return jsonify(forca=forca, destreza=destreza, inteligencia=inteligencia, determinacao=determinacao, percepcao=percepcao,
