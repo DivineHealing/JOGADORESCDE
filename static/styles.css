@@ -5,7 +5,7 @@ body {
 
 .atributo{
     display: grid;
-    grid-template-columns: 5vw 5vw 5.5vw 5.5vw 5.5vw 5.5vw 5.5vw; 
+    grid-template-columns: 5vw 5vw 5vw 5vw 5vw 5vw 5vw 5vw; 
 }
 .valatributo {
     font: times, bold;
@@ -13,7 +13,7 @@ body {
     border-radius: 4vh;
     border-color: rgb(0, 0, 0);
     padding: 1.5vw;
-    width: 40vw;
+    width: 45vw;
 }
 
 .atrstatus {  

@@ -21,33 +21,37 @@
           <label>Atual</label>
           <label>Total</label>
           <label>Base</label>
-          <label>Extra</label>
-          <label>Maestria</label>
+          <label>Aum. Fix</label>
+          <label>Aum. %</label>
+          <label>Buff</label>
           <label>Dano|Gasto</label>
           
           <label>Vida: </label>
           <label id="vidaAt">0</label>
           <label id="vidaTo">0</label>
-          <input type="number" id="vidaB" pattern="[0-9]+$">
-          <input type="number" id="vidaE" pattern="[0-9]+$">
-          <input type="number" id="vidaM" pattern="[0-9]+$"> 
-          <input type="number" id="dano" pattern="[0-9]+$"> 
+          <input type="number" id="vidaB" pattern="[0-9]+$" value="100">
+          <input type="number" id="vidaE" pattern="[0-9]+$" value="0">
+          <input type="number" id="vidaA" pattern="[0-9]+$" value="0"> 
+          <input type="number" id="vidaT" pattern="[0-9]+$" value="0"> 
+          <input type="number" id="dano" pattern="[0-9]+$" value="0"> 
 
           <label for="mana">Mana: </label>
           <label id="manaAt">0</label>
           <label id="manaTo">0</label>
-          <input type="number" id="manaB" pattern="[0-9]+$">
-          <input type="number" id="manaE" pattern="[0-9]+$">
-          <input type="number" id="manaM" pattern="[0-9]+$">
-          <input type="number" id="gastoM" pattern="[0-9]+$"> 
+          <input type="number" id="manaB" pattern="[0-9]+$" value="100">
+          <input type="number" id="manaE" pattern="[0-9]+$" value="0">
+          <label></label>
+          <label></label>
+          <input type="number" id="gastoM" pattern="[0-9]+$" value="0"> 
       
           <label for="vigor">Vigor: </label>
           <label id="vigorAt">0</label>
           <label id="vigorTo">0</label>
-          <input type="number" id="vigorB" pattern="[0-9]+$">
-          <input type="number" id="vigorE" pattern="[0-9]+$">
-          <input type="number" id="vigorM" pattern="[0-9]+$">
-          <input type="number" id="gastoV" pattern="[0-9]+$"> 
+          <input type="number" id="vigorB" pattern="[0-9]+$" value="100">
+          <input type="number" id="vigorE" pattern="[0-9]+$" value="0">
+          <label></label>
+          <label></label>
+          <input type="number" id="gastoV" pattern="[0-9]+$" value="0"> 
           </div>
     </div>
 
@@ -311,7 +315,7 @@
     </div>
     <p></p>
     
-    <button onclick="alterar()"> Alterar valores</button>
+    <button onclick="alterar()" onclick="redvida()"> Alterar valores</button>
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>

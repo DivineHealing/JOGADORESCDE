@@ -232,20 +232,18 @@ function alterar() { // função que ativa quando aperta o botão
 
 function redvida(){
     const vidaB = parseFloat(document.getElementById('vidaB').value) || 0; // Declaração da Vida Base
-    const manaB = parseFloat(document.getElementById('manaB').value) || 0;
-    const vigorB = parseFloat(document.getElementById('vigorB').value) || 0;
     const vidaE = parseFloat(document.getElementById('vidaE').value) || 0; // Declaração da Vida Extra
+    const vidaA = parseFloat(document.getElementById('vidaA').value)/100 || 0; // Declaração da Vida Extra
+    const vidaT = parseFloat(document.getElementById('vidaT').value)/100 || 0; // Declaração da Vida Extra
+    const dano = parseFloat(document.getElementById('dano').value) || 0;
+
+    const manaB = parseFloat(document.getElementById('manaB').value) || 0;
     const manaE = parseFloat(document.getElementById('manaE').value) || 0;
+    const gastoM = parseFloat(document.getElementById('gastoM').value) || 0;
+
+    const vigorB = parseFloat(document.getElementById('vigorB').value) || 0;
     const vigorE = parseFloat(document.getElementById('vigorE').value) || 0;
-    const vidaM = parseFloat(document.getElementById('vidaE').value)/100 || 0; // Declaração da Vida Extra
-    const manaM = parseFloat(document.getElementById('manaE').value)/100 || 0;
-    const vigorM = parseFloat(document.getElementById('vigorE').value)/100 || 0;
-    const vidaTo = parseFloat(document.getElementById('vidaTo')) || 0;
-    const manaTo = parseFloat(document.getElementById('vidaTo')) || 0;
-    const vigorTo = parseFloat(document.getElementById('vidaTo')) || 0;
-    const dano = parseFloat(document.getElementById('dano')) || 0;
-    const gastoM = parseFloat(document.getElementById('gastoM')) || 0;
-    const gastoV = parseFloat(document.getElementById('gastoV')) || 0;
+    const gastoV = parseFloat(document.getElementById('gastoV').value) || 0;
 
 
     fetch('/redvida', { // Comunicação com o python
@@ -254,23 +252,22 @@ function redvida(){
             'Content-Type': 'application/json'
         },  
         body: JSON.stringify({ 
-            vidaE: vidaE, manaE: manaE, vigorE: vigorE,
-            vidaB: vidaB, manaB: manaB, vigorB: vigorB,  
-            vidaM: vidaM, manaM: manaM, vigorM: vigorM,  
-            vidaTo: vidaTo, manaTo: manaTo, vigorTo: vigorTo,  
-            dano: dano, gastoM: gastoM, gastoV:gastoV
+            vidaB: vidaB, vidaE: vidaE, vidaA: vidaA, vidaT: vidaT, dano: dano,
+            manaB: manaB, manaE: manaE, gastoM: gastoM,
+            vigorB: vigorB, vigorE: vigorE, gastoV: gastoV
         }) // Variaveis que serão jogadas para o Python 
     })
     .then(response => response.json())
     .then(data => {
         document.getElementById('vidaTo').textContent = `${data.vidaTo.toLocaleString('pt-BR')}`; // Esses aqui são o que joga para o Front, na tela do HTML
-        document.getElementById('vidaAt').textContent = `${data.vidaTo.toLocaleString('pt-BR')}`;
+        document.getElementById('vidaAt').textContent = `${data.vidaAt.toLocaleString('pt-BR')}`;
         document.getElementById('manaTo').textContent = `${data.manaTo.toLocaleString('pt-BR')}`;
-        document.getElementById('manaAt').textContent = `${data.manaTo.toLocaleString('pt-BR')}`;
+        document.getElementById('manaAt').textContent = `${data.manaAt.toLocaleString('pt-BR')}`;
         document.getElementById('vigorTo').textContent = `${data.vigorTo.toLocaleString('pt-BR')}`;
-        document.getElementById('vigorAt').textContent = `${data.vigorTo.toLocaleString('pt-BR')}`;
+        document.getElementById('vigorAt').textContent = `${data.vigorAt.toLocaleString('pt-BR')}`;
     })
     .catch(error => {
         console.error('Erro:', error);
     });
+    
 }

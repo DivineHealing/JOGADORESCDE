@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, render_template, request
+from math import trunc
 from lib.atributos import Atributos
 from lib.equipamentos import Equipamento
 from lib.conjarmadura import ConjArmadura
@@ -257,33 +258,39 @@ def atrstatus():
 @main.route("/redvida", methods=['POST'])
 def redvida():
     data = request.get_json()
-    vidaB = float(data.get('vidaB'))
-    manaB = float(data.get('manaB'))
-    vigorB = float(data.get('vigorB'))
-    vidaE = float(data.get('vidaE'))
-    manaE = float(data.get('manaE'))
-    vigorE = float(data.get('vigorE'))
-    vidaM = float(data.get('vidaM'))
-    manaM = float(data.get('manaM'))
-    vigorM = float(data.get('vigorM'))
-    vidaTo = float(data.get('vidaTo'))
-    manaTo = float(data.get('manaTo'))
-    vigorTo = float(data.get('vigorTo'))
-    dano = float(data('dano'))
-    gastoM = float(data('dano'))
-    gastoV = float(data('dano'))
+    vidaB = float(data['vidaB'])
+    vidaE = float(data['vidaE'])
+    vidaA = float(data['vidaA'])+1
+    vidaT = float(data['vidaT'])+1
+    dano = float(data['dano'])
     
-    vidaTo = vidaB + vidaE
-    manaTo = manaB + manaE + manaB*manaM
-    vigorTo = vigorB + vigorE + vigorB*vigorM
-    
+    vidaTo = trunc((vidaB + vidaE)*vidaA*vidaT)
     vidaAt = vidaTo - dano
-
-    if vidaTo >= (vidaTo*1.33):
-        vidap = "Morreu"
-
-    return jsonify(vidaTo=vidaTo, manaTo=manaTo, vigorTo=vigorTo)
-
+    if vidaAt >= (vidaTo*1.33):
+        vidaTo = ""
+        vidaAt = "Morreu"
+        
+    elif vidaAt <= (vidaTo*1.33) and vidaAt <= 0:
+        vidaTo = ""
+        vidaAt = "Desacordado"
+        
+    manaB = float(data['manaB'])
+    manaE = float(data['manaE'])
+    gastoM = float(data['gastoM'])
+    
+    manaTo = manaB + manaE
+    manaAt = manaTo - gastoM
+    
+    vigorB = float(data['vigorB'])
+    vigorE = float(data['vigorE'])
+    gastoV = float(data['gastoV'])
+    
+    vigorTo = vigorB + vigorE
+    vigorAt = vigorTo - gastoV
+    
+    return jsonify(vidaTo=vidaTo, vidaAt=vidaAt, 
+                   manaTo=manaTo, manaAt=manaAt, 
+                   vigorTo=vigorTo, vigorAt=vigorAt)
 
 # Fim do Codigo
 if __name__ == '__main__': 
