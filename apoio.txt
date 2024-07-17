@@ -43,4 +43,4 @@ def somarConj(self, escolha):
 
     Andrey: 
     
-    Ariel: Adicionar os campos de raça, habilidades,  bonus externo (fixo e %) e benção divina.
+    Ariel: Adicionar os campos de raça, habilidades,  bonus externo (fixo e %) e benção divina, grimorio.
