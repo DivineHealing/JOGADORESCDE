@@ -172,6 +172,27 @@ function alterar() { // função que ativa quando aperta o botão
     const percepcaoMUR = parseFloat(document.getElementById('percepcaoMUR').value) || 0;
     const carismaMUR = parseFloat(document.getElementById('carismaMUR').value) || 0;
 
+    const forcaMPB = parseFloat(document.getElementById('forcaMPB').value) || 0; // Declaração das variaveis que serão processadas, caso nao tiver, o valor sera zero.
+    const destrezaMPB = parseFloat(document.getElementById('destrezaMPB').value) || 0;
+    const inteligenciaMPB = parseFloat(document.getElementById('inteligenciaMPB').value) || 0;
+    const determinacaoMPB =  parseFloat(document.getElementById('determinacaoMPB').value) || 0;
+    const percepcaoMPB = parseFloat(document.getElementById('percepcaoMPB').value) || 0;
+    const carismaMPB = parseFloat(document.getElementById('carismaMPB').value) || 0;
+
+    const forcaMSB = parseFloat(document.getElementById('forcaMSB').value) || 0; // Declaração das variaveis que serão processadas, caso nao tiver, o valor sera zero.
+    const destrezaMSB = parseFloat(document.getElementById('destrezaMSB').value) || 0;
+    const inteligenciaMSB = parseFloat(document.getElementById('inteligenciaMSB').value) || 0;
+    const determinacaoMSB =  parseFloat(document.getElementById('determinacaoMSB').value) || 0;
+    const percepcaoMSB = parseFloat(document.getElementById('percepcaoMSB').value) || 0;
+    const carismaMSB = parseFloat(document.getElementById('carismaMSB').value) || 0;
+
+    const forcaMUB = parseFloat(document.getElementById('forcaMUB').value) || 0; // Declaração das variaveis que serão processadas, caso nao tiver, o valor sera zero.
+    const destrezaMUB = parseFloat(document.getElementById('destrezaMUB').value) || 0;
+    const inteligenciaMUB = parseFloat(document.getElementById('inteligenciaMUB').value) || 0;
+    const determinacaoMUB =  parseFloat(document.getElementById('determinacaoMUB').value) || 0;
+    const percepcaoMUB = parseFloat(document.getElementById('percepcaoMUB').value) || 0;
+    const carismaMUB = parseFloat(document.getElementById('carismaMUB').value) || 0;
+
     fetch('/atrstatus', {
         method: 'POST',
         headers: {
@@ -203,8 +224,11 @@ function alterar() { // função que ativa quando aperta o botão
 
             forcaMPR: forcaMPR, destrezaMPR: destrezaMPR, inteligenciaMPR: inteligenciaMPR, determinacaoMPR: determinacaoMPR, percepcaoMPR: percepcaoMPR, carismaMPR: carismaMPR,
             forcaMSR: forcaMSR, destrezaMSR: destrezaMSR, inteligenciaMSR: inteligenciaMSR, determinacaoMSR: determinacaoMSR, percepcaoMSR: percepcaoMSR, carismaMSR: carismaMSR,
-            forcaMUR: forcaMUR, destrezaMUR: destrezaMUR, inteligenciaMUR: inteligenciaMUR, determinacaoMUR: determinacaoMUR, percepcaoMUR: percepcaoMUR, carismaMUR: carismaMUR
+            forcaMUR: forcaMUR, destrezaMUR: destrezaMUR, inteligenciaMUR: inteligenciaMUR, determinacaoMUR: determinacaoMUR, percepcaoMUR: percepcaoMUR, carismaMUR: carismaMUR,
    
+            forcaMPB: forcaMPB, destrezaMPB: destrezaMPB, inteligenciaMPB: inteligenciaMPB, determinacaoMPB: determinacaoMPB, percepcaoMPB: percepcaoMPB, carismaMPB: carismaMPB,
+            forcaMSB: forcaMSB, destrezaMSB: destrezaMSB, inteligenciaMSB: inteligenciaMSB, determinacaoMSB: determinacaoMSB, percepcaoMSB: percepcaoMSB, carismaMSB: carismaMSB,
+            forcaMUB: forcaMUB, destrezaMUB: destrezaMUB, inteligenciaMUB: inteligenciaMUB, determinacaoMUB: determinacaoMUB, percepcaoMUB: percepcaoMUB, carismaMUB: carismaMUB
         })
     })
     .then(response => response.json())
@@ -243,8 +267,6 @@ function alterar() { // função que ativa quando aperta o botão
         document.getElementById('determinacaoAr').textContent = `${data.determinacaoAr.toLocaleString('pt-BR')}`;
         document.getElementById('percepcaoAr').textContent = `${data.percepcaoAr.toLocaleString('pt-BR')}`;
         document.getElementById('carismaAr').textContent = `${data.carismaAr.toLocaleString('pt-BR')}`;
-
-        
     })
     .catch(error => {
         console.error('Erro:', error);
