@@ -6,14 +6,6 @@ function alterar() { // função que ativa quando aperta o botão
     const percepcao = parseFloat(document.getElementById('percepcao').value) || 0;
     const carisma = parseFloat(document.getElementById('carisma').value) || 0;
 
-    //MAESTRIAS
-    const forcaMT = parseFloat(document.getElementById('forcaMT').value) || 0
-    const destrezaMT = parseFloat(document.getElementById('destrezaMT').value) || 0
-    const inteligenciaMT = parseFloat(document.getElementById('inteligenciaMT').value) || 0
-    const determinacaoMT =  parseFloat(document.getElementById('determinacaoMT').value) || 0
-    const percepcaoMT = parseFloat(document.getElementById('percepcaoMT').value) || 0
-    const carismaMT = parseFloat(document.getElementById('carismaMT').value) || 0
-
     //MISSÕES
     const forcaMS = parseFloat(document.getElementById('forcaMS').value) || 0
     const destrezaMS = parseFloat(document.getElementById('destrezaMS').value) || 0
@@ -200,8 +192,6 @@ function alterar() { // função que ativa quando aperta o botão
         },
         body: JSON.stringify({ 
             forca: forca, destreza: destreza, inteligencia: inteligencia, determinacao: determinacao, percepcao: percepcao, carisma: carisma,
-
-            forcaMT:forcaMT, destrezaMT:destrezaMT, inteligenciaMT:inteligenciaMT, determinacaoMT:determinacaoMT, percepcaoMT:percepcaoMT, carismaMT:carismaMT,
             
             forcaMS:forcaMS, destrezaMS:destrezaMS, inteligenciaMS:inteligenciaMS, determinacaoMS:determinacaoMS, percepcaoMS:percepcaoMS, carismaMS:carismaMS,
 
@@ -238,7 +228,7 @@ function alterar() { // função que ativa quando aperta o botão
         document.getElementById('inteligenciat').textContent = `${data.inteligencia.toLocaleString('pt-BR')}`;
         document.getElementById('determinacaot').textContent = `${data.determinacao.toLocaleString('pt-BR')}`;
         document.getElementById('percepcaot').textContent = `${data.percepcao.toLocaleString('pt-BR')}`;
-        document.getElementById('carismat').textContent = `${data.carisma.toLocaleString('pt-BR')}`;
+        document.getElementById('carismat').textContent = `${data.carismat.toLocaleString('pt-BR')}`;
 
         document.getElementById('forcaT').textContent = `${data.forcaT.toLocaleString('pt-BR')}`;
         document.getElementById('destrezaT').textContent = `${data.destrezaT.toLocaleString('pt-BR')}`;
