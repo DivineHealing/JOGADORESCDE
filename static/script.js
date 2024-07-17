@@ -223,11 +223,11 @@ function alterar() { // função que ativa quando aperta o botão
     })
     .then(response => response.json())
     .then(data => {
-        document.getElementById('forcat').textContent = `${data.forca.toLocaleString('pt-BR')}`;
-        document.getElementById('destrezat').textContent = `${data.destreza.toLocaleString('pt-BR')}`;
-        document.getElementById('inteligenciat').textContent = `${data.inteligencia.toLocaleString('pt-BR')}`;
-        document.getElementById('determinacaot').textContent = `${data.determinacao.toLocaleString('pt-BR')}`;
-        document.getElementById('percepcaot').textContent = `${data.percepcao.toLocaleString('pt-BR')}`;
+        document.getElementById('forcat').textContent = `${data.forcat.toLocaleString('pt-BR')}`;
+        document.getElementById('destrezat').textContent = `${data.destrezat.toLocaleString('pt-BR')}`;
+        document.getElementById('inteligenciat').textContent = `${data.inteligenciat.toLocaleString('pt-BR')}`;
+        document.getElementById('determinacaot').textContent = `${data.determinacaot.toLocaleString('pt-BR')}`;
+        document.getElementById('percepcaot').textContent = `${data.percepcaot.toLocaleString('pt-BR')}`;
         document.getElementById('carismat').textContent = `${data.carismat.toLocaleString('pt-BR')}`;
 
         document.getElementById('forcaT').textContent = `${data.forcaT.toLocaleString('pt-BR')}`;
