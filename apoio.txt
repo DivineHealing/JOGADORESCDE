@@ -5,20 +5,22 @@ def somartudo(att):
     ace = float(data8[att]) or 0 #
     maes = float(data3[att]) or 0  #maestria(%)
     raca = float[data4[att]] or 0 #raca(%)
-    hab = float[data5[att]] or 0 #habilidades(%) (a soma de todas as habilidades que buffam)
+    divin
+    habpass = float[data5[att]] or 0 #habilidades(%) (a soma de todas as habilidades que buffam)
+    habafix  #habilidade ativa que da valor fixo
+    habaper  #habilidade ativa que da valor percentual
     bep = float[data6[att]] or 0 #buff externo %
     bef = float[data7[att]] or 0 #buff externo fixo
+    resultado = []
 
     soma1 = att + eqp + mis + ace
-    soma2 = soma1 + soma1 * (maes + raca) / 100
-    soma3 = soma2 + soma2 * hab / 100
-    extpor = floor(soma3 + soma3 * bep)
-    extfix = floor(soma3 + soma3 * bef)
-    if extfix >= expor:
-        final = extfix
-    else:
-        final = extpor
-    return final
+    soma2 = soma1 + soma1 * (maes + raca + habpas) / 100
+    resultado.append(soma2 + soma2 * (habafix) / 100) 
+    resultado.append(soma2 + soma2 * (habapor) / 100) 
+    resultado.append(soma2 + soma2 * (bep) / 100) 
+    resultado.append(soma2 + soma2 * (bef) / 100) 
+
+    return max(lista)
 
     ##############################################################
     é possivel transformar classes em dicionarios 
