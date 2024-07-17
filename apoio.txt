@@ -2,10 +2,12 @@ def somartudo(att):
     att = float(data[att]) or 0 #atributo base(fixo)
     eqp = float(data1[att]) or 0 #equipamento(fixo)
     mis = float(data2[att]) or 0 #missao(fixo)
-    ace = float(data8[att]) or 0 #
+    ace = float(data8[att]) or 0 #acessorio
     maes = float(data3[att]) or 0  #maestria(%)
     raca = float[data4[att]] or 0 #raca(%)
-    divin
+    divin # bonus divino
+    clanfixo 
+    clanper
     habpass = float[data5[att]] or 0 #habilidades(%) (a soma de todas as habilidades que buffam)
     habafix  #habilidade ativa que da valor fixo
     habaper  #habilidade ativa que da valor percentual
@@ -13,8 +15,8 @@ def somartudo(att):
     bef = float[data7[att]] or 0 #buff externo fixo
     resultado = []
 
-    soma1 = att + eqp + mis + ace
-    soma2 = soma1 + soma1 * (maes + raca + habpas) / 100
+    soma1 = att + eqp + mis + ace + clanfixo
+    soma2 = soma1 + soma1 * (maes + raca + habpas + divin + clanper) / 100
     resultado.append(soma2 + soma2 * (habafix) / 100) 
     resultado.append(soma2 + soma2 * (habapor) / 100) 
     resultado.append(soma2 + soma2 * (bep) / 100) 
