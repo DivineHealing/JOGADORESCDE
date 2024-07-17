@@ -151,7 +151,27 @@ function alterar() { // função que ativa quando aperta o botão
     const carismaCi = parseFloat(document.getElementById('carismaCi').value) || 0;
     const carismaCa = parseFloat(document.getElementById('carismaCa').value) || 0;
 
-    
+    const forcaMPR = parseFloat(document.getElementById('forcaMPR').value) || 0; // Declaração das variaveis que serão processadas, caso nao tiver, o valor sera zero.
+    const destrezaMPR = parseFloat(document.getElementById('destrezaMPR').value) || 0;
+    const inteligenciaMPR = parseFloat(document.getElementById('inteligenciaMPR').value) || 0;
+    const determinacaoMPR =  parseFloat(document.getElementById('determinacaoMPR').value) || 0;
+    const percepcaoMPR = parseFloat(document.getElementById('percepcaoMPR').value) || 0;
+    const carismaMPR = parseFloat(document.getElementById('carismaMPR').value) || 0;
+
+    const forcaMSR = parseFloat(document.getElementById('forcaMSR').value) || 0; // Declaração das variaveis que serão processadas, caso nao tiver, o valor sera zero.
+    const destrezaMSR = parseFloat(document.getElementById('destrezaMSR').value) || 0;
+    const inteligenciaMSR = parseFloat(document.getElementById('inteligenciaMSR').value) || 0;
+    const determinacaoMSR =  parseFloat(document.getElementById('determinacaoMSR').value) || 0;
+    const percepcaoMSR = parseFloat(document.getElementById('percepcaoMSR').value) || 0;
+    const carismaMSR = parseFloat(document.getElementById('carismaMSR').value) || 0;
+
+    const forcaMUR = parseFloat(document.getElementById('forcaMUR').value) || 0; // Declaração das variaveis que serão processadas, caso nao tiver, o valor sera zero.
+    const destrezaMUR = parseFloat(document.getElementById('destrezaMUR').value) || 0;
+    const inteligenciaMUR = parseFloat(document.getElementById('inteligenciaMUR').value) || 0;
+    const determinacaoMUR =  parseFloat(document.getElementById('determinacaoMUR').value) || 0;
+    const percepcaoMUR = parseFloat(document.getElementById('percepcaoMUR').value) || 0;
+    const carismaMUR = parseFloat(document.getElementById('carismaMUR').value) || 0;
+
     fetch('/atrstatus', {
         method: 'POST',
         headers: {
@@ -179,9 +199,12 @@ function alterar() { // função que ativa quando aperta o botão
             inteligenciaAn1:inteligenciaAn1, inteligenciaAn2:inteligenciaAn2, inteligenciaAn3:inteligenciaAn3, inteligenciaAn4:inteligenciaAn4, inteligenciaBc1:inteligenciaBc1, inteligenciaBc2:inteligenciaBc2, inteligenciaBr1:inteligenciaBr1, inteligenciaBr2:inteligenciaBr2, inteligenciaCo:inteligenciaCo, inteligenciaCa:inteligenciaCa, inteligenciaCi:inteligenciaCi,
             determinacaoAn1:determinacaoAn1, determinacaoAn2:determinacaoAn2, determinacaoAn3:determinacaoAn3, determinacaoAn4:determinacaoAn4, determinacaoBc1:determinacaoBc1, determinacaoBc2:determinacaoBc2, determinacaoBr1:determinacaoBr1, determinacaoBr2:determinacaoBr2, determinacaoCo:determinacaoCo, determinacaoCa:determinacaoCa, determinacaoCi:determinacaoCi,
             percepcaoAn1:percepcaoAn1, percepcaoAn2:percepcaoAn2, percepcaoAn3:percepcaoAn3, percepcaoAn4:percepcaoAn4, percepcaoBc1:percepcaoBc1, percepcaoBc2:percepcaoBc2, percepcaoBr1:percepcaoBr1, percepcaoBr2:percepcaoBr2, percepcaoCo:percepcaoCo, percepcaoCa:percepcaoCa, percepcaoCi:percepcaoCi,
-            carismaAn1:carismaAn1, carismaAn2:carismaAn2, carismaAn3:carismaAn3, carismaAn4:carismaAn4, carismaBc1:carismaBc1, carismaBc2:carismaBc2, carismaBr1:carismaBr1, carismaBr2:carismaBr2, carismaCo:carismaCo, carismaCi:carismaCi, carismaCa:carismaCa
+            carismaAn1:carismaAn1, carismaAn2:carismaAn2, carismaAn3:carismaAn3, carismaAn4:carismaAn4, carismaBc1:carismaBc1, carismaBc2:carismaBc2, carismaBr1:carismaBr1, carismaBr2:carismaBr2, carismaCo:carismaCo, carismaCi:carismaCi, carismaCa:carismaCa,
 
-
+            forcaMPR: forcaMPR, destrezaMPR: destrezaMPR, inteligenciaMPR: inteligenciaMPR, determinacaoMPR: determinacaoMPR, percepcaoMPR: percepcaoMPR, carismaMPR: carismaMPR,
+            forcaMSR: forcaMSR, destrezaMSR: destrezaMSR, inteligenciaMSR: inteligenciaMSR, determinacaoMSR: determinacaoMSR, percepcaoMSR: percepcaoMSR, carismaMSR: carismaMSR,
+            forcaMUR: forcaMUR, destrezaMUR: destrezaMUR, inteligenciaMUR: inteligenciaMUR, determinacaoMUR: determinacaoMUR, percepcaoMUR: percepcaoMUR, carismaMUR: carismaMUR
+   
         })
     })
     .then(response => response.json())
@@ -222,8 +245,6 @@ function alterar() { // função que ativa quando aperta o botão
         document.getElementById('carismaAr').textContent = `${data.carismaAr.toLocaleString('pt-BR')}`;
 
         
-
-
     })
     .catch(error => {
         console.error('Erro:', error);

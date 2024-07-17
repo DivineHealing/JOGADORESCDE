@@ -39,5 +39,4 @@ def somarConj(self, escolha):
 
     Andrey: Criar classe para as armas, e a clase arma que tem a variavel se é primaria ou não
     
-    Ariel: Fazer ajuste no status base do personagem, adicionar os campos de maestria e missão fixos.
-    
+    Ariel: 

@@ -35,7 +35,7 @@
           <input type="number" id="vidaT" pattern="[0-9]+$" value="0"> 
           <input type="number" id="dano" pattern="[0-9]+$" value="0"> 
 
-          <label for="mana">Mana: </label>
+          <label>Mana: </label>
           <label id="manaAt">0</label>
           <label id="manaTo">0</label>
           <input type="number" id="manaB" pattern="[0-9]+$" value="100">
@@ -44,7 +44,7 @@
           <label></label>
           <input type="number" id="gastoM" pattern="[0-9]+$" value="0"> 
       
-          <label for="vigor">Vigor: </label>
+          <label>Vigor: </label>
           <label id="vigorAt">0</label>
           <label id="vigorTo">0</label>
           <input type="number" id="vigorB" pattern="[0-9]+$" value="100">
@@ -52,10 +52,9 @@
           <label></label>
           <label></label>
           <input type="number" id="gastoV" pattern="[0-9]+$" value="0"> 
-          </div>
+        </div>
     </div>
-
-    <p></p>
+<p></p>
     <div class="valstatus" onchange="alterar()">
         <h1>Valores Base do Personagem</h1>
         <div class="atrstatus">
@@ -109,7 +108,7 @@
             <input type="number" id="carismaMS" value="0" pattern="[0-9]+$">
         </div>
     </div>
-    <p></p>
+<p></p>
     <div class="valarma" onchange="alterar()">
         <h1>Status das Armas</h1>
         <div class="atrarma">
@@ -149,7 +148,7 @@
             <input type="number" id="carismaAs" value="0" pattern="[0-9]+$">
         </div>
     </div>
-        <p></p>
+<p></p>
     <div class="valequipamento" onchange="alterar()">
         <h1>Status do Conjunto de Armadura</h1>
         <div class="atrequipamento">
@@ -313,8 +312,106 @@
             <input type="number" id="carismaCa" value="0" pattern="[0-9]+$">
         </div>
     </div>
-    <p></p>
-    
+<p></p>
+    <div class="valmaestria" onchange="alterar()">
+        <h1>Maestria Principal</h1>
+        <div class="atrmaestria">
+            <label></label>
+            <label>Recompensa</label>
+            <label>Bonus</label>
+            
+            <label>Força</label>
+            <input type="number" id="forcaMPR" value="0" pattern="[0-9]+$">
+            <input type="number" id="forcaMPB" value="0" pattern="[0-9]+$">
+            
+            <label>Destreza</label>
+            <input type="number" id="destrezaMPR" value="0" pattern="[0-9]+$">
+            <input type="number" id="destrezaMPB" value="0" pattern="[0-9]+$">
+            
+            <label>Inteligencia</label>
+            <input type="number" id="inteligenciaMPR" value="0" pattern="[0-9]+$">
+            <input type="number" id="inteligenciaMPB" value="0" pattern="[0-9]+$">
+            
+            <label>Determinação</label>
+            <input type="number" id="determinacaoMPR" value="0" pattern="[0-9]+$">
+            <input type="number" id="determinacaoMPB" value="0" pattern="[0-9]+$">
+            
+            <label>Percepção</label>
+            <input type="number" id="percepcaoMPR" value="0" pattern="[0-9]+$">
+            <input type="number" id="percepcaoMPB" value="0" pattern="[0-9]+$">
+            
+            <label>Carisma</label>
+            <input type="number" id="carismaMPR" value="0" pattern="[0-9]+$">
+            <input type="number" id="carismaMPB" value="0" pattern="[0-9]+$">
+        </div>
+    </div>
+<p></p>
+    <div class="valmaestria" onchange="alterar()">
+        <h1>Maestria Secundaria</h1>
+        <div class="atrmaestria">
+            <label></label>
+            <label>Recompensa</label>
+            <label>Bonus</label>
+            
+            <label>Força</label>
+            <input type="number" id="forcaMSR" value="0" pattern="[0-9]+$">
+            <input type="number" id="forcaMSB" value="0" pattern="[0-9]+$">
+            
+            <label>Destreza</label>
+            <input type="number" id="destrezaMSR" value="0" pattern="[0-9]+$">
+            <input type="number" id="destrezaMSB" value="0" pattern="[0-9]+$">
+            
+            <label>Inteligencia</label>
+            <input type="number" id="inteligenciaMSR" value="0" pattern="[0-9]+$">
+            <input type="number" id="inteligenciaMSB" value="0" pattern="[0-9]+$">
+            
+            <label>Determinação</label>
+            <input type="number" id="determinacaoMSR" value="0" pattern="[0-9]+$">
+            <input type="number" id="determinacaoMSB" value="0" pattern="[0-9]+$">
+            
+            <label>Percepção</label>
+            <input type="number" id="percepcaoMSR" value="0" pattern="[0-9]+$">
+            <input type="number" id="percepcaoMSB" value="0" pattern="[0-9]+$">
+            
+            <label>Carisma</label>
+            <input type="number" id="carismaMSR" value="0" pattern="[0-9]+$">
+            <input type="number" id="carismaMSB" value="0" pattern="[0-9]+$">
+        </div>
+    </div>
+<p></p>
+    <div class="valmaestria" onchange="alterar()">
+        <h1>Maestria Utilitaria</h1>
+        <div class="atrmaestria">
+            <label></label>
+            <label>Recompensa</label>
+            <label>Bonus</label>
+            
+            <label>Força</label>
+            <input type="number" id="forcaMUR" value="0" pattern="[0-9]+$">
+            <input type="number" id="forcaMUB" value="0" pattern="[0-9]+$">
+            
+            <label>Destreza</label>
+            <input type="number" id="destrezaMUR" value="0" pattern="[0-9]+$">
+            <input type="number" id="destrezaMUB" value="0" pattern="[0-9]+$">
+            
+            <label>Inteligencia</label>
+            <input type="number" id="inteligenciaMUR" value="0" pattern="[0-9]+$">
+            <input type="number" id="inteligenciaMUB" value="0" pattern="[0-9]+$">
+            
+            <label>Determinação</label>
+            <input type="number" id="determinacaoMUR" value="0" pattern="[0-9]+$">
+            <input type="number" id="determinacaoMUB" value="0" pattern="[0-9]+$">
+            
+            <label>Percepção</label>
+            <input type="number" id="percepcaoMUR" value="0" pattern="[0-9]+$">
+            <input type="number" id="percepcaoMUB" value="0" pattern="[0-9]+$">
+            
+            <label>Carisma</label>
+            <input type="number" id="carismaMUR" value="0" pattern="[0-9]+$">
+            <input type="number" id="carismaMUB" value="0" pattern="[0-9]+$">
+        </div>
+    </div>
+<p></p>
     <button onclick="alterar()" onclick="redvida()"> Alterar valores</button>
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
