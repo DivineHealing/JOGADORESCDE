@@ -37,6 +37,6 @@ def somarConj(self, escolha):
 
     TERCA FEIRA
 
-    Andrey: Criar classe para as armas, e a clase arma que tem a variavel se é primaria ou não
+    Andrey: 
     
-    Ariel: 
+    Ariel: Adicionar os campos de raça e benção divina.
