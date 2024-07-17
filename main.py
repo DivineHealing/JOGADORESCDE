@@ -9,6 +9,7 @@ from lib.utilitarios import somaTodosAtt
 from lib.arma import Arma
 from lib.armasemmaos import ArmasEmMaos
 from lib.maestrias import Maestrias
+from lib.conjmaestria import Conjmaestria
 from lib.missoes import Missoes
 
 info = [] #lista de controle
@@ -198,14 +199,57 @@ def atrstatus():
     armasecundaria = Arma(asclassatt, False)  # criando o objeto arma secundaria
     armasequip = ArmasEmMaos(armaprincipal, armasecundaria) #criando objeto das armas em mãos 
 
-    mtfor = float(data['forcaMT'])
-    mtdes = float(data['destrezaMT'])
-    mtint = float(data['inteligenciaMT'])
-    mtdet = float(data['determinacaoMT'])
-    mtper = float(data['percepcaoMT'])
-    mtcar = float(data['carismaMT'])
-    mtclassatt = Atributos(mtfor, mtdes, mtint, mtdet, mtper, mtcar)  # criando o objeto dos atributos das maestrias(%)
-    maes = Maestrias(mtclassatt)  # criando objeto das maestrias
+    mprfor = float(data['forcaMPR'])
+    mprdes = float(data['destrezaMPR'])
+    mprint = float(data['inteligenciaMPR'])
+    mprdet = float(data['determinacaoMPR'])
+    mprper = float(data['percepcaoMPR'])
+    mprcar = float(data['carismaMPR'])
+    mprclassatt = Atributos(mprfor, mprdes, mprint, mprdet, mprper, mprcar)  # criando o objeto dos atributos das recompensa maestrias principal
+    
+    mpbfor = float(data['forcaMPB'])
+    mpbdes = float(data['destrezaMPB'])
+    mpbint = float(data['inteligenciaMPB'])
+    mpbdet = float(data['determinacaoMPB'])
+    mpbper = float(data['percepcaoMPB'])
+    mpbcar = float(data['carismaMPB'])
+    mpbclassatt = Atributos(mpbfor, mpbdes, mpbint, mpbdet, mpbper, mpbcar)  # criando o objeto dos atributos dos bonus de maestria principal
+    maesp = Maestrias(mprclassatt, mpbclassatt)  # criando objeto da maestrias principal
+
+    msrfor = float(data['forcaMSR'])
+    msrdes = float(data['destrezaMSR'])
+    msrint = float(data['inteligenciaMSR'])
+    msrdet = float(data['determinacaoMSR'])
+    msrper = float(data['percepcaoMSR'])
+    msrcar = float(data['carismaMSR'])
+    msrclassatt = Atributos(msrfor, msrdes, msrint, msrdet, msrper, msrcar)  # criando o objeto dos atributos das recompensa maestrias secundaria
+    
+    msbfor = float(data['forcaMSB'])
+    msbdes = float(data['destrezaMSB'])
+    msbint = float(data['inteligenciaMSB'])
+    msbdet = float(data['determinacaoMSB'])
+    msbper = float(data['percepcaoMSB'])
+    msbcar = float(data['carismaMSB'])
+    msbclassatt = Atributos(msbfor, msbdes, msbint, msbdet, msbper, msbcar)  # criando o objeto dos atributos dos bonus de maestria secundaria
+    maess = Maestrias(msrclassatt, msbclassatt)  # criando objeto da maestrias Secundaria
+
+    murfor = float(data['forcaMUR'])
+    murdes = float(data['destrezaMUR'])
+    murint = float(data['inteligenciaMUR'])
+    murdet = float(data['determinacaoMUR'])
+    murper = float(data['percepcaoMUR'])
+    murcar = float(data['carismaMUR'])
+    murclassatt = Atributos(murfor, murdes, murint, murdet, murper, murcar)  # criando o objeto dos atributos das recompensa maestrias principal
+    
+    mubfor = float(data['forcaMUB'])
+    mubdes = float(data['destrezaMUB'])
+    mubint = float(data['inteligenciaMUB'])
+    mubdet = float(data['determinacaoMUB'])
+    mubper = float(data['percepcaoMUB'])
+    mubcar = float(data['carismaMUB'])
+    mubclassatt = Atributos(mubfor, mubdes, mubint, mubdet, mubper, mubcar)  # criando o objeto dos atributos dos bonus de maestria utilitaria
+    maesu = Maestrias(murclassatt, mubclassatt)  # criando objeto da maestrias utilitaria
+    conjmaes = Conjmaestria(maesp, maess, maesu)  # criando o objeto do conjunto de maestrias
 
     msfor = float(data['forcaMS'])
     msdes = float(data['destrezaMS'])
@@ -216,7 +260,7 @@ def atrstatus():
     msclassatt = Atributos(msfor, msdes, msint, msdet, msper, mscar)  # criando o objeto dos atributos das missões
     mis = Missoes(msclassatt)  # criando objeto das missões
 
-    info.extend([attbase, conja, conjac, armasequip, maes]) #futuramente ira para a classe personagem/ retirar provavelmente quando tiver o banco de dedos
+    info.extend([attbase, conja, conjac, armasequip, conjmaes]) #futuramente ira para a classe personagem/ retirar provavelmente quando tiver o banco de dedos
 
     forcaCJ = conja.somarEquip('forca') #funcao da classe para somar os atributos equipamentos
     destrezaCJ = conja.somarEquip('destreza')
@@ -239,21 +283,27 @@ def atrstatus():
     percepcaoAc = conjac.somarAces('percepcao')
     carismaAc = conjac.somarAces('carisma')
 
-    forcaT = somaTodosAtt('forca', attbase, conja, conjac, armasequip, maes, mis) #funcao para pegar a soma total de todos atributos(personagem, equipamento, acessorio)
-    destrezaT = somaTodosAtt('destreza', attbase, conja, conjac, armasequip, maes, mis)
-    inteligenciaT = somaTodosAtt('inteligencia', attbase, conja, conjac, armasequip, maes, mis)
-    determinacaoT = somaTodosAtt('determinacao', attbase, conja, conjac, armasequip, maes, mis)
-    percepcaoT = somaTodosAtt('percepcao', attbase, conja, conjac, armasequip, maes, mis)
-    carismaT = somaTodosAtt('carisma', attbase, conja, conjac, armasequip, maes, mis)
+    forcat = forca + conjmaes.somarMaes('f','forca') + mis.att.forca #ira somar todos os atributos base
+    destrezat = destreza + conjmaes.somarMaes('f', 'destreza') + mis.att.destreza
+    inteligenciat = inteligencia + conjmaes.somarMaes('f', 'inteligencia') + mis.att.inteligencia
+    determinacaot = determinacao + conjmaes.somarMaes('f', 'determinacao') + mis.att.determinacao
+    percepcaot = percepcao + conjmaes.somarMaes('f', 'percepcao') + mis.att.percepcao
+    carismat = carisma + conjmaes.somarMaes('f', 'carisma') + mis.att.carisma
+
+    forcaT = somaTodosAtt('forca', attbase, conja, conjac, armasequip, conjmaes, mis) #funcao para pegar a soma total de todos atributos(personagem, equipamento, acessorio)
+    destrezaT = somaTodosAtt('destreza', attbase, conja, conjac, armasequip, conjmaes, mis)
+    inteligenciaT = somaTodosAtt('inteligencia', attbase, conja, conjac, armasequip, conjmaes, mis)
+    determinacaoT = somaTodosAtt('determinacao', attbase, conja, conjac, armasequip, conjmaes, mis)
+    percepcaoT = somaTodosAtt('percepcao', attbase, conja, conjac, armasequip, conjmaes, mis)
+    carismaT = somaTodosAtt('carisma', attbase, conja, conjac, armasequip, conjmaes, mis)
 
 
-    return jsonify(forca=forca, destreza=destreza, inteligencia=inteligencia, determinacao=determinacao, percepcao=percepcao,
-                   carisma=carisma, forcaT=forcaT, destrezaT=destrezaT, inteligenciaT=inteligenciaT, determinacaoT=determinacaoT,
+    return jsonify(forcaT=forcaT, destrezaT=destrezaT, inteligenciaT=inteligenciaT, determinacaoT=determinacaoT,
                    percepcaoT=percepcaoT, carismaT=carismaT, forcaCJ=forcaCJ, destrezaCJ=destrezaCJ, inteligenciaCJ=inteligenciaCJ,
                    determinacaoCJ=determinacaoCJ, percepcaoCJ=percepcaoCJ, carismaCJ=carismaCJ, forcaAc=forcaAc, destrezaAc=destrezaAc,
                    inteligenciaAc=inteligenciaAc, determinacaoAc=determinacaoAc, percepcaoAc=percepcaoAc, carismaAc=carismaAc,
                    forcaAr=forcaAr, destrezaAr=destrezaAr, inteligenciaAr=inteligenciaAr, determinacaoAr=determinacaoAr, percepcaoAr=percepcaoAr,
-                   carismaAr=carismaAr) # AQUI VAI JOGAR O DADO PRO FRONT
+                   carismaAr=carismaAr, forcat=forcat, destrezat=destrezat, inteligenciat=inteligenciat, determinacaot=determinacaot, percepcaot=percepcaot, carismat=carismat) # AQUI VAI JOGAR O DADO PRO FRONT
 
 @main.route("/redvida", methods=['POST'])
 def redvida():
