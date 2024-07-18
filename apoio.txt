@@ -44,3 +44,33 @@ def somarConj(self, escolha):
     Andrey: 
     
     Ariel: Adicionar os campos de raça, habilidades,  bonus externo (fixo e %) e benção divina, grimorio.
+
+
+
+
+
+    function alterar() {
+    // Definindo categorias de inputs em arrays
+    const atributos = ['forca', 'destreza', 'inteligencia', 'determinacao', 'percepcao', 'carisma'];
+    
+    // Objeto para armazenar os valores dos inputs
+    const valores = {};
+
+    // Função para iterar e obter os valores dos inputs
+    const obterValores = (array) => {
+        array.forEach((id) => {
+            valores[id] = parseFloat(document.getElementById(id).value) || 0;
+        });
+    };
+
+    // Chamando a função para obter os valores de cada categoria
+    obterValores(atributos);
+    
+    // Enviando os dados para o servidor
+    fetch('/atrstatus', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(valores)
+    })
