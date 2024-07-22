@@ -74,3 +74,12 @@ def somarConj(self, escolha):
         },
         body: JSON.stringify(valores)
     })
+
+<label id="valorLabel">Elmo: <span id="valorNumerico">10</span></label>
+<input type="number" id="inputNumero" oninput="atualizarLabel(this.value)">
+
+function atualizarLabel(novoValor) {
+    // Atualiza o texto dentro da label com o novo valor
+    document.getElementById('valorNumerico').textContent = novoValor;
+}
+
