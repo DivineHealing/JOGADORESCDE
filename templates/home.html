@@ -16,7 +16,7 @@
     </style>
     <div class="valatributo">
         <h1>Atributos Vitais do Personagem</h1>
-        <div class="atributo" onchange="redvida()">
+        <div class="atributo">
           <label></label>
           <label>Atual</label>
           <label>Total</label>
@@ -29,29 +29,29 @@
           <label>Vida: </label>
           <label id="vidaAt">0</label>
           <label id="vidaTo">0</label>
-          <input type="number" id="vidaB" pattern="[0-9]+$" value="100">
-          <input type="number" id="vidaE" pattern="[0-9]+$" value="0">
-          <input type="number" id="vidaA" pattern="[0-9]+$" value="0"> 
-          <input type="number" id="vidaT" pattern="[0-9]+$" value="0"> 
-          <input type="number" id="dano" pattern="[0-9]+$" value="0"> 
+          <input type="number" id="vidaB" pattern="[0-9]+$" value="100" oninput="redvida()">
+          <input type="number" id="vidaE" pattern="[0-9]+$" value="0" oninput="redvida()">
+          <input type="number" id="vidaA" pattern="[0-9]+$" value="0" oninput="redvida()"> 
+          <input type="number" id="vidaT" pattern="[0-9]+$" value="0" oninput="redvida()"> 
+          <input type="number" id="dano" pattern="[0-9]+$" value="0" oninput="redvida()"> 
 
           <label>Mana: </label>
           <label id="manaAt">0</label>
           <label id="manaTo">0</label>
-          <input type="number" id="manaB" pattern="[0-9]+$" value="100">
-          <input type="number" id="manaE" pattern="[0-9]+$" value="0">
+          <input type="number" id="manaB" pattern="[0-9]+$" value="100" oninput="redvida()">
+          <input type="number" id="manaE" pattern="[0-9]+$" value="0" oninput="redvida()">
           <label></label>
           <label></label>
-          <input type="number" id="gastoM" pattern="[0-9]+$" value="0"> 
+          <input type="number" id="gastoM" pattern="[0-9]+$" value="0" oninput="redvida()"> 
       
           <label>Vigor: </label>
           <label id="vigorAt">0</label>
           <label id="vigorTo">0</label>
-          <input type="number" id="vigorB" pattern="[0-9]+$" value="100">
-          <input type="number" id="vigorE" pattern="[0-9]+$" value="0">
+          <input type="number" id="vigorB" pattern="[0-9]+$" value="100" oninput="redvida()">
+          <input type="number" id="vigorE" pattern="[0-9]+$" value="0" oninput="redvida()">
           <label></label>
           <label></label>
-          <input type="number" id="gastoV" pattern="[0-9]+$" value="0"> 
+          <input type="number" id="gastoV" pattern="[0-9]+$" value="0" oninput="redvida()"> 
         </div>
     </div>
 <p></p>
@@ -407,6 +407,9 @@
 <p></p>
     <button onclick="alterar()" onclick="redvida()"> Alterar Valores</button>
     <button onclick="salvar()"> Salvar Valores</button>
-    <script src="/static/script.js"></script>
+    <script src="/static/script.js"></script>   
+    <button> <a href="/visual">Atributos</a> </button>
+            
+
 </body>
 </html>

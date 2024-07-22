@@ -20,6 +20,10 @@ main = Flask(__name__)
 def home():
     return render_template('home.html')
 
+@main.route("/visual")
+def visual():
+    return render_template('teste/visual.html')
+
 # CODIGO AQUI
 @main.route("/atrstatus", methods=['POST'])
 def atrstatus():
