@@ -33,6 +33,7 @@ def atrstatus():
     attbase = Atributos(forca, destreza, inteligencia, determinacao, percepcao, carisma)
     
     efor = float(data['forcaE'])
+    print(efor)
     edes = float(data['destrezaE'])
     eint = float(data['inteligenciaE'])
     edet = float(data['determinacaoE'])
