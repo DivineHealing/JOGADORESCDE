@@ -334,7 +334,6 @@ def atrstatus():
     percepcaoT = somaTodosAtt('percepcao', attbase, conja, conjac, armasequip, conjmaes, mis, bd, cla, grim, raca, be)
     carismaT = somaTodosAtt('carisma', attbase, conja, conjac, armasequip, conjmaes, mis, bd, cla, grim, raca, be)
 
-
     return jsonify(forcaT=forcaT, destrezaT=destrezaT, inteligenciaT=inteligenciaT, determinacaoT=determinacaoT,
                    percepcaoT=percepcaoT, carismaT=carismaT, forcaCJ=forcaCJ, destrezaCJ=destrezaCJ, inteligenciaCJ=inteligenciaCJ,
                    determinacaoCJ=determinacaoCJ, percepcaoCJ=percepcaoCJ, carismaCJ=carismaCJ, forcaAc=forcaAc, destrezaAc=destrezaAc,

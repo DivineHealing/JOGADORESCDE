@@ -32,11 +32,12 @@ function alterar() {
                       'forcaMUR', 'destrezaMUR', 'inteligenciaMUR', 'determinacaoMUR', 'percepcaoMUR', 'carismaMUR',
                       'forcaMUB', 'destrezaMUB', 'inteligenciaMUB', 'determinacaoMUB', 'percepcaoMUB', 'carismaMUB'];
 
+                  
     const extra = ['forcaBD', 'destrezaBD', 'inteligenciaBD', 'determinacaoBD', 'percepcaoBD', 'carismaBD',
                    'forcaDCF', 'destrezaDCF', 'inteligenciaDCF', 'determinacaoDCF', 'percepcaoDCF', 'carismaDCF',
                    'forcaDCP', 'destrezaDCP', 'inteligenciaDCP', 'determinacaoDCP', 'percepcaoDCP', 'carismaDCP',
                    'forcaG', 'destrezaG', 'inteligenciaG', 'determinacaoG', 'percepcaoG', 'carismaG',
-                   /*'forcaraca', 'destrezaraca', 'inteligenciaraca', 'determinacaoraca', 'percepcaoraca', 'carismaraca',*/
+                   'forcaraca', 'destrezaraca', 'inteligenciaraca', 'determinacaoraca', 'percepcaoraca', 'carismaraca',
                    'forcaBF', 'destrezaBF', 'inteligenciaBF', 'determinacaoBF', 'percepcaoBF', 'carismaBF',
                    'forcaBP', 'destrezaBP', 'inteligenciaBP', 'determinacaoBP', 'percepcaoBP', 'carismaBP'];
 
