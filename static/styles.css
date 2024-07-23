@@ -188,11 +188,11 @@ button:after{
 }
 
 /* Select style here */
-.custom-select {
+.racial {
 	position: relative;
 }
 
-.custom-select select {
+.racial select {
 	appearance: none;
 	-webkit-appearance: none;
 	width: 100%;
@@ -208,13 +208,13 @@ button:after{
 	box-shadow: 0px 1px 7px 3px #00AF7A;
 }
 
-.custom-select select:focus {
+.racial select:focus {
 	background: #000000;
 	border: 3px inset #25E2A3;
 	border-radius: 5px;
 }
 
-.custom-select::after {
+.racial::after {
 	content: "";
 	position: absolute;
 	pointer-events: none;
