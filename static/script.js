@@ -163,3 +163,9 @@ function redvida(){
     });
     
 }
+
+// script.js
+document.getElementById('telavisual').addEventListener('click', function() {
+    // Redireciona para a outra página
+    window.location.href = '/visual'; // Substitua 'outra_pagina.html' pelo caminho da página desejada
+});
