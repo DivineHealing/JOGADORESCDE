@@ -1,3 +1,4 @@
+\/\/\/\/\/\/\/\/\/\/\/\/\/ESBOÇO ANDREY\/\/\/\/\/\/\/\/\/\/\/\/\/\/
 def somartudo(att):
     att = float(data[att]) or 0 #atributo base(fixo)
     eqp = float(data1[att]) or 0 #equipamento(fixo)
@@ -35,19 +36,7 @@ def somarConj(self, escolha):
             listsoma.append(v[escolha])
     return sum(listsoma)
 
-
-
-    ##############################################################
-
-    TERCA FEIRA
-
-    Andrey: 
-    
-    Ariel: Adicionar os campos de raça, habilidades,  bonus externo (fixo e %) e benção divina, grimorio.
-
-
-
-
+\/\/\/\/\/\/\/\/\/\/\/\/\/ESBOÇO ARIEL\/\/\/\/\/\/\/\/\/\/\/\/\/\/
 
     function alterar() {
     // Definindo categorias de inputs em arrays
@@ -82,4 +71,17 @@ function atualizarLabel(novoValor) {
     // Atualiza o texto dentro da label com o novo valor
     document.getElementById('valorNumerico').textContent = novoValor;
 }
+
+    #############################LEMBRETES#################################
+
+    Ideia para banco de dados:
+        uma tabela de jogadores que tera o registro simples de quais pessoas se cadastraram , e uma tabela
+    de personagens que tera todas as informações do personagem, uma tabela pode ter relação com a outra
+        um |jogador| pode ter varios |personagens| porem o personagem só pode estar 
+    relaciona a um jogador(modelo relacional muitos para um)
+
+    Andrey: 
+    
+    Ariel: Adicionar os campos de raça, habilidades,  bonus externo (fixo e %) e benção divina, grimorio.
+
 
