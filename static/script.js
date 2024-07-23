@@ -39,7 +39,9 @@ function alterar() {
                    'forcaG', 'destrezaG', 'inteligenciaG', 'determinacaoG', 'percepcaoG', 'carismaG',
                    'forcaraca', 'destrezaraca', 'inteligenciaraca', 'determinacaoraca', 'percepcaoraca', 'carismaraca',
                    'forcaBF', 'destrezaBF', 'inteligenciaBF', 'determinacaoBF', 'percepcaoBF', 'carismaBF',
-                   'forcaBP', 'destrezaBP', 'inteligenciaBP', 'determinacaoBP', 'percepcaoBP', 'carismaBP'];
+                   'forcaBP', 'destrezaBP', 'inteligenciaBP', 'determinacaoBP', 'percepcaoBP', 'carismaBP',
+                   'forcaHF', 'destrezaHF', 'inteligenciaHF', 'determinacaoHF', 'percepcaoHF', 'carismaHF',
+                   'forcaHP', 'destrezaHP', 'inteligenciaHP', 'determinacaoHP', 'percepcaoHP', 'carismaHP'];
 
     
     // Objeto para armazenar os valores dos inputs

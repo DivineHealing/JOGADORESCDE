@@ -102,13 +102,15 @@
             <label></label>
             <label>Total</label>
             <label>Base</label>
-            <label>Status base</label>
+            <label>Nivel</label>
             <label>Missão</label>
             <label>Benção</label>
-            <label>Grimorio</label>
-            <label>Buff Fixo</label>
+            <label>Grim.</label>
+            <label>Buff Fix</label>
             <label>Buff %</label>
             <label>Racial</label>
+            <label>Hab Fix</label>
+            <label>Hab %</label>
 
             <label for="forca">Força</label>
             <labeltot id="forcaT">0</labeltot>
@@ -120,6 +122,8 @@
             <input type="number" id="forcaBF" value="0" pattern="[0-9]+$" oninput="alterar()">
             <input type="number" id="forcaBP" value="0" pattern="[0-9]+$" oninput="alterar()">
             <input type="number" id="forcaraca" value="0" pattern="[0-9]+$" oninput="alterar()">
+            <input type="number" id="forcaHF" value="0" pattern="[0-9]+$" oninput="alterar()">
+            <input type="number" id="forcaHP" value="0" pattern="[0-9]+$" oninput="alterar()">
 
             <label for="destreza">Destreza </label>
             <labeltot id="destrezaT">0</labeltot>
@@ -131,6 +135,8 @@
             <input type="number" id="destrezaBF" value="0" pattern="[0-9]+$" oninput="alterar()">
             <input type="number" id="destrezaBP" value="0" pattern="[0-9]+$" oninput="alterar()">
             <input type="number" id="destrezaraca" value="0" pattern="[0-9]+$" oninput="alterar()">
+            <input type="number" id="destrezaHF" value="0" pattern="[0-9]+$" oninput="alterar()">
+            <input type="number" id="destrezaHP" value="0" pattern="[0-9]+$" oninput="alterar()">
 
             <label for="inteligencia">Inteligencia</label>
             <labeltot id="inteligenciaT">0</labeltot>
@@ -142,6 +148,8 @@
             <input type="number" id="inteligenciaBF" value="0" pattern="[0-9]+$" oninput="alterar()"> 
             <input type="number" id="inteligenciaBP" value="0" pattern="[0-9]+$" oninput="alterar()"> 
             <input type="number" id="inteligenciaraca" value="0" pattern="[0-9]+$" oninput="alterar()"> 
+            <input type="number" id="inteligenciaHF" value="0" pattern="[0-9]+$" oninput="alterar()"> 
+            <input type="number" id="inteligenciaHP" value="0" pattern="[0-9]+$" oninput="alterar()"> 
 
             <label for="determinacao">Determinação </label>
             <labeltot id="determinacaoT">0</labeltot>
@@ -153,6 +161,8 @@
             <input type="number" id="determinacaoBF" value="0" pattern="[0-9]+$" oninput="alterar()"> 
             <input type="number" id="determinacaoBP" value="0" pattern="[0-9]+$" oninput="alterar()"> 
             <input type="number" id="determinacaoraca" value="0" pattern="[0-9]+$" oninput="alterar()"> 
+            <input type="number" id="determinacaoHF" value="0" pattern="[0-9]+$" oninput="alterar()"> 
+            <input type="number" id="determinacaoHP" value="0" pattern="[0-9]+$" oninput="alterar()"> 
 
             <label for="percepcao">Percepção</label>
             <labeltot id="percepcaoT">0</labeltot>
@@ -164,6 +174,8 @@
             <input type="number" id="percepcaoBF" value="0" pattern="[0-9]+$" oninput="alterar()">
             <input type="number" id="percepcaoBP" value="0" pattern="[0-9]+$" oninput="alterar()">
             <input type="number" id="percepcaoraca" value="0" pattern="[0-9]+$" oninput="alterar()">
+            <input type="number" id="percepcaoHF" value="0" pattern="[0-9]+$" oninput="alterar()">
+            <input type="number" id="percepcaoHP" value="0" pattern="[0-9]+$" oninput="alterar()">
             
             <label for="carisma">Carisma</label>
             <labeltot id="carismaT">0</labeltot>
@@ -175,6 +187,8 @@
             <input type="number" id="carismaBF" value="0" pattern="[0-9]+$" oninput="alterar()">
             <input type="number" id="carismaBP" value="0" pattern="[0-9]+$" oninput="alterar()">
             <input type="number" id="carismaraca" value="0" pattern="[0-9]+$" oninput="alterar()">
+            <input type="number" id="carismaHF" value="0" pattern="[0-9]+$" oninput="alterar()">
+            <input type="number" id="carismaHP" value="0" pattern="[0-9]+$" oninput="alterar()">
         </div>
     </div>
 <p></p>
@@ -525,8 +539,5 @@
     <button onclick="salvar()"> Salvar Valores</button>
     <script src="/static/script.js"></script>   
     <button> <a href="/visual">Atributos</a> </button>
-
-    
-
 </body>
 </html>
