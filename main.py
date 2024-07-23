@@ -294,10 +294,10 @@ def atrstatus():
                             float(data['carismaBP']))  # Criando atributos do bonus externo percentual
     be = BonusEx(bfefclassatt, bfepclassatt)  # criando o objeto dos bonus externos
 
-    hfclassatt = Atributos(float(data['forcaBF']), float(data['destrezaBF']), float(data['inteligenciaBF']), float(data['determinacaoBF']), float(data['percepcaoBF']),
-                            float(data['carismaBF']))  # Criando atributos da habilidade fixo
-    hpclassatt = Atributos(float(data['forcaBP']), float(data['destrezaBP']), float(data['inteligenciaBP']), float(data['determinacaoBP']), float(data['percepcaoBP']),
-                            float(data['carismaBP']))  # Criando atributos do habilidade percentual
+    hfclassatt = Atributos(float(data['forcaHF']), float(data['destrezaHF']), float(data['inteligenciaHF']), float(data['determinacaoHF']), float(data['percepcaoHF']),
+                            float(data['carismaHF']))  # Criando atributos da habilidade fixo
+    hpclassatt = Atributos(float(data['forcaHP']), float(data['destrezaHP']), float(data['inteligenciaHP']), float(data['determinacaoHP']), float(data['percepcaoHP']),
+                            float(data['carismaHP']))  # Criando atributos do habilidade percentual
     habilidadesp = Habilidade(hfclassatt, hpclassatt)  # criando o objeto das habilidades
 
     info.extend([attbase, conja, conjac, armasequip, conjmaes, mis, bd, cla, grim, raca, be, habilidadesp]) #futuramente ira para a classe personagem/ retirar provavelmente quando tiver o banco de dedos
