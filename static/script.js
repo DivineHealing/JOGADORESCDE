@@ -31,6 +31,15 @@ function alterar() {
                       'forcaMSB', 'destrezaMSB', 'inteligenciaMSB', 'determinacaoMSB', 'percepcaoMSB', 'carismaMSB',
                       'forcaMUR', 'destrezaMUR', 'inteligenciaMUR', 'determinacaoMUR', 'percepcaoMUR', 'carismaMUR',
                       'forcaMUB', 'destrezaMUB', 'inteligenciaMUB', 'determinacaoMUB', 'percepcaoMUB', 'carismaMUB'];
+
+    const extra = ['forcaBD', 'destrezaBD', 'inteligenciaBD', 'determinacaoBD', 'percepcaoBD', 'carismaBD',
+                   'forcaDCF', 'destrezaDCF', 'inteligenciaDCF', 'determinacaoDCF', 'percepcaoDCF', 'carismaDCF',
+                   'forcaDCP', 'destrezaDCP', 'inteligenciaDCP', 'determinacaoDCP', 'percepcaoDCP', 'carismaDCP',
+                   'forcaG', 'destrezaG', 'inteligenciaG', 'determinacaoG', 'percepcaoG', 'carismaG',
+                   /*'forcaraca', 'destrezaraca', 'inteligenciaraca', 'determinacaoraca', 'percepcaoraca', 'carismaraca',*/
+                   'forcaBF', 'destrezaBF', 'inteligenciaBF', 'determinacaoBF', 'percepcaoBF', 'carismaBF',
+                   'forcaBP', 'destrezaBP', 'inteligenciaBP', 'determinacaoBP', 'percepcaoBP', 'carismaBP'];
+
     
     // Objeto para armazenar os valores dos inputs
     const valores = {};
@@ -45,7 +54,7 @@ function alterar() {
     };
 
     // Chamando a função para obter os valores de cada categoria
-    obterValores(atributos, missoes, arma, conjunto, acessorios, maestria);
+    obterValores(atributos, missoes, arma, conjunto, acessorios, maestria, extra);
     
     // Enviando os dados para o servidor
     fetch('/atrstatus', {

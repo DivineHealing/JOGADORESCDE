@@ -188,7 +188,6 @@ button:after{
 }
 
 /* Select style here */
-
 .custom-select {
 	position: relative;
 }
@@ -201,8 +200,8 @@ button:after{
 	font-style: italic;
 	padding: 2px 5px 2px 5px;
 	background-color: #000000;
-	border: 2px solid #EBEBEB;
-	border-radius: 8px;
+	border: 1px outset #EBEBEB;
+	border-radius: 20px;
 	color: #FFFFFF;
 	cursor: pointer;
 	outline: none;
@@ -210,8 +209,8 @@ button:after{
 }
 
 .custom-select select:focus {
-	background: #6A6A6A;
-	border: 3px dashed #25E2A3;
+	background: #000000;
+	border: 3px inset #25E2A3;
 	border-radius: 5px;
 }
 
