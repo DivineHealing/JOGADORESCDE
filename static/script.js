@@ -67,6 +67,8 @@ function alterar() {
     })
     .then(response => response.json())
     .then(data => {
+        console.log('Dados recebidos:', data)
+        
         document.getElementById('forcat').textContent = `${data.forcat.toLocaleString('pt-BR')}`;
         document.getElementById('destrezat').textContent = `${data.destrezat.toLocaleString('pt-BR')}`;
         document.getElementById('inteligenciat').textContent = `${data.inteligenciat.toLocaleString('pt-BR')}`;
@@ -101,6 +103,15 @@ function alterar() {
         document.getElementById('determinacaoAr').textContent = `${data.determinacaoAr.toLocaleString('pt-BR')}`;
         document.getElementById('percepcaoAr').textContent = `${data.percepcaoAr.toLocaleString('pt-BR')}`;
         document.getElementById('carismaAr').textContent = `${data.carismaAr.toLocaleString('pt-BR')}`;
+
+        // Constrói a URL com os parâmetros para a próxima página
+        const queryString = `
+        ?forcaT=${data.forcaT}
+        &destrezaT=${data.destrezaT}
+        &inteligenciaT=${data.inteligenciaT}
+        &determinacaoT=${data.determinacaoT}
+        &percepcaoT=${data.percepcaoT}
+        &carismaT=${data.carismaT}`;
     })
     .catch(error => {
         console.error('Erro:', error);
@@ -142,6 +153,8 @@ function redvida(){
         document.getElementById('manaAt').textContent = `${data.manaAt.toLocaleString('pt-BR')}`;
         document.getElementById('vigorTo').textContent = `${data.vigorTo.toLocaleString('pt-BR')}`;
         document.getElementById('vigorAt').textContent = `${data.vigorAt.toLocaleString('pt-BR')}`;
+
+
     })
     .catch(error => {
         console.error('Erro:', error);
