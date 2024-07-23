@@ -315,8 +315,8 @@ def redvida():
     data = request.get_json()
     vidaB = float(data['vidaB'])
     vidaE = float(data['vidaE'])
-    vidaA = float(data['vidaA'])+1
-    vidaT = float(data['vidaT'])+1
+    vidaA = float(data['vidaA'])/100+1
+    vidaT = float(data['vidaT'])/100+1
     dano = float(data['dano'])
     
     vidaTo = trunc((vidaB + vidaE)*vidaA*vidaT)
