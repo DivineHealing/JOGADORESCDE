@@ -27,7 +27,7 @@ def somaTodosAtt(escolha, atributo, conjuntoarmadura, conjuntoacessorio, armaseq
     resultado = []
 
     soma1 = att + equip + ace + arma + mis + maes + clanf
-    soma2 = soma1 + soma1 * (maesb + clanp + ra + bencdiv) / 100
+    soma2 = soma1 + soma1 * (maesb + clanp + bencdiv) / 100
     resultado.append(soma2 + soma2 * (bep) / 100) 
     resultado.append(soma2 + soma2 * (bef) / 100) 
 
