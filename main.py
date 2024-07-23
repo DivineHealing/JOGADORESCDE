@@ -294,8 +294,13 @@ def atrstatus():
                             float(data['carismaBP']))  # Criando atributos do bonus externo percentual
     be = BonusEx(bfefclassatt, bfepclassatt)  # criando o objeto dos bonus externos
 
+    hfclassatt = Atributos(float(data['forcaBF']), float(data['destrezaBF']), float(data['inteligenciaBF']), float(data['determinacaoBF']), float(data['percepcaoBF']),
+                            float(data['carismaBF']))  # Criando atributos da habilidade fixo
+    hpclassatt = Atributos(float(data['forcaBP']), float(data['destrezaBP']), float(data['inteligenciaBP']), float(data['determinacaoBP']), float(data['percepcaoBP']),
+                            float(data['carismaBP']))  # Criando atributos do habilidade percentual
+    habilidadesp = Habilidade(hfclassatt, hpclassatt)  # criando o objeto das habilidades
 
-    info.extend([attbase, conja, conjac, armasequip, conjmaes]) #futuramente ira para a classe personagem/ retirar provavelmente quando tiver o banco de dedos
+    info.extend([attbase, conja, conjac, armasequip, conjmaes, mis, bd, cla, grim, raca, be, habilidadesp]) #futuramente ira para a classe personagem/ retirar provavelmente quando tiver o banco de dedos
 
     forcaCJ = conja.somarEquip('forca') #funcao da classe para somar os atributos equipamentos
     destrezaCJ = conja.somarEquip('destreza')
@@ -325,12 +330,12 @@ def atrstatus():
     percepcaot = percepcao + conjmaes.somarMaes('f', 'percepcao') + mis.att.percepcao
     carismat = carisma + conjmaes.somarMaes('f', 'carisma') + mis.att.carisma
 
-    forcaT = somaTodosAtt('forca', attbase, conja, conjac, armasequip, conjmaes, mis, bd, cla, grim, raca, be) #funcao para pegar a soma total de todos atributos(personagem, equipamento, acessorio)
-    destrezaT = somaTodosAtt('destreza', attbase, conja, conjac, armasequip, conjmaes, mis, bd, cla, grim, raca, be)
-    inteligenciaT = somaTodosAtt('inteligencia', attbase, conja, conjac, armasequip, conjmaes, mis, bd, cla, grim, raca, be)
-    determinacaoT = somaTodosAtt('determinacao', attbase, conja, conjac, armasequip, conjmaes, mis, bd, cla, grim, raca, be)
-    percepcaoT = somaTodosAtt('percepcao', attbase, conja, conjac, armasequip, conjmaes, mis, bd, cla, grim, raca, be)
-    carismaT = somaTodosAtt('carisma', attbase, conja, conjac, armasequip, conjmaes, mis, bd, cla, grim, raca, be)
+    forcaT = somaTodosAtt('forca', attbase, conja, conjac, armasequip, conjmaes, mis, bd, cla, grim, raca, be, habilidadesp) #funcao para pegar a soma total de todos atributos(personagem, equipamento, acessorio)
+    destrezaT = somaTodosAtt('destreza', attbase, conja, conjac, armasequip, conjmaes, mis, bd, cla, grim, raca, be, habilidadesp)
+    inteligenciaT = somaTodosAtt('inteligencia', attbase, conja, conjac, armasequip, conjmaes, mis, bd, cla, grim, raca, be, habilidadesp)
+    determinacaoT = somaTodosAtt('determinacao', attbase, conja, conjac, armasequip, conjmaes, mis, bd, cla, grim, raca, be, habilidadesp)
+    percepcaoT = somaTodosAtt('percepcao', attbase, conja, conjac, armasequip, conjmaes, mis, bd, cla, grim, raca, be, habilidadesp)
+    carismaT = somaTodosAtt('carisma', attbase, conja, conjac, armasequip, conjmaes, mis, bd, cla, grim, raca, be, habilidadesp)
 
     return jsonify(forcaT=forcaT, destrezaT=destrezaT, inteligenciaT=inteligenciaT, determinacaoT=determinacaoT,
                    percepcaoT=percepcaoT, carismaT=carismaT, forcaCJ=forcaCJ, destrezaCJ=destrezaCJ, inteligenciaCJ=inteligenciaCJ,
