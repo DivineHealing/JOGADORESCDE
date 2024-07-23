@@ -1,13 +1,15 @@
 from math import floor
+'''
 from lib.conjarmadura import ConjArmadura
 from lib.conjacessorio import ConjAcessorio
 from lib.armasemmaos import ArmasEmMaos
 from lib.conjmaestria import Conjmaestria
 from lib.missoes import Missoes
+from lib.bencaodiv import BencaoDiv'''
 
 
 
-def somaTodosAtt(escolha, atributo, conjuntoarmadura, conjuntoacessorio, armasequipadas, conjmaestrias, missoes): #fara a soma de todos os atributos escolhidos
+def somaTodosAtt(escolha, atributo, conjuntoarmadura, conjuntoacessorio, armasequipadas, conjmaestrias, missoes, bencaodivina, cla, grim, raca, bufext): #fara a soma de todos os atributos escolhidos
     att = atributo.pegaValor(escolha)
     equip = conjuntoarmadura.somarEquip(escolha)
     ace = conjuntoacessorio.somarAces(escolha)
@@ -15,7 +17,19 @@ def somaTodosAtt(escolha, atributo, conjuntoarmadura, conjuntoacessorio, armaseq
     maes = conjmaestrias.somarMaes('f', escolha)
     maesb = conjmaestrias.somarMaes('p', escolha)
     mis = missoes.att.pegaValor(escolha)
-    soma1 = att + equip + ace + arma + mis + maes
-    soma2 = soma1 + soma1 * maesb / 100
-    return floor(soma2)
+    bencdiv = bencaodivina.attp.pegaValor(escolha)
+    clanf = cla.att.pegaValor(escolha)
+    clanp = cla.attp.pegaValor(escolha)
+    grim = grim.attp.pegaValor(escolha)
+    ra = raca.attp.pegaValor(escolha)
+    bef = bufext.att.pegaValor(escolha)
+    bep = bufext.attp.pegaValor(escolha)
+    resultado = []
+
+    soma1 = att + equip + ace + arma + mis + maes + clanf
+    soma2 = soma1 + soma1 * (maesb + clanp + ra + bencdiv) / 100
+    resultado.append(soma2 + soma2 * (bep) / 100) 
+    resultado.append(soma2 + soma2 * (bef) / 100) 
+
+    return floor(max(resultado))
     

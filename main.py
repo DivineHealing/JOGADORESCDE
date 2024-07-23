@@ -11,6 +11,12 @@ from lib.armasemmaos import ArmasEmMaos
 from lib.maestrias import Maestrias
 from lib.conjmaestria import Conjmaestria
 from lib.missoes import Missoes
+from lib.bencaodiv import BencaoDiv
+from lib.bonusex import BonusEx
+from lib.grimorio import Grimorio
+from lib.habilidade import Habilidade
+from lib.raca import Raca
+from lib.cla import Cla
 
 info = [] #lista de controle
 
@@ -265,6 +271,32 @@ def atrstatus():
     msclassatt = Atributos(msfor, msdes, msint, msdet, msper, mscar)  # criando o objeto dos atributos das missões
     mis = Missoes(msclassatt)  # criando objeto das missões
 
+    print(float(data['forcaBD']))
+    bdclassatt = Atributos(float(data['forcaBD']), float(data['destrezaBD']), float(data['inteligenciaBD']), float(data['determinacaoBD']), float(data['percepcaoBD']),
+                            float(data['carismaBD']))  # Criando atributos da Benção Divina (apenas percentual)
+    bd = BencaoDiv(bdclassatt)  # criando o objeto das Bençãos divinas
+
+    clafclassatt = Atributos(float(data['forcaDCF']), float(data['destrezaDCF']), float(data['inteligenciaDCF']), float(data['determinacaoDCF']), float(data['percepcaoDCF']),
+                            float(data['carismaDCF']))  # Criando atributos da dadiva do clã fixo
+    clapclassatt = Atributos(float(data['forcaDCP']), float(data['destrezaDCP']), float(data['inteligenciaDCP']), float(data['determinacaoDCP']), float(data['percepcaoDCP']),
+                            float(data['carismaDCP']))  # Criando atributos da dadiva do clã percentual
+    cla = Cla(clafclassatt, clapclassatt)  # criando o objeto da dadiva doc clã
+
+    grimclassatt = Atributos(float(data['forcaG']), float(data['destrezaG']), float(data['inteligenciaG']), float(data['determinacaoG']), float(data['percepcaoG']),
+                            float(data['carismaG']))  # Criando atributos do grimorio (apenas percentual)
+    grim = Grimorio(grimclassatt)  # criando o objeto do grimorio
+
+    racaclassatt = Atributos(float(data['forcaraca']), float(data['destrezaraca']), float(data['inteligenciaraca']), float(data['determinacaoraca']), float(data['percepcaoraca']),
+                            float(data['carismaraca']))  # Criando atributos da Raça (apenas percentual)
+    raca = Raca(racaclassatt)  # criando o objeto da raça
+
+    bfefclassatt = Atributos(float(data['forcaBF']), float(data['destrezaBF']), float(data['inteligenciaBF']), float(data['determinacaoBF']), float(data['percepcaoBF']),
+                            float(data['carismaBF']))  # Criando atributos do bonus percentual fixo
+    bfepclassatt = Atributos(float(data['forcaBP']), float(data['destrezaBP']), float(data['inteligenciaBP']), float(data['determinacaoBP']), float(data['percepcaoBP']),
+                            float(data['carismaBP']))  # Criando atributos do bonus externo percentual
+    be = BonusEx(bfefclassatt, bfepclassatt)  # criando o objeto dos bonus externos
+
+
     info.extend([attbase, conja, conjac, armasequip, conjmaes]) #futuramente ira para a classe personagem/ retirar provavelmente quando tiver o banco de dedos
 
     forcaCJ = conja.somarEquip('forca') #funcao da classe para somar os atributos equipamentos
@@ -295,12 +327,12 @@ def atrstatus():
     percepcaot = percepcao + conjmaes.somarMaes('f', 'percepcao') + mis.att.percepcao
     carismat = carisma + conjmaes.somarMaes('f', 'carisma') + mis.att.carisma
 
-    forcaT = somaTodosAtt('forca', attbase, conja, conjac, armasequip, conjmaes, mis) #funcao para pegar a soma total de todos atributos(personagem, equipamento, acessorio)
-    destrezaT = somaTodosAtt('destreza', attbase, conja, conjac, armasequip, conjmaes, mis)
-    inteligenciaT = somaTodosAtt('inteligencia', attbase, conja, conjac, armasequip, conjmaes, mis)
-    determinacaoT = somaTodosAtt('determinacao', attbase, conja, conjac, armasequip, conjmaes, mis)
-    percepcaoT = somaTodosAtt('percepcao', attbase, conja, conjac, armasequip, conjmaes, mis)
-    carismaT = somaTodosAtt('carisma', attbase, conja, conjac, armasequip, conjmaes, mis)
+    forcaT = somaTodosAtt('forca', attbase, conja, conjac, armasequip, conjmaes, mis, bd, cla, grim, raca, be) #funcao para pegar a soma total de todos atributos(personagem, equipamento, acessorio)
+    destrezaT = somaTodosAtt('destreza', attbase, conja, conjac, armasequip, conjmaes, mis, bd, cla, grim, raca, be)
+    inteligenciaT = somaTodosAtt('inteligencia', attbase, conja, conjac, armasequip, conjmaes, mis, bd, cla, grim, raca, be)
+    determinacaoT = somaTodosAtt('determinacao', attbase, conja, conjac, armasequip, conjmaes, mis, bd, cla, grim, raca, be)
+    percepcaoT = somaTodosAtt('percepcao', attbase, conja, conjac, armasequip, conjmaes, mis, bd, cla, grim, raca, be)
+    carismaT = somaTodosAtt('carisma', attbase, conja, conjac, armasequip, conjmaes, mis, bd, cla, grim, raca, be)
 
 
     return jsonify(forcaT=forcaT, destrezaT=destrezaT, inteligenciaT=inteligenciaT, determinacaoT=determinacaoT,
