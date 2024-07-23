@@ -15,7 +15,44 @@
     }
     </style>
     <div class="valatributo">
-        <h1>Atributos Vitais do Personagem</h1>
+        <h1>Atributos Personagem</h1>
+        <label>Raça do Personagem: </label>
+        <select class="custom-select" id="racas">
+            <option value="anoes">Anões</option>
+            <option value="anjos">Anjos</option>
+            <option value="anjo_caido">Anjo Caído</option>
+            <option value="automatos">Autômatos</option>
+            <option value="ciborgues">Ciborgues</option>
+            <option value="demonios">Demônios</option>
+            <option value="draconatos">Draconatos</option>
+            <option value="elfos">Elfos</option>
+            <option value="elfos_negros">Elfos Negros</option>
+            <option value="ensuris">Ensuri (Elementais)</option>
+            <option value="fadas">Fadas</option>
+            <option value="fenix">Filho da Fênix</option>
+            <option value="gigantes">Gigantes</option>
+            <option value="gnomos">Gnomos</option>
+            <option value="goblins">Goblins</option>
+            <option value="humanos">Humanos</option>
+            <option value="lobisomem">Lobisomem (Lycan Amaldiçoado)</option>
+            <option value="lycan">Lycan</option>
+            <option value="lycans_sangue">Lycans de Sangue (Híbridos)</option>
+            <option value="meio_anjo">Meio-Anjo</option>
+            <option value="meio_anjo_caido">Meio-Anjo Caído</option>
+            <option value="meio_demonio">Meio-Demônio</option>
+            <option value="meio_dragao">Meio-Dragão</option>
+            <option value="meio_elfo">Meio-Elfo</option>
+            <option value="meio_fera">Meio-Fera</option>
+            <option value="metamorfos">Metamorfos</option>
+            <option value="morto_vivos">Morto-Vivos</option>
+            <option value="nifas">Ninfas</option>
+            <option value="onis">Onis</option>
+            <option value="orcs">Orcs</option>
+            <option value="pinguins">Pinguins (Icekins)</option>
+            <option value="slimes">Slimes (Humanóide)</option>
+            <option value="succubus">Succubus/Incubus</option>
+          </select>
+          <p></p>
         <div class="atributo">
           <label></label>
           <label>Atual</label>
@@ -63,42 +100,96 @@
             <label>Base</label>
             <label>Status base</label>
             <label>Missão</label>
+            <label>Benção</label>
+            <label>Grimorio</label>
 
             <label for="forca">Força</label>
             <labeltot id="forcaT">0</labeltot>
             <labelat id="forcat">0</labelat> 
-            <input type="number" id="forca" value="0" pattern="[0-9]+$">
-            <input type="number" id="forcaMS" value="0" pattern="[0-9]+$">
+            <input type="number" id="forca" value="0" pattern="[0-9]+$" oninput="alterar()">
+            <input type="number" id="forcaMS" value="0" pattern="[0-9]+$" oninput="alterar()">
+            <input type="number" id="forcaBD" value="0" pattern="[0-9]+$" oninput="alterar()">
+            <input type="number" id="forcaG" value="0" pattern="[0-9]+$" oninput="alterar()">
 
             <label for="destreza">Destreza </label>
             <labeltot id="destrezaT">0</labeltot>
             <labelat id="destrezat">0</labelat>
-            <input type="number" id="destreza" value="0" pattern="[0-9]+$">
-            <input type="number" id="destrezaMS" value="0" pattern="[0-9]+$">
+            <input type="number" id="destreza" value="0" pattern="[0-9]+$" oninput="alterar()">
+            <input type="number" id="destrezaMS" value="0" pattern="[0-9]+$" oninput="alterar()">
+            <input type="number" id="destrezaBD" value="0" pattern="[0-9]+$" oninput="alterar()">
+            <input type="number" id="destrezaG" value="0" pattern="[0-9]+$" oninput="alterar()">
 
             <label for="inteligencia">Inteligencia</label>
             <labeltot id="inteligenciaT">0</labeltot>
             <labelat id="inteligenciat">0</labelat>
-            <input type="number" id="inteligencia" value="0" pattern="[0-9]+$"> 
-          <input type="number" id="inteligenciaMS" value="0" pattern="[0-9]+$"> 
+            <input type="number" id="inteligencia" value="0" pattern="[0-9]+$" oninput="alterar()"> 
+            <input type="number" id="inteligenciaMS" value="0" pattern="[0-9]+$" oninput="alterar()"> 
+            <input type="number" id="inteligenciaBD" value="0" pattern="[0-9]+$" oninput="alterar()"> 
+            <input type="number" id="inteligenciaG" value="0" pattern="[0-9]+$" oninput="alterar()">
 
             <label for="determinacao">Determinação </label>
             <labeltot id="determinacaoT">0</labeltot>
             <labelat id="determinacaot">0</labelat> 
-            <input type="number" id="determinacao" value="0" pattern="[0-9]+$"> 
-            <input type="number" id="determinacaoMS" value="0" pattern="[0-9]+$">
+            <input type="number" id="determinacao" value="0" pattern="[0-9]+$" oninput="alterar()"> 
+            <input type="number" id="determinacaoMS" value="0" pattern="[0-9]+$" oninput="alterar()">
+            <input type="number" id="determinacaoBD" value="0" pattern="[0-9]+$" oninput="alterar()"> 
+            <input type="number" id="determinacaoG" value="0" pattern="[0-9]+$" oninput="alterar()">
 
             <label for="percepcao">Percepção</label>
             <labeltot id="percepcaoT">0</labeltot>
             <labelat id="percepcaot">0</labelat>
-            <input type="number" id="percepcao" value="0" pattern="[0-9]+$">
-            <input type="number" id="percepcaoMS" value="0" pattern="[0-9]+$">
+            <input type="number" id="percepcao" value="0" pattern="[0-9]+$" oninput="alterar()">
+            <input type="number" id="percepcaoMS" value="0" pattern="[0-9]+$" oninput="alterar()">
+            <input type="number" id="percepcaoBD" value="0" pattern="[0-9]+$" oninput="alterar()">
+            <input type="number" id="percepcaoG" value="0" pattern="[0-9]+$" oninput="alterar()">
             
             <label for="carisma">Carisma</label>
             <labeltot id="carismaT">0</labeltot>
             <labelat id="carismat">0</labelat> 
-            <input type="number" id="carisma" value="0" pattern="[0-9]+$">
-            <input type="number" id="carismaMS" value="0" pattern="[0-9]+$">
+            <input type="number" id="carisma" value="0" pattern="[0-9]+$" oninput="alterar()">
+            <input type="number" id="carismaMS" value="0" pattern="[0-9]+$" oninput="alterar()">
+            <input type="number" id="carismaBD" value="0" pattern="[0-9]+$" oninput="alterar()">
+            <input type="number" id="carismaG" value="0" pattern="[0-9]+$" oninput="alterar()">
+        </div>
+    </div>
+<p></p>
+    <div class="valcla" onchange="alterar()">
+        <h1>Dadiva de Clã</h1>
+        <div class="atrcla">
+            <label></label>
+            <label></label> 
+            <label>Status Fix</label>
+            <label>Status %</label>
+            
+            <label >Força</label>
+            <labelat id="forcaAr">0</labelat> 
+            <input type="number" id="forcaDCF" value="0" pattern="[0-9]+$" oninput="alterar()">
+            <input type="number" id="forcaDCP" value="0" pattern="[0-9]+$" oninput="alterar()">
+            
+            <label >Destreza</label>
+            <labelat id="destrezaAr">0</labelat>
+            <input type="number" id="destrezaDCF" value="0" pattern="[0-9]+$" oninput="alterar()">
+            <input type="number" id="destrezaDCP" value="0" pattern="[0-9]+$" oninput="alterar()">
+
+            <label >Inteligencia</label>
+            <labelat id="inteligenciaAr">0</labelat>
+            <input type="number" id="inteligenciaDCF" value="0" pattern="[0-9]+$" oninput="alterar()">
+            <input type="number" id="inteligenciaDCP" value="0" pattern="[0-9]+$" oninput="alterar()">
+            
+            <label>Determinação</label>
+            <labelat id="determinacaoAr">0</labelat>
+            <input type="number" id="determinacaoDCF" value="0" pattern="[0-9]+$" oninput="alterar()">
+            <input type="number" id="determinacaoDCP" value="0" pattern="[0-9]+$" oninput="alterar()">
+            
+            <label >Percepção</label>
+            <labelat id="percepcaoAr">0</labelat>
+            <input type="number" id="percepcaoDCF" value="0" pattern="[0-9]+$" oninput="alterar()">
+            <input type="number" id="percepcaoDCP" value="0" pattern="[0-9]+$" oninput="alterar()">
+            
+            <label >Carisma</label>
+            <labelat id="carismaAr">0</labelat>
+            <input type="number" id="carismaDCF" value="0" pattern="[0-9]+$" oninput="alterar()">
+            <input type="number" id="carismaDCP" value="0" pattern="[0-9]+$" oninput="alterar()">
         </div>
     </div>
 <p></p>
