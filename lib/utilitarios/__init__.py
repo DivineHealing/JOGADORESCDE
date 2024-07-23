@@ -20,16 +20,16 @@ def somaTodosAtt(escolha, atributo, conjuntoarmadura, conjuntoacessorio, armaseq
     bencdiv = bencaodivina.attp.pegaValor(escolha)
     clanf = cla.att.pegaValor(escolha)
     clanp = cla.attp.pegaValor(escolha)
-    grim = grim.attp.pegaValor(escolha)
+    gri = grim.attp.pegaValor(escolha)
     ra = raca.attp.pegaValor(escolha) or 0
     bef = bufext.att.pegaValor(escolha)
     bep = bufext.attp.pegaValor(escolha)
     resultado = []
 
     soma1 = att + equip + ace + arma + mis + maes + clanf
-    soma2 = soma1 + soma1 * (maesb + clanp + bencdiv + ra) / 100
+    soma2 = soma1 + soma1 * (maesb + clanp + bencdiv + ra + gri) / 100
     resultado.append(soma2 + soma2 * (bep) / 100) 
-    resultado.append(soma2 + soma2 * (bef) / 100) 
+    resultado.append(soma2 + bef) 
 
     return floor(max(resultado))
     

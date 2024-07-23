@@ -43,7 +43,6 @@ def atrstatus():
     attbase = Atributos(forca, destreza, inteligencia, determinacao, percepcao, carisma)
     
     efor = float(data['forcaE'])
-    print(efor)
     edes = float(data['destrezaE'])
     eint = float(data['inteligenciaE'])
     edet = float(data['determinacaoE'])
@@ -271,7 +270,6 @@ def atrstatus():
     msclassatt = Atributos(msfor, msdes, msint, msdet, msper, mscar)  # criando o objeto dos atributos das missões
     mis = Missoes(msclassatt)  # criando objeto das missões
 
-    print(float(data['forcaBD']))
     bdclassatt = Atributos(float(data['forcaBD']), float(data['destrezaBD']), float(data['inteligenciaBD']), float(data['determinacaoBD']), float(data['percepcaoBD']),
                             float(data['carismaBD']))  # Criando atributos da Benção Divina (apenas percentual)
     bd = BencaoDiv(bdclassatt)  # criando o objeto das Bençãos divinas
