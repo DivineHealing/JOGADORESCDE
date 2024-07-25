@@ -17,6 +17,7 @@ from lib.grimorio import Grimorio
 from lib.habilidade import Habilidade
 from lib.raca import Raca
 from lib.cla import Cla
+from lib.elementos import Elementos
 
 info = [] #lista de controle
 
@@ -196,8 +197,10 @@ def atrstatus():
     apdet = float(data['determinacaoAp'])
     apper = float(data['percepcaoAp'])
     apcar = float(data['carismaAp'])
+    #testepen = Elementos(12)
     apclassatt = Atributos(apfor, apdes, apint, apdet, apper, apcar)  # criando o objeto dos atributos da arma principal
     armaprincipal = Arma(apclassatt)  # criando o objeto da arma principal
+    #armaprincipal = Arma(apclassatt, pen=testepen)  # para testar
 
     asfor = float(data['forcaAs'])
     asdes = float(data['destrezaAs'])
@@ -207,7 +210,9 @@ def atrstatus():
     ascar = float(data['carismaAs'])
     asclassatt = Atributos(asfor, asdes, asint, asdet, asper, ascar)  # criando o objeto dos atributos da arma secundaria
     armasecundaria = Arma(asclassatt, False)  # criando o objeto arma secundaria
+    #armasecundaria = Arma(asclassatt, False, testepen)
     armasequip = ArmasEmMaos(armaprincipal, armasecundaria) #criando objeto das armas em mãos 
+    #print(armasequip.somarEspe('pen', 'tipo1')) # para testes
 
     mprfor = float(data['forcaMPR'])
     mprdes = float(data['destrezaMPR'])
