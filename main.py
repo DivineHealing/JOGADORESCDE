@@ -35,275 +35,360 @@ def visual():
 @main.route("/atrstatus", methods=['POST'])
 def atrstatus():
     data = request.get_json() # AQUI PEGA O DADO
-    forca = float(data['forca'])
-    destreza =  float(data['destreza'])
-    inteligencia = float(data['inteligencia'])
-    determinacao = float(data['determinacao'])
-    percepcao = float(data['percepcao'])
-    carisma = float(data['carisma'])
-    attbase = Atributos(forca, destreza, inteligencia, determinacao, percepcao, carisma)
+
+    attbase = Atributos(  # criando o objeto atributos base do persongem
+        float(data['forca']),
+        float(data['destreza']),
+        float(data['inteligencia']),
+        float(data['determinacao']),
+        float(data['percepcao']),
+        float(data['carisma'])
+    )
     
-    efor = float(data['forcaE'])
-    edes = float(data['destrezaE'])
-    eint = float(data['inteligenciaE'])
-    edet = float(data['determinacaoE'])
-    eper = float(data['percepcaoE'])
-    ecar = float(data['carismaE'])
-    eclasatt = Atributos(efor, edes, eint, edet, eper, ecar) # criando classe de atributos do elmo
-    elmo = Equipamento(eclasatt) # criando objeto elmo
+    # Criando atributos e equipamentos
+    fclassatt = Atributos(
+        float(data['forcaE']),
+        float(data['destrezaE']),
+        float(data['inteligenciaE']),
+        float(data['determinacaoE']),
+        float(data['percepcaoE']),
+        float(data['carismaE'])
+    )
+    elmo = Equipamento(fclassatt)  # criando objeto elmo
 
-    pfor = float(data['forcaP'])
-    pdes = float(data['destrezaP'])
-    pint = float(data['inteligenciaP'])
-    pdet = float(data['determinacaoP'])
-    pper = float(data['percepcaoP'])
-    pcar = float(data['carismaP'])
-    pclasatt = Atributos(pfor, pdes, pint, pdet, pper, pcar)  # criando classe de atributos do peitoral
-    peitoral = Equipamento(pclasatt) # criando objeto peitoral
+    fclassatt = Atributos(
+        float(data['forcaP']),
+        float(data['destrezaP']),
+        float(data['inteligenciaP']),
+        float(data['determinacaoP']),
+        float(data['percepcaoP']),
+        float(data['carismaP'])
+    )
+    peitoral = Equipamento(fclassatt)  # criando objeto peitoral
 
-    lfor = float(data['forcaL'])
-    ldes = float(data['destrezaL'])
-    lint = float(data['inteligenciaL'])
-    ldet = float(data['determinacaoL'])
-    lper = float(data['percepcaoL'])
-    lcar = float(data['carismaL'])
-    lclasatt = Atributos(lfor, ldes, lint, ldet, lper, lcar)  # criando classe de atributos da luva
-    luva = Equipamento(lclasatt) # criando objeto luva
+    fclassatt = Atributos(
+        float(data['forcaL']),
+        float(data['destrezaL']),
+        float(data['inteligenciaL']),
+        float(data['determinacaoL']),
+        float(data['percepcaoL']),
+        float(data['carismaL'])
+    )
+    luva = Equipamento(fclassatt)  # criando objeto luva
 
-    cfor = float(data['forcaC'])
-    cdes = float(data['destrezaC'])
-    cint = float(data['inteligenciaC'])
-    cdet = float(data['determinacaoC'])
-    cper = float(data['percepcaoC'])
-    ccar = float(data['carismaC'])
-    cclasatt = Atributos(cfor, cdes, cint, cdet, cper, ccar)  # criando classe de atributos da calca
-    calca = Equipamento(cclasatt)  # criando objeto calca
+    fclassatt = Atributos(
+        float(data['forcaC']),
+        float(data['destrezaC']),
+        float(data['inteligenciaC']),
+        float(data['determinacaoC']),
+        float(data['percepcaoC']),
+        float(data['carismaC'])
+    )
+    calca = Equipamento(fclassatt)  # criando objeto calca
 
-    bfor = float(data['forcaB'])
-    bdes = float(data['destrezaB'])
-    bint = float(data['inteligenciaB'])
-    bdet = float(data['determinacaoB'])
-    bper = float(data['percepcaoB'])
-    bcar = float(data['carismaB'])
-    bclasatt = Atributos(bfor, bdes, bint, bdet, bper, bcar)  # criando classe de atributos da bota
-    bota = Equipamento(bclasatt)  # criando objeto bota
+    fclassatt = Atributos(
+        float(data['forcaB']),
+        float(data['destrezaB']),
+        float(data['inteligenciaB']),
+        float(data['determinacaoB']),
+        float(data['percepcaoB']),
+        float(data['carismaB'])
+    )
+    bota = Equipamento(fclassatt)  # criando objeto bota
 
     conja = ConjArmadura(elmo, peitoral, luva, calca, bota)  # criando objeto de conjunto de armadura
-    
-    anfor1 = float(data['forcaAn1'])
-    andes1 = float(data['destrezaAn1'])
-    anint1 = float(data['inteligenciaAn1'])
-    andet1 = float(data['determinacaoAn1'])
-    anper1 = float(data['percepcaoAn1'])
-    ancar1 = float(data['carismaAn1'])
-    anclasatt1 = Atributos(anfor1, andes1, anint1, andet1, anper1, ancar1) # criando classe de atributos do anel 1
-    anel1 = Acessorio(anclasatt1)  # criando o objeto anel1
 
-    anfor2 = float(data['forcaAn2'])
-    andes2 = float(data['destrezaAn2'])
-    anint2 = float(data['inteligenciaAn2'])
-    andet2 = float(data['determinacaoAn2'])
-    anper2 = float(data['percepcaoAn2'])
-    ancar2 = float(data['carismaAn2'])
-    anclasatt2 = Atributos(anfor2, andes2, anint2, andet2, anper2, ancar2) # criando classe de atributos do anel 2
-    anel2 = Acessorio(anclasatt2)  # criando o objeto anel2
+    # Criando acessórios
+    fclassatt = Atributos(
+        float(data['forcaAn1']),
+        float(data['destrezaAn1']),
+        float(data['inteligenciaAn1']),
+        float(data['determinacaoAn1']),
+        float(data['percepcaoAn1']),
+        float(data['carismaAn1'])
+    )
+    anel1 = Acessorio(fclassatt)  # criando o objeto anel1
 
-    anfor3 = float(data['forcaAn3'])
-    andes3 = float(data['destrezaAn3'])
-    anint3 = float(data['inteligenciaAn3'])
-    andet3 = float(data['determinacaoAn3'])
-    anper3 = float(data['percepcaoAn3'])
-    ancar3 = float(data['carismaAn3'])
-    anclasatt3 = Atributos(anfor3, andes3, anint3, andet3, anper3, ancar3) # criando classe de atributos do anel 3
-    anel3 = Acessorio(anclasatt3)  # criando o objeto anel3
+    fclassatt = Atributos(
+        float(data['forcaAn2']),
+        float(data['destrezaAn2']),
+        float(data['inteligenciaAn2']),
+        float(data['determinacaoAn2']),
+        float(data['percepcaoAn2']),
+        float(data['carismaAn2'])
+    )
+    anel2 = Acessorio(fclassatt)  # criando o objeto anel2
 
-    anfor4 = float(data['forcaAn4'])
-    andes4 = float(data['destrezaAn4'])
-    anint4 = float(data['inteligenciaAn4'])
-    andet4 = float(data['determinacaoAn4'])
-    anper4 = float(data['percepcaoAn4'])
-    ancar4 = float(data['carismaAn4'])
-    anclasatt4 = Atributos(anfor4, andes4, anint4, andet4, anper4, ancar4) # criando classe de atributos do anel 4
-    anel4 = Acessorio(anclasatt4)  # criando o objeto anel4
+    fclassatt = Atributos(
+        float(data['forcaAn3']),
+        float(data['destrezaAn3']),
+        float(data['inteligenciaAn3']),
+        float(data['determinacaoAn3']),
+        float(data['percepcaoAn3']),
+        float(data['carismaAn3'])
+    )
+    anel3 = Acessorio(fclassatt)  # criando o objeto anel3
 
-    bcfor1 = float(data['forcaBc1'])
-    bcdes1 = float(data['destrezaBc1'])
-    bcint1 = float(data['inteligenciaBc1'])
-    bcdet1 = float(data['determinacaoBc1'])
-    bcper1 = float(data['percepcaoBc1'])
-    bccar1 = float(data['carismaBc1'])
-    bcclasatt1 = Atributos(bcfor1, bcdes1, bcint1, bcdet1, bcper1, bccar1) # criando classe de atributos do bracelete 1
-    brac1 = Acessorio(bcclasatt1)  # criando o objeto bracelete1
+    fclassatt = Atributos(
+        float(data['forcaAn4']),
+        float(data['destrezaAn4']),
+        float(data['inteligenciaAn4']),
+        float(data['determinacaoAn4']),
+        float(data['percepcaoAn4']),
+        float(data['carismaAn4'])
+    )
+    anel4 = Acessorio(fclassatt)  # criando o objeto anel4
 
-    bcfor2 = float(data['forcaBc2'])
-    bcdes2 = float(data['destrezaBc2'])
-    bcint2 = float(data['inteligenciaBc2'])
-    bcdet2 = float(data['determinacaoBc2'])
-    bcper2 = float(data['percepcaoBc2'])
-    bccar2 = float(data['carismaBc2'])
-    bcclasatt2 = Atributos(bcfor2, bcdes2, bcint2, bcdet2, bcper2, bccar2) # criando classe de atributos do bracelete 2
-    brac2 = Acessorio(bcclasatt2)  # criando o objeto bracelete2
+    fclassatt = Atributos(
+        float(data['forcaBc1']),
+        float(data['destrezaBc1']),
+        float(data['inteligenciaBc1']),
+        float(data['determinacaoBc1']),
+        float(data['percepcaoBc1']),
+        float(data['carismaBc1'])
+    )
+    brac1 = Acessorio(fclassatt)  # criando o objeto bracelete1
 
-    brfor1 = float(data['forcaBr1'])
-    brdes1 = float(data['destrezaBr1'])
-    brint1 = float(data['inteligenciaBr1'])
-    brdet1 = float(data['determinacaoBr1'])
-    brper1 = float(data['percepcaoBr1'])
-    brcar1 = float(data['carismaBr1'])
-    brclasatt1 = Atributos(brfor1, brdes1, brint1, brdet1, brper1, brcar1) # criando classe de atributos do brinco 1
-    brinc1 = Acessorio(brclasatt1)  # criando o objeto brinco 1
+    fclassatt = Atributos(
+        float(data['forcaBc2']),
+        float(data['destrezaBc2']),
+        float(data['inteligenciaBc2']),
+        float(data['determinacaoBc2']),
+        float(data['percepcaoBc2']),
+        float(data['carismaBc2'])
+    )
+    brac2 = Acessorio(fclassatt)  # criando o objeto bracelete2
 
-    brfor2 = float(data['forcaBr2'])
-    brdes2 = float(data['destrezaBr2'])
-    brint2 = float(data['inteligenciaBr2'])
-    brdet2 = float(data['determinacaoBr2'])
-    brper2 = float(data['percepcaoBr2'])
-    brcar2 = float(data['carismaBr2'])
-    brclasatt2 = Atributos(brfor2, brdes2, brint2, brdet2, brper2, brcar2) # criando classe de atributos do brinco 2
-    brinc2 = Acessorio(brclasatt2)  # criando o objeto brinco 2
+    fclassatt = Atributos(
+        float(data['forcaBr1']),
+        float(data['destrezaBr1']),
+        float(data['inteligenciaBr1']),
+        float(data['determinacaoBr1']),
+        float(data['percepcaoBr1']),
+        float(data['carismaBr1'])
+    )
+    brinc1 = Acessorio(fclassatt)  # criando o objeto brinco 1
 
-    cofor = float(data['forcaCo'])
-    codes = float(data['destrezaCo'])
-    coint = float(data['inteligenciaCo'])
-    codet = float(data['determinacaoCo'])
-    coper = float(data['percepcaoCo'])
-    cocar = float(data['carismaCo'])
-    coclasatt = Atributos(cofor, codes, coint, codet, coper, cocar) # criando classe de atributos do colar
-    colar = Acessorio(coclasatt)  # criando o objeto colar  
+    fclassatt = Atributos(
+        float(data['forcaBr2']),
+        float(data['destrezaBr2']),
+        float(data['inteligenciaBr2']),
+        float(data['determinacaoBr2']),
+        float(data['percepcaoBr2']),
+        float(data['carismaBr2'])
+    )
+    brinc2 = Acessorio(fclassatt)  # criando o objeto brinco 2
 
-    cafor = float(data['forcaCa'])
-    cades = float(data['destrezaCa'])
-    caint = float(data['inteligenciaCa'])
-    cadet = float(data['determinacaoCa'])
-    caper = float(data['percepcaoCa'])
-    cacar = float(data['carismaCa'])
-    caclasatt = Atributos(cafor, cades, caint, cadet, caper, cacar) # criando classe de atributos do colar
-    capa = Acessorio(caclasatt)  # criando o objeto colar  
+    fclassatt = Atributos(
+        float(data['forcaCo']),
+        float(data['destrezaCo']),
+        float(data['inteligenciaCo']),
+        float(data['determinacaoCo']),
+        float(data['percepcaoCo']),
+        float(data['carismaCo'])
+    )
+    colar = Acessorio(fclassatt)  # criando o objeto colar  
 
-    cifor = float(data['forcaCi'])
-    cides = float(data['destrezaCi'])
-    ciint = float(data['inteligenciaCi'])
-    cidet = float(data['determinacaoCi'])
-    ciper = float(data['percepcaoCi'])
-    cicar = float(data['carismaCi'])
-    ciclasatt = Atributos(cifor, cides, ciint, cidet, ciper, cicar)  # criando classe de atributos do colar
-    cinto = Acessorio(ciclasatt)  # criando o objeto colar  
-    
-    conjac = ConjAcessorio(anel1, anel2, anel3, anel4, brac1, brac2, brinc1, brinc2, colar, capa, cinto)
+    fclassatt = Atributos(
+        float(data['forcaCa']),
+        float(data['destrezaCa']),
+        float(data['inteligenciaCa']),
+        float(data['determinacaoCa']),
+        float(data['percepcaoCa']),
+        float(data['carismaCa'])
+    )
+    capa = Acessorio(fclassatt)  # criando o objeto capa  
 
-    apfor = float(data['forcaAp'])
-    apdes = float(data['destrezaAp'])
-    apint = float(data['inteligenciaAp'])
-    apdet = float(data['determinacaoAp'])
-    apper = float(data['percepcaoAp'])
-    apcar = float(data['carismaAp'])
-    #testepen = Elementos(12)
-    apclassatt = Atributos(apfor, apdes, apint, apdet, apper, apcar)  # criando o objeto dos atributos da arma principal
-    armaprincipal = Arma(apclassatt)  # criando o objeto da arma principal
-    #armaprincipal = Arma(apclassatt, pen=testepen)  # para testar
+    fclassatt = Atributos(
+        float(data['forcaCi']),
+        float(data['destrezaCi']),
+        float(data['inteligenciaCi']),
+        float(data['determinacaoCi']),
+        float(data['percepcaoCi']),
+        float(data['carismaCi'])
+    )
+    cinto = Acessorio(fclassatt)  # criando o objeto cinto  
+        
+    conjac = ConjAcessorio(anel1, anel2, anel3, anel4, brac1, brac2, brinc1, brinc2, colar, capa, cinto)  # criando o objeto do conjunto de acessórios
 
-    asfor = float(data['forcaAs'])
-    asdes = float(data['destrezaAs'])
-    asint = float(data['inteligenciaAs'])
-    asdet = float(data['determinacaoAs'])
-    asper = float(data['percepcaoAs'])
-    ascar = float(data['carismaAs'])
-    asclassatt = Atributos(asfor, asdes, asint, asdet, asper, ascar)  # criando o objeto dos atributos da arma secundaria
-    armasecundaria = Arma(asclassatt, False)  # criando o objeto arma secundaria
-    #armasecundaria = Arma(asclassatt, False, testepen)
-    armasequip = ArmasEmMaos(armaprincipal, armasecundaria) #criando objeto das armas em mãos 
-    #print(armasequip.somarEspe('pen', 'tipo1')) # para testes
+    # Criando armas
+    fclassatt = Atributos(
+        float(data['forcaAp']),
+        float(data['destrezaAp']),
+        float(data['inteligenciaAp']),
+        float(data['determinacaoAp']),
+        float(data['percepcaoAp']),
+        float(data['carismaAp'])
+    )
+    armaprincipal = Arma(fclassatt)  # criando o objeto da arma principal
 
-    mprfor = float(data['forcaMPR'])
-    mprdes = float(data['destrezaMPR'])
-    mprint = float(data['inteligenciaMPR'])
-    mprdet = float(data['determinacaoMPR'])
-    mprper = float(data['percepcaoMPR'])
-    mprcar = float(data['carismaMPR'])
-    mprclassatt = Atributos(mprfor, mprdes, mprint, mprdet, mprper, mprcar)  # criando o objeto dos atributos das recompensa maestrias principal
-    
-    mpbfor = float(data['forcaMPB'])
-    mpbdes = float(data['destrezaMPB'])
-    mpbint = float(data['inteligenciaMPB'])
-    mpbdet = float(data['determinacaoMPB'])
-    mpbper = float(data['percepcaoMPB'])
-    mpbcar = float(data['carismaMPB'])
-    mpbclassatt = Atributos(mpbfor, mpbdes, mpbint, mpbdet, mpbper, mpbcar)  # criando o objeto dos atributos dos bonus de maestria principal
-    maesp = Maestrias(mprclassatt, mpbclassatt)  # criando objeto da maestrias principal
+    fclassatt = Atributos(
+        float(data['forcaAs']),
+        float(data['destrezaAs']),
+        float(data['inteligenciaAs']),
+        float(data['determinacaoAs']),
+        float(data['percepcaoAs']),
+        float(data['carismaAs'])
+    )
+    armasecundaria = Arma(fclassatt, False)  # criando o objeto arma secundaria
 
-    msrfor = float(data['forcaMSR'])
-    msrdes = float(data['destrezaMSR'])
-    msrint = float(data['inteligenciaMSR'])
-    msrdet = float(data['determinacaoMSR'])
-    msrper = float(data['percepcaoMSR'])
-    msrcar = float(data['carismaMSR'])
-    msrclassatt = Atributos(msrfor, msrdes, msrint, msrdet, msrper, msrcar)  # criando o objeto dos atributos das recompensa maestrias secundaria
-    
-    msbfor = float(data['forcaMSB'])
-    msbdes = float(data['destrezaMSB'])
-    msbint = float(data['inteligenciaMSB'])
-    msbdet = float(data['determinacaoMSB'])
-    msbper = float(data['percepcaoMSB'])
-    msbcar = float(data['carismaMSB'])
-    msbclassatt = Atributos(msbfor, msbdes, msbint, msbdet, msbper, msbcar)  # criando o objeto dos atributos dos bonus de maestria secundaria
-    maess = Maestrias(msrclassatt, msbclassatt)  # criando objeto da maestrias Secundaria
+    armasequip = ArmasEmMaos(armaprincipal, armasecundaria) # criando objeto das armas em mãos 
 
-    murfor = float(data['forcaMUR'])
-    murdes = float(data['destrezaMUR'])
-    murint = float(data['inteligenciaMUR'])
-    murdet = float(data['determinacaoMUR'])
-    murper = float(data['percepcaoMUR'])
-    murcar = float(data['carismaMUR'])
-    murclassatt = Atributos(murfor, murdes, murint, murdet, murper, murcar)  # criando o objeto dos atributos das recompensa maestrias principal
-    
-    mubfor = float(data['forcaMUB'])
-    mubdes = float(data['destrezaMUB'])
-    mubint = float(data['inteligenciaMUB'])
-    mubdet = float(data['determinacaoMUB'])
-    mubper = float(data['percepcaoMUB'])
-    mubcar = float(data['carismaMUB'])
-    mubclassatt = Atributos(mubfor, mubdes, mubint, mubdet, mubper, mubcar)  # criando o objeto dos atributos dos bonus de maestria utilitaria
-    maesu = Maestrias(murclassatt, mubclassatt)  # criando objeto da maestrias utilitaria
+    # Criando maestrias
+    fclassatt = Atributos(
+        float(data['forcaMPR']),
+        float(data['destrezaMPR']),
+        float(data['inteligenciaMPR']),
+        float(data['determinacaoMPR']),
+        float(data['percepcaoMPR']),
+        float(data['carismaMPR'])
+    )
+
+    pclassatt = Atributos(
+        float(data['forcaMPB']),
+        float(data['destrezaMPB']),
+        float(data['inteligenciaMPB']),
+        float(data['determinacaoMPB']),
+        float(data['percepcaoMPB']),
+        float(data['carismaMPB'])
+    )
+    maesp = Maestrias(fclassatt, pclassatt)  # criando objeto da maestrias principal
+
+    fclassatt = Atributos(
+        float(data['forcaMSR']),
+        float(data['destrezaMSR']),
+        float(data['inteligenciaMSR']),
+        float(data['determinacaoMSR']),
+        float(data['percepcaoMSR']),
+        float(data['carismaMSR'])
+    )
+
+    pclassatt = Atributos(
+        float(data['forcaMSB']),
+        float(data['destrezaMSB']),
+        float(data['inteligenciaMSB']),
+        float(data['determinacaoMSB']),
+        float(data['percepcaoMSB']),
+        float(data['carismaMSB'])
+    )
+    maess = Maestrias(fclassatt, pclassatt)  # criando objeto da maestrias Secundaria
+
+    fclassatt = Atributos(
+        float(data['forcaMUR']),
+        float(data['destrezaMUR']),
+        float(data['inteligenciaMUR']),
+        float(data['determinacaoMUR']),
+        float(data['percepcaoMUR']),
+        float(data['carismaMUR'])
+    )
+
+    pclassatt = Atributos(
+        float(data['forcaMUB']),
+        float(data['destrezaMUB']),
+        float(data['inteligenciaMUB']),
+        float(data['determinacaoMUB']),
+        float(data['percepcaoMUB']),
+        float(data['carismaMUB'])
+    )
+    maesu = Maestrias(fclassatt, pclassatt)  # criando objeto da maestrias utilitaria
+
     conjmaes = Conjmaestria(maesp, maess, maesu)  # criando o objeto do conjunto de maestrias
 
-    msfor = float(data['forcaMS'])
-    msdes = float(data['destrezaMS'])
-    msint = float(data['inteligenciaMS'])
-    msdet = float(data['determinacaoMS'])
-    msper = float(data['percepcaoMS'])
-    mscar = float(data['carismaMS'])
-    msclassatt = Atributos(msfor, msdes, msint, msdet, msper, mscar)  # criando o objeto dos atributos das missões
-    mis = Missoes(msclassatt)  # criando objeto das missões
+    # Criando missões
+    fclassatt = Atributos(
+        float(data['forcaMS']),
+        float(data['destrezaMS']),
+        float(data['inteligenciaMS']),
+        float(data['determinacaoMS']),
+        float(data['percepcaoMS']),
+        float(data['carismaMS'])
+    )
+    mis = Missoes(fclassatt)  # criando objeto das missões
 
-    bdclassatt = Atributos(float(data['forcaBD']), float(data['destrezaBD']), float(data['inteligenciaBD']), float(data['determinacaoBD']), float(data['percepcaoBD']),
-                            float(data['carismaBD']))  # Criando atributos da Benção Divina (apenas percentual)
-    bd = BencaoDiv(bdclassatt)  # criando o objeto das Bençãos divinas
 
-    clafclassatt = Atributos(float(data['forcaDCF']), float(data['destrezaDCF']), float(data['inteligenciaDCF']), float(data['determinacaoDCF']), float(data['percepcaoDCF']),
-                            float(data['carismaDCF']))  # Criando atributos da dadiva do clã fixo
-    clapclassatt = Atributos(float(data['forcaDCP']), float(data['destrezaDCP']), float(data['inteligenciaDCP']), float(data['determinacaoDCP']), float(data['percepcaoDCP']),
-                            float(data['carismaDCP']))  # Criando atributos da dadiva do clã percentual
-    cla = Cla(clafclassatt, clapclassatt)  # criando o objeto da dadiva doc clã
+    pclassatt = Atributos(
+        float(data['forcaBD']), 
+        float(data['destrezaBD']), 
+        float(data['inteligenciaBD']), 
+        float(data['determinacaoBD']), 
+        float(data['percepcaoBD']),
+        float(data['carismaBD'])
+    )  # Criando atributos da Benção Divina (apenas percentual)
+    bd = BencaoDiv(pclassatt)  # criando o objeto das Bençãos divinas
 
-    grimclassatt = Atributos(float(data['forcaG']), float(data['destrezaG']), float(data['inteligenciaG']), float(data['determinacaoG']), float(data['percepcaoG']),
-                            float(data['carismaG']))  # Criando atributos do grimorio (apenas percentual)
-    grim = Grimorio(grimclassatt)  # criando o objeto do grimorio
+    fclassatt = Atributos(
+        float(data['forcaDCF']), 
+        float(data['destrezaDCF']), 
+        float(data['inteligenciaDCF']), 
+        float(data['determinacaoDCF']), 
+        float(data['percepcaoDCF']),
+        float(data['carismaDCF'])
+    )  # Criando atributos da dadiva do clã fixo
+    pclassatt = Atributos(
+        float(data['forcaDCP']), 
+        float(data['destrezaDCP']), 
+        float(data['inteligenciaDCP']), 
+        float(data['determinacaoDCP']), 
+        float(data['percepcaoDCP']),
+        float(data['carismaDCP'])
+    )  # Criando atributos da dadiva do clã percentual
+    cla = Cla(fclassatt, pclassatt)  # criando o objeto da dadiva doc clã
 
-    racaclassatt = Atributos(float(data['forcaraca']), float(data['destrezaraca']), float(data['inteligenciaraca']), float(data['determinacaoraca']), float(data['percepcaoraca']),
-                            float(data['carismaraca']))  # Criando atributos da Raça (apenas percentual)
-    raca = Raca(racaclassatt)  # criando o objeto da raça
+    pclassatt = Atributos(
+        float(data['forcaG']),
+        float(data['destrezaG']), 
+        float(data['inteligenciaG']), 
+        float(data['determinacaoG']), 
+        float(data['percepcaoG']),
+        float(data['carismaG'])
+    )  # Criando atributos do grimorio (apenas percentual)
+    grim = Grimorio(pclassatt)  # criando o objeto do grimorio
 
-    bfefclassatt = Atributos(float(data['forcaBF']), float(data['destrezaBF']), float(data['inteligenciaBF']), float(data['determinacaoBF']), float(data['percepcaoBF']),
-                            float(data['carismaBF']))  # Criando atributos do bonus percentual fixo
-    bfepclassatt = Atributos(float(data['forcaBP']), float(data['destrezaBP']), float(data['inteligenciaBP']), float(data['determinacaoBP']), float(data['percepcaoBP']),
-                            float(data['carismaBP']))  # Criando atributos do bonus externo percentual
-    be = BonusEx(bfefclassatt, bfepclassatt)  # criando o objeto dos bonus externos
+    pclassatt = Atributos(
+        float(data['forcaraca']), 
+        float(data['destrezaraca']), 
+        float(data['inteligenciaraca']), 
+        float(data['determinacaoraca']), 
+        float(data['percepcaoraca']),
+        float(data['carismaraca'])
+    )  # Criando atributos da Raça (apenas percentual)
+    raca = Raca(pclassatt)  # criando o objeto da raça
 
-    hfclassatt = Atributos(float(data['forcaHF']), float(data['destrezaHF']), float(data['inteligenciaHF']), float(data['determinacaoHF']), float(data['percepcaoHF']),
-                            float(data['carismaHF']))  # Criando atributos da habilidade fixo
-    hpclassatt = Atributos(float(data['forcaHP']), float(data['destrezaHP']), float(data['inteligenciaHP']), float(data['determinacaoHP']), float(data['percepcaoHP']),
-                            float(data['carismaHP']))  # Criando atributos do habilidade percentual
-    habilidadesp = Habilidade(hfclassatt, hpclassatt)  # criando o objeto das habilidades
+    fclassatt = Atributos(
+        float(data['forcaBF']), 
+        float(data['destrezaBF']), 
+        float(data['inteligenciaBF']), 
+        float(data['determinacaoBF']), 
+        float(data['percepcaoBF']),
+        float(data['carismaBF'])
+    )  # Criando atributos do bonus percentual fixo
+    pclassatt = Atributos(
+        float(data['forcaBP']), 
+        float(data['destrezaBP']), 
+        float(data['inteligenciaBP']), 
+        float(data['determinacaoBP']), 
+        float(data['percepcaoBP']),
+        float(data['carismaBP'])
+    )  # Criando atributos do bonus externo percentual
+    be = BonusEx(fclassatt, pclassatt)  # criando o objeto dos bonus externos
+
+    fclassatt = Atributos(
+        float(data['forcaHF']), 
+        float(data['destrezaHF']), 
+        float(data['inteligenciaHF']), 
+        float(data['determinacaoHF']), 
+        float(data['percepcaoHF']),
+        float(data['carismaHF'])
+    )  # Criando atributos da habilidade fixo
+    pclassatt = Atributos(
+        float(data['forcaHP']), 
+        float(data['destrezaHP']), 
+        float(data['inteligenciaHP']), 
+        float(data['determinacaoHP']), 
+        float(data['percepcaoHP']),
+        float(data['carismaHP'])
+    )  # Criando atributos do habilidade percentual
+    habilidadesp = Habilidade(fclassatt, pclassatt)  # criando o objeto das habilidades
 
     info.extend([attbase, conja, conjac, armasequip, conjmaes, mis, bd, cla, grim, raca, be, habilidadesp]) #futuramente ira para a classe personagem/ retirar provavelmente quando tiver o banco de dedos
 
@@ -328,12 +413,12 @@ def atrstatus():
     percepcaoAc = conjac.somarAces('percepcao')
     carismaAc = conjac.somarAces('carisma')
 
-    forcat = forca + conjmaes.somarMaes('f','forca') + mis.att.forca #ira somar todos os atributos base
-    destrezat = destreza + conjmaes.somarMaes('f', 'destreza') + mis.att.destreza
-    inteligenciat = inteligencia + conjmaes.somarMaes('f', 'inteligencia') + mis.att.inteligencia
-    determinacaot = determinacao + conjmaes.somarMaes('f', 'determinacao') + mis.att.determinacao
-    percepcaot = percepcao + conjmaes.somarMaes('f', 'percepcao') + mis.att.percepcao
-    carismat = carisma + conjmaes.somarMaes('f', 'carisma') + mis.att.carisma
+    forcat = attbase.forca + conjmaes.somarMaes('f','forca') + mis.att.forca #ira somar todos os atributos base
+    destrezat = attbase.destreza + conjmaes.somarMaes('f', 'destreza') + mis.att.destreza
+    inteligenciat = attbase.inteligencia + conjmaes.somarMaes('f', 'inteligencia') + mis.att.inteligencia
+    determinacaot = attbase.determinacao + conjmaes.somarMaes('f', 'determinacao') + mis.att.determinacao
+    percepcaot = attbase.percepcao + conjmaes.somarMaes('f', 'percepcao') + mis.att.percepcao
+    carismat = attbase.carisma + conjmaes.somarMaes('f', 'carisma') + mis.att.carisma
 
     forcaT = somaTodosAtt('forca', attbase, conja, conjac, armasequip, conjmaes, mis, bd, cla, grim, raca, be, habilidadesp) #funcao para pegar a soma total de todos atributos(personagem, equipamento, acessorio)
     destrezaT = somaTodosAtt('destreza', attbase, conja, conjac, armasequip, conjmaes, mis, bd, cla, grim, raca, be, habilidadesp)

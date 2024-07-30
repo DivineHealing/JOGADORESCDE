@@ -5,11 +5,14 @@ from lib.arma import Arma
 class ArmasEmMaos:
     principal: Arma
     secundaria: Arma
-
+    
     def somarArmaAtt(self, escolha):
         total = self.principal.att.pegaValor(escolha) + self.secundaria.att.pegaValor(escolha)
         return total
     
-    def somarEspe(self, escolha1, escolha2): #vai selecionar qual informação vai pegar e qual tipo de elemento vai pegar e somara eles
-        total = self.principal.pegaInfo(escolha1).pegaTipo(escolha2) + self.secundaria.pegaInfo(escolha1).pegaTipo(escolha2)
+    def somarEspe(self, escolha1, escolha2 = None): #vai selecionar qual informação vai pegar e qual tipo de elemento vai pegar e somara eles
+        if escolha2 != None:  
+            total = self.principal.pegaInfo(escolha1).pegaTipo(escolha2) + self.secundaria.pegaInfo(escolha1).pegaTipo(escolha2)
+        else:  # se a escolha 1 for uma variavel primitiva logo não tera uma classe (esmagamento)
+            total = self.principal.pegaInfo(escolha1) + self.secundaria.pegaInfo(escolha1)
         return total
