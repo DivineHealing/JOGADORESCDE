@@ -9,7 +9,7 @@ class Arma:
     pen: Elementos = None
     ampl: Elementos = None
     dafixo: Elementos = None
-    ampfixo: Elementos = None
+    aumfixo: Elementos = None
     esmagamento: float = 0
 
     def pegaInfo(self, escolha):
