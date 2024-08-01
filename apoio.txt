@@ -80,8 +80,17 @@ function atualizarLabel(novoValor) {
         um |jogador| pode ter varios |personagens| porem o personagem só pode estar 
     relaciona a um jogador(modelo relacional muitos para um)
 
-    Andrey: 
+    Andrey: tornar possivel a criação das classe sem valores e depois adicionar uma função que permita de forma mais agilizada de atribuir esse valores para as classes
+    com um "for k, v in data.values" colocando a condição de distribução comparando através de letras contidas no nome (dar uma atenção especial para poucas letras como por
+    exemplo "forcaE")
     
     Ariel: Adicionar os campos de raça, habilidades,  bonus externo (fixo e %) e benção divina, grimorio.
-
-
+    ideia de ID's para os campos html
+    arma:
+    tipo1pAp (tipo = tipo de dano, p = penetração, AP = Arma principal)
+    tipo2pAp
+    tipo3pAp
+    tipo1aAp (tipo = tipo de dano, a = amplificação, AP = Arma principal)
+    tipo2aAp
+    tipo3aAp
+    etc...
