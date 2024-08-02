@@ -20,6 +20,7 @@ from lib.cla import Cla
 from lib.elementos import Elementos
 
 info = [] #lista de controle
+print('Ola Mundo')
 
 main = Flask(__name__)
 

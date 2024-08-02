@@ -1,20 +1,3 @@
 
-lib/armasemmaos/__pycache__/__init__.cpython-312.pyc
-lib/arma/__pycache__/__init__.cpython-312.pyc
-lib/utilitarios/__pycache__/__init__.cpython-312.pyc
-lib/armasemmaos/__pycache__/__init__.cpython-312.pyc
-lib/arma/__pycache__/__init__.cpython-312.pyc
-lib/utilitarios/__pycache__/__init__.cpython-312.pyc
-lib/utilitarios/__pycache__/__init__.cpython-312.pyc
-lib/armasemmaos/__pycache__/__init__.cpython-312.pyc
-lib/arma/__pycache__/__init__.cpython-312.pyc
-lib/arma/__pycache__/__init__.cpython-312.pyc
-lib/armasemmaos/__pycache__/__init__.cpython-312.pyc
-lib/conjarmadura/__pycache__/__init__.cpython-312.pyc
-lib/equipamentos/__pycache__/__init__.cpython-312.pyc
-lib/utilitarios/__pycache__/__init__.cpython-312.pyc
-lib/armasemmaos/__pycache__/__init__.cpython-312.pyc
-lib/arma/__pycache__/__init__.cpython-312.pyc
-lib/equipamentos/__pycache__/__init__.cpython-312.pyc
-lib/conjarmadura/__pycache__/__init__.cpython-312.pyc
-lib/utilitarios/__pycache__/__init__.cpython-312.pyc
+__pycache__/
+*.pyc
