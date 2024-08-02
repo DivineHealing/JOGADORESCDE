@@ -1,15 +1,15 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from lib.atributos import Atributos
 from lib.elementos import Elementos
 
 @dataclass
 class Arma:
-    att: Atributos
+    att: Atributos = field(default_factory=Atributos)
     principal: bool = True
-    pen: Elementos = None
-    ampl: Elementos = None
-    dafixo: Elementos = None
-    aumfixo: Elementos = None
+    pen: Elementos = field(default_factory=Elementos)
+    ampl: Elementos = field(default_factory=Elementos)
+    dafixo: Elementos = field(default_factory=Elementos)
+    aumfixo: Elementos = field(default_factory=Elementos)
     esmagamento: float = 0
 
     def pegaInfo(self, escolha):

@@ -1,19 +1,19 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from lib.acessorio import Acessorio
 
 @dataclass
 class ConjAcessorio:
-    anel1: Acessorio
-    anel2: Acessorio
-    anel3: Acessorio
-    anel4: Acessorio
-    bracd: Acessorio #Bracedeira Direita
-    brace: Acessorio #Bracedeira Esquerda
-    brind: Acessorio #Brinco Direito
-    brine: Acessorio #Brinco Esquerdo
-    colar: Acessorio # Colar
-    capa: Acessorio #Capa ou opta por colar
-    cint: Acessorio
+    anel1: Acessorio = field(default_factory=Acessorio)
+    anel2: Acessorio = field(default_factory=Acessorio)
+    anel3: Acessorio = field(default_factory=Acessorio)
+    anel4: Acessorio = field(default_factory=Acessorio)
+    bracd: Acessorio = field(default_factory=Acessorio) #Bracedeira Direita
+    brace: Acessorio = field(default_factory=Acessorio) #Bracedeira Esquerda
+    brind: Acessorio = field(default_factory=Acessorio) #Brinco Direito
+    brine: Acessorio = field(default_factory=Acessorio) #Brinco Esquerdo
+    colar: Acessorio = field(default_factory=Acessorio) # Colar
+    capa: Acessorio = field(default_factory=Acessorio) #Capa ou opta por colar
+    cint: Acessorio = field(default_factory=Acessorio)
 
 
     def somarAces(self, escolha):  # pegara o total do atributo escolhido em todos os equipamentos

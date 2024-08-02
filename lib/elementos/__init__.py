@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 @dataclass
 class Elementos:
-    tipo1: float
+    tipo1: float = 0
     tipo2: float = 0
     tipo3: float = 0
 

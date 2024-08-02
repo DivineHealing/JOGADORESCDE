@@ -1,6 +1,6 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from lib.atributos import Atributos
 
 @dataclass
 class Acessorio():
-    att: Atributos #ira pegar as informações da classe atributos
+    att: Atributos = field(default_factory=Atributos) #ira pegar as informações da classe atributos

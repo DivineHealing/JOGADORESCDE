@@ -1,11 +1,11 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from lib.maestrias import Maestrias
 
 @dataclass
 class Conjmaestria:
-    principal: Maestrias
-    secundaria: Maestrias
-    utilitaria: Maestrias
+    principal: Maestrias = field(default_factory=Maestrias)
+    secundaria: Maestrias = field(default_factory=Maestrias)
+    utilitaria: Maestrias = field(default_factory=Maestrias)
 
     def somarMaes(self, tipo, escolha):
         if 'f' in tipo:

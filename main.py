@@ -20,7 +20,12 @@ from lib.cla import Cla
 from lib.elementos import Elementos
 
 info = [] #lista de controle
-print('Ola Mundo')
+aceteste = Acessorio()
+cjarteste = ArmasEmMaos()
+bncteste = BencaoDiv()
+bonteste = BonusEx()
+
+print(aceteste, cjarteste, bncteste, bonteste)
 
 main = Flask(__name__)
 

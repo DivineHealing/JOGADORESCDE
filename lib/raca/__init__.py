@@ -1,6 +1,7 @@
 from lib.atributos import Atributos
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 @dataclass
 class Raca:
-    attp: Atributos
+    attp: Atributos = field(default_factory=Atributos)
+    

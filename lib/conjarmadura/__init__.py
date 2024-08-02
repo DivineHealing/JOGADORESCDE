@@ -1,13 +1,13 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from lib.equipamentos import Equipamento
 
 @dataclass
 class ConjArmadura:
-    elmo: Equipamento
-    peitoral: Equipamento
-    luva: Equipamento
-    calca: Equipamento
-    bota: Equipamento
+    elmo: Equipamento = field(default_factory=Equipamento)
+    peitoral: Equipamento = field(default_factory=Equipamento)
+    luva: Equipamento = field(default_factory=Equipamento)
+    calca: Equipamento = field(default_factory=Equipamento)
+    bota: Equipamento = field(default_factory=Equipamento)
 
     def somarEquip(self, escolha):  # pegara o total do atributo escolhido em todos os equipamentos
         total = (self.elmo.att.pegaValor(escolha) + self.peitoral.att.pegaValor(escolha) + self.luva.att.pegaValor(escolha) + self.calca.att.pegaValor(escolha) + 
