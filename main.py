@@ -20,12 +20,10 @@ from lib.cla import Cla
 from lib.elementos import Elementos
 
 info = [] #lista de controle
-aceteste = Acessorio()
-cjarteste = ArmasEmMaos()
-bncteste = BencaoDiv()
-bonteste = BonusEx()
 
-print(aceteste, cjarteste, bncteste, bonteste)
+# iniciando todas as classes (futuramente elas vao carregas as informações se existirem) [verificar se elas não irão ficar se redefinindo]
+attbase = Atributos() 
+
 
 main = Flask(__name__)
 

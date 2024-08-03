@@ -25,6 +25,15 @@ def somartudo(att):
 
     return max(lista)
 
+Condição para atributos e tipos
+    attv = ['forca', 'destreza', 'inteligencia', 'determinacao', 'percepcao', 'carisma']  aonde attv é: atributo para verificar
+    if any(palavra in k for palavra in attv) # acho verifica quais são as palavras para  filtrar(attv) e ira verificar na 'k'ey se a palavra existe
+    ex 'forca' in k?  a força vem do loop attv
+       'destreza' in K
+       'inteligencia' in k
+       for palavra in attv:
+           if palavra in k: 
+
     ##############################################################
     é possivel transformar classes em dicionarios 
 
@@ -82,7 +91,8 @@ function atualizarLabel(novoValor) {
 
     Andrey: tornar possivel a criação das classe sem valores e depois adicionar uma função que permita de forma mais agilizada de atribuir esse valores para as classes
     com um "for k, v in data.values" colocando a condição de distribução comparando através de letras contidas no nome (dar uma atenção especial para poucas letras como por
-    exemplo "forcaE")
+    exemplo "forcaE") uma forma disso ser feita é condicionando as chaves como citado no esboço
+    Lembrar de iniciar as classes.
     
     Ariel: Adicionar os campos de raça, habilidades,  bonus externo (fixo e %) e benção divina, grimorio.
     ideia de ID's para os campos html
