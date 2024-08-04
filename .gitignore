@@ -1,3 +1,20 @@
 
 __pycache__/
 *.pyc
+/lib/arma/__pycache__
+/lib/acessorio/__pycache__
+/lib/armasemmaos/__pycache__
+/lib/bencaodiv/__pycache__
+/lib/bonusex/__pycache__
+/lib/cla/__pycache__
+/lib/conjacessorio/__pycache__
+/lib/conjarmadura/__pycache__
+/lib/conjmaestria/__pycache__
+/lib/elementos/__pycache__
+/lib/equipamentos/__pycache__
+/lib/grimorio/__pycache__
+/lib/habilidade/__pycache__
+/lib/maestrias/__pycache__
+/lib/missoes/__pycache__
+/lib/raca/__pycache__
+/lib/utilitarios/__pycache__
