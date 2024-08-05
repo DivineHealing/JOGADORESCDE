@@ -23,7 +23,18 @@ info = [] #lista de controle
 
 # iniciando todas as classes (futuramente elas vao carregas as informações se existirem) [verificar se elas não irão ficar se redefinindo]
 attbase = Atributos() 
-
+conja = ConjArmadura()
+conjac = ConjAcessorio()
+armasecundaria = Arma(principal=False)  #  talvez seja possível remover a criação dessa arma caso o atributo que define ela ser arma secundaria ou não
+armasequip = ArmasEmMaos(secundaria=armasecundaria)
+conjmaes = Conjmaestria()
+mis = Missoes()
+bd = BencaoDiv()
+cla = Cla()
+grim = Grimorio()
+raca = Raca()
+be = BonusEx()
+habilidadesp = Habilidade()
 
 main = Flask(__name__)
 
