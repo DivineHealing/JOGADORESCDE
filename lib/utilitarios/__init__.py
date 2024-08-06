@@ -35,3 +35,11 @@ def somaTodosAtt(escolha, atributo, conjuntoarmadura, conjuntoacessorio, armaseq
 
     return floor(max(resultado))
     
+
+def distribuidor(classe, data, idvar=''):  # ira distribuir os valores para a classe selecionada
+    classe.forca = float(data['forca' + idvar])
+    classe.destreza = float(data['destreza' + idvar])
+    classe.inteligencia = float(data['inteligencia' + idvar])
+    classe.determinacao = float(data['determinacao' + idvar])
+    classe.percepcao = float(data['percepcao' + idvar])
+    classe.carisma =float(data['carisma' + idvar])

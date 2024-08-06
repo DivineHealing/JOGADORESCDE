@@ -5,7 +5,7 @@ from lib.equipamentos import Equipamento
 from lib.conjarmadura import ConjArmadura
 from lib.acessorio import Acessorio
 from lib.conjacessorio import ConjAcessorio
-from lib.utilitarios import somaTodosAtt
+from lib.utilitarios import *
 from lib.arma import Arma
 from lib.armasemmaos import ArmasEmMaos
 from lib.maestrias import Maestrias
@@ -51,16 +51,18 @@ def visual():
 def atrstatus():
     data = request.get_json() # AQUI PEGA O DADO
 
-    attbase = Atributos(  # criando o objeto atributos base do persongem
+    distribuidor(attbase, data)  # atualizando os valores do atributo base
+    '''attbase = Atributos(  # criando o objeto atributos base do persongem
         float(data['forca']),
         float(data['destreza']),
         float(data['inteligencia']),
         float(data['determinacao']),
         float(data['percepcao']),
         float(data['carisma'])
-    )
-    
-    # Criando atributos e equipamentos
+    )'''
+
+    distribuidor(conja.elmo.att, data, 'E') # atualizando os valores do atributo do elmo
+    '''# Criando atributos e equipamentos
     fclassatt = Atributos(
         float(data['forcaE']),
         float(data['destrezaE']),
@@ -69,9 +71,10 @@ def atrstatus():
         float(data['percepcaoE']),
         float(data['carismaE'])
     )
-    elmo = Equipamento(fclassatt)  # criando objeto elmo
+    elmo = Equipamento(fclassatt)  # criando objeto elmo'''
 
-    fclassatt = Atributos(
+    distribuidor(conja.peitoral.att, data, 'P')  # atualizando os valores do atributo do peitoral
+    '''fclassatt = Atributos(
         float(data['forcaP']),
         float(data['destrezaP']),
         float(data['inteligenciaP']),
@@ -79,9 +82,10 @@ def atrstatus():
         float(data['percepcaoP']),
         float(data['carismaP'])
     )
-    peitoral = Equipamento(fclassatt)  # criando objeto peitoral
+    peitoral = Equipamento(fclassatt)  # criando objeto peitoral'''
 
-    fclassatt = Atributos(
+    distribuidor(conja.luva.att, data, 'L')  # atualizando os valores do atributo da luva
+    '''fclassatt = Atributos(
         float(data['forcaL']),
         float(data['destrezaL']),
         float(data['inteligenciaL']),
@@ -89,9 +93,10 @@ def atrstatus():
         float(data['percepcaoL']),
         float(data['carismaL'])
     )
-    luva = Equipamento(fclassatt)  # criando objeto luva
+    luva = Equipamento(fclassatt)  # criando objeto luva'''
 
-    fclassatt = Atributos(
+    distribuidor(conja.calca.att, data, 'C')  # atualizando os valores do atributo da calça
+    '''fclassatt = Atributos(
         float(data['forcaC']),
         float(data['destrezaC']),
         float(data['inteligenciaC']),
@@ -99,9 +104,10 @@ def atrstatus():
         float(data['percepcaoC']),
         float(data['carismaC'])
     )
-    calca = Equipamento(fclassatt)  # criando objeto calca
+    calca = Equipamento(fclassatt)  # criando objeto calca'''
 
-    fclassatt = Atributos(
+    distribuidor(conja.bota.att, data, 'B')  # atualizando os valores do atributo da bota
+    '''fclassatt = Atributos(
         float(data['forcaB']),
         float(data['destrezaB']),
         float(data['inteligenciaB']),
@@ -109,9 +115,9 @@ def atrstatus():
         float(data['percepcaoB']),
         float(data['carismaB'])
     )
-    bota = Equipamento(fclassatt)  # criando objeto bota
+    bota = Equipamento(fclassatt)  # criando objeto bota'''
 
-    conja = ConjArmadura(elmo, peitoral, luva, calca, bota)  # criando objeto de conjunto de armadura
+    #conja = ConjArmadura(elmo, peitoral, luva, calca, bota)  # criando objeto de conjunto de armadura
 
     # Criando acessórios
     fclassatt = Atributos(

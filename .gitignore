@@ -1,6 +1,6 @@
 
-__pycache__/
 *.pyc
+__pycache__/
 /lib/arma/__pycache__
 /lib/acessorio/__pycache__
 /lib/armasemmaos/__pycache__
