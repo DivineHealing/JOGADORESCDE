@@ -19,7 +19,7 @@ from lib.raca import Raca
 from lib.cla import Cla
 from lib.elementos import Elementos
 
-info = [] #lista de controle
+# info = [] #lista de controle
 
 # iniciando todas as classes (futuramente elas vao carregas as informações se existirem) [verificar se elas não irão ficar se redefinindo]
 attbase = Atributos() 
@@ -120,7 +120,8 @@ def atrstatus():
     #conja = ConjArmadura(elmo, peitoral, luva, calca, bota)  # criando objeto de conjunto de armadura
 
     # Criando acessórios
-    fclassatt = Atributos(
+    distribuidor(conjac.anel1.att, data, 'An1')  # Atualizando os valores do atributo do anel1
+    '''fclassatt = Atributos(
         float(data['forcaAn1']),
         float(data['destrezaAn1']),
         float(data['inteligenciaAn1']),
@@ -128,9 +129,10 @@ def atrstatus():
         float(data['percepcaoAn1']),
         float(data['carismaAn1'])
     )
-    anel1 = Acessorio(fclassatt)  # criando o objeto anel1
+    anel1 = Acessorio(fclassatt)  # criando o objeto anel1'''
 
-    fclassatt = Atributos(
+    distribuidor(conjac.anel2.att, data, 'An2')  # Atualizando os valores do atributo do anel2
+    '''fclassatt = Atributos(
         float(data['forcaAn2']),
         float(data['destrezaAn2']),
         float(data['inteligenciaAn2']),
@@ -138,9 +140,10 @@ def atrstatus():
         float(data['percepcaoAn2']),
         float(data['carismaAn2'])
     )
-    anel2 = Acessorio(fclassatt)  # criando o objeto anel2
+    anel2 = Acessorio(fclassatt)  # criando o objeto anel2'''
 
-    fclassatt = Atributos(
+    distribuidor(conjac.anel3.att, data, 'An3')  # Atualizando os valores do atributo do anel3
+    '''fclassatt = Atributos(
         float(data['forcaAn3']),
         float(data['destrezaAn3']),
         float(data['inteligenciaAn3']),
@@ -148,9 +151,10 @@ def atrstatus():
         float(data['percepcaoAn3']),
         float(data['carismaAn3'])
     )
-    anel3 = Acessorio(fclassatt)  # criando o objeto anel3
+    anel3 = Acessorio(fclassatt)  # criando o objeto anel3'''
 
-    fclassatt = Atributos(
+    distribuidor(conjac.anel4.att, data, 'An4')  # Atualizando os valores do atributo do anel4
+    '''fclassatt = Atributos(
         float(data['forcaAn4']),
         float(data['destrezaAn4']),
         float(data['inteligenciaAn4']),
@@ -158,9 +162,10 @@ def atrstatus():
         float(data['percepcaoAn4']),
         float(data['carismaAn4'])
     )
-    anel4 = Acessorio(fclassatt)  # criando o objeto anel4
+    anel4 = Acessorio(fclassatt)  # criando o objeto anel4'''
 
-    fclassatt = Atributos(
+    distribuidor(conjac.bracd.att, data, 'Bc1') # Atualizando os valores do atributo do Bracelete1
+    '''fclassatt = Atributos(
         float(data['forcaBc1']),
         float(data['destrezaBc1']),
         float(data['inteligenciaBc1']),
@@ -168,9 +173,10 @@ def atrstatus():
         float(data['percepcaoBc1']),
         float(data['carismaBc1'])
     )
-    brac1 = Acessorio(fclassatt)  # criando o objeto bracelete1
+    brac1 = Acessorio(fclassatt)  # criando o objeto bracelete1'''
 
-    fclassatt = Atributos(
+    distribuidor(conjac.brace.att, data, 'Bc2')  # Atualizando os valores do atributo do Bracelete2
+    '''fclassatt = Atributos(
         float(data['forcaBc2']),
         float(data['destrezaBc2']),
         float(data['inteligenciaBc2']),
@@ -178,9 +184,10 @@ def atrstatus():
         float(data['percepcaoBc2']),
         float(data['carismaBc2'])
     )
-    brac2 = Acessorio(fclassatt)  # criando o objeto bracelete2
+    brac2 = Acessorio(fclassatt)  # criando o objeto bracelete2'''
 
-    fclassatt = Atributos(
+    distribuidor(conjac.brind.att, data, 'Br1')  # Atualizando os valores do atributo do brinco1
+    '''fclassatt = Atributos(
         float(data['forcaBr1']),
         float(data['destrezaBr1']),
         float(data['inteligenciaBr1']),
@@ -188,9 +195,10 @@ def atrstatus():
         float(data['percepcaoBr1']),
         float(data['carismaBr1'])
     )
-    brinc1 = Acessorio(fclassatt)  # criando o objeto brinco 1
+    brinc1 = Acessorio(fclassatt)  # criando o objeto brinco 1'''
 
-    fclassatt = Atributos(
+    distribuidor(conjac.brine.att, data, 'Br2')  # Atualizando os valores do atributo do brinco2
+    '''fclassatt = Atributos(
         float(data['forcaBr2']),
         float(data['destrezaBr2']),
         float(data['inteligenciaBr2']),
@@ -198,9 +206,10 @@ def atrstatus():
         float(data['percepcaoBr2']),
         float(data['carismaBr2'])
     )
-    brinc2 = Acessorio(fclassatt)  # criando o objeto brinco 2
+    brinc2 = Acessorio(fclassatt)  # criando o objeto brinco 2'''
 
-    fclassatt = Atributos(
+    distribuidor(conjac.colar.att, data, 'Co')  # Atualizando os valores do atributo do Colar
+    '''fclassatt = Atributos(
         float(data['forcaCo']),
         float(data['destrezaCo']),
         float(data['inteligenciaCo']),
@@ -208,9 +217,10 @@ def atrstatus():
         float(data['percepcaoCo']),
         float(data['carismaCo'])
     )
-    colar = Acessorio(fclassatt)  # criando o objeto colar  
+    colar = Acessorio(fclassatt)  # criando o objeto colar  '''
 
-    fclassatt = Atributos(
+    distribuidor(conjac.capa.att, data, 'Ca')  # Atualizando os valores do atributo da Capa
+    '''fclassatt = Atributos(
         float(data['forcaCa']),
         float(data['destrezaCa']),
         float(data['inteligenciaCa']),
@@ -218,9 +228,10 @@ def atrstatus():
         float(data['percepcaoCa']),
         float(data['carismaCa'])
     )
-    capa = Acessorio(fclassatt)  # criando o objeto capa  
+    capa = Acessorio(fclassatt)  # criando o objeto capa'''  
 
-    fclassatt = Atributos(
+    distribuidor(conjac.cint.att, data, 'Ci')  # Atualizando os valores do atributo do Cinto
+    '''fclassatt = Atributos(
         float(data['forcaCi']),
         float(data['destrezaCi']),
         float(data['inteligenciaCi']),
@@ -228,12 +239,12 @@ def atrstatus():
         float(data['percepcaoCi']),
         float(data['carismaCi'])
     )
-    cinto = Acessorio(fclassatt)  # criando o objeto cinto  
+    cinto = Acessorio(fclassatt)  # criando o objeto cinto  '''
         
-    conjac = ConjAcessorio(anel1, anel2, anel3, anel4, brac1, brac2, brinc1, brinc2, colar, capa, cinto)  # criando o objeto do conjunto de acessórios
+    #  conjac = ConjAcessorio(anel1, anel2, anel3, anel4, brac1, brac2, brinc1, brinc2, colar, capa, cinto)  # criando o objeto do conjunto de acessórios
 
-    # Criando armas
-    fclassatt = Atributos(
+    distribuidor(armasequip.principal.att, data, 'Ap')  # atualizando os valores dos atributos da Arma principal
+    '''fclassatt = Atributos(
         float(data['forcaAp']),
         float(data['destrezaAp']),
         float(data['inteligenciaAp']),
@@ -241,9 +252,10 @@ def atrstatus():
         float(data['percepcaoAp']),
         float(data['carismaAp'])
     )
-    armaprincipal = Arma(fclassatt)  # criando o objeto da arma principal
+    armaprincipal = Arma(fclassatt)  # criando o objeto da arma principal'''
 
-    fclassatt = Atributos(
+    distribuidor(armasequip.secundaria.att, data, 'As')  # atualizando os valores dos atributos da Arma secundaria
+    '''fclassatt = Atributos(
         float(data['forcaAs']),
         float(data['destrezaAs']),
         float(data['inteligenciaAs']),
@@ -251,10 +263,11 @@ def atrstatus():
         float(data['percepcaoAs']),
         float(data['carismaAs'])
     )
-    armasecundaria = Arma(fclassatt, False)  # criando o objeto arma secundaria
+    armasecundaria = Arma(fclassatt, False)  # criando o objeto arma secundaria'''
 
-    armasequip = ArmasEmMaos(armaprincipal, armasecundaria) # criando objeto das armas em mãos 
+    # armasequip = ArmasEmMaos(armaprincipal, armasecundaria) # criando objeto das armas em mãos 
 
+    
     # Criando maestrias
     fclassatt = Atributos(
         float(data['forcaMPR']),
@@ -411,7 +424,7 @@ def atrstatus():
     )  # Criando atributos do habilidade percentual
     habilidadesp = Habilidade(fclassatt, pclassatt)  # criando o objeto das habilidades
 
-    info.extend([attbase, conja, conjac, armasequip, conjmaes, mis, bd, cla, grim, raca, be, habilidadesp]) #futuramente ira para a classe personagem/ retirar provavelmente quando tiver o banco de dedos
+    # info.extend([attbase, conja, conjac, armasequip, conjmaes, mis, bd, cla, grim, raca, be, habilidadesp]) #futuramente ira para a classe personagem/ retirar provavelmente quando tiver o banco de dedos
 
     forcaCJ = conja.somarEquip('forca') #funcao da classe para somar os atributos equipamentos
     destrezaCJ = conja.somarEquip('destreza')
