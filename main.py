@@ -267,18 +267,19 @@ def atrstatus():
 
     # armasequip = ArmasEmMaos(armaprincipal, armasecundaria) # criando objeto das armas em mãos 
 
-    
+    distribuidor(conjmaes.principal.att, data, 'MPR')  # atualizando os valores dos atributos da Recompensa maestria principal
     # Criando maestrias
-    fclassatt = Atributos(
+    '''fclassatt = Atributos(
         float(data['forcaMPR']),
         float(data['destrezaMPR']),
         float(data['inteligenciaMPR']),
         float(data['determinacaoMPR']),
         float(data['percepcaoMPR']),
         float(data['carismaMPR'])
-    )
+    )'''
 
-    pclassatt = Atributos(
+    distribuidor(conjmaes.principal.attp, data, 'MPB')  # atualizando os valores dos atributos da Bonus maestria principal
+    '''pclassatt = Atributos(
         float(data['forcaMPB']),
         float(data['destrezaMPB']),
         float(data['inteligenciaMPB']),
@@ -286,18 +287,20 @@ def atrstatus():
         float(data['percepcaoMPB']),
         float(data['carismaMPB'])
     )
-    maesp = Maestrias(fclassatt, pclassatt)  # criando objeto da maestrias principal
+    maesp = Maestrias(fclassatt, pclassatt)  # criando objeto da maestrias principal'''
 
-    fclassatt = Atributos(
+    distribuidor(conjmaes.secundaria.att, data, 'MSR')  # atualizando os valores dos atributos da Recompensa maestria secundaria
+    '''fclassatt = Atributos(
         float(data['forcaMSR']),
         float(data['destrezaMSR']),
         float(data['inteligenciaMSR']),
         float(data['determinacaoMSR']),
         float(data['percepcaoMSR']),
         float(data['carismaMSR'])
-    )
+    )'''
 
-    pclassatt = Atributos(
+    distribuidor(conjmaes.secundaria.attp, data, 'MSB')  # atualizando os valores dos atributos da Bonus maestria secundaria
+    '''pclassatt = Atributos(
         float(data['forcaMSB']),
         float(data['destrezaMSB']),
         float(data['inteligenciaMSB']),
@@ -305,18 +308,20 @@ def atrstatus():
         float(data['percepcaoMSB']),
         float(data['carismaMSB'])
     )
-    maess = Maestrias(fclassatt, pclassatt)  # criando objeto da maestrias Secundaria
+    maess = Maestrias(fclassatt, pclassatt)  # criando objeto da maestrias Secundaria'''
 
-    fclassatt = Atributos(
+    distribuidor(conjmaes.utilitaria.att, data, 'MUR')  # atualizando os valores dos atributos da Recompensa maestria utilitaria
+    ''' fclassatt = Atributos(
         float(data['forcaMUR']),
         float(data['destrezaMUR']),
         float(data['inteligenciaMUR']),
         float(data['determinacaoMUR']),
         float(data['percepcaoMUR']),
         float(data['carismaMUR'])
-    )
+    )'''
 
-    pclassatt = Atributos(
+    distribuidor(conjmaes.utilitaria.attp, data, 'MUB')  # atualizando os valores dos atributos do Bonus maestria utilitaria
+    '''pclassatt = Atributos(
         float(data['forcaMUB']),
         float(data['destrezaMUB']),
         float(data['inteligenciaMUB']),
@@ -324,12 +329,13 @@ def atrstatus():
         float(data['percepcaoMUB']),
         float(data['carismaMUB'])
     )
-    maesu = Maestrias(fclassatt, pclassatt)  # criando objeto da maestrias utilitaria
+    maesu = Maestrias(fclassatt, pclassatt)  # criando objeto da maestrias utilitaria'''
 
-    conjmaes = Conjmaestria(maesp, maess, maesu)  # criando o objeto do conjunto de maestrias
+    #conjmaes = Conjmaestria(maesp, maess, maesu)  # criando o objeto do conjunto de maestrias
 
+    distribuidor(mis.att, data, 'MS')  # atualizando os valores dos atributos da missoes
     # Criando missões
-    fclassatt = Atributos(
+    '''fclassatt = Atributos(
         float(data['forcaMS']),
         float(data['destrezaMS']),
         float(data['inteligenciaMS']),
@@ -337,10 +343,10 @@ def atrstatus():
         float(data['percepcaoMS']),
         float(data['carismaMS'])
     )
-    mis = Missoes(fclassatt)  # criando objeto das missões
+    mis = Missoes(fclassatt)  # criando objeto das missões'''
 
-
-    pclassatt = Atributos(
+    distribuidor(bd.attp, data, 'BD')  # atualizando os valores dos atributos da benção divina
+    '''pclassatt = Atributos(
         float(data['forcaBD']), 
         float(data['destrezaBD']), 
         float(data['inteligenciaBD']), 
@@ -348,27 +354,31 @@ def atrstatus():
         float(data['percepcaoBD']),
         float(data['carismaBD'])
     )  # Criando atributos da Benção Divina (apenas percentual)
-    bd = BencaoDiv(pclassatt)  # criando o objeto das Bençãos divinas
+    bd = BencaoDiv(pclassatt)  # criando o objeto das Bençãos divinas'''
 
-    fclassatt = Atributos(
+    distribuidor(cla.att, data, 'DCF')  # atualizando os valores dos atributos fixo do cla
+    '''fclassatt = Atributos(
         float(data['forcaDCF']), 
         float(data['destrezaDCF']), 
         float(data['inteligenciaDCF']), 
         float(data['determinacaoDCF']), 
         float(data['percepcaoDCF']),
         float(data['carismaDCF'])
-    )  # Criando atributos da dadiva do clã fixo
-    pclassatt = Atributos(
+    )  # Criando atributos da dadiva do clã fixo'''
+
+    distribuidor(cla.attp, data, 'DCP')  # atualizando os valores dos atributos percentual do cla 
+    '''pclassatt = Atributos(
         float(data['forcaDCP']), 
         float(data['destrezaDCP']), 
         float(data['inteligenciaDCP']), 
         float(data['determinacaoDCP']), 
         float(data['percepcaoDCP']),
         float(data['carismaDCP'])
-    )  # Criando atributos da dadiva do clã percentual
-    cla = Cla(fclassatt, pclassatt)  # criando o objeto da dadiva doc clã
+    )  # Criando atributos da dadiva do clã percentual'''
+    # cla = Cla(fclassatt, pclassatt)  # criando o objeto da dadiva doc clã
 
-    pclassatt = Atributos(
+    distribuidor(grim.attp, data, 'G')  # atualizando os valores dos atributos do grimorio
+    '''pclassatt = Atributos(
         float(data['forcaG']),
         float(data['destrezaG']), 
         float(data['inteligenciaG']), 
@@ -376,9 +386,10 @@ def atrstatus():
         float(data['percepcaoG']),
         float(data['carismaG'])
     )  # Criando atributos do grimorio (apenas percentual)
-    grim = Grimorio(pclassatt)  # criando o objeto do grimorio
+    grim = Grimorio(pclassatt)  # criando o objeto do grimorio'''
 
-    pclassatt = Atributos(
+    distribuidor(raca.attp, data, 'raca')  # atualizando os valores dos atributos da raca
+    '''pclassatt = Atributos(
         float(data['forcaraca']), 
         float(data['destrezaraca']), 
         float(data['inteligenciaraca']), 
@@ -386,17 +397,20 @@ def atrstatus():
         float(data['percepcaoraca']),
         float(data['carismaraca'])
     )  # Criando atributos da Raça (apenas percentual)
-    raca = Raca(pclassatt)  # criando o objeto da raça
+    raca = Raca(pclassatt)  # criando o objeto da raça'''
 
-    fclassatt = Atributos(
+    distribuidor(be.att, data, 'BF')  # atualizando os valores dos atributos percentual do bonus externo
+    '''fclassatt = Atributos(
         float(data['forcaBF']), 
         float(data['destrezaBF']), 
         float(data['inteligenciaBF']), 
         float(data['determinacaoBF']), 
         float(data['percepcaoBF']),
         float(data['carismaBF'])
-    )  # Criando atributos do bonus percentual fixo
-    pclassatt = Atributos(
+    )  # Criando atributos do bonus percentual fixo'''
+
+    distribuidor(be.attp, data, 'BP')  # atualizando os valores dos atributos percentual do bonus externo
+    '''pclassatt = Atributos(
         float(data['forcaBP']), 
         float(data['destrezaBP']), 
         float(data['inteligenciaBP']), 
@@ -404,17 +418,20 @@ def atrstatus():
         float(data['percepcaoBP']),
         float(data['carismaBP'])
     )  # Criando atributos do bonus externo percentual
-    be = BonusEx(fclassatt, pclassatt)  # criando o objeto dos bonus externos
+    be = BonusEx(fclassatt, pclassatt)  # criando o objeto dos bonus externos'''
 
-    fclassatt = Atributos(
+    distribuidor(habilidadesp.att, data, 'HF')  # atualizando os valores dos atributos fixos da habilidade
+    '''fclassatt = Atributos(
         float(data['forcaHF']), 
         float(data['destrezaHF']), 
         float(data['inteligenciaHF']), 
         float(data['determinacaoHF']), 
         float(data['percepcaoHF']),
         float(data['carismaHF'])
-    )  # Criando atributos da habilidade fixo
-    pclassatt = Atributos(
+    )  # Criando atributos da habilidade fixo'''
+
+    distribuidor(habilidadesp.attp, data, 'HP')  # atualizando os valores dos atributos percentuais da habilidade
+    '''pclassatt = Atributos(
         float(data['forcaHP']), 
         float(data['destrezaHP']), 
         float(data['inteligenciaHP']), 
@@ -422,7 +439,7 @@ def atrstatus():
         float(data['percepcaoHP']),
         float(data['carismaHP'])
     )  # Criando atributos do habilidade percentual
-    habilidadesp = Habilidade(fclassatt, pclassatt)  # criando o objeto das habilidades
+    habilidadesp = Habilidade(fclassatt, pclassatt)  # criando o objeto das habilidades'''
 
     # info.extend([attbase, conja, conjac, armasequip, conjmaes, mis, bd, cla, grim, raca, be, habilidadesp]) #futuramente ira para a classe personagem/ retirar provavelmente quando tiver o banco de dedos
 
