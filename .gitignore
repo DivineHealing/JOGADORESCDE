@@ -1,4 +1,5 @@
 
+venv/
 *.pyc
 __pycache__/
 /lib/arma/__pycache__/__init__.cpython-312.pyc
