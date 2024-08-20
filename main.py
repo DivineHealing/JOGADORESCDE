@@ -1,12 +1,14 @@
 from flask import Flask, jsonify, render_template, request
 from math import trunc
-from lib.atributos import Atributos
+from lib.arsenalatt import *
+from lib.utilitarios import *
+'''from lib.atributos import Atributos
 from lib.equipamentos import Equipamento
 from lib.conjarmadura import ConjArmadura
 from lib.acessorio import Acessorio
 from lib.conjacessorio import ConjAcessorio
 from lib.utilitarios import *
-from lib.arma import Arma
+from lib.arma import Arma,testando #organizar os arquivos
 from lib.armasemmaos import ArmasEmMaos
 from lib.maestrias import Maestrias
 from lib.conjmaestria import Conjmaestria
@@ -17,7 +19,7 @@ from lib.grimorio import Grimorio
 from lib.habilidade import Habilidade
 from lib.raca import Raca
 from lib.cla import Cla
-from lib.elementos import Elementos
+from lib.elementos import Elementos'''
 
 # info = [] #lista de controle
 
@@ -30,9 +32,9 @@ armasequip = ArmasEmMaos(secundaria=armasecundaria)
 conjmaes = Conjmaestria()
 mis = Missoes()
 bd = BencaoDiv()
-cla = Cla()
+bCla = Cla()
 grim = Grimorio()
-raca = Raca()
+bRaca = Raca()
 be = BonusEx()
 habilidadesp = Habilidade()
 
@@ -356,7 +358,7 @@ def atrstatus():
     )  # Criando atributos da Benção Divina (apenas percentual)
     bd = BencaoDiv(pclassatt)  # criando o objeto das Bençãos divinas'''
 
-    distribuidor(cla.att, data, 'DCF')  # atualizando os valores dos atributos fixo do cla
+    distribuidor(bCla.att, data, 'DCF')  # atualizando os valores dos atributos fixo do cla
     '''fclassatt = Atributos(
         float(data['forcaDCF']), 
         float(data['destrezaDCF']), 
@@ -366,7 +368,7 @@ def atrstatus():
         float(data['carismaDCF'])
     )  # Criando atributos da dadiva do clã fixo'''
 
-    distribuidor(cla.attp, data, 'DCP')  # atualizando os valores dos atributos percentual do cla 
+    distribuidor(bCla.attp, data, 'DCP')  # atualizando os valores dos atributos percentual do cla 
     '''pclassatt = Atributos(
         float(data['forcaDCP']), 
         float(data['destrezaDCP']), 
@@ -388,7 +390,7 @@ def atrstatus():
     )  # Criando atributos do grimorio (apenas percentual)
     grim = Grimorio(pclassatt)  # criando o objeto do grimorio'''
 
-    distribuidor(raca.attp, data, 'raca')  # atualizando os valores dos atributos da raca
+    distribuidor(bRaca.attp, data, 'raca')  # atualizando os valores dos atributos da raca
     '''pclassatt = Atributos(
         float(data['forcaraca']), 
         float(data['destrezaraca']), 
@@ -471,12 +473,12 @@ def atrstatus():
     percepcaot = attbase.percepcao + conjmaes.somarMaes('f', 'percepcao') + mis.att.percepcao
     carismat = attbase.carisma + conjmaes.somarMaes('f', 'carisma') + mis.att.carisma
 
-    forcaT = somaTodosAtt('forca', attbase, conja, conjac, armasequip, conjmaes, mis, bd, cla, grim, raca, be, habilidadesp) #funcao para pegar a soma total de todos atributos(personagem, equipamento, acessorio)
-    destrezaT = somaTodosAtt('destreza', attbase, conja, conjac, armasequip, conjmaes, mis, bd, cla, grim, raca, be, habilidadesp)
-    inteligenciaT = somaTodosAtt('inteligencia', attbase, conja, conjac, armasequip, conjmaes, mis, bd, cla, grim, raca, be, habilidadesp)
-    determinacaoT = somaTodosAtt('determinacao', attbase, conja, conjac, armasequip, conjmaes, mis, bd, cla, grim, raca, be, habilidadesp)
-    percepcaoT = somaTodosAtt('percepcao', attbase, conja, conjac, armasequip, conjmaes, mis, bd, cla, grim, raca, be, habilidadesp)
-    carismaT = somaTodosAtt('carisma', attbase, conja, conjac, armasequip, conjmaes, mis, bd, cla, grim, raca, be, habilidadesp)
+    forcaT = somaTodosAtt('forca', attbase, conja, conjac, armasequip, conjmaes, mis, bd, bCla, grim, bRaca, be, habilidadesp) #funcao para pegar a soma total de todos atributos(personagem, equipamento, acessorio)
+    destrezaT = somaTodosAtt('destreza', attbase, conja, conjac, armasequip, conjmaes, mis, bd, bCla, grim, bRaca, be, habilidadesp)
+    inteligenciaT = somaTodosAtt('inteligencia', attbase, conja, conjac, armasequip, conjmaes, mis, bd, bCla, grim, bRaca, be, habilidadesp)
+    determinacaoT = somaTodosAtt('determinacao', attbase, conja, conjac, armasequip, conjmaes, mis, bd, bCla, grim, bRaca, be, habilidadesp)
+    percepcaoT = somaTodosAtt('percepcao', attbase, conja, conjac, armasequip, conjmaes, mis, bd, bCla, grim, bRaca, be, habilidadesp)
+    carismaT = somaTodosAtt('carisma', attbase, conja, conjac, armasequip, conjmaes, mis, bd, bCla, grim, bRaca, be, habilidadesp)
 
     return jsonify(forcaT=forcaT, destrezaT=destrezaT, inteligenciaT=inteligenciaT, determinacaoT=determinacaoT,
                    percepcaoT=percepcaoT, carismaT=carismaT, forcaCJ=forcaCJ, destrezaCJ=destrezaCJ, inteligenciaCJ=inteligenciaCJ,

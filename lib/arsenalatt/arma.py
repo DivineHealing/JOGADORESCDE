@@ -1,6 +1,6 @@
 from dataclasses import dataclass, field
-from lib.atributos import Atributos
-from lib.elementos import Elementos
+from .atributos import Atributos
+from .elementos import Elementos
 
 @dataclass
 class Arma:

@@ -1,4 +1,4 @@
-from lib.atributos import Atributos
+from .atributos import Atributos
 from dataclasses import dataclass, field
 
 @dataclass

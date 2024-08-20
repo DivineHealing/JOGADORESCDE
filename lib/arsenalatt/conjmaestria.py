@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from lib.maestrias import Maestrias
+from .maestrias import Maestrias
 
 @dataclass
 class Conjmaestria:

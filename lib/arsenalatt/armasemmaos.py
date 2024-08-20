@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from lib.arma import Arma
+from .arma import Arma
 
 @dataclass
 class ArmasEmMaos:

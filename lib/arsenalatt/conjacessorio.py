@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from lib.acessorio import Acessorio
+from .acessorio import Acessorio
 
 @dataclass
 class ConjAcessorio:

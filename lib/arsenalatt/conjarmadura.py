@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from lib.equipamentos import Equipamento
+from .equipamentos import Equipamento
 
 @dataclass
 class ConjArmadura:

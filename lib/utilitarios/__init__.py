@@ -1,6 +1,6 @@
 from math import floor
-from lib.atributos import Atributos
-from lib.elementos import Elementos
+from lib.arsenalatt import Elementos, Atributos
+
 '''
 from lib.conjarmadura import ConjArmadura
 from lib.conjacessorio import ConjAcessorio
