@@ -1,7 +1,7 @@
 from math import floor
 from lib.arsenalatt import Elementos, Atributos
 
-def somaTodosAtt(escolha, atributo, conjuntoarmadura, conjuntoacessorio, armasequipadas, conjmaestrias, missoes, bencaodivina, cla, grim, raca, bufext, habilidade): #fara a soma de todos os atributos escolhidos
+def somaTodosAtt(escolha, atributo, conjuntoarmadura, conjuntoacessorio, armasequipadas, conjmaestrias, missoes, bencaodivina, cla, grim, raca, bufint, bufext, habilidade): #fara a soma de todos os atributos escolhidos
     att = atributo.pegaValor(escolha)
     equip = conjuntoarmadura.somarEquip(escolha)
     ace = conjuntoacessorio.somarAces(escolha)
@@ -14,8 +14,10 @@ def somaTodosAtt(escolha, atributo, conjuntoarmadura, conjuntoacessorio, armaseq
     clanp = cla.attp.pegaValor(escolha)
     gri = grim.attp.pegaValor(escolha)
     ra = raca.attp.pegaValor(escolha) or 0
-    bef = bufext.att.pegaValor(escolha)
-    bep = bufext.attp.pegaValor(escolha)
+    bif = bufint.att.pegaValor(escolha) or 0
+    bip = bufint.attp.pegaValor(escolha) or 0
+    bef = bufext.att.pegaValor(escolha) or 0
+    bep = bufext.attp.pegaValor(escolha) or 0
     habf = habilidade.att.pegaValor(escolha)
     habp = habilidade.attp.pegaValor(escolha)
     resultado = []

@@ -22,6 +22,14 @@ def somartudo(att):
     resultado.append(soma2 + soma2 * (habapor) / 100) 
     resultado.append(soma2 + soma2 * (bep) / 100) 
     resultado.append(soma2 + soma2 * (bef) / 100) 
+    if bfi > 0:
+        bfi + resultado/2 
+        resultado
+    else:
+        return resultado
+
+    tev 20% + pru 30%/2 
+    tev 100 + 15
 
     return max(lista)
 
@@ -104,3 +112,23 @@ function atualizarLabel(novoValor) {
     tipo2aAp
     tipo3aAp
     etc...
+
+
+
+
+
+pros animais colocar um campo especifico para ele dizer os tipos de defesa que ele tem, depois os outros campos de defesa
+serão atualizado automaticamente com as defesas especificas
+
+
+    manter elementos, atributos, os conjuntos
+    mesclar todo resto para ter elementos atrinutos
+
+    mesclar arma com equipamento
+    mesclar raca missoes, raca
+
+    as classes existentes serao, elementos, atributos,
+    propriedaes(contera a informaçao necessaria para armas, equipamentos, acessorios e informações do personagem) e
+    conj armadura, conjacessorio, conjmaestria, talvez armasemmaos
+
+    arrumar o calculo da soma de todos os atributos
