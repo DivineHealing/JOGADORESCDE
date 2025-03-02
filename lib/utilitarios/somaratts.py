@@ -13,18 +13,20 @@ def somaTodosAtt(escolha, atributo, conjuntoarmadura, conjuntoacessorio, armaseq
     clanf = cla.att.pegaValor(escolha)
     clanp = cla.attp.pegaValor(escolha)
     gri = grim.attp.pegaValor(escolha)
-    ra = raca.attp.pegaValor(escolha) or 0
-    bif = bufint.att.pegaValor(escolha) or 0
-    bip = bufint.attp.pegaValor(escolha) or 0
-    bef = bufext.att.pegaValor(escolha) or 0
-    bep = bufext.attp.pegaValor(escolha) or 0
+    ra = raca.attp.pegaValor(escolha) 
+    bip = bufint.attp.pegaValor(escolha) 
+    bef = bufext.att.pegaValor(escolha) 
+    bep = bufext.attp.pegaValor(escolha)
     habf = habilidade.att.pegaValor(escolha)
     habp = habilidade.attp.pegaValor(escolha)
     resultado = []
 
     soma1 = att + equip + ace + arma + mis + maes + clanf + habf
     soma2 = soma1 + soma1 * (maesb + clanp + bencdiv + ra + gri + habp) / 100
-    resultado.append(soma2 + soma2 * (bep) / 100) 
-    resultado.append(soma2 + bef) 
+    if bip > 0:  # se houver algum tipo de buff interno
+        bep = floor(bep / 2)
+        bef = floor(bef / 2)
+    resultado.append(soma2 + soma2 * (bip + bep) / 100) 
+    resultado.append(soma2 + soma2 * bip / 100 + bef) 
 
     return floor(max(resultado))
