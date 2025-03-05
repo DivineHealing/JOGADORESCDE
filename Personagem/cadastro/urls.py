@@ -1,8 +1,8 @@
 from django.urls import path
-from .views import inicio, somarteste, lista_cadastros
+from .views import soma_view
 from . import views
 
 urlpatterns = [
-    #path('', views.lista_cadastros, name="lista_cadastros")
-    path('', somarteste)
+    path('', views.soma_view, name="soma_view")
+    #path('', somarteste)
 ]

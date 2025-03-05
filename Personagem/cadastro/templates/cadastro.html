@@ -1,17 +1,78 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crônicas de Errat</title>
-    <link rel="stylesheet" href="/static/styles.css">
+    <title>Soma de Números</title>
+    <style>
+        /* Estilos CSS (como no exemplo anterior) */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centraliza o conteúdo horizontalmente */
+        }
 
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px; /* Largura fixa para o formulário */
+            margin-bottom: 20px;  /* Adiciona margem abaixo do formulário */
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input[type="number"],
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; /* Garante que padding e border não aumentem o tamanho total */
+        }
+
+        input[type="text"][readonly] {
+            background-color: #eee; /* Cor de fundo para campos somente leitura */
+            cursor: not-allowed; /* Muda o cursor para indicar que não é editável */
+        }
+
+        /* Oculta os rótulos dos campos número1 e número2 */
+        label[for="id_numero1"],
+        label[for="id_numero2"] {
+            display: none;
+        }
+
+        p {
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
 </head>
-  <body>
+<body>
+    <h1>Soma de Números</h1>
+
     <form method="post">
-    <div><input type="number" id="numero1" pattern="[0-9]+$" value="{{ numero1|default:'0' }}" oninput="somarteste()"></div>
-    <div><input type="number" id="numero2" pattern="[0-9]+$" value="0" oninput="somarteste()"></div>
-    <div>Resultado: <spin id="resultado"></spin></div>
-    <div>Altere: <spin id="alterar">Ola, Mundo!</spin></div>
-  </body>
+        {% csrf_token %}
+        {{ form.as_p }}  <!-- Renderiza o formulário -->
+        <button type="submit">Calcular</button>
+    </form>
+
+    {% if resultado is not None %}
+        <p>Resultado: {{ resultado }}</p>
+    {% endif %}
+</body>
 </html>
