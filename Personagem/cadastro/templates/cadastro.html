@@ -8,8 +8,9 @@
 
 </head>
   <body>
-    <div><input type="number" id="numero1" pattern="[0-9]+$" value="0" oninput="calculo()"></div>
-    <div><input type="number" id="numero2" pattern="[0-9]+$" value="0" oninput="calculo()"></div>
+    <form method="post">
+    <div><input type="number" id="numero1" pattern="[0-9]+$" value="{{ numero1|default:'0' }}" oninput="somarteste()"></div>
+    <div><input type="number" id="numero2" pattern="[0-9]+$" value="0" oninput="somarteste()"></div>
     <div>Resultado: <spin id="resultado"></spin></div>
     <div>Altere: <spin id="alterar">Ola, Mundo!</spin></div>
   </body>
