@@ -1,7 +1,6 @@
 from django.db import models
 
-# Create your models here.
-class Cadastro(models.Model):
+class Base_personagem(models.Model):
     nome = models.CharField(max_length=30, default="")  # Valor padrão para começar
     vida = models.IntegerField(default="0")
     mana = models.IntegerField(default="0")
@@ -12,6 +11,5 @@ class Cadastro(models.Model):
     determinacao = models.IntegerField(default="0")
     perspicacia = models.IntegerField(default="0")
     carisma = models.IntegerField(default="0")
-
-    def __int__(self):  # descobrir para que serve retornar o resultado
+    def __str__(self):
         return self.nome

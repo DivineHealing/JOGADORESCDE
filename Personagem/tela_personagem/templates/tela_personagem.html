@@ -140,8 +140,8 @@ body {
     <div class="top-section">
       <div class="bordered-section">
         <div class="life">Vida <span>{{ tela_personagem.vida}}</span> <span id="regen"></span></div>
-        <div class="mana">Mana <span id="valor">135</span> [<span id="regen">243</span>]</div>
-        <div class="vigor">Vigor <span id="valor">125</span> [<span id="regen">225</span>]</div>
+        <div class="mana">Mana <span id="valor">135</span> <span id="regen"></span></div>
+        <div class="vigor">Vigor <span id="valor">125</span> <span id="regen"></span></div>
       </div>
     </div>
 
@@ -220,7 +220,8 @@ body {
 
 </body>
 
-<script>const atributos = [
+<script>
+const atributos = [
     { nome: "forca", bonusElementId: "forcaBonus" },
     { nome: "destreza", bonusElementId: "destrezaBonus" },
     { nome: "inteligencia", bonusElementId: "inteligenciaBonus" },

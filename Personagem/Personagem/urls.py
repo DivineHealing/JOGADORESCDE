@@ -19,7 +19,12 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('', include('cadastro.urls')),
-    path('atributo/', include('tela_personagem.urls')),  # Inclui as URLs da app personagens
-    path('admin/', admin.site.urls),
+    path('', include('tela_personagem.urls')),  # Acesso a tela de Informações.
+    path('admin/', admin.site.urls), # Acesso a tela de Administração do Banco.
+    path('cadastro/', include('cadastro.urls')), # Acesso a tela de Cadastro.
+    path('conjunto/', include('conjunto.urls')), # Acesso a tela de Conjunto.
+    path('arma/', include('arma.urls')), # Acesso a tela de Arma.
+    path('acessorios/', include('acessorios.urls')), # Acesso a tela de Acessorios.
+    path('base/', include('base_personagem.urls')), # Acesso ao Cadastro de Informações Base do Personagem.
+    path('habilidade/', include('habilidade.urls')), # Acesso a criação de Habilidades do Personagem
 ]

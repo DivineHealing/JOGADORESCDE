@@ -39,6 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'cadastro',
     'tela_personagem',
+    'conjunto',
+    'arma',
+    'acessorios',
+    'base_personagem',
+    'habilidade'
 ]
 
 MIDDLEWARE = [
