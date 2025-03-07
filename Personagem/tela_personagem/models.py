@@ -12,6 +12,7 @@ class Tela_personagem(models.Model):
     determinacao = models.IntegerField(default="0")
     perspicacia = models.IntegerField(default="0")
     carisma = models.IntegerField(default="0")
+    danoFixo_1 = models.IntegerField(default="0")
     
     def __str__(self):
         return self.nome

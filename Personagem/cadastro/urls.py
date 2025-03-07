@@ -1,8 +1,7 @@
 from django.urls import path
-from .views import soma_view
+from .views import cadastro
 from . import views
 
 urlpatterns = [
-    path('', views.soma_view, name="soma_view")
-    #path('', somarteste)
+    path('', views.cadastro, name="cadastro")
 ]

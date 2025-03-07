@@ -2,7 +2,7 @@
 from django.shortcuts import render
 from .forms import SomaForm
 
-def soma_view(request):
+def cadastro(request):
     resultado = 0  # Inicializa a variável resultado
 
     if request.method == 'POST':

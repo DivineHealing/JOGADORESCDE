@@ -4,264 +4,151 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HUD do Personagem</title>
-    <style>
-body {
-  background-color: #000;
-  color: #fff;
-  font-family: monospace;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-}
-
-.hud-container {
-  background-color: #111;
-  border: 2px solid #333;
-  padding: 10px;
-  width: 80%; /* Adjust as needed */
-  max-width: 900px; /* Maximum width */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
-}
-
-/* Header */
-.header {
-  margin-bottom: 10px;
-  text-align: left;
-}
-
-/* Bordered Section Style */
-.bordered-section {
-  border: 1px solid #333;
-  background-color: #222;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 5px;
-}
-
-/* TOP SECTION (Life/Mana/Vigor) */
-.top-section {
-  margin-bottom: 10px;
-}
-
-.life-stats {
-  text-align: left;
-  color: #0f0; /* Green */
-  font-weight: bold;
-}
-
-.life-stats .life,
-.life-stats .mana,
-.life-stats .vigor {
-  margin-bottom: 2px;
-}
-
-/* MIDDLE SECTION (Attributes, Damage, Defense, Abilities, Equipment) */
-.middle-section {
-  display: flex;
-  flex-wrap: wrap; /* Allow sections to wrap to the next line on smaller screens */
-  justify-content: space-between; /* Distribute space evenly */
-}
-
-.attribute-defense-container {
-  width: 30%; /* Adjust as needed for the left column */
-}
-
-/* Attribute Stats */
-.attribute-stats {
-  color: #0ff; /* Light Blue */
-  font-weight: bold;
-  text-align: left;
-}
-
-.attribute-stats .stat {
-  margin-bottom: 2px;
-}
-
-/* Damage and Defense Stats */
-.defense-stats {
-  color: rgb(6, 187, 0); /* Magenta/Purple */
-  margin-bottom: 10px;
-}
-
-.damage-stats {
-  color: rgb(224, 90, 0); /* Magenta/Purple */
-  margin-bottom: 10px;
-}
-
-/* Rolling Bonus Stats */
-.rolling-bonus-stats {
-  color: #fff; /* White */
-}
-
-/* Other Info Stats */
-.other-info-stats {
-  color: #ccc; /* Light Gray */
-}
-
-/* Character Abilities */
-.character-abilities {
-  width: 30%; /* Adjust as needed for the middle column */
-}
-
-.abilities {
-  color: #ddd; /* Light Grey */
-}
-
-.ability-title {
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-/* Character Equipment */
-.character-equipment {
-  width: 30%; /* Adjust as needed for the right column */
-}
-
-.equipment {
-  text-align: center;
-}
-    </style>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'tela_personagem/style.css' %}">
 </head>
 <body>
+    {% load l10n %}
+    {% load humanize %}
+    {% localize on %}
+    <div class="hud-container">
 
-  <div class="hud-container">
-
-    <div class="header">
-      <div class="name">Nome do Personagem: 
-        <select>
-            <option>Aryah Astaris</option>
-        </select>
-    </div>
-    </div>
-
-    <div class="top-section">
-      <div class="bordered-section">
-        <div class="life">Vida <span>{{ tela_personagem.vida}}</span> <span id="regen"></span></div>
-        <div class="mana">Mana <span id="valor">135</span> <span id="regen"></span></div>
-        <div class="vigor">Vigor <span id="valor">125</span> <span id="regen"></span></div>
-      </div>
-    </div>
-
-    <div class="middle-section">
-      <div class="attribute-defense-container">
-        <div class="attribute-stats bordered-section">
-          <div class="stat" title="Forca">FOR <span id="forca">{{ tela_personagem.forca}}</span> <span id="forcaBonus"></span></div>
-          <div class="stat" title="Destreza">DES <span id="destreza">{{ tela_personagem.destreza}}</span> <span id="destrezaBonus"></span></div>
-          <div class="stat" title="Inteligência">INT <span id="inteligencia">{{ tela_personagem.inteligencia}}</span> <span id="inteligenciaBonus"></span></div>
-          <div class="stat" title="Determinação">DET <span id="determinacao">{{ tela_personagem.determinacao}}</span> <span id="determinacaoBonus"></span></div>
-          <div class="stat" title="Perspicácia">PER <span id="perspicacia">{{ tela_personagem.perspicacia}}</span> <span id="perspicaciaBonus"></span></div>
-          <div class="stat" title="Carisma">CAR <span id="carisma">{{ tela_personagem.carisma}}</span> <span id="carismaBonus"></span></div>
+        <div class="header">
+            <div class="name" style="color: white;">Nome do Personagem:
+                <select class='personagem_select' id="personagem_select" onchange="selecionarPersonagem()">
+                    {% for personagem in personagens %}
+                        <option value="{{ personagem.id }}" {% if personagem.id == tela_personagem.id %}selected{% endif %}>
+                            {{ personagem.nome }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
         </div>
 
-        <div class="damage-stats bordered-section">
-          <div class="damage-stats">
-            <div class="skill">Dano Fixo Solar</div>
-            <div class="skill">Penetração Solar</div>
-            <div class="skill">Dano Fixo SacroSolar</div>
-            <div class="skill">Dano Final</div>
+        <div class="top-section">
+            <div class="bordered-section">
+                <div class="life">Vida <span>{{ tela_personagem.vida|intcomma }}</span> <span id="regen"></span></div>
+                <div class="mana">Mana <span id="valor">{{ tela_personagem.mana|intcomma }}</span> <span id="regen"></span></div>
+                <div class="vigor">Vigor <span id="valor">{{ tela_personagem.vigor|intcomma }}</span> <span id="regen"></span></div>
+            </div>
+        </div>
+
+        <div class="middle-section">
+            <div class="attribute-defense-container">
+                <div class="attribute-stats bordered-section">
+                    <div class="stat" title="Forca">STATUS</div>
+                    <div class="stat" title="Forca">FOR <span id="forca">{{ tela_personagem.forca|intcomma }}</span> <span id="forcaBonus"></span></div>
+                    <div class="stat" title="Destreza">DES <span id="destreza">{{ tela_personagem.destreza|intcomma }}</span> <span id="destrezaBonus"></span></div>
+                    <div class="stat" title="Inteligência">INT <span id="inteligencia">{{ tela_personagem.inteligencia|intcomma }}</span> <span id="inteligenciaBonus"></span></div>
+                    <div class="stat" title="Determinação">DET <span id="determinacao">{{ tela_personagem.determinacao|intcomma }}</span> <span id="determinacaoBonus"></span></div>
+                    <div class="stat" title="Perspicácia">PER <span id="perspicacia">{{ tela_personagem.perspicacia|intcomma }}</span> <span id="perspicaciaBonus"></span></div>
+                    <div class="stat" title="Carisma">CAR <span id="carisma">{{ tela_personagem.carisma|intcomma }}</span> <span id="carismaBonus"></span></div>
+                </div>
+                <div class="damage-stats bordered-section">
+                  <div class="damage-stats">
+                      <div class="skill">DANO</div>
+                      <div class="skill" id="dano_fixo_1">Dano Fixo: {{ tela_personagem.dano_fixo_1|intcomma }}</div>
+                  </div>
+              </div>
+
+              <div class="defense-stats bordered-section">
+                  <div class="defense-stats">
+                      <div class="defense">DEFESA</div>
+                  </div>
+              </div>
+
+              <div class="rolling-bonus-stats bordered-section">
+                  <div class="bonus">BÔNUS ROLAGEM</div>
+              </div>
+
+              <div class="other-info-stats bordered-section">
+                  <div class="amplifications">
+                      <div class="amp">AMPLIFICAÇÕES</div>
+                  </div>
+              </div>
+
           </div>
-        </div>
-        <div class="defense-stats bordered-section">
-          <div class="defense-stats">
-            <div class="defense">Defesa Fixa Chaos</div>
-            <div class="defense">Resistencia Chaos</div>
-            <div class="defense">Defesa Fixa Espiritual</div>
-            <div class="defense">Redução Espiritual</div>
-            <div class="defense">Resistencia Necrotica</div>
+
+          <div class="character-abilities bordered-section">
+              <div class="abilities">
+                  Cadastrar ou Atualizar os Habilidades do Personagem
+              </div>
           </div>
-        </div>
 
-        <div class="rolling-bonus-stats bordered-section">
-          <div class="bonus">Rolagem Invocação</div>
-          <div class="bonus">Rolagem Cura</div>
-          <div class="bonus">Rolagem Curado</div>
-          <div class="bonus">Rolagem Aprimoramento</div>
-          <div class="bonus">Rolagem Magias Solares</div>
-          <div class="bonus">Rolagem Magias Diversas</div>
-        </div>
-
-        <div class="other-info-stats bordered-section">
-          <div class="amplifications">
-            <div class="amp">Amplificação Solar</div>
-            <div class="amp">Amplificação SacroSolar</div>
-            <div class="amp">Suporte</div>
-            <div class="amp">Amplificação Cura</div>
-            <div class="amp">Amplificação Escudo</div>
-            <div class="amp">Amplificação Aprimoramento</div>
-            <div class="amp">Amplificação Debilidades</div>
-            <div class="amp">Cavalheiras</div>
-            <div class="amp">Amplificação Invocação</div>
+          <div class="character-equipment bordered-section">
+              <div class="equipment">
+                  Cadastrar ou Atualizar os Equipamentos do Personagem
+              </div>
           </div>
-          <div class="effects">
-            <div class="effect">Redução de Murchamento Vital</div>
-          </div>
+
         </div>
-
-      </div>
-
-      <div class="character-abilities bordered-section">
-        <div class="abilities">          
-          Cadastrar ou Atualizar os Habilidades do Personagem
+        <div>
+            <a href="{% url 'cadastro' %}"><button class="button" role="button">Cadastro</button></a>
+            <a href="{% url 'base_personagem' %}"><button class="button" role="button">Base</button></a>
+            <a href="{% url 'conjunto' %}" class="buttonLink"><button class="button" role="button">Conjunto</button></a>
+            <a href="{% url 'acessorios' %}"><button class="button" role="button">Acessorios</button></a>
+            <a href="{% url 'arma' %}"><button class="button" role="button">Armas</button></a>
         </div>
-      </div>
-
-      <div class="character-equipment bordered-section">
-        <div class="equipment">
-          Cadastrar ou Atualizar os Equipamentos do Personagem
-        </div>
-      </div>
-
     </div>
-
-  </div>
-
+    {% endlocalize %}
 </body>
 
 <script>
-const atributos = [
-    { nome: "forca", bonusElementId: "forcaBonus" },
-    { nome: "destreza", bonusElementId: "destrezaBonus" },
-    { nome: "inteligencia", bonusElementId: "inteligenciaBonus" },
-    { nome: "determinacao", bonusElementId: "determinacaoBonus" },
-    { nome: "perspicacia", bonusElementId: "perspicaciaBonus" },
-    { nome: "carisma", bonusElementId: "carismaBonus" },
+  function selecionarPersonagem() {
+      var select = document.getElementById("personagem_select");
+      var personagem_id = select.value;
+      window.location.href = "/atributo/personagem/" + personagem_id + "/";
+  }
+
+        
+  const atributos = [
+    { nome: "forca", bonusElementId: "forcaBonus", containerId: "forca_container" },
+    { nome: "destreza", bonusElementId: "destrezaBonus", containerId: "destreza_container" },
+    { nome: "inteligencia", bonusElementId: "inteligenciaBonus", containerId: "inteligencia_container" },
+    { nome: "determinacao", bonusElementId: "determinacaoBonus", containerId: "determinacao_container" },
+    { nome: "perspicacia", bonusElementId: "perspicaciaBonus", containerId: "perspicacia_container" },
+    { nome: "carisma", bonusElementId: "carismaBonus", containerId: "carisma_container" },
+    { nome: "vida", bonusElementId: "regen", containerId: "vida_container" },
+    { nome: "mana", bonusElementId: "regen", containerId: "mana_container" },
+    { nome: "vigor", bonusElementId: "regen", containerId: "vigor_container" },
+    { nome: "dano_fixo_solar", bonusElementId: null, containerId: "dano_fixo_solar_container" },
 ];
 
-let algumAtributoInvalido = false; // Flag para verificar se algum atributo é inválido
+  let algumAtributoInvalido = false; // Flag para verificar se algum atributo é inválido
 
-for (const atributo of atributos) {
-    const element = document.getElementById(atributo.nome);
-    const bonusElement = document.getElementById(atributo.bonusElementId);
+  for (const atributo of atributos) {
+  const element = document.getElementById(atributo.nome);
+  const bonusElement = document.getElementById(atributo.bonusElementId);
 
-    if (!element || !bonusElement) {
-        console.error(`Elemento '${atributo.nome}' ou '${atributo.bonusElementId}' não encontrado.`);
-        continue; // Pula para o próximo atributo se o elemento não for encontrado
-    }
+  if (!element || !bonusElement) {
+    console.error(`Elemento '${atributo.nome}' ou '${atributo.bonusElementId}' não encontrado.`);
+    continue; // Pula para o próximo atributo se o elemento não for encontrado
+  }
 
-    let valor = parseFloat(element.innerText);
+  let valorTexto = element.innerText;  // Obtém o texto do elemento
+  valorTexto = valorTexto.replace(/\./g, '');  // Remove todos os pontos (separadores de milhar)
+  let valor = parseFloat(valorTexto);
+  console.log(valor)
 
-    if (isNaN(valor) || valor < 0) {
-        console.warn(`Valor inválido para '${atributo.nome}'. Definindo como 0.`);
-        valor = 0; // Define o valor como 0 para evitar erros
-        element.innerText = "0"; // Atualiza o texto na página
-        algumAtributoInvalido = true; // Marca que um atributo é inválido
-    }
+  if (isNaN(valor) || valor < 0) {
+    console.warn(`Valor inválido para '${atributo.nome}'. Definindo como 0.`);
+    valor = 0; // Define o valor como 0 para evitar erros
+    element.innerText = "0"; // Atualiza o texto na página
+    algumAtributoInvalido = true; // Marca que um atributo é inválido
+  }
 
-    // Calcula o bônus e formata
-    let bonus = valor / 100;
-    bonus = bonus.toFixed(2);
-    bonus = Math.trunc(bonus); // Remove as casas decimais (arredonda para baixo)
-    bonus = "+" + bonus; // Adiciona o sinal de mais
+  // Calcula o bônus e formata
+  let bonus = valor / 100;
+  bonus = bonus.toFixed(2);
+  bonus = Math.trunc(bonus); // Remove as casas decimais (arredonda para baixo)
+  bonus = "| " + bonus; // Adiciona o sinal de mais
 
-    bonusElement.innerText = bonus; // Exibe o bônus
-}
+  bonusElement.innerText = bonus; // Exibe o bônus
+  }
 
-// Se algum atributo for inválido, exibe uma mensagem (opcional)
-if (algumAtributoInvalido) {
-    console.warn("Um ou mais atributos possuem valores inválidos.");
-}
+  // Se algum atributo for inválido, exibe uma mensagem (opcional)
+  if (algumAtributoInvalido) {
+  console.warn("Um ou mais atributos possuem valores inválidos.");
+  }
 </script>
 </html>
