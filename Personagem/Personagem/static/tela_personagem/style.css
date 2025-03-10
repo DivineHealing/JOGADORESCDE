@@ -98,6 +98,11 @@ body {
   }
   
   /* TOP SECTION (Life/Mana/Vigor) */
+  .attribute-personal{
+    display: flexbox;
+    flex-wrap: wrap; /* Allow sections to wrap to the next line on smaller screens */
+    justify-content: space-between; /* Distribute space evenly */
+  }
   .top-section {
     margin-bottom: 10px;
   }
@@ -123,7 +128,7 @@ body {
   .life,
   .mana,
   .vigor {
-    margin-bottom: 3px;
+    margin-bottom: 2px;
   }
   
   /* MIDDLE SECTION (Attributes, Damage, Defense, Abilities, Equipment) */
@@ -139,7 +144,7 @@ body {
   
   /* Attribute Stats */
   .attribute-stats {
-    color: rgb(255, 255, 255); /* Light Blue */
+    color: rgb(0, 255, 242); /* Light Blue */
     font-weight: bold;
     text-align: left;
     font-size: medium;
@@ -147,28 +152,31 @@ body {
   
   .attribute-stats .stat {
     margin-bottom: 2px;
-    padding-left: 20px;
   }
   
   /* Damage and Defense Stats */
   .defense-stats {
-    color: rgb(255, 255, 255); /* Magenta/Purple */
+    color: rgb(255, 208, 0); 
     margin-bottom: 10px;
   }
   
   .damage-stats {
-    color: rgb(255, 255, 255); /* Magenta/Purple */
+    color: rgb(255, 208, 0); 
     margin-bottom: 10px;
   }
   
   /* Rolling Bonus Stats */
   .rolling-bonus-stats {
-    color: #fff; /* White */
+    color: rgb(255, 208, 0);  /* White */
   }
   
   /* Other Info Stats */
   .other-info-stats {
-    color: #ccc; /* Light Gray */
+    color: rgb(255, 208, 0);  /* Light Gray */
+  }
+
+  .amplifications {
+    color: rgb(255, 208, 0); 
   }
   
   /* Character Abilities */
@@ -177,7 +185,7 @@ body {
   }
   
   .abilities {
-    color: #ffffff; /* Light Grey */
+    color: rgb(255, 208, 0);  /* Light Grey */
   }
   
   .ability-title {
@@ -192,5 +200,5 @@ body {
   
   .equipment {
     text-align: center;
-    color: #ffffff;
+    color: rgb(255, 208, 0); 
   }
