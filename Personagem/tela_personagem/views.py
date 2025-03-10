@@ -1,6 +1,5 @@
 # tela_personagens/views.py
 from django.shortcuts import render, get_object_or_404
-from django.http import JsonResponse
 from .models import Tela_personagem
 
 def exibir_personagem(request, personagem_id=None):
