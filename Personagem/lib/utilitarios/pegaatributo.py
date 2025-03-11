@@ -29,4 +29,4 @@ def pegar_atributos(personagem: str,attescolhido: str):
     except Exception as e:
         print(f"Erro ao atualizar a 'Tela_personagem:{attescolhido} do personagem {personagem}': {e}")  # apontando qual erro ocorreu
 
-    print(attpego)
+    print(attpego)  # depois retirar esse debug
