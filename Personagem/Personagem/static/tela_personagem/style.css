@@ -97,38 +97,34 @@ body {
     border-radius: 5px;
   }
   
-  /* TOP SECTION (Life/Mana/Vigor) */
-  .attribute-personal{
-    display: flexbox;
-    flex-wrap: wrap; /* Allow sections to wrap to the next line on smaller screens */
-    justify-content: space-between; /* Distribute space evenly */
-  }
-  .top-section {
-    margin-bottom: 10px;
-  }
-  
-  .life {
-    font-size: large;
-    text-align: left;
-    color: #0f0; /* Green */
+  /* TOP SECTION (vida/Mana/Vigor) */
+  .attribute-personal {
+    display: flex;
+    flex-direction: column; /* Organiza os itens verticalmente */
+}
+
+.vida, .mana, .vigor {
+    display: flex;
+    justify-content: left; /* Distribui os itens */
+    gap: .6em;
+    padding: 5px 10px;
+    border-radius: 1px;
     font-weight: bold;
+}
+  
+  .vida {
+    font-size: large;
+    text-align: center;
+    color: #0f0; /* Green */
   }
   .mana {
     font-size: large;
-    text-align: left;
+    text-align: center;
     color: rgb(0, 145, 202); /* Green */
-    font-weight: bold;
   }.vigor {
     font-size: large;
-    text-align: left;
+    text-align: center;
     color: rgb(255, 115, 0); /* Green */
-    font-weight: bold;
-  }
-  
-  .life,
-  .mana,
-  .vigor {
-    margin-bottom: 2px;
   }
   
   /* MIDDLE SECTION (Attributes, Damage, Defense, Abilities, Equipment) */

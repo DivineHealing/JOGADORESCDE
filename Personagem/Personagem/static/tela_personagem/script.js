@@ -101,11 +101,13 @@ function formatarAtributo(atributo) {
     }
 
     if (bonusElement) {
+        let maior = 0
+        if (bonusElement > maior) { maior == bonusElement };
         // Calcula o bônus e formata
         let bonus = valor / 100;
         bonus = bonus.toFixed(2);
         bonus = Math.trunc(bonus); // Remove as casas decimais (arredonda para baixo)
-        bonus = "——————— +" +bonus; // Adiciona o sinal de mais
+        bonus = (maior.length*"—")+'+'+bonus; // Adiciona o sinal de mais
 
         bonusElement.innerText = bonus; // Exibe o bônus
     }
