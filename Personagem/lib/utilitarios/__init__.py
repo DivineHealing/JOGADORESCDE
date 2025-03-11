@@ -1,0 +1,1 @@
+from .pegaatributo import pegar_atributos
