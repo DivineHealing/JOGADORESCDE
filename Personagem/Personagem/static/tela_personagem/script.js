@@ -82,6 +82,7 @@ const atributos = [
 
 let algumAtributoInvalido = false; // Flag para verificar se algum atributo é inválido
 
+// FUNÇÃO PARA FORMATAR OS NUMEROS MILHARES
 function formatarAtributo(atributo) {
     const element = document.getElementById(atributo.nome);
     const bonusElement = document.getElementById(atributo.bonusElementId);
@@ -115,6 +116,7 @@ function formatarAtributo(atributo) {
     return valor; // Retorna o valor formatado
 }
 
+// FUNÇÃO PARA OCULTAR OS DADOS ZERADOS
 function exibirOuOcultarAtributo(atributo) {
     const element = document.getElementById(atributo.nome);
     const containerElement = document.getElementById(atributo.containerId);
@@ -158,71 +160,50 @@ function atualizarTela() {
         exibirOuOcultarAtributo(atributo, valor); // Exibe ou oculta o container
     }
 }
-//função passada, a função atual
+// FUNÇÃO DE ATUALIZAR A TELA - ATUALIZAR DADOS PUXADOS DO BANCO
 window.onload = function () {
     atualizarTela();
 }
 
+// FUNÇÃO DEBUFF
 document.addEventListener('DOMContentLoaded', function() {
-    const editButtons = document.querySelectorAll('.edit-button');
+    const buffButtons = document.querySelectorAll('.buff-button');
 
-    editButtons.forEach(button => {
+    buffButtons.forEach(button => {
         button.addEventListener('click', function(event) {
-            event.preventDefault(); // Prevent default button behavior if inside a form
-            const targetId = this.dataset.target;
-            const optionsDiv = document.getElementById(targetId);
+            event.preventDefault();
+            const fieldName = this.dataset.field;
+            const buffInput = document.getElementById(`${fieldName}BuffInput`);
+            const buffedValueSpan = document.getElementById(`${fieldName}Buffed`);
+            const originalValueSpan = document.getElementById(fieldName);
 
-            // Close any other open option menus
-            document.querySelectorAll('.edit-options').forEach(opt => {
-                if (opt.id !== targetId) {
-                    opt.classList.add('hidden');
+            originalValueSpan.classList.add('hidden'); // Esconde o valor original
+            buffInput.classList.remove('hidden'); // Mostra o input
+            buffInput.focus(); // Foca no input
+
+            buffInput.addEventListener('blur', handleBuff);
+            buffInput.addEventListener('keydown', function(event) { // Adiciona evento para Enter key
+                if (event.key === 'Enter') {
+                    handleBuff.call(this); // Chama a função handleBuff
+                    event.preventDefault(); // Evita comportamento padrão do Enter em forms
                 }
             });
 
-            optionsDiv.classList.toggle('hidden');
-        });
-    });
+            function handleBuff() {
+                buffInput.removeEventListener('blur', handleBuff); // Remove o listener para evitar múltiplas execuções
 
-    const editOptions = document.querySelectorAll('.edit-option');
+                const buffValue = parseInt(buffInput.value, 10) || 0;
+                const originalValue = parseInt(originalValueSpan.textContent.replace(/\./g, ''), 10) || 0; // Remove commas and parse
+                const totalValue = Math.trunc(originalValue * ((buffValue/100)+1));
 
-    editOptions.forEach(option => {
-        option.addEventListener('click', function(event) {
-            event.preventDefault();
-            const fieldName = this.dataset.field;
-            const valueSpan = document.getElementById(fieldName);
-            const optionsDiv = this.closest('.edit-options');
-            optionsDiv.classList.add('hidden'); // Hide options after selection
+                buffedValueSpan.textContent = totalValue.toLocaleString('pt-BR'); // Formata com separador de milhar
+                buffedValueSpan.classList.remove('hidden'); // Mostra o valor buffado
 
-            if (valueSpan) {
-                const currentValue = valueSpan.textContent.trim();
-                const inputElement = document.createElement('input');
-                inputElement.type = 'text';
-                inputElement.className = 'edit-input';
-                inputElement.value = currentValue;
+                buffInput.classList.add('hidden'); // Esconde o input
+                // originalValueSpan.classList.remove('hidden'); // O valor original fica escondido após buff, se quiser mostrar novamente, descomente
 
-                valueSpan.replaceWith(inputElement);
-                inputElement.focus(); // Automatically focus on the input for immediate editing
-
-                inputElement.addEventListener('blur', function() {
-                    const newValue = inputElement.value;
-                    const newSpan = document.createElement('span');
-                    newSpan.id = fieldName;
-                    newSpan.textContent = newValue;
-                    inputElement.replaceWith(newSpan);
-                    // Here you would typically handle saving the newValue,
-                    // e.g., sending an AJAX request to update the server.
-                    console.log(`Valor de ${fieldName} modificado para: ${newValue}`);
-                });
+                buffInput.value = ''; // Limpa o input para a próxima vez
             }
         });
-    });
-
-    // Close options menu when clicking outside
-    document.addEventListener('click', function(event) {
-        if (!event.target.closest('.edit-button') && !event.target.closest('.edit-options')) {
-            document.querySelectorAll('.edit-options').forEach(opt => {
-                opt.classList.add('hidden');
-            });
-        }
     });
 });

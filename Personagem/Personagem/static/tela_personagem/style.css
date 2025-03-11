@@ -239,56 +239,52 @@ select:after {
 
 /* ... CSS anterior ... */
 
-.edit-button {
-    background-color: transparent;
-    color: #dfdfdf;
-    border: none;
-    padding: 0px 5px;
-    margin-left: 5px;
-    cursor: pointer;
-    font-size: 1em;
-    vertical-align: middle; /* Align button with text */
+.buff-button {
+  background-color: transparent;
+  color: #dfdfdf;
+  border: none;
+  padding: 0px 5px;
+  margin-left: 5px;
+  cursor: pointer;
+  font-size: 0.8em; /* Menor para "BUFF" */
+  vertical-align: middle;
 }
 
-.edit-button:hover {
-    color: #f7f7f7;
+.buff-button:hover {
+  color: #f7f7f7;
 }
 
-.edit-options {
-    position: absolute; /* Position options relative to the button's container */
-    background-color: #333;
-    border: 1px solid #555;
-    border-radius: 5px;
-    padding: 5px 0;
-    z-index: 10; /* Ensure options appear above other elements */
-    display: flex;
-    flex-direction: column;
+.buff-input {
+  background-color: #444;
+  color: #dfdfdf;
+  border: 1px solid #555;
+  padding: 5px;
+  border-radius: 3px;
+  font-family: Courier;
+  font-size: 1em;
+  width: 40px; /* Menor width para o input de buff */
+  margin-left: 5px;
 }
 
-.edit-options.hidden {
-    display: none;
+.buff-input.hidden {
+  display: none;
 }
 
-.edit-option {
-    display: block;
-    padding: 8px 15px;
-    color: #dfdfdf;
-    text-decoration: none;
-    font-size: 0.9em;
+.buffed-value {
+  color: #00ffaa; /* Cor verde para valor buffado */
+  font-weight: bold;
+  margin-left: 1em;
 }
 
-.edit-option:hover {
-    background-color: #555;
-    color: #f7f7f7;
+.buffed-value.hidden {
+  display: none;
 }
+input[type=number]::-webkit-inner-spin-button { 
+  -webkit-appearance: none;
+  
+}
+input[type=number] { 
+ -moz-appearance: textfield;
+ appearance: textfield;
 
-.edit-input {
-    background-color: #444;
-    color: #dfdfdf;
-    border: 1px solid #555;
-    padding: 5px;
-    border-radius: 3px;
-    font-family: Courier;
-    font-size: 1em;
-    width: 50px; /* Adjust width as needed */
 }
