@@ -22,6 +22,7 @@ const atributos = [
     { nome: "penetracao_2", containerId: "penetracao2_container"},
     { nome: "danoFixo_3", containerId: "danoFixo3_container"},
     { nome: "penetracao_3", containerId: "penetracao3_container"},
+    { nome: "danoFinal", containerId: "danoFinal_container"},
 
     { nome: "defesaFixa_1", containerId: "defesaFixa1_container" },
     { nome: "resistencia_1", containerId: "resistencia1_container"},

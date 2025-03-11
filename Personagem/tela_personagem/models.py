@@ -23,6 +23,7 @@ class Tela_personagem(models.Model):
     penetracao_2 = models.IntegerField(default=0)
     danoFixo_3 = models.IntegerField(default=0)
     penetracao_3 = models.IntegerField(default=0)
+    danoFinal = models.IntegerField(default=0)
     
     defesaFixa_1 = models.IntegerField(default=0)
     resistencia_1 = models.IntegerField(default=0)

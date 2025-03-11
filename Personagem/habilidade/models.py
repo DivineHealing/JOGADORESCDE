@@ -1,6 +1,8 @@
 from django.db import models
 
 class Habilidade(models.Model):
+    hab1_nome = models.TextField(default="")
+    hab1_custo = models.TextField(default="")
     hab1_1 = models.TextField(default="")  # HABILIDADE 1
     hab1_2 = models.TextField(default="") 
     hab1_3 = models.TextField(default="") 
@@ -8,6 +10,8 @@ class Habilidade(models.Model):
     hab1_5 = models.TextField(default="") 
     hab1_6 = models.TextField(default="") 
     # HABILIDADE 2
+    hab2_nome = models.TextField(default="")
+    hab2_custo = models.TextField(default="")
     hab2_1 = models.TextField(default="")
     hab2_2 = models.TextField(default="") 
     hab2_3 = models.TextField(default="") 
@@ -15,6 +19,8 @@ class Habilidade(models.Model):
     hab2_5 = models.TextField(default="") 
     hab2_6 = models.TextField(default="") 
     # HABILIDADE 3
+    hab3_nome = models.TextField(default="")
+    hab3_custo = models.TextField(default="")
     hab3_1 = models.TextField(default="")
     hab3_2 = models.TextField(default="") 
     hab3_3 = models.TextField(default="") 
@@ -22,6 +28,8 @@ class Habilidade(models.Model):
     hab3_5 = models.TextField(default="") 
     hab3_6 = models.TextField(default="") 
     # HABILIDADE 4
+    hab4_nome = models.TextField(default="")
+    hab4_custo = models.TextField(default="")
     hab4_1 = models.TextField(default="")
     hab4_2 = models.TextField(default="") 
     hab4_3 = models.TextField(default="") 
@@ -29,6 +37,8 @@ class Habilidade(models.Model):
     hab4_5 = models.TextField(default="") 
     hab4_6 = models.TextField(default="") 
     # HABILIDADE 5
+    hab5_nome = models.TextField(default="")
+    hab5_custo = models.TextField(default="")
     hab5_1 = models.TextField(default="")
     hab5_2 = models.TextField(default="") 
     hab5_3 = models.TextField(default="") 
@@ -36,6 +46,8 @@ class Habilidade(models.Model):
     hab5_5 = models.TextField(default="") 
     hab5_6 = models.TextField(default="") 
     # HABILIDADE 6
+    hab6_nome = models.TextField(default="")
+    hab6_custo = models.TextField(default="")
     hab6_1 = models.TextField(default="")
     hab6_2 = models.TextField(default="") 
     hab6_3 = models.TextField(default="") 
@@ -43,6 +55,8 @@ class Habilidade(models.Model):
     hab6_5 = models.TextField(default="") 
     hab6_6 = models.TextField(default="") 
     # HABILIDADE 7
+    hab7_nome = models.TextField(default="")
+    hab7_custo = models.TextField(default="")
     hab7_1 = models.TextField(default="")
     hab7_2 = models.TextField(default="") 
     hab7_3 = models.TextField(default="") 
@@ -50,6 +64,8 @@ class Habilidade(models.Model):
     hab7_5 = models.TextField(default="") 
     hab7_6 = models.TextField(default="") 
     # HABILIDADE 8
+    hab8_nome = models.TextField(default="")
+    hab8_custo = models.TextField(default="")
     hab8_1 = models.TextField(default="")
     hab8_2 = models.TextField(default="") 
     hab8_3 = models.TextField(default="") 
@@ -57,6 +73,8 @@ class Habilidade(models.Model):
     hab8_5 = models.TextField(default="") 
     hab8_6 = models.TextField(default="") 
     # HABILIDADE 8
+    hab8_nome = models.TextField(default="")
+    hab8_custo = models.TextField(default="")
     hab8_1 = models.TextField(default="")
     hab8_2 = models.TextField(default="") 
     hab8_3 = models.TextField(default="") 
@@ -64,6 +82,8 @@ class Habilidade(models.Model):
     hab8_5 = models.TextField(default="") 
     hab8_6 = models.TextField(default="") 
     # HABILIDADE 9
+    hab9_nome = models.TextField(default="")
+    hab9_custo = models.TextField(default="")
     hab9_1 = models.TextField(default="")
     hab9_2 = models.TextField(default="") 
     hab9_3 = models.TextField(default="") 
@@ -71,6 +91,8 @@ class Habilidade(models.Model):
     hab9_5 = models.TextField(default="") 
     hab9_6 = models.TextField(default="") 
     # HABILIDADE 10
+    hab1_nome = models.TextField(default="")
+    hab1_custo = models.TextField(default="")
     hab10_1 = models.TextField(default="")
     hab10_2 = models.TextField(default="") 
     hab10_3 = models.TextField(default="") 
@@ -78,6 +100,8 @@ class Habilidade(models.Model):
     hab10_5 = models.TextField(default="") 
     hab10_6 = models.TextField(default="") 
     # HABILIDADE 11
+    hab1_nome = models.TextField(default="")
+    hab1_custo = models.TextField(default="")
     hab11_1 = models.TextField(default="")
     hab11_2 = models.TextField(default="") 
     hab11_3 = models.TextField(default="") 
@@ -85,6 +109,8 @@ class Habilidade(models.Model):
     hab11_5 = models.TextField(default="") 
     hab11_6 = models.TextField(default="") 
     # HABILIDADE 12
+    hab1_nome = models.TextField(default="")
+    hab1_custo = models.TextField(default="")
     hab12_1 = models.TextField(default="")
     hab12_2 = models.TextField(default="") 
     hab12_3 = models.TextField(default="") 

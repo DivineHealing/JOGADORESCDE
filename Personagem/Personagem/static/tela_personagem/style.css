@@ -130,16 +130,16 @@ select:after {
 }
 
 .vida {
-  font-size: large;
+  font-size: x-large;
   text-align: center;
   color: #0f0; /* Green */
 }
 .mana {
-  font-size: large;
+  font-size: x-large;
   text-align: center;
   color: rgb(0, 145, 202); /* Blue */
 }.vigor {
-  font-size: large;
+  font-size: x-large;
   text-align: center;
   color: rgb(255, 115, 0); /* Orange */
 }
@@ -180,8 +180,31 @@ select:after {
 
 /* Damage and Defense Stats */
 .dano-defesa {
-  color: rgb(255, 208, 0);
   margin-bottom: 10px;
+}
+
+.damage {
+  color: rgb(255, 127, 95);
+}
+
+.defense {
+  color: rgb(201, 154, 0);
+}
+.reg {
+  color: rgb(255, 255, 255);
+}
+.amp {
+  color: rgb(255, 255, 255);
+}
+.roll {
+  color: rgb(255, 255, 255);
+}
+
+.atr-title {
+  font-size: large;
+  font-weight: bold;
+  color: silver;
+  text-shadow: 5px 3px 5px #6b6b6b;
 }
 
 .damage-stats, .defense-stats {
