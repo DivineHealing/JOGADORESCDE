@@ -36,13 +36,52 @@
         <div class="middle-section">
             <div class="left-column">
                 <div class="attribute-stats bordered-section">
-                    <div class="stat section-title">STATUS</div>
-                    <div class="stat" title="Forca" id="forca_container">FOR <span id="forca">{{ tela_personagem.forca|intcomma }}</span> <span id="forcaBonus"></span></div>
-                    <div class="stat" title="Destreza" id="destreza_container">DES <span id="destreza">{{ tela_personagem.destreza|intcomma }}</span> <span id="destrezaBonus"></span></div>
-                    <div class="stat" title="Inteligência" id="inteligencia_container">INT <span id="inteligencia">{{ tela_personagem.inteligencia|intcomma }}</span> <span id="inteligenciaBonus"></span></div>
-                    <div class="stat" title="Determinação" id="determinacao_container">DET <span id="determinacao">{{ tela_personagem.determinacao|intcomma }}</span> <span id="determinacaoBonus"></span></div>
-                    <div class="stat" title="Perspicácia" id="perspicacia_container">PER <span id="perspicacia">{{ tela_personagem.perspicacia|intcomma }}</span> <span id="perspicaciaBonus"></span></div>
-                    <div class="stat" title="Carisma" id="carisma_container">CAR <span id="carisma">{{ tela_personagem.carisma|intcomma }}</span> <span id="carismaBonus"></span></div>
+                    <div class="attribute-stats bordered-section">
+                        <div class="stat section-title">STATUS</div>
+                        <div class="stat" title="Forca" id="forca_container">FOR <span id="forca">{{ tela_personagem.forca|intcomma }}</span>
+                            <button class="edit-button" data-target="forca-options">BUFF</button>
+                            <div class="edit-options hidden" id="forca-options">
+                                <div class="stat" title="Forca" id="forca_container"><span id="forca-buffada"> {{ tela_personagem.forca|intcomma }}</span></div>
+                                <a href="#" class="edit-option" data-field="forca">Modificar Força</a>
+                            </div>
+                            <span id="forcaBonus"></span>
+                        </div>
+                        <div class="stat" title="Destreza" id="destreza_container">DES <span id="destreza">{{ tela_personagem.destreza|intcomma }}</span>
+                            <button class="edit-button" data-target="destreza-options">BUFF</button>
+                            <div class="edit-options hidden" id="destreza-options">
+                                <a href="#" class="edit-option" data-field="destreza">Modificar Destreza</a>
+                            </div>
+                            <span id="destrezaBonus"></span>
+                        </div>
+                        <div class="stat" title="Inteligência" id="inteligencia_container">INT <span id="inteligencia">{{ tela_personagem.inteligencia|intcomma }}</span>
+                            <button class="edit-button" data-target="inteligencia-options">BUFF</button>
+                            <div class="edit-options hidden" id="inteligencia-options">
+                                <a href="#" class="edit-option" data-field="inteligencia">Modificar Inteligência</a>
+                            </div>
+                            <span id="inteligenciaBonus"></span>
+                        </div>
+                        <div class="stat" title="Determinação" id="determinacao_container">DET <span id="determinacao">{{ tela_personagem.determinacao|intcomma }}</span>
+                            <button class="edit-button" data-target="determinacao-options">BUFF</button>
+                            <div class="edit-options hidden" id="determinacao-options">
+                                <a href="#" class="edit-option" data-field="determinacao">Modificar Determinação</a>
+                            </div>
+                            <span id="determinacaoBonus"></span>
+                        </div>
+                        <div class="stat" title="Perspicácia" id="perspicacia_container">PER <span id="perspicacia">{{ tela_personagem.perspicacia|intcomma }}</span>
+                            <button class="edit-button" data-target="perspicacia-options">BUFF</button>
+                            <div class="edit-options hidden" id="perspicacia-options">
+                                <a href="#" class="edit-option" data-field="perspicacia">Modificar Perspicácia</a>
+                            </div>
+                            <span id="perspicaciaBonus"></span>
+                        </div>
+                        <div class="stat" title="Carisma" id="carisma_container">CAR <span id="carisma">{{ tela_personagem.carisma|intcomma }}</span>
+                            <button class="edit-button" data-target="carisma-options">BUFF</button>
+                            <div class="edit-options hidden" id="carisma-options">
+                                <a href="#" class="edit-option" data-field="carisma">Modificar Carisma</a>
+                            </div>
+                            <span id="carismaBonus"></span>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="dano-defesa bordered-section">

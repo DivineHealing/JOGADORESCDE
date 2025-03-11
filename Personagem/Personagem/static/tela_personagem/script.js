@@ -162,3 +162,67 @@ function atualizarTela() {
 window.onload = function () {
     atualizarTela();
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    const editButtons = document.querySelectorAll('.edit-button');
+
+    editButtons.forEach(button => {
+        button.addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent default button behavior if inside a form
+            const targetId = this.dataset.target;
+            const optionsDiv = document.getElementById(targetId);
+
+            // Close any other open option menus
+            document.querySelectorAll('.edit-options').forEach(opt => {
+                if (opt.id !== targetId) {
+                    opt.classList.add('hidden');
+                }
+            });
+
+            optionsDiv.classList.toggle('hidden');
+        });
+    });
+
+    const editOptions = document.querySelectorAll('.edit-option');
+
+    editOptions.forEach(option => {
+        option.addEventListener('click', function(event) {
+            event.preventDefault();
+            const fieldName = this.dataset.field;
+            const valueSpan = document.getElementById(fieldName);
+            const optionsDiv = this.closest('.edit-options');
+            optionsDiv.classList.add('hidden'); // Hide options after selection
+
+            if (valueSpan) {
+                const currentValue = valueSpan.textContent.trim();
+                const inputElement = document.createElement('input');
+                inputElement.type = 'text';
+                inputElement.className = 'edit-input';
+                inputElement.value = currentValue;
+
+                valueSpan.replaceWith(inputElement);
+                inputElement.focus(); // Automatically focus on the input for immediate editing
+
+                inputElement.addEventListener('blur', function() {
+                    const newValue = inputElement.value;
+                    const newSpan = document.createElement('span');
+                    newSpan.id = fieldName;
+                    newSpan.textContent = newValue;
+                    inputElement.replaceWith(newSpan);
+                    // Here you would typically handle saving the newValue,
+                    // e.g., sending an AJAX request to update the server.
+                    console.log(`Valor de ${fieldName} modificado para: ${newValue}`);
+                });
+            }
+        });
+    });
+
+    // Close options menu when clicking outside
+    document.addEventListener('click', function(event) {
+        if (!event.target.closest('.edit-button') && !event.target.closest('.edit-options')) {
+            document.querySelectorAll('.edit-options').forEach(opt => {
+                opt.classList.add('hidden');
+            });
+        }
+    });
+});
