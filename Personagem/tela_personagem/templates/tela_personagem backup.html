@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HUD do Personagem</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'tela_personagem/style.css' %}">
+</head>
+<body>
+    {% load l10n %}
+    {% load humanize %}
+    {% localize on %}
+    <div class="background-container">
+
+        <div class="header">
+            <div class="name" style="color: white;">Nome do Personagem:
+              <select class='personagem_select' id="personagem_select" onchange="selecionarPersonagem()">
+                {% for personagem in personagens %}
+                    <option value="{{ personagem.id }}" {% if personagem.id == tela_personagem.id %}selected{% endif %}>
+                        {{ personagem.nome }}
+                    </option>
+                  {% endfor %}
+              </select>
+            </div>
+        </div>
+
+        <div class="top-section">
+            <div class="attribute-personal bordered-section">
+                <div class="vida">Vida: <span id="vida">{{ tela_personagem.vida|intcomma }}</span><span id="regenVida_container">————— Regen: <span id="regenVida">{{ tela_personagem.regenVida|intcomma }}</span>%</span></div>
+                <div class="mana">Mana: <span id="mana">{{ tela_personagem.mana|intcomma }}</span><span id="regenMana_container">—————— Regen: <span id="regenMana">{{ tela_personagem.regenMana|intcomma }}</span>%</span></div>
+                <div class="vigor">Vigor: <span id="vigor">{{ tela_personagem.vigor|intcomma }}</span><span id="regenVigor_container">————— Regen: <span id="regenVigor">{{ tela_personagem.regenVigor|intcomma }}</span>%</span></div>
+            </div>
+        </div>
+
+        <div class="middle-section">
+            <div class="attribute-defense-container">
+                <div class="attribute-stats bordered-section">
+                    <div class="stat" title="Aqui estará os valores de Status e o Bônus de Rolagem concedido.">STATUS</div>
+                    <div class="stat" title="Forca" id="forca_container">FOR <span id="forca">{{ tela_personagem.forca|intcomma }}</span> <span id="forcaBonus"></span></div>
+                    <div class="stat" title="Destreza" id="destreza_container">DES <span id="destreza">{{ tela_personagem.destreza|intcomma }}</span> <span id="destrezaBonus"></span></div>
+                    <div class="stat" title="Inteligência" id="inteligencia_container">INT <span id="inteligencia">{{ tela_personagem.inteligencia|intcomma }}</span> <span id="inteligenciaBonus"></span></div>
+                    <div class="stat" title="Determinação" id="determinacao_container">DET <span id="determinacao">{{ tela_personagem.determinacao|intcomma }}</span> <span id="determinacaoBonus"></span></div>
+                    <div class="stat" title="Perspicácia" id="perspicacia_container">PER <span id="perspicacia">{{ tela_personagem.perspicacia|intcomma }}</span> <span id="perspicaciaBonus"></span></div>
+                    <div class="stat" title="Carisma" id="carisma_container">CAR <span id="carisma">{{ tela_personagem.carisma|intcomma }}</span> <span id="carismaBonus"></span></div>
+                </div>
+                <div class="damage-stats bordered-section">
+                  <div class="damage-stats">
+                      <div class="damage">DANO</div>
+                      <div class="damage" id="danoFixo1_container">Dano Fixo: <span id="danoFixo_1">{{ tela_personagem.danoFixo_1|intcomma }}</span></div>
+                      <div class="damage" id="penetracao1_container">Penetração: <span id="penetracao_1">{{ tela_personagem.penetracao_1|intcomma }}</span></div>
+                      <div class="damage" id="danoFixo2_container">Dano Fixo: <span id="danoFixo_2">{{ tela_personagem.danoFixo_2|intcomma }}</span></div>
+                      <div class="damage" id="penetracao2_container">Penetração: <span id="penetracao_2">{{ tela_personagem.penetracao_2|intcomma }}</span></div>
+                      <div class="damage" id="danoFixo3_container">Dano Fixo: <span id="danoFixo_3">{{ tela_personagem.danoFixo_3|intcomma }}</span></div>
+                      <div class="damage" id="penetracao3_container">Penetração: <span id="penetracao_3">{{ tela_personagem.penetracao_3|intcomma }}</span></div>
+                  </div>
+              </div>
+
+              <div class="defense-stats bordered-section">
+                  <div class="defense-stats">
+                      <div class="defense">DEFESA</div>
+                      <div class="damage" id="defesaFixa1_container">Defesa Fixa: <span id="defesaFixa_1">{{ tela_personagem.danoFixo_1|intcomma }}</span></div>
+                      <div class="damage" id="resistencia1_container">Resistência: <span id="resistencia_1">{{ tela_personagem.penetracao_1|intcomma }}</span></div>
+                      <div class="damage" id="defesaFixa2_container">Defesa Fixa: <span id="defesaFixa_2">{{ tela_personagem.danoFixo_2|intcomma }}</span></div>
+                      <div class="damage" id="resistencia2_container">Resistência: <span id="resistencia_2">{{ tela_personagem.penetracao_2|intcomma }}</span></div>
+                      <div class="damage" id="defesaFixa3_container">Defesa Fixa: <span id="defesaFixa_3">{{ tela_personagem.danoFixo_3|intcomma }}</span></div>
+                      <div class="damage" id="resistencia3_container">Resistência: <span id="resistencia_3">{{ tela_personagem.penetracao_3|intcomma }}</span></div>
+                      <div class="damage" id="defesaFixa4_container">Defesa Fixa: <span id="defesaFixa_4">{{ tela_personagem.danoFixo_2|intcomma }}</span></div>
+                      <div class="damage" id="resistencia4_container">Resistência: <span id="resistencia_4">{{ tela_personagem.penetracao_2|intcomma }}</span></div>
+                      <div class="damage" id="defesaFixa5_container">Defesa Fixa: <span id="defesaFixa_5">{{ tela_personagem.danoFixo_3|intcomma }}</span></div>
+                      <div class="damage" id="resistencia5_container">Resistência: <span id="resistencia_5">{{ tela_personagem.penetracao_3|intcomma }}</span></div>
+                  </div>
+              </div>
+
+            <div class="rolling-bonus-stats bordered-section">
+                <div class="bonus">BÔNUS ROLAGEM</div>
+                <div class="damage" id="rolagem1_container">Rolagem: <span id="rolagem1">{{ tela_personagem.rolagem1 }}</span></div>
+                <div class="damage" id="rolagem2_container">Rolagem: <span id="rolagem2">{{ tela_personagem.rolagem2 }}</span></div>
+                <div class="damage" id="rolagem3_container">Rolagem: <span id="rolagem3">{{ tela_personagem.rolagem3 }}</span></div>
+                <div class="damage" id="rolagem4_container">Rolagem: <span id="rolagem4">{{ tela_personagem.rolagem4 }}</span></div>
+                <div class="damage" id="rolagem5_container">Rolagem: <span id="rolagem5">{{ tela_personagem.rolagem5 }}</span></div>
+                <div class="damage" id="rolagem6_container">Rolagem: <span id="rolagem6">{{ tela_personagem.rolagem6 }}</span></div>
+                <div class="damage" id="rolagem7_container">Rolagem: <span id="rolagem7">{{ tela_personagem.rolagem7 }}</span></div>
+                <div class="damage" id="rolagem8_container">Rolagem: <span id="rolagem8">{{ tela_personagem.rolagem8 }}</span></div>
+                <div class="damage" id="rolagem9_container">Rolagem: <span id="rolagem9">{{ tela_personagem.rolagem9 }}</span></div>
+                <div class="damage" id="rolagem10_container">Rolagem: <span id="rolagem10">{{ tela_personagem.rolagem10 }}</span></div>
+                <div class="damage" id="rolagem11_container">Rolagem: <span id="rolagem11">{{ tela_personagem.rolagem11 }}</span></div>
+                <div class="damage" id="rolagem12_container">Rolagem: <span id="rolagem12">{{ tela_personagem.rolagem12 }}</span></div>
+                <div class="damage" id="rolagem13_container">Rolagem: <span id="rolagem13">{{ tela_personagem.rolagem13 }}</span></div>
+                <div class="damage" id="rolagem14_container">Rolagem: <span id="rolagem14">{{ tela_personagem.rolagem14 }}</span></div>
+                <div class="damage" id="rolagem15_container">Rolagem: <span id="rolagem15">{{ tela_personagem.rolagem15 }}</span></div>
+                <div class="damage" id="rolagem16_container">Rolagem: <span id="rolagem16">{{ tela_personagem.rolagem16 }}</span></div>
+                <div class="damage" id="rolagem17_container">Rolagem: <span id="rolagem17">{{ tela_personagem.rolagem17 }}</span></div>
+                <div class="damage" id="rolagem18_container">Rolagem: <span id="rolagem18">{{ tela_personagem.rolagem18 }}</span></div>
+                <div class="damage" id="rolagem19_container">Rolagem: <span id="rolagem19">{{ tela_personagem.rolagem19 }}</span></div>
+                <div class="damage" id="rolagem20_container">Rolagem: <span id="rolagem20">{{ tela_personagem.rolagem20 }}</span></div>
+                <div class="damage" id="rolagem21_container">Rolagem: <span id="rolagem21">{{ tela_personagem.rolagem21 }}</span></div>
+                <div class="damage" id="rolagem22_container">Rolagem: <span id="rolagem22">{{ tela_personagem.rolagem22 }}</span></div>
+                <div class="damage" id="rolagem23_container">Rolagem: <span id="rolagem23">{{ tela_personagem.rolagem23 }}</span></div>
+                <div class="damage" id="rolagem24_container">Rolagem: <span id="rolagem24">{{ tela_personagem.rolagem24 }}</span></div>
+                <div class="damage" id="rolagem25_container">Rolagem: <span id="rolagem25">{{ tela_personagem.rolagem25 }}</span></div>
+            </div>
+
+            <div class="other-info-stats bordered-section">
+                <div class="amplifications">
+                    <div class="amp">AMPLIFICAÇÕES</div>
+                    <div class="damage" id="amplificacao1_container">Amplificação: <span id="amplificacao1">{{ tela_personagem.amplificacao1 }}</span></div>
+                    <div class="damage" id="amplificacao2_container">Amplificação: <span id="amplificacao2">{{ tela_personagem.amplificacao2 }}</span></div>
+                    <div class="damage" id="amplificacao3_container">Amplificação: <span id="amplificacao3">{{ tela_personagem.amplificacao3 }}</span></div>
+                    <div class="damage" id="amplificacao4_container">Amplificação: <span id="amplificacao4">{{ tela_personagem.amplificacao4 }}</span></div>
+                    <div class="damage" id="amplificacao5_container">Amplificação: <span id="amplificacao5">{{ tela_personagem.amplificacao5 }}</span></div>
+                    <div class="damage" id="amplificacao6_container">Amplificação: <span id="amplificacao6">{{ tela_personagem.amplificacao6 }}</span></div>
+                    <div class="damage" id="amplificacao7_container">Amplificação: <span id="amplificacao7">{{ tela_personagem.amplificacao7 }}</span></div>
+                    <div class="damage" id="amplificacao8_container">Amplificação: <span id="amplificacao8">{{ tela_personagem.amplificacao8 }}</span></div>
+                    <div class="damage" id="amplificacao9_container">Amplificação: <span id="amplificacao9">{{ tela_personagem.amplificacao9 }}</span></div>
+                    <div class="damage" id="amplificacao10_container">Amplificação: <span id="amplificacao10">{{ tela_personagem.amplificacao10 }}</span></div>
+                    <div class="damage" id="amplificacao11_container">Amplificação: <span id="amplificacao11">{{ tela_personagem.amplificacao11 }}</span></div>
+                    <div class="damage" id="amplificacao12_container">Amplificação: <span id="amplificacao12">{{ tela_personagem.amplificacao12 }}</span></div>
+                    <div class="damage" id="amplificacao13_container">Amplificação: <span id="amplificacao13">{{ tela_personagem.amplificacao13 }}</span></div>
+                    <div class="damage" id="amplificacao14_container">Amplificação: <span id="amplificacao14">{{ tela_personagem.amplificacao14 }}</span></div>
+                    <div class="damage" id="amplificacao15_container">Amplificação: <span id="amplificacao15">{{ tela_personagem.amplificacao15 }}</span></div>
+                </div>
+            </div>
+
+            </div>
+
+            <div class="character-abilities bordered-section">
+                <div class="abilities">
+                    Cadastrar ou Atualizar os Habilidades do Personagem
+                </div>
+            </div>
+
+            <div class="character-equipment bordered-section">
+                <div class="equipment">
+                    <div title="Consegue criar e/ou manipular a energia maldita no ambiente, podendo criar, imbuir, atacar, ou se defender com a energia. A energia criada ou manipulada recebe a du-reza baseada em 350% Determinação.
+                    Pode ser usada como uma reação.
+                    " id="forca_container">Manipulação da Energia Maldita</div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <a href="{% url 'cadastro' %}"><button class="button" role="button">Cadastro</button></a>
+            <a href="{% url 'base_personagem' %}"><button class="button" role="button">Base</button></a>
+            <a href="{% url 'conjunto' %}" class="buttonLink"><button class="button" role="button">Conjunto</button></a>
+            <a href="{% url 'acessorios' %}"><button class="button" role="button">Acessorios</button></a>
+            <a href="{% url 'arma' %}"><button class="button" role="button">Armas</button></a>
+        </div>
+    </div>
+    {% endlocalize %}    
+    <script src="{% static 'tela_personagem\script.js' %}"></script>
+</body>
+</html>

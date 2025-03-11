@@ -107,7 +107,7 @@ function formatarAtributo(atributo) {
         let bonus = valor / 100;
         bonus = bonus.toFixed(2);
         bonus = Math.trunc(bonus); // Remove as casas decimais (arredonda para baixo)
-        bonus = maior*"—"+'+'+bonus; // Adiciona o sinal de mais
+        bonus = "— "+' +'+bonus; // Adiciona o sinal de mais
 
         bonusElement.innerText = bonus; // Exibe o bônus
     }
