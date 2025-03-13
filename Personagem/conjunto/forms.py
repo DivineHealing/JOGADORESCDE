@@ -1,5 +1,5 @@
 from django import forms
-
+from .models import Conjunto
 # AQUI VAI CRIAR OS INPUTS DENTRO DO HTML
 
 class ConjuntoForm(forms.Form):
@@ -16,3 +16,11 @@ class ConjuntoForm(forms.Form):
         for i in range(1, 7):
             self.fields["numero"+str(i)].widget.attrs.update({'value': 0, 'id': 'numero'+str(i)}) # Adiciona oninput ao campo numero1
             
+class EquipamentoForm(forms.ModelForm):
+    class Meta:
+        model = Conjunto
+        fields = ['nome', 'forca', 'destreza', 'inteligencia']  # Adicione os campos do seu modelo
+
+    widgets = {
+        'tipo': forms.HiddenInput(), #Oculta o campo, pois já será preenchido
+    }

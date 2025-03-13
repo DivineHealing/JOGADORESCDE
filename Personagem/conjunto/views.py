@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from .forms import ConjuntoForm 
+from django.shortcuts import redirect, render
+from .forms import ConjuntoForm, EquipamentoForm
 from lib.utilitarios import *
 
 def conjunto(request):
@@ -16,4 +16,23 @@ def conjunto(request):
                     resultado += numero
     else:
         form = ConjuntoForm()
+
+    
     return render(request, 'conjunto.html', {'form': form, 'resultado': resultado})
+
+def cadastrar_equipamento(request, tipo):
+    if request.method == 'POST':
+        form = EquipamentoForm(request.POST)
+        if form.is_valid():
+            equipamento = form.save(commit=False)
+            equipamento.tipo = tipo  # Define o tipo com base na URL
+            equipamento.save()
+            return redirect('lista_equipamentos')  # Redireciona para a lista (você ainda vai criar)
+    else:
+        form = EquipamentoForm(initial={'tipo': tipo})  # Pré-preenche o tipo
+
+    return render(request, 'cadastrar_equipamento.html', {'form': form, 'tipo': tipo})
+
+def lista_equipamentos(request):
+    equipamentos = Equipamento.objects.all()  # Busca todos
+    return render(request, 'lista_equipamentos.html', {'equipamentos': equipamentos})

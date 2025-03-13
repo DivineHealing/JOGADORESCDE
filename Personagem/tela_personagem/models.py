@@ -79,6 +79,22 @@ class Tela_personagem(models.Model):
     amplificacao14 = models.IntegerField(default=0)
     amplificacao15 = models.IntegerField(default=0)
     amplificacao15 = models.IntegerField(default=0)
+
+    outros1 = models.IntegerField(default=0)
+    outros2 = models.IntegerField(default=0)
+    outros3 = models.IntegerField(default=0)
+    outros4 = models.IntegerField(default=0)
+    outros5 = models.IntegerField(default=0)
+    outros6 = models.IntegerField(default=0)
+    outros7 = models.IntegerField(default=0)
+    outros8 = models.IntegerField(default=0)
+    outros9 = models.IntegerField(default=0)
+    outros10 = models.IntegerField(default=0)
+    outros11 = models.IntegerField(default=0)
+    outros12 = models.IntegerField(default=0)
+    outros13 = models.IntegerField(default=0)
+    outros14 = models.IntegerField(default=0)
+    outros15 = models.IntegerField(default=0)
     
     def __str__(self):
         return self.nome
@@ -145,7 +161,22 @@ class Elementos_personagem(models.Model):
     amplificacao13 = models.CharField(max_length=25, blank=True, default="")
     amplificacao14 = models.CharField(max_length=25, blank=True, default="")
     amplificacao15 = models.CharField(max_length=25, blank=True, default="")
-    amplificacao15 = models.CharField(max_length=25, blank=True, default="")
+
+    outros1 = models.CharField(max_length=25, blank=True, default="")
+    outros2 = models.CharField(max_length=25, blank=True, default="")
+    outros3 = models.CharField(max_length=25, blank=True, default="")
+    outros4 = models.CharField(max_length=25, blank=True, default="")
+    outros5 = models.CharField(max_length=25, blank=True, default="")
+    outros6 = models.CharField(max_length=25, blank=True, default="")
+    outros7 = models.CharField(max_length=25, blank=True, default="")
+    outros8 = models.CharField(max_length=25, blank=True, default="")
+    outros9 = models.CharField(max_length=25, blank=True, default="")
+    outros10 = models.CharField(max_length=25, blank=True, default="")
+    outros11 = models.CharField(max_length=25, blank=True, default="")
+    outros12 = models.CharField(max_length=25, blank=True, default="")
+    outros13 = models.CharField(max_length=25, blank=True, default="")
+    outros14 = models.CharField(max_length=25, blank=True, default="")
+    outros15 = models.CharField(max_length=25, blank=True, default="")
     
     def __str__(self):
         return self.nome

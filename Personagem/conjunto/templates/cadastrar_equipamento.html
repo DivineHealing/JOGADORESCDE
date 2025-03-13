@@ -1,0 +1,11 @@
+<!-- cadastro_equipamento.html -->
+
+{% block content %}
+    <h1>Cadastrar Equipamento ({{ tipo }})</h1>
+
+    <form method="post">
+        {% csrf_token %}  <!-- Proteção contra CSRF (obrigatório) -->
+        {{ form.as_p }}
+        <button type="submit">Salvar</button>
+    </form>
+{% endblock %}

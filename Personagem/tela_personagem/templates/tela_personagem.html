@@ -41,36 +41,42 @@
                         <span id="forcaBuffed" class="buffed-value hidden"></span>
                         <button class="buff-button" data-field="forca">BUFF</button>
                         <input type="number" class="buff-input hidden" id="forcaBuffInput">
+                        <input type="number" class="buff-input hidden" id="forcaFixBuffInput">
                         <span id="forcaBonus"></span>
                     </div>
                     <div class="stat" title="Destreza" id="destreza_container">DES <span id="destreza">{{ tela_personagem.destreza|intcomma }}</span>
                         <span id="destrezaBuffed" class="buffed-value hidden"></span>
                         <button class="buff-button" data-field="destreza">BUFF</button>
-                        <input type="number" class="buff-input hidden" id="destrezaBuffInput">
+                        <input title='Buff %' type="number" class="buff-input hidden" id="destrezaBuffInput">
+                        <input title='Buff Fixo' type="number" class="buff-input hidden" id="destrezaFixBuffInput">
                         <span id="destrezaBonus"></span>
                     </div>
                     <div class="stat" title="Inteligência" id="inteligencia_container">INT <span id="inteligencia">{{ tela_personagem.inteligencia|intcomma }}</span>
                         <span id="inteligenciaBuffed" class="buffed-value hidden"></span>
                         <button class="buff-button" data-field="inteligencia">BUFF</button>
                         <input type="number" class="buff-input hidden" id="inteligenciaBuffInput">
+                        <input type="number" class="buff-input hidden" id="inteligenciaFixBuffInput">
                         <span id="inteligenciaBonus"></span>
                     </div>
                     <div class="stat" title="Determinação" id="determinacao_container">DET <span id="determinacao">{{ tela_personagem.determinacao|intcomma }}</span>
                         <span id="determinacaoBuffed" class="buffed-value hidden"></span>
                         <button class="buff-button" data-field="determinacao">BUFF</button>
                         <input type="number" class="buff-input hidden" id="determinacaoBuffInput">
+                        <input type="number" class="buff-input hidden" id="determinacaoFixBuffInput">
                         <span id="determinacaoBonus"></span>
                     </div>
                     <div class="stat" title="Perspicácia" id="perspicacia_container">PER <span id="perspicacia">{{ tela_personagem.perspicacia|intcomma }}</span>
                         <span id="perspicaciaBuffed" class="buffed-value hidden"></span>
                         <button class="buff-button" data-field="perspicacia">BUFF</button>
                         <input type="number" class="buff-input hidden" id="perspicaciaBuffInput">
+                        <input type="number" class="buff-input hidden" id="perspicaciaFixBuffInput">
                         <span id="perspicaciaBonus"></span>
                     </div>
                     <div class="stat" title="Carisma" id="carisma_container">CAR <span id="carisma">{{ tela_personagem.carisma|intcomma }}</span>
                         <span id="carismaBuffed" class="buffed-value hidden"></span>
                         <button class="buff-button" data-field="carisma">BUFF</button>
                         <input type="number" class="buff-input hidden" id="carismaBuffInput">
+                        <input type="number" class="buff-input hidden" id="carismaFixBuffInput">
                         <span id="carismaBonus"></span>
                     </div>
                 </div>
@@ -152,6 +158,25 @@
                         <div class="amp" id="amplificacao13_container">{{ elementos_personagem.amplificacao13 }} <span id="amplificacao13">{{ tela_personagem.amplificacao13 }}</span>%</div>
                         <div class="amp" id="amplificacao14_container">{{ elementos_personagem.amplificacao14 }} <span id="amplificacao14">{{ tela_personagem.amplificacao14 }}</span>%</div>
                         <div class="amp" id="amplificacao15_container">{{ elementos_personagem.amplificacao15 }} <span id="amplificacao15">{{ tela_personagem.amplificacao15 }}</span>%</div>
+                    </div>
+                    <br>
+                    <div class="others">
+                        <div class="atr-title">OUTROS</div>
+                        <div class="other" id="outros1_container">{{ elementos_personagem.outros1 }} <span id="outros1">{{ tela_personagem.outros1 }}</span>%</div>
+                        <div class="other" id="outros2_container">{{ elementos_personagem.outros2 }} <span id="outros2">{{ tela_personagem.outros2 }}</span>%</div>
+                        <div class="other" id="outros3_container">{{ elementos_personagem.outros3 }} <span id="outros3">{{ tela_personagem.outros3 }}</span>%</div>
+                        <div class="other" id="outros4_container">{{ elementos_personagem.outros4 }} <span id="outros4">{{ tela_personagem.outros4 }}</span>%</div>
+                        <div class="other" id="outros5_container">{{ elementos_personagem.outros5 }} <span id="outros5">{{ tela_personagem.outros5 }}</span>%</div>
+                        <div class="other" id="outros6_container">{{ elementos_personagem.outros6 }} <span id="outros6">{{ tela_personagem.outros6 }}</span>%</div>
+                        <div class="other" id="outros7_container">{{ elementos_personagem.outros7 }} <span id="outros7">{{ tela_personagem.outros7 }}</span>%</div>
+                        <div class="other" id="outros8_container">{{ elementos_personagem.outros8 }} <span id="outros8">{{ tela_personagem.outros8 }}</span>%</div>
+                        <div class="other" id="outros9_container">{{ elementos_personagem.outros9 }} <span id="outros9">{{ tela_personagem.outros9 }}</span>%</div>
+                        <div class="other" id="outros10_container">{{ elementos_personagem.outros10 }} <span id="outros10">{{ tela_personagem.outros10 }}</span>%</div>
+                        <div class="other" id="outros11_container">{{ elementos_personagem.outros11 }} <span id="outros11">{{ tela_personagem.outros11 }}</span>%</div>
+                        <div class="other" id="outros12_container">{{ elementos_personagem.outros12 }} <span id="outros12">{{ tela_personagem.outros12 }}</span>%</div>
+                        <div class="other" id="outros13_container">{{ elementos_personagem.outros13 }} <span id="outros13">{{ tela_personagem.outros13 }}</span>%</div>
+                        <div class="other" id="outros14_container">{{ elementos_personagem.outros14 }} <span id="outros14">{{ tela_personagem.outros14 }}</span>%</div>
+                        <div class="other" id="outros15_container">{{ elementos_personagem.outros15 }} <span id="outros15">{{ tela_personagem.outros15 }}</span>%</div>
                     </div>
                     <br>
                     <div class="regeneration">

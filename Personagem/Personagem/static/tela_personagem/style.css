@@ -199,12 +199,18 @@ select:after {
 .roll {
   color: rgb(255, 255, 255);
 }
+.other {
+  color: rgb(255, 255, 255);
+}
 
 .atr-title {
   font-size: large;
   font-weight: bold;
   color: silver;
-  text-shadow: 5px 3px 5px #6b6b6b;
+  text-shadow:
+    1px 1px 2px black,
+    0 0 1em blue,
+    0 0 0.2em blue;
 }
 
 .damage-stats, .defense-stats {
