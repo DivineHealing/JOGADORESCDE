@@ -7,9 +7,7 @@ def conjunto(request):
 
     if request.method == 'POST':
         form = ConjuntoForm(request.POST)
-        print(lvlup(191275200))
         if form.is_valid():
-            pegar_atributos('Aryah Astaris', 'forca')
             for i in range(1, 7):  # Itera de 1 a 6 (incluindo 6)
                 numero = form.cleaned_data.get(f'numero{i}', 0)  # Obtém o valor do campo
                 if numero is not None:  # Verifica se o valor é válido
