@@ -1,4 +1,36 @@
-def lvlup(xp):
+def lvlup(xp: int):
+    """
+    Calcula o nível de um personagem com base na experiência acumulada (XP).
+
+    O sistema de progressão funciona de forma escalonada, aumentando a quantidade 
+    de XP necessária para cada nível de acordo com faixas de níveis predefinidas.
+
+    Parâmetros:
+    -----------
+    xp : int
+        A quantidade de experiência atual do personagem.
+
+    Retorno:
+    --------
+    int
+        O nível do personagem com base no XP fornecido.
+
+    Funcionamento:
+    --------------
+    - Começa no nível 1.
+    - Define a quantidade de XP necessária para o próximo nível com base em faixas predefinidas.
+    - Continua aumentando o nível enquanto houver XP suficiente para subir.
+    - Para no nível 100, que é o limite máximo.
+
+    Exemplo de Progressão:
+    ----------------------
+    - Nível 1 → 100 XP
+    - Nível 2 → 150 XP (total: 250 XP)
+    - Nível 3 → 200 XP (total: 450 XP)
+    - ...
+    - Nível 100 → Máximo atingido.
+
+    """
     lvl = 1  # lvl atual
     passo = 0  # quanto ele tem que ajustar para ir ao proximo level
     antecessor = 0  # xp necessario para chegar nesse lvl
