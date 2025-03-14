@@ -211,7 +211,7 @@
         <div>
             <a href="{% url 'cadastro' %}"><button class="button" role="button">Cadastro</button></a>
             <a href="{% url 'base_personagem' %}"><button class="button" role="button">Base</button></a>
-            <a href="{% url 'conjunto' %}" class="buttonLink"><button class="button" role="button">Conjunto</button></a>
+            <a href="{% url 'criar_peca_armadura' personagem_id=personagem.pk %}">Criar Equipamento</a>
             <a href="{% url 'acessorios' %}"><button class="button" role="button">Acessorios</button></a>
             <a href="{% url 'arma' %}"><button class="button" role="button">Armas</button></a>
         </div>

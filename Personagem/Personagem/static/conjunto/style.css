@@ -1,79 +1,42 @@
-/* estilo.css */
+/* ... seus estilos anteriores ... */
 
 body {
-    font-family: sans-serif; /* Fonte padrão */
-    background-color: #000000; /* Cor de fundo leve */
-    margin: 0; /* Remove margens padrão do body */
-    padding: 0; /* Remove paddings padrão do body */
-    display: flex;         /* Flexbox para centralizar facilmente */
-    flex-direction: column; /* Empilha os filhos verticalmente */
-    align-items: center;   /* Centraliza horizontalmente */
-    min-height: 100vh;     /* Garante que o body ocupe pelo menos a altura da tela */
+    background-color: black;
+}
+#form-oculto{
+    display: none;
 }
 
-h1 {
-    color: #333; /* Cor do título */
-    margin-bottom: 20px; /* Espaço abaixo do título */
+.image-map-container {
+    position: relative; /* Para posicionar as áreas clicáveis */
+    display: inline-block; /* Para o container se ajustar ao tamanho da imagem */
 }
 
-.container {
-    position: relative; /* Importante para o mapa de imagem */
-    width: auto;       /* Largura automática, baseada na imagem */
-    max-width: 100%;  /* Garante responsividade */
-    display: inline-block; /* Para centralizar o container corretamente */
+#baseImage {
+    display: block;  /* Remove espaçamento extra abaixo da imagem */
+    max-width: 100%; /* Garante que a imagem seja responsiva */
+    height: auto;
 }
 
-.container img {
-    display: block; /* Remove espaço extra abaixo da imagem */
-    max-width: 100%;  /* A imagem se ajusta à largura do contêiner */
-    height: auto;     /* Mantém a proporção da imagem */
-}
-
-/* Estilos para o formulário (opcional, ajuste conforme seu template) */
-form {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 80%;
-    max-width: 500px; /* Largura máxima do formulário */
-    margin-top: 20px; /* Espaço acima do formulário */
-}
-form p{
-    margin-bottom: 15px;
-}
-
-form label {
-    display: block; /* Labels acima dos campos */
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-form input[type="text"],
-form input[type="number"],
-form textarea {
-    width: 100%; /* Ocupa toda a largura disponível */
-    padding: 8px;
-    border: 1px solid #ccc;
+.peca-form {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
     border-radius: 4px;
-    box-sizing: border-box; /* Inclui padding e border na largura total */
 }
 
-form button[type="submit"] {
-    background-color: #4CAF50; /* Cor de fundo do botão */
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
+.peca-form.hidden {
+    display: none;
+}
+
+.peca-form h3{
+    text-align: center;
+}
+
+/* Estilo para destacar a área clicada (opcional) */
+area.active { /*Precisa do javascript*/
+    outline: 2px solid blue; /* Ou qualquer outro estilo de destaque */
+}
+.map-link{
     cursor: pointer;
-}
-
-form button[type="submit"]:hover {
-    background-color: #45a049; /* Cor ao passar o mouse */
-}
-
-/* Estilos para a seção de inventário, se você tiver uma */
-#inventario {
-    margin-top: 30px; /* Espaço entre a imagem e o inventário */
-    /* Adicione estilos para a tabela/lista de equipamentos aqui */
 }

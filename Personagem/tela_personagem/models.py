@@ -2,6 +2,7 @@
 from django.db import models
 
 class Tela_personagem(models.Model):
+    # Atributos
     nome = models.CharField(max_length=30, default="")  # Valor padrão para começar
     vida = models.IntegerField(default=100)
     regenVida = models.IntegerField(default=0)
@@ -10,6 +11,7 @@ class Tela_personagem(models.Model):
     vigor = models.IntegerField(default=100)
     regenVigor = models.IntegerField(default=0)
 
+    # Status
     forca = models.IntegerField(default=0)
     destreza = models.IntegerField(default=0)
     inteligencia = models.IntegerField(default=0)
@@ -17,6 +19,7 @@ class Tela_personagem(models.Model):
     perspicacia = models.IntegerField(default=0)
     carisma = models.IntegerField(default=0)
 
+    # Danos
     danoFixo_1 = models.IntegerField(default=0)
     penetracao_1 = models.IntegerField(default=0)
     danoFixo_2 = models.IntegerField(default=0)
@@ -24,7 +27,10 @@ class Tela_personagem(models.Model):
     danoFixo_3 = models.IntegerField(default=0)
     penetracao_3 = models.IntegerField(default=0)
     danoFinal = models.IntegerField(default=0)
-    
+    penetracao_extra = models.IntegerField(default=0)
+    dano_espiritual = models.IntegerField(default=0)
+
+    # Defesas
     defesaFixa_1 = models.IntegerField(default=0)
     resistencia_1 = models.IntegerField(default=0)
     defesaFixa_2 = models.IntegerField(default=0)
@@ -35,7 +41,10 @@ class Tela_personagem(models.Model):
     resistencia_4 = models.IntegerField(default=0)
     defesaFixa_5 = models.IntegerField(default=0)
     resistencia_5 = models.IntegerField(default=0)
-    
+    reducao = models.IntegerField(default=0)
+    reducao_espiritual = models.IntegerField(default=0)
+
+    # Rolagem
     rolagem1 = models.IntegerField(default=0) 
     rolagem2 = models.IntegerField(default=0) 
     rolagem3 = models.IntegerField(default=0) 
@@ -63,6 +72,7 @@ class Tela_personagem(models.Model):
     rolagem24 = models.IntegerField(default=0)    
     rolagem25 = models.IntegerField(default=0)   
     
+    # Amplificação
     amplificacao1 = models.IntegerField(default=0)
     amplificacao2 = models.IntegerField(default=0)
     amplificacao3 = models.IntegerField(default=0)
@@ -80,6 +90,7 @@ class Tela_personagem(models.Model):
     amplificacao15 = models.IntegerField(default=0)
     amplificacao15 = models.IntegerField(default=0)
 
+    # Demais efeitos não listados
     outros1 = models.IntegerField(default=0)
     outros2 = models.IntegerField(default=0)
     outros3 = models.IntegerField(default=0)
