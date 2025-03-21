@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HUD do Personagem</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'conjunto/style.css' %}">
+</head>
+<body>
+    {% load l10n %}
+    {% load humanize %}
+    {% localize on %}
+    <div class="background-container">
+
+        <div class="header">
+            <div class="name" style="color: white;">Nome do Personagem:
+              <select class='personagem_select' id="personagem_select" onchange="selecionarPersonagem()">
+                {% for personagem in personagens %}
+                    <option value="{{ personagem.id }}" {% if personagem.id == tela_personagem.id %}selected{% endif %}>
+                        {{ personagem.nome }}
+                    </option>
+                  {% endfor %}
+              </select>
+            </div>
+        </div>
+
+        <div class="top-section">
+            <div class="vida-mana-vigor bordered-section">
+                <div class="formGroup field">
+                    <input pattern="[0-9]+$" type="number" placeholder="Valor da Vida" id='vida' required />
+                    <label for="vida" class="formLabel">Vida</label>
+                  </div>
+            </div>
+        </div>
+
+        <div class="middle-section">
+            <div class="left-column">
+                <div class="attribute-stats bordered-section">
+                    <div class="stat section-title">STATUS</div>
+                    <div class="formGroup field">
+                        <input pattern="[0-9]+$" type="number" placeholder="Valor da Força" id='forca' required />
+                        <label for="forca" class="formLabel">Força</label>
+                    </div>
+                    <div class="formGroup field">
+                        <input pattern="[0-9]+$" type="number" placeholder="Valor da Destreza" id='destreza' required />
+                        <label for="destreza" class="formLabel">Destreza</label>
+                    </div>
+                    <div class="formGroup field">
+                        <input pattern="[0-9]+$" type="number" placeholder="Valor da Inteligência" id='inteligencia' required />
+                        <label for="inteligencia" class="formLabel">Inteligência</label>
+                    </div>
+                    <div class="formGroup field">
+                        <input pattern="[0-9]+$" type="number" placeholder="Valor da Determinação" id='determinacao' required />
+                        <label for="determinacao" class="formLabel">Determinação</label>
+                    </div>
+                    <div class="formGroup field">
+                        <input pattern="[0-9]+$" type="number" placeholder="Valor da Perspicácia" id='perspicacia' required />
+                        <label for="perspicacia" class="formLabel">Perspicácia</label>
+                    </div>
+                    <div class="formGroup field">
+                        <input pattern="[0-9]+$" type="number" placeholder="Valor da Carisma" id='carisma' required />
+                        <label for="carisma" class="formLabel">Carisma</label>
+                    </div>
+                </div>
+                <div class="rolling-bonus-stats bordered-section">
+                    <div class="bonus section-title">BÔNUS DE ROLAGEM</div>
+                        <button class="add-atributo-btn" id="addRolagem">Add</button>
+                        <div class="atributos-added-container" id="rolagemContainer">
+                            <!-- Atributos serão adicionados aqui dinamicamente -->
+                    </div>
+                    
+                </div>
+            </div>                
+
+            <div class="right-column">
+                <div class="character-abilities bordered-section">
+                    <div class="abilities section-title">ATRIBUTOS DEFENSIVOS</div>
+                    <button class="add-atributo-btn" id="addAtributo">Add</button>
+                    <div class="atributos-added-container" id="atributosContainer">
+                        <!-- Atributos serão adicionados aqui dinamicamente -->
+                    </div>
+                        
+                    <div class="formGroup field">
+                        <input pattern="[0-9]+$" type="number" placeholder="Redução de Dano" id='reducao' />
+                        <label for="reducao" class="formLabel">Redução</label>
+                    </div>
+                    <div class="formGroupRed field">
+                        <input pattern="[0-9]+$" type="number" placeholder="Defesa Espiritual" id='defEspiritual' />
+                        <input pattern="[0-9]+$" type="number" placeholder="Redução Espiritual" id='redEspiritual' />
+                        <label for="defEspiritual" class="formLabel">Espiritual</label>
+                    </div>
+                </div>
+
+                <div class="character-equipment bordered-section">
+                    <div class="equipment section-title">AMPLIFICAÇÕES</div>
+                    <button class="add-atributo-btn" id="addAmplificacao">Add</button>
+                    <div class="atributos-added-container" id="amplificacaoContainer">
+                        <!-- Atributos serão adicionados aqui dinamicamente -->
+                    </div>
+                    
+                    <div class="equipment section-title">REGENERAÇÃO</div>
+                    <button class="add-atributo-btn" id="addRegeneracao">Add</button>
+                    <div class="atributos-added-container" id="regeneracaoContainer">
+                        <!-- Atributos serão adicionados aqui dinamicamente -->
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div>
+            <a href="{% url 'cadastro' %}"><button class="button" role="button">Cadastrar</button></a>
+            <a href="{% url 'base_personagem' %}"><button class="button" role="button">Atualizar</button></a>
+            <a href="{% url 'conjunto' %}" class="buttonLink"><button class="button" role="button">Voltar</button></a>
+        </div>
+    </div>
+    {% endlocalize %}
+    <script src="{% static 'Conjunto\script.js' %}"></script>
+</body>
+</html>

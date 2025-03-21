@@ -1,78 +1,46 @@
-# Import dos utilitarios
+from django.shortcuts import redirect, render
+from .forms import ConjuntoForm, EquipamentoForm
 from lib.utilitarios import *
-# 
-from rest_framework import viewsets, status
-from rest_framework.response import Response
-from rest_framework.decorators import action
-from .models import Personagem, ConjuntoArmadura, Elmo, Peitoral, Manoplas, Calcas, Botas
-from .serializers import PersonagemSerializer, ConjuntoArmaduraSerializer, ElmoSerializer # ... e os outros
 
-#def conjunto(request):
-#    resultado = 0  # Inicializa a variável resultado
-#
-#    if request.method == 'POST':
-#        form = ConjuntoForm(request.POST)
-#        print(lvlup(191275200))
-#        if form.is_valid():
-#            pegar_atributos('Aryah Astaris', 'forca')
-#            for i in range(1, 7):  # Itera de 1 a 6 (incluindo 6)
-#                numero = form.cleaned_data.get(f'numero{i}', 0)  # Obtém o valor do campo
-#                if numero is not None:  # Verifica se o valor é válido
-#                    resultado += numero
-#    else:
-#        form = ConjuntoForm()
-#
-#    
-#    return render(request, 'conjunto.html', {'form': form, 'resultado': resultado})
+def conjunto(request):
+    resultado = 0  # Inicializa a variável resultado
 
-class PersonagemViewSet(viewsets.ModelViewSet):
-    queryset = Personagem.objects.all()
-    serializer_class = PersonagemSerializer
+    if request.method == 'POST':
+        form = ConjuntoForm(request.POST)
+        if form.is_valid():
+            for i in range(1, 7):  # Itera de 1 a 6 (incluindo 6)
+                numero = form.cleaned_data.get(f'numero{i}', 0)  # Obtém o valor do campo
+                if numero is not None:  # Verifica se o valor é válido
+                    resultado += numero
+    else:
+        form = ConjuntoForm()
 
-class ConjuntoArmaduraViewSet(viewsets.ModelViewSet):
-    serializer_class = ConjuntoArmaduraSerializer
+    
+    return render(request, 'conjunto.html', {'form': form, 'resultado': resultado})
 
-    def get_queryset(self):
-        personagem_id = self.kwargs['personagem_pk']
-        return ConjuntoArmadura.objects.filter(personagem_id=personagem_id)
+def cadastrar_equipamento(request, tipo):
+    if request.method == 'POST':
+        form = EquipamentoForm(request.POST)
+        if form.is_valid():
+            equipamento = form.save(commit=False)
+            equipamento.tipo = tipo  # Define o tipo com base na URL
+            equipamento.save()
+            return redirect('cadastrar_atributos')  # Redireciona para a lista (você ainda vai criar)
+    else:
+        form = EquipamentoForm(initial={'tipo': tipo})  # Pré-preenche o tipo
 
-    def perform_create(self, serializer):
-        personagem_id = self.kwargs['personagem_pk']
-        personagem = Personagem.objects.get(pk=personagem_id)
-        serializer.save(personagem=personagem)
+    return render(request, 'cadastrar_atributos.html', {'form': form, 'tipo': tipo})
 
-class PecaArmaduraViewSet(viewsets.ModelViewSet):
-    # serializer_class e queryset são definidos dinamicamente
 
-    def get_queryset(self):
-        conjunto_id = self.kwargs['conjunto_pk']
-        tipo = self.kwargs['tipo']
+def cadastrar_efeitos(request, tipo):
+    if request.method == 'POST':
+        form = EquipamentoForm(request.POST)
+        if form.is_valid():
+            equipamento = form.save(commit=False)
+            equipamento.tipo = tipo  # Define o tipo com base na URL
+            equipamento.save()
+            return redirect('cadastrar_efeitos')  # Redireciona para a lista (você ainda vai criar)
+    else:
+        form = EquipamentoForm(initial={'tipo': tipo})  # Pré-preenche o tipo
 
-        model_class = {
-            'elmo': Elmo,
-            'peitoral': Peitoral,
-            'manoplas': Manoplas,
-            'calcas': Calcas,
-            'botas': Botas,
-            'conjuntoEquip': ConjuntoEquip,
-        }[tipo]
-
-        return model_class.objects.filter(conjunto_id=conjunto_id)
-
-    def get_serializer_class(self):
-        tipo = self.kwargs['tipo']
-        serializer_map = {
-            'elmo': ElmoSerializer,
-            'peitoral': PeitoralSerializer,
-            'manoplas': ManoplasSerializer,
-            'calcas': CalcasSerializer,
-            'botas': BotasSerializer,
-             'conjuntoEquip': ConjuntoEquipSerializer,
-        }
-        return serializer_map[tipo]
-
-    def perform_create(self, serializer):
-        conjunto_id = self.kwargs['conjunto_pk']
-        conjunto = ConjuntoArmadura.objects.get(pk=conjunto_id)
-        # O tipo *já está* no serializer, porque o usuário o selecionou no formulário
-        serializer.save(conjunto=conjunto)
+    return render(request, 'cadastrar_efeitos.html', {'form': form, 'tipo': tipo})

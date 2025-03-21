@@ -1,187 +1,38 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Criar Peça de Armadura (Imagem)</title>
-    <!-- ... seus estilos ... -->
-</head>
+    <link rel="stylesheet" type="text/css" href="{% static 'conjunto/styleConj.css' %}"> </head>
 <body>
-    <h1>Criar Peça de Armadura</h1>
 
-    <img src="{% static 'conjunto/Conjunto.jpg' %}" alt="Armadura" usemap="#armadura-map">
+    <div class="container">
+        <img src="{% static 'conjunto/Tela de Conjunto copiar.png' %}" alt="Personagem" usemap="#mapa-personagem">
 
-    <map name="armadura-map">
-        <!-- Defina as áreas clicáveis (retângulos) -->
-        <area shape="rect" coords="x1_elmo,y1_elmo,x2_elmo,y2_elmo" href="#" alt="Elmo" data-tipo="elmo">
-        <area shape="rect" coords="x1_peitoral,y1_peitoral,x2_peitoral,y2_peitoral" href="#" alt="Peitoral" data-tipo="peitoral">
-        <area shape="rect" coords="x1_manoplas,y1_manoplas,x2_manoplas,y2_manoplas" href="#" alt="Manoplas" data-tipo="manoplas">
-        <area shape="rect" coords="x1_calcas,y1_calcas,x2_calcas,y2_calcas" href="#" alt="Calças" data-tipo="calcas">
-        <area shape="rect" coords="x1_botas,y1_botas,x2_botas,y2_botas" href="#" alt="Botas" data-tipo="botas">
-    </map>
-<div id="mensagem"></div>
-    <form id="peca-form" style="display: none;">
-      <!--Mesmo form de antes, mas agora escondido-->
-       <label for="conjunto">Conjunto:</label>
-        <select id="conjunto" name="conjunto">
-            <option value="">-- Selecione um Conjunto --</option>
-            <!-- As opções de conjunto serão preenchidas dinamicamente -->
-        </select>
+        <map name="mapa-personagem">
+            <area shape="rect" coords="395,30,702,92" href="{% url 'cadastrar_efeitos' tipo='conjunto' %}" alt="Conjunto">
 
-        <input type="hidden" id="tipo" name="tipo"> <!--Campo escondido-->
+            <area shape="rect" coords="41,185,204,236"  href="{% url 'cadastrar_atributos' tipo='elmo' %}" alt="Elmo">
+            <area shape="rect" coords="214,177,364,235"  href="{% url 'cadastrar_efeitos' tipo='elmo' %}" alt="Elmo">
 
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome">
-         <label for="vida">Vida:</label>
-        <input type="number" id="vida" name="vida" value="0">
+            <area shape="rect" coords="725,282,874,340" href="{% url 'cadastrar_atributos' tipo='peitoral' %}" alt="Peitoral">
+            <area shape="rect" coords="893,283,1043,341" href="{% url 'cadastrar_efeitos' tipo='peitoral' %}" alt="Peitoral">
 
-        <label for="regenVida">Regen Vida:</label>
-        <input type="number" id="regenVida" name="regenVida" value="0">
+            <area shape="rect" coords="43,404,192,462" href="{% url 'cadastrar_atributos' tipo='manoplas' %}" alt="Manoplas">
+            <area shape="rect" coords="213,404,363,462" href="{% url 'cadastrar_efeitos' tipo='manoplas' %}" alt="Manoplas">
 
-        <!-- Adicione os outros campos (mana, regenMana, vigor, etc.) -->
-        <label for="mana">Mana:</label>
-        <input type="number" id="mana" name="mana" value=0>
+            <area shape="rect" coords="725,543,874,601" href="{% url 'cadastrar_atributos' tipo='pernas' %}" alt="Calcas">
+            <area shape="rect" coords="896,544,1046,602" href="{% url 'cadastrar_efeitos' tipo='pernas' %}" alt="Calcas">
 
-        <label for="forca">forca:</label>
-        <input type="number" id="forca" name="forca" value=0>
-
-        <label for="defesaFixa_1"> Defesa Fixa 1:</label>
-        <input type="number" id="defesaFixa_1" name="defesaFixa_1" value=0>
-
-        <label for="elementos_defesaFixa_1">Elementos Defesa Fixa 1:</label>
-        <input type="text" id="elementos_defesaFixa_1" name="elementos_defesaFixa_1">
-        <!--Adicione os outros campos-->
-
-        <button type="submit">Criar Peça</button>
-
-    </form>
-
-    <script>
-      //Função para pegar os conjuntos.
-      document.addEventListener('DOMContentLoaded', function() {
-        const conjuntoSelect = document.getElementById('conjunto');
-        const pecaForm = document.getElementById('peca-form');
-        const mensagemDiv = document.getElementById('mensagem');
-        const tipoInput = document.getElementById('tipo'); //Para o campo tipo
-
-        function carregarConjuntos(personagemId) {
-            //Limpa as opções
-            conjuntoSelect.innerHTML = '<option value="">-- Selecione um Conjunto --</option>';
-
-            fetch(`/conjunto/personagens/${personagemId}/conjuntos/`) // Usa interpolação de string
-                .then(response => response.json())
-                .then(data => {
-                  //Itera e adiciona
-                    data.results.forEach(conjunto => {
-                        const option = document.createElement('option');
-                        option.value = conjunto.id;
-                        option.textContent = conjunto.nome || `Conjunto ${conjunto.id}`; //Usa o nome ou o ID
-                        conjuntoSelect.appendChild(option);
-                    });
-                })
-                .catch(error => {
-                    console.error('Erro ao carregar conjuntos:', error);
-                    mensagemDiv.textContent = 'Erro ao carregar conjuntos.';
-                });
-        }
-
-        // Event listener para o envio do formulário
-        pecaForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-            criarPeca();
-        });
-
-          // Função para obter o token CSRF
-        function getCookie(name) {
-            let cookieValue = null;
-            if (document.cookie && document.cookie !== '') {
-                const cookies = document.cookie.split(';');
-                for (let i = 0; i < cookies.length; i++) {
-                    const cookie = cookies[i].trim();
-                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                        break;
-                    }
-                }
-            }
-            return cookieValue;
-        }
-
-        function criarPeca() {
-          const conjuntoId = document.getElementById('conjunto').value;
-          const tipo = document.getElementById('tipo').value; //Pega o valor do campo escondido
-          const nome = document.getElementById('nome').value;
-          const vida = document.getElementById('vida').value;
-          // Obtenha os valores dos outros campos do formulário
-
-          if (!conjuntoId || !tipo) {
-              mensagemDiv.textContent = 'Selecione um conjunto e um tipo.';
-              return;
-          }
-          //Monta o corpo
-          const data = {
-              nome: nome,
-              vida: parseInt(vida) || 0, // Converte para inteiro, padrão 0
-              // Adicione os outros campos, convertendo para inteiros quando necessário
-              conjunto: parseInt(conjuntoId), //MUITO IMPORTANTE
-              tipo: tipo //IMPORTANTE
-
-          };
-
-            fetch(`/conjunto/personagens/${personagemId}/conjuntos/${conjuntoId}/${tipo}/`, { // URL para criar peças
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': getCookie('csrftoken'),
-                },
-                body: JSON.stringify(data),
-            })
-            .then(response => {
-                if (!response.ok) {
-                  return response.json().then(err=> {throw new Error(JSON.stringify(err))})
-                }
-                return response.json();
-            })
-            .then(data => {
-                mensagemDiv.textContent = `Peça (${tipo}) criada com sucesso!`;
-                pecaForm.reset(); // Limpa o formulário
-            })
-            .catch(error => {
-                console.error('Erro ao criar peça:', error);
-                mensagemDiv.textContent = 'Erro ao criar peça: ' + error.message;
-            });
-        }
-
-
-        // Obtém o ID do personagem da URL (se houver)
-        const urlParams = new URLSearchParams(window.location.search);
-        const personagemId = urlParams.get('personagem'); // Obtém o parâmetro 'personagem' da URL
-
-        // Se houver um ID de personagem na URL, carrega os conjuntos
-        if (personagemId) {
-            carregarConjuntos(personagemId);
-        } else {
-            mensagemDiv.textContent = 'Selecione um personagem primeiro.';
-            pecaForm.style.display = 'none'; // Esconde o formulário se não houver personagem
-        }
-
-        // Adiciona um event listener para cada área clicável da imagem
-        const areas = document.querySelectorAll('map[name="armadura-map"] area');
-        areas.forEach(area => {
-            area.addEventListener('click', function(event) {
-                event.preventDefault(); // Impede o comportamento padrão do link
-
-                const tipo = this.dataset.tipo; // Obtém o tipo da peça do atributo data-tipo
-                tipoInput.value = tipo; // Define o valor do campo tipo.
-                pecaForm.style.display = 'block';//Mostra o formulário
-                mensagemDiv.textContent = `Criando ${tipo}...`;
-
-
-                // Aqui você pode adicionar mais lógica, como:
-                // - Rolar a página até o formulário
-                // - Destacar o campo "tipo"
-                // - Pré-preencher outros campos, se aplicável
-            });
-        });
-      });
-    </script>
+            <area shape="rect" coords="44,682,193,740" href="{% url 'cadastrar_atributos' tipo='botas' %}" alt="Bota">
+            <area shape="rect" coords="213,682,363,740" href="{% url 'cadastrar_efeitos' tipo='botas' %}" alt="Bota">
+        </map>
+    </div>
+    <div>
+        <a href="{% url 'cadastro' %}"><button class="button" role="button">Cadastrar</button></a>
+        <a href="{% url 'base_personagem' %}"><button class="button" role="button">Atualizar</button></a>
+        <a href="{% url 'conjunto' %}" class="buttonLink"><button class="button" role="button">Voltar</button></a>
+    </div>
 </body>
 </html>
+

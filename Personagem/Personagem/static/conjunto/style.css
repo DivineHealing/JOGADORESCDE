@@ -1,42 +1,519 @@
-/* ... seus estilos anteriores ... */
-
 body {
-    background-color: black;
-}
-#form-oculto{
-    display: none;
-}
-
-.image-map-container {
-    position: relative; /* Para posicionar as áreas clicáveis */
-    display: inline-block; /* Para o container se ajustar ao tamanho da imagem */
-}
-
-#baseImage {
-    display: block;  /* Remove espaçamento extra abaixo da imagem */
-    max-width: 100%; /* Garante que a imagem seja responsiva */
-    height: auto;
+  background-image: url('background.jpg');
+  font-family: Courier;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
-.peca-form {
-    margin-bottom: 20px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+button {
+  --green: #dfdfdf;
+  font-size: 15px;
+  padding: 0.3em 2.7em;
+  letter-spacing: 0.06em;
+  position: relative;
+  font-family: inherit;
+  border-radius: 0.6em;
+  overflow: hidden;
+  transition: all 0.3s;
+  line-height: 1.4em;
+  border: 2px solid var(--green);
+  background: linear-gradient(to right, rgba(238, 238, 238, 0.1) 1%, transparent 40%, transparent 60%, rgba(238, 238, 238, 0.1) 100%);
+  color: var(--green);
+  box-shadow: inset 0 0 10px rgba(243, 243, 243, 0.4), 0 0 9px 3px rgba(243, 243, 243, 0.1);
+  margin-right: 1em;
 }
 
-.peca-form.hidden {
-    display: none;
+button:hover {
+  color: #f7f7f7;
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.6), 0 0 9px 3px rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
 }
 
-.peca-form h3{
-    text-align: center;
+button:before {
+  content: "";
+  position: absolute;
+  left: -4em;
+  width: 4em;
+  height: 100%;
+  top: 0;
+  transition: transform .4s ease-in-out;
+  background: linear-gradient(to right, transparent 1%, rgba(238, 238, 238, 0.1) 40%, rgba(238, 238, 238, 0.1) 60%, transparent 100%);
 }
 
-/* Estilo para destacar a área clicada (opcional) */
-area.active { /*Precisa do javascript*/
-    outline: 2px solid blue; /* Ou qualquer outro estilo de destaque */
+button:hover:before {
+  transform: translateX(15em);
 }
-.map-link{
-    cursor: pointer;
+
+select {
+  background-color: transparent;
+  margin-bottom: 1em;
+  padding: .25em;
+  border: 0;
+  border-bottom: 2px solid currentcolor;
+  font-weight: bold;
+  color: rgb(111, 0, 255);
+  letter-spacing: .15em;
+  border-radius: 0;
+}
+
+select:focus,
+select:active {
+  outline: 0;
+  border-bottom-color: rgb(111, 0, 255);
+  background-color: rgb(0, 0, 0);
+  color: #6f00ff;
+}
+
+select:after {
+  background-color: transparent;
+}
+
+.background-container {
+  background-color: #000000cc;
+  border: 2px solid #333;
+  padding: 10px;
+  max-width: 1200px;
+  /* Increased max-width to accommodate columns */
+  width: 95%;
+  /* Slightly wider width */
+  margin: auto;
+  box-shadow: inset 0 0 05px #ffffff99, 0 0 9px 3px rgba(55, 0, 255, 0.2);
+  border-radius: 1.5em;
+  display: flex;
+  /* Enable flexbox for background container */
+  flex-direction: column;
+  /* Stack header, top-section, middle-section vertically */
+  align-items: stretch;
+  /* Stretch items to fill container width */
+}
+
+/* Header */
+.header {
+  margin-bottom: 10px;
+  margin-left: 1em;
+  text-align: left;
+  font-size: large;
+}
+
+/* Bordered Section Style */
+.bordered-section {
+  border: 1px solid #333;
+  background-color: #222;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.section-title {
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 0.5em;
+  font-size: large;
+  line-height: 1em;
+  /* Adjust line height for title spacing */
+}
+
+/* TOP SECTION (vida/Mana/Vigor) */
+.top-section {
+  margin-bottom: 10px;
+}
+
+.vida-mana-vigor {
+  display: flex;
+  flex-direction: column;
+}
+
+.vida,
+.mana,
+.vigor {
+  display: flex;
+  justify-content: left;
+  gap: .6em;
+  padding: 5px 10px;
+  border-radius: 1px;
+  font-weight: bold;
+}
+
+.vida {
+  font-size: x-large;
+  text-align: center;
+  color: #0f0;
+  /* Green */
+}
+
+.mana {
+  font-size: x-large;
+  text-align: center;
+  color: rgb(0, 145, 202);
+  /* Blue */
+}
+
+.vigor {
+  font-size: x-large;
+  text-align: center;
+  color: rgb(255, 115, 0);
+  /* Orange */
+}
+
+/* MIDDLE SECTION (Left and Right Columns) */
+.middle-section {
+  display: flex;
+  flex-direction: row;
+  /* Arrange left and right columns horizontally */
+  justify-content: space-between;
+  gap: 10px;
+  /* Spacing between columns */
+}
+
+.left-column {
+  display: flex;
+  flex-direction: column;
+  /* Stack sections in left column vertically */
+  width: 35%;
+  /* Adjust width as needed */
+  min-width: 200px;
+  /* Minimum width for left column */
+}
+.right-column {
+  display: flex;
+  flex-direction: column;
+  /* Stack sections in right column vertically */
+  width: 65%;
+  /* Adjust width as needed, taking more space */
+  min-width: 300px;
+  /* Minimum width for right column */
+}
+
+/* Attribute Stats */
+.attribute-stats {
+  color: rgb(0, 255, 242);
+  /* Light Blue */
+  font-weight: bold;
+  text-align: left;
+  font-size: medium;
+}
+
+.attribute-stats .stat {
+  margin-bottom: 2px;
+}
+
+/* Damage and Defense Stats */
+.dano-defesa {
+  margin-bottom: 10px;
+}
+
+.damage {
+  color: rgb(255, 127, 95);
+}
+
+.defense {
+  color: rgb(201, 154, 0);
+}
+
+.reg {
+  color: rgb(255, 255, 255);
+}
+
+.amp {
+  color: rgb(255, 255, 255);
+}
+
+.roll {
+  color: rgb(255, 255, 255);
+}
+
+.other {
+  color: rgb(255, 255, 255);
+}
+
+.atr-title {
+  font-size: large;
+  font-weight: bold;
+  color: silver;
+  text-shadow:
+    1px 1px 2px black,
+    0 0 1em blue,
+    0 0 0.2em blue;
+}
+
+.damage-stats,
+.defense-stats {
+  margin-bottom: 10px;
+  /* Space between damage and defense sections */
+}
+
+/* Rolling Bonus Stats */
+.rolling-bonus-stats {
+  color: rgb(255, 208, 0);
+  /* White */
+}
+
+/* Other Info Stats */
+.other-info-stats {
+  color: rgb(255, 208, 0);
+  /* Light Gray */
+}
+
+.amplifications {
+  color: rgb(255, 208, 0);
+}
+
+/* Character Abilities */
+.character-abilities {
+  color: rgb(255, 208, 0);
+  /* Light Grey */
+  /* Example height adjustment */
+}
+
+.abilities-content {
+  text-align: center;
+}
+
+/* Character Equipment */
+.character-equipment {
+  color: rgb(255, 208, 0);
+  /* Example height adjustment to match abilities */
+}
+
+.equipment-content {
+  text-align: center;
+}
+
+
+@media (max-width: 768px) {
+  .middle-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .left-column,
+  .right-column {
+    width: 95%;
+    /* Full width on smaller screens */
+    min-width: auto;
+    /* Reset min-width */
+  }
+
+  .section-title {
+    font-size: medium;
+    /* Smaller title on mobile */
+  }
+}
+
+/* ... CSS anterior ... */
+
+.buff-button {
+  background-color: transparent;
+  color: #dfdfdf;
+  border: none;
+  padding: 0px 5px;
+  margin-left: 5px;
+  cursor: pointer;
+  font-size: 0.8em;
+  /* Menor para "BUFF" */
+  vertical-align: middle;
+}
+
+.buff-button:hover {
+  color: #f7f7f7;
+}
+
+.buff-input {
+  background-color: #444;
+  color: #dfdfdf;
+  border: 1px solid #555;
+  padding: 5px;
+  border-radius: 3px;
+  font-family: Courier;
+  font-size: 1em;
+  width: 40px;
+  /* Menor width para o input de buff */
+  margin-left: 5px;
+}
+
+.buff-input.hidden {
+  display: none;
+}
+
+.buffed-value {
+  color: #00ffaa;
+  /* Cor verde para valor buffado */
+  font-weight: bold;
+  margin-left: 1em;
+}
+
+.buffed-value.hidden {
+  display: none;
+}
+
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+
+}
+
+.formGroup {
+  position: relative;
+  padding: 15px 0 0;
+  margin-top: 1em;
+  width: 50%;
+} 
+
+.formGroupRed {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; /* Three columns for Elemento, Defesa, Resistencia */
+  gap: 15px;
+  position: relative;
+  padding: 15px 0 0;
+  margin-top: 1em;
+  width: 50%;
+} 
+
+.formLabel {
+  position: absolute;
+  top: -.5em;
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem;
+  color: #00d9ff;
+  font-weight: bold;
+  color: silver;
+  text-shadow:
+    1px 1px 2px black,
+    0 0 1em blue,
+    0 0 0.2em blue;
+}
+
+
+input {
+  box-shadow: inset #e2e2e2 0 0 0 2px;
+  border: 0;
+  background: #0f0f0f00;
+  appearance: none;
+  width: 10em;
+  position: relative;
+  border-radius: 4px;
+  padding: 9px 12px;
+  line-height: 1.4;
+  color: #00d9ff;
+  font-size: 16px;
+  font-weight: 400;
+  height: 1.5em;
+  transition: all .2s ease;
+  margin-bottom: .75em;
+}
+
+input:hover {
+  box-shadow: 0 0 0 0 #7e7e7e inset, #00d9ff 0 0 0 2px;
+}
+
+input:focus {
+  background: #000000;
+  outline: 0;
+  box-shadow: 0 0 0 0 #7e7e7e inset, #00d9ff 0 0 0 3px;
+}
+
+area {
+  box-shadow: inset #e2e2e2 0 0 0 2px;
+}
+
+.add-atributo-btn {background-color: #00d9ff;
+  color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 50%; /* Make it a circle */
+  max-width: .2em;
+  height: 1.5em;
+  line-height: 2px; /* Adjust line-height to center the plus sign */
+  padding-bottom: 15px; /* Small adjustment for vertical centering of plus */
+  font-size: large;
+  font-weight: bolder;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s ease;  
+  padding: 1.2em 1.2em;
+}
+
+.add-atributo-btn:hover {
+  background-color: #000000;
+}
+
+.regeneracao-row,
+.amplificacao-row, 
+.rolagem-row{
+grid-template-columns: 1fr 1fr; /* Two columns for Tipo, Valor */
+}
+
+.atributo-row{
+  grid-template-columns: 1fr 1fr 1fr; /* Three columns for Elemento, Defesa, Resistencia */
+}
+
+.regeneracao-row,
+.amplificacao-row, 
+.rolagem-row, 
+.atributo-row {
+  display: grid;
+  gap: 15px;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #333; /* Subtle border for each attribute row */
+  border-radius: 4px;
+  background-color: #222; /* Slightly darker background for rows */
+}
+
+.regeneracao-row:last-child,
+.amplificacao-row:last-child,
+.rolagem-row :last-child,
+.atributo-row:last-child {
+  margin-bottom: 0; /* No bottom margin for the last row */
+}
+
+.regeneracao-row label,
+.amplificacao-row label, 
+.rolagem-row label,
+.atributo-row label {
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem;
+  color: #00d9ff;
+  font-weight: bold;
+  color: silver;
+  text-shadow:
+    1px 1px 2px black,
+    0 0 1em blue,
+    0 0 0.2em blue;
+  margin-bottom: 5px;
+}
+
+
+
+.atributos-added-container {
+  margin-top: 20px; /* Space between header and attribute rows */
+}
+
+/* Optional: Style for select if you want to use dropdown for Elemento */
+
+.regeneracao-row select,
+.amplificacao-row select,
+.rolagem-row select,
+.atributo-row select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="white" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+  background-repeat: no-repeat;
+  background-position-x: 100%;
+  background-position-y: 5px;
+  padding-right: 30px;
 }
