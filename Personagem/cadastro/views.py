@@ -1,8 +1,16 @@
 # produtos/views.py
-from django.shortcuts import render
+from pyexpat.errors import messages
+from django.shortcuts import get_object_or_404, redirect, render
 from .forms import SomaForm
 
 def cadastro(request):
+    
+    '''personagem = get_object_or_404(Personagem, id=user_id)
+    context = {
+        'personagem': personagem,
+        'user_id': user_id,  # Passa user_id também
+    }'''
+    
     resultado = 0  # Inicializa a variável resultado
 
     if request.method == 'POST':

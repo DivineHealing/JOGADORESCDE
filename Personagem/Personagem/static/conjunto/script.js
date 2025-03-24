@@ -95,7 +95,7 @@ addAtributoBtn.addEventListener('click', function () {
     atributoCount++; // Increment counter for each new attribute row
 
     const atributoRow = document.createElement('div');
-    if (atributoCount <= 7){
+    if (atributoCount <= 7) {
         atributoRow.classList.add('atributo-row');
         atributoRow.innerHTML = `
             <div>
@@ -111,8 +111,8 @@ addAtributoBtn.addEventListener('click', function () {
                 <input type="number" id="resistencia${atributoCount}" name="resistencia${atributoCount}" value="0">
             </div>
         `;
-    
-    atributosContainer.appendChild(atributoRow);
+
+        atributosContainer.appendChild(atributoRow);
     }
 });
 
@@ -125,7 +125,7 @@ addRolagemBtn.addEventListener('click', function () {
     rolagemCount++; // Increment counter for each new attribute row
 
     const rolagemRow = document.createElement('div');
-    if (rolagemCount <= 25){
+    if (rolagemCount <= 25) {
         rolagemRow.classList.add('rolagem-row');
         rolagemRow.innerHTML = `
             <div>
@@ -137,8 +137,8 @@ addRolagemBtn.addEventListener('click', function () {
                 <input type="number" id="rolagem${rolagemCount}" name="rolagem${rolagemCount}" value="0">
             </div>
         `;
-    
-    rolagemContainer.appendChild(rolagemRow);
+
+        rolagemContainer.appendChild(rolagemRow);
     }
 });
 
@@ -151,20 +151,20 @@ addAmplificacaoBtn.addEventListener('click', function () {
     amplificacaoCount++; // Increment counter for each new attribute row
 
     const amplificacaoRow = document.createElement('div');
-    if (amplificacaoCount <= 25){
+    if (amplificacaoCount <= 25) {
         amplificacaoRow.classList.add('amplificacao-row');
         amplificacaoRow.innerHTML = `
             <div>
                 <label for="elemento${amplificacaoCount}">Tipo</label>
-                <input type="text" id="amplificacaoTipo${amplificacaoCount}" name="amplificacaoElemento${amplificacaoCount}" placeholder="Ex: Fogo">
+                <input type="text" id="amplificacaoTipo${amplificacaoCount}" name="amplificacaoTipo${amplificacaoCount}" placeholder="Ex: Fogo">
             </div>
             <div>
                 <label for="defesa${amplificacaoCount}">Valor</label>
                 <input type="number" id="amplificacao${amplificacaoCount}" name="amplificacao${amplificacaoCount}" value="0">
             </div>
         `;
-    
-    amplificacaoContainer.appendChild(amplificacaoRow);
+
+        amplificacaoContainer.appendChild(amplificacaoRow);
     }
 });
 
@@ -177,20 +177,19 @@ addRegeneracaoBtn.addEventListener('click', function () {
     regeneracaoCount++; // Increment counter for each new attribute row
 
     const regeneracaoRow = document.createElement('div');
-    if (regeneracaoCount <= 3){
+    if (regeneracaoCount <= 3) {
         regeneracaoRow.classList.add('regeneracao-row');
         regeneracaoRow.innerHTML = `
             <div>
                 <label for="elemento${regeneracaoCount}">Tipo</label>
-                <input type="text" id="regeneracaoTipo${regeneracaoCount}" name="regeneracaoElemento${regeneracaoCount}" placeholder="Ex: Vida">
+                <input type="text" id="regeneracaoTipo${regeneracaoCount}" name="regeneracaoTipo${regeneracaoCount}" placeholder="Ex: Vida">
             </div>
             <div>
                 <label for="defesa${regeneracaoCount}">Valor</label>
                 <input type="number" id="regeneracao${regeneracaoCount}" name="regeneracao${regeneracaoCount}" value="0">
             </div>
         `;
-    
-    regeneracaoContainer.appendChild(regeneracaoRow);
+
+        regeneracaoContainer.appendChild(regeneracaoRow);
     }
 });
-

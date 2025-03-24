@@ -19,7 +19,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('', include('tela_personagem.urls')),  # Acesso a tela de Informações.
+    path('', include('tela_personagem.urls'), name="home/"),  # Acesso a tela de Informações.
     path('admin/', admin.site.urls), # Acesso a tela de Administração do Banco.
     path('cadastro/', include('cadastro.urls')), # Acesso a tela de Cadastro.
     path('conjunto/', include('conjunto.urls')), # Acesso a tela de Conjunto.

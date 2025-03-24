@@ -1,22 +1,13 @@
-from django.shortcuts import redirect, render
-from .forms import ConjuntoForm, EquipamentoForm
+from pyexpat.errors import messages
+from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse
+
+from .models import Conjunto
+from .forms import EquipamentoForm
 from lib.utilitarios import *
 
 def conjunto(request):
-    resultado = 0  # Inicializa a variável resultado
-
-    if request.method == 'POST':
-        form = ConjuntoForm(request.POST)
-        if form.is_valid():
-            for i in range(1, 7):  # Itera de 1 a 6 (incluindo 6)
-                numero = form.cleaned_data.get(f'numero{i}', 0)  # Obtém o valor do campo
-                if numero is not None:  # Verifica se o valor é válido
-                    resultado += numero
-    else:
-        form = ConjuntoForm()
-
-    
-    return render(request, 'conjunto.html', {'form': form, 'resultado': resultado})
+    return render(request, 'conjunto.html')
 
 def cadastrar_equipamento(request, tipo):
     if request.method == 'POST':
@@ -44,3 +35,8 @@ def cadastrar_efeitos(request, tipo):
         form = EquipamentoForm(initial={'tipo': tipo})  # Pré-preenche o tipo
 
     return render(request, 'cadastrar_efeitos.html', {'form': form, 'tipo': tipo})
+
+
+def perfil(request, user_id):
+    messages.success(request, 'Cadastro de equipamentos realizados')
+    return redirect(reverse('tela_cadastro'), kwargs={'user-id': user_id})

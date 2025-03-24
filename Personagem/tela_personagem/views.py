@@ -3,6 +3,7 @@ from django.shortcuts import render, get_object_or_404
 from .models import Tela_personagem, Elementos_personagem
 
 def exibir_personagem(request, personagem_id=None):
+    
     personagens = Tela_personagem.objects.all()  # Obtém todos os personagens
     elementos = Elementos_personagem.objects.all() # Obtem todos os elementos
 

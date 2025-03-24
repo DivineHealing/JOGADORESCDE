@@ -471,14 +471,12 @@ grid-template-columns: 1fr 1fr; /* Two columns for Tipo, Valor */
   border-radius: 4px;
   background-color: #222; /* Slightly darker background for rows */
 }
-
 .regeneracao-row:last-child,
 .amplificacao-row:last-child,
 .rolagem-row :last-child,
 .atributo-row:last-child {
   margin-bottom: 0; /* No bottom margin for the last row */
 }
-
 .regeneracao-row label,
 .amplificacao-row label, 
 .rolagem-row label,
@@ -495,8 +493,6 @@ grid-template-columns: 1fr 1fr; /* Two columns for Tipo, Valor */
     0 0 0.2em blue;
   margin-bottom: 5px;
 }
-
-
 
 .atributos-added-container {
   margin-top: 20px; /* Space between header and attribute rows */
@@ -517,3 +513,108 @@ grid-template-columns: 1fr 1fr; /* Two columns for Tipo, Valor */
   background-position-y: 5px;
   padding-right: 30px;
 }
+
+
+
+
+
+
+.efeito-row {
+  grid-template-columns: 2fr 2fr; /* Three columns for Elemento, Defesa, Resistencia */
+}
+
+.efeito-row {
+  display: grid;
+  gap: 15px;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #333; /* Subtle border for each attribute row */
+  border-radius: 4px;
+  background-color: #222; /* Slightly darker background for rows */
+}
+
+.efeito-row:last-child {
+  margin-bottom: 0; /* No bottom margin for the last row */
+}
+
+.efeito-row label {
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem;
+  color: #00d9ff;
+  font-weight: bold;
+  color: silver;
+  text-shadow:
+    1px 1px 2px black,
+    0 0 1em blue,
+    0 0 0.2em blue;
+  margin-bottom: 5px;
+}
+
+
+textarea {
+  box-shadow: inset #e2e2e2 0 0 0 2px;
+  border: 0;
+  background: #0f0f0f00;
+  appearance: none;
+  width: 10em;
+  position: relative;
+  border-radius: 4px;
+  padding: 9px 12px;
+  line-height: 1.4;
+  color: #00d9ff;
+  font-size: 16px;
+  font-weight: 400;
+  height: 1.5em;
+  transition: all .2s ease;
+  margin-bottom: .75em;
+}
+
+textarea:hover {
+  box-shadow: 0 0 0 0 #7e7e7e inset, #00d9ff 0 0 0 2px;
+}
+
+textarea:focus {
+  background: #000000;
+  outline: 0;
+  box-shadow: 0 0 0 0 #7e7e7e inset, #00d9ff 0 0 0 3px;
+}
+
+.parent {
+    display: grid;
+    grid-template-columns: repeat(5, .5fr);
+    grid-template-rows: repeat(6, .5fr);
+    gap: 2px;
+}
+    
+.div1 {
+    grid-column: span 2 / span 2;
+}
+
+.div2 {
+    grid-column: span 2 / span 3;
+    grid-column-start: 3;
+}
+
+.div3 {
+    grid-column: span 2 / span 2;
+    grid-row-start: 2;
+}
+
+.div4 {
+    grid-column: span 3 / span 3;
+    grid-column-start: 3;
+    grid-row-start: 2;
+}
+
+.div5 {
+    grid-column: span 3 / span 3;
+    grid-row-start: 3;
+}
+
+.div6 {
+    grid-column: span 5 / span 5;
+    grid-row: span 5 / span 5;
+    grid-row-start: 4;
+}
+        
