@@ -20,7 +20,7 @@ def cadastrar_equipamento(request, tipo):
     else:
         form = EquipamentoForm(initial={'tipo': tipo})  # Pré-preenche o tipo
 
-    return render(request, 'cadastrar_atributos.html', {'form': form, 'tipo': tipo})
+    return render(request, 'cadastrar_atributos_conj.html', {'form': form, 'tipo': tipo})
 
 
 def cadastrar_efeitos(request, tipo):
@@ -34,7 +34,7 @@ def cadastrar_efeitos(request, tipo):
     else:
         form = EquipamentoForm(initial={'tipo': tipo})  # Pré-preenche o tipo
 
-    return render(request, 'cadastrar_efeitos.html', {'form': form, 'tipo': tipo})
+    return render(request, 'cadastrar_efeitos_conj.html', {'form': form, 'tipo': tipo})
 
 
 def perfil(request, user_id):

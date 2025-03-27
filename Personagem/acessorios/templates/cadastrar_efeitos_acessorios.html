@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HUD do Personagem</title>
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'conjunto/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'acessorios/style.css' %}">
 </head>
 <body>
     {% load l10n %}
@@ -35,11 +35,11 @@
             </div>
         </div>
     <div>
-    <a href="{% url 'cadastro' %}"><button class="button" role="button">Cadastrar</button></a>
-    <a href="{% url 'base_personagem' %}"><button class="button" role="button">Atualizar</button></a>
-    <a href="{% url 'conjunto' %}" class="buttonLink"><button class="button" role="button">Voltar</button></a>
+        <a href="{% url 'acessorios' %}"><button class="button" role="button">Voltar</button></a>
+        <a href="{% url 'exibir_personagem' %}" class="buttonLink"><button class="button" role="button">Personagem</button></a>
+        <button class="button" role="button" id="save">Salvar</button>
     {% endlocalize %}
-    <script src="{% static 'Conjunto\script_efeitos.js' %}"></script>
+    <script src="{% static 'acessorios\script_efeitos.js' %}"></script>
 </body>
 </html>
 

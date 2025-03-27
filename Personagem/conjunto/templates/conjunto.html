@@ -10,28 +10,28 @@
         <img src="{% static 'conjunto/Tela de Conjunto copiar.png' %}" alt="Personagem" usemap="#mapa-personagem">
 
         <map name="mapa-personagem">
-            <area shape="rect" coords="395,30,702,92" href="{% url 'cadastrar_efeitos' tipo='conjunto' %}" alt="Conjunto">
+            <area shape="rect" coords="395,30,702,92" href="{% url 'cadastrar_efeitos_conjunto' tipo='conjunto' %}" alt="Conjunto">
 
-            <area shape="rect" coords="41,185,204,236"  href="{% url 'cadastrar_atributos' tipo='elmo' %}" alt="Elmo">
-            <area shape="rect" coords="214,177,364,235"  href="{% url 'cadastrar_efeitos' tipo='elmo' %}" alt="Elmo">
+            <area shape="rect" coords="225,175,400,227"  href="{% url 'cadastrar_atributos_conjunto' tipo='elmo' %}" alt="Elmo">
+            <area shape="rect" coords="415,175,550,227"  href="{% url 'cadastrar_efeitos_conjunto' tipo='elmo' %}" alt="Elmo">
 
-            <area shape="rect" coords="725,282,874,340" href="{% url 'cadastrar_atributos' tipo='peitoral' %}" alt="Peitoral">
-            <area shape="rect" coords="893,283,1043,341" href="{% url 'cadastrar_efeitos' tipo='peitoral' %}" alt="Peitoral">
+            <area shape="rect" coords="920,275,1070,325" href="{% url 'cadastrar_atributos_conjunto' tipo='peitoral' %}" alt="Peitoral">
+            <area shape="rect" coords="1090,275,1235,325" href="{% url 'cadastrar_efeitos_conjunto' tipo='peitoral' %}" alt="Peitoral">
 
-            <area shape="rect" coords="43,404,192,462" href="{% url 'cadastrar_atributos' tipo='manoplas' %}" alt="Manoplas">
-            <area shape="rect" coords="213,404,363,462" href="{% url 'cadastrar_efeitos' tipo='manoplas' %}" alt="Manoplas">
+            <area shape="rect" coords="225,400,400,450" href="{% url 'cadastrar_atributos_conjunto' tipo='manoplas' %}" alt="Manoplas">
+            <area shape="rect" coords="415,400,550,450" href="{% url 'cadastrar_efeitos_conjunto' tipo='manoplas' %}" alt="Manoplas">
 
-            <area shape="rect" coords="725,543,874,601" href="{% url 'cadastrar_atributos' tipo='pernas' %}" alt="Calcas">
-            <area shape="rect" coords="896,544,1046,602" href="{% url 'cadastrar_efeitos' tipo='pernas' %}" alt="Calcas">
+            <area shape="rect" coords="920,540,1070,592" href="{% url 'cadastrar_atributos_conjunto' tipo='pernas' %}" alt="Calcas">
+            <area shape="rect" coords="1090,540,1235,592" href="{% url 'cadastrar_efeitos_conjunto' tipo='pernas' %}" alt="Calcas">
 
-            <area shape="rect" coords="44,682,193,740" href="{% url 'cadastrar_atributos' tipo='botas' %}" alt="Bota">
-            <area shape="rect" coords="213,682,363,740" href="{% url 'cadastrar_efeitos' tipo='botas' %}" alt="Bota">
+            <area shape="rect" coords="225,675,400,725" href="{% url 'cadastrar_atributos_conjunto' tipo='botas' %}" alt="Bota">
+            <area shape="rect" coords="225,675,400,740" href="{% url 'cadastrar_efeitos_conjunto' tipo='botas' %}" alt="Bota">
         </map>
     </div>
     <div>
-        <a href="{% url 'cadastro'%}"><button class="button" role="button">Cadastrar</button></a>
-        <a href="{% url 'base_personagem' %}"><button class="button" role="button">Atualizar</button></a>
-        <a href="{% url 'perfil' %}" class="buttonLink"><button class="button" role="button">Voltar</button></a>
+        <a href="{% url 'arma'%}"><button class="button" role="button">Arma</button></a>
+        <a href="{% url 'acessorios' %}"><button class="button" role="button">Acessorios</button></a>
+        <a href="{% url 'exibir_personagem' %}" class="buttonLink"><button class="button" role="button">Personagem</button></a>
     </div>
 </body>
 </html>

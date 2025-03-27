@@ -6,26 +6,26 @@ function selecionarPersonagem() {
 
 const addAtributoBtn = document.getElementById('addAtributo');
 const atributosContainer = document.getElementById('atributosContainer');
-let atributoCount = 0; // Counter to keep track of attribute rows
+let danoCount = 0; // Counter to keep track of attribute rows
 
 addAtributoBtn.addEventListener('click', function () {
-    atributoCount++; // Increment counter for each new attribute row
+    danoCount++; // Increment counter for each new attribute row
 
     const atributoRow = document.createElement('div');
-    if (atributoCount <= 7) {
+    if (danoCount <= 7) {
         atributoRow.classList.add('atributo-row');
         atributoRow.innerHTML = `
             <div>
-                <label for="elemento${atributoCount}">Elemento</label>
-                <input type="text" id="elemento${atributoCount}" name="elemento${atributoCount}" placeholder="Ex: Fogo">
+                <label for="elemento${danoCount}">Elemento</label>
+                <input type="text" id="elemento${danoCount}" name="elemento${danoCount}" placeholder="Ex: Fogo">
             </div>
             <div>
-                <label for="defesa${atributoCount}">Defesa Fixa</label>
-                <input type="number" id="defesa${atributoCount}" name="defesa${atributoCount}" value="0">
+                <label for="dano${danoCount}">Dano Fixo</label>
+                <input type="number" id="dano${danoCount}" name="dano${danoCount}" value="0">
             </div>
             <div>
-                <label for="resistencia${atributoCount}">Resistência</label>
-                <input type="number" id="resistencia${atributoCount}" name="resistencia${atributoCount}" value="0">
+                <label for="penetracao${danoCount}">Penetração</label>
+                <input type="number" id="penetracao${danoCount}" name="penetracao${danoCount}" value="0">
             </div>
         `;
 
@@ -50,7 +50,7 @@ addRolagemBtn.addEventListener('click', function () {
                 <input type="text" id="rolagemTipo${rolagemCount}" name="rolagemTipo${rolagemCount}" placeholder="Ex: Invocação">
             </div>
             <div>
-                <label for="defesa${rolagemCount}">Valor</label>
+                <label for="dano${rolagemCount}">Valor</label>
                 <input type="number" id="rolagem${rolagemCount}" name="rolagem${rolagemCount}" value="0">
             </div>
         `;
@@ -76,7 +76,7 @@ addAmplificacaoBtn.addEventListener('click', function () {
                 <input type="text" id="amplificacaoTipo${amplificacaoCount}" name="amplificacaoTipo${amplificacaoCount}" placeholder="Ex: Fogo">
             </div>
             <div>
-                <label for="defesa${amplificacaoCount}">Valor</label>
+                <label for="dano${amplificacaoCount}">Valor</label>
                 <input type="number" id="amplificacao${amplificacaoCount}" name="amplificacao${amplificacaoCount}" value="0">
             </div>
         `;
@@ -102,7 +102,7 @@ addRegeneracaoBtn.addEventListener('click', function () {
                 <input type="text" id="regeneracaoTipo${regeneracaoCount}" name="regeneracaoTipo${regeneracaoCount}" placeholder="Ex: Vida">
             </div>
             <div>
-                <label for="defesa${regeneracaoCount}">Valor</label>
+                <label for="dano${regeneracaoCount}">Valor</label>
                 <input type="number" id="regeneracao${regeneracaoCount}" name="regeneracao${regeneracaoCount}" value="0">
             </div>
         `;
@@ -110,3 +110,12 @@ addRegeneracaoBtn.addEventListener('click', function () {
         regeneracaoContainer.appendChild(regeneracaoRow);
     }
 });
+
+
+
+const AtrOfensivoDefensivo = document.getElementById('atributoOfensivoDefensivo');
+
+AtrOfensivoDefensivo.addEventListener('change', function(){
+    console.log('1')
+
+})

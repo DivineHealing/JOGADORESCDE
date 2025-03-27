@@ -20,8 +20,9 @@
                     <option value="{{ personagem.id }}" {% if personagem.id == tela_personagem.id %}selected{% endif %}>
                         {{ personagem.nome }}
                     </option>
-                  {% endfor %}
-              </select>
+                  {% endfor %}  
+              </select>              
+              <a href="{% url 'cadastro' %}"><button class="buff-button" role="button">ADD</button></a>
             </div>
         </div>
 
@@ -209,8 +210,7 @@
             </div>
         </div>
         <div>
-            <a href="{% url 'cadastro' %}"><button class="button" role="button">Cadastro</button></a>
-            <a href="{% url 'base_personagem' %}"><button class="button" role="button">Base</button></a>
+            <a href="{% url 'base_personagem' %}"><button class="button" role="button">Caracteristicas</button></a>
             <a href="{% url 'conjunto' %}" class="buttonLink"><button class="button" role="button">Conjunto</button></a>
             <a href="{% url 'acessorios' %}"><button class="button" role="button">Acessorios</button></a>
             <a href="{% url 'arma' %}"><button class="button" role="button">Armas</button></a>

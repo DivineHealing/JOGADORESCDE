@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HUD do Personagem</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'arma/style.css' %}">
+</head>
+<body>
+    {% load l10n %}
+    {% load humanize %}
+    {% localize on %}
+    <div class="background-container">
+
+        <div class="header">
+            <div class="name" style="color: white;">Nome do Personagem:
+              <select class='personagem_select' id="personagem_select" onchange="selecionarPersonagem()">
+                {% for personagem in personagens %}
+                    <option value="{{ personagem.id }}" {% if personagem.id == tela_personagem.id %}selected{% endif %}>
+                        {{ personagem.nome }}
+                    </option>
+                  {% endfor %}
+              </select>
+            </div>
+        </div>
+
+        <div class="top-section">
+            <div class="vida-mana-vigor bordered-section">                  
+                <div class="abilities section-title">EFEITOS DO EQUIPAMENTO</div>
+                <button class="add-atributo-btn" id="addEfeito">Add</button>
+                <div class="atributos-added-container" id="efeitosContainer">
+                      <!-- Atributos serão adicionados aqui dinamicamente -->
+                </div>
+            </div>
+        </div>
+    <div>
+        <a href="{% url 'arma'%}"><button class="button" role="button">Voltei</button></a>
+        <a href="{% url 'exibir_personagem' %}" class="buttonLink"><button class="button" role="button">Personagem</button></a>
+        <button class="button" role="button" id="save">Salvar</button>
+    {% endlocalize %}
+    <script src="{% static 'arma\script_efeitos.js' %}"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+

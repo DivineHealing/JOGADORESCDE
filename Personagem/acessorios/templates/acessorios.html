@@ -1,78 +1,47 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html>
 <head>
-    <title>CdE - Acessorios</title>
-    <style>
-        /* Estilos CSS (como no exemplo anterior) */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* Centraliza o conteúdo horizontalmente */
-        }
+    <link rel="stylesheet" type="text/css" href="{% static 'acessorios/styleConj.css' %}"> </head>
+<body style="background-color:">
 
-        h1 {
-            color: #333;
-            text-align: center;
-        }
+    <div class="container">
+        <img src="{% static 'acessorios/Acessorios.png' %}" alt="Personagem" usemap="#mapa-personagem">
 
-        form {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 300px; /* Largura fixa para o formulário */
-            margin-bottom: 20px;  /* Adiciona margem abaixo do formulário */
-        }
-
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #555;
-        }
-
-        input[type="number"],
-        input[type="text"] {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box; /* Garante que padding e border não aumentem o tamanho total */
-        }
-
-        input[type="text"][readonly] {
-            background-color: #eee; /* Cor de fundo para campos somente leitura */
-            cursor: not-allowed; /* Muda o cursor para indicar que não é editável */
-        }
-
-        /* Oculta os rótulos dos campos número1 e número2 */
-        label[for="id_numero1"],
-        label[for="id_numero2"] {
-            display: none;
-        }
-
-        p {
-            display: flex;
-            flex-direction: column;
-        }
-    </style>
-</head>
-<body>
-    <h1>Acessorios</h1>
-
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}  <!-- Renderiza o formulário -->
-        <button type="submit">Calcular</button>
-    </form>
-
-    {% if resultado is not None %}
-        <p>Resultado: {{ resultado }}</p>
-    {% endif %}
+        <map name="mapa-personagem">
+            <area shape="rect" coords="283,172,419,211" href="{% url 'cadastrar_atributos_acessorios' tipo='anelAnelar' %}" alt="AnelAnelar">
+            <area shape="rect" coords="431,171,552,211" href="{% url 'cadastrar_efeitos_acessorios' tipo='anelAnelar' %}" alt="AnelAnelar">
+            <area shape="rect" coords="278,247,417,289" href="{% url 'cadastrar_atributos_acessorios' tipo='anelIndicador' %}" alt="AnelIndicador">
+            <area shape="rect" coords="427,248,557,289" href="{% url 'cadastrar_efeitos_acessorios' tipo='anelIndicador' %}" alt="AnelIndicador">
+            <area shape="rect" coords="276,323,415,365" href="{% url 'cadastrar_atributos_acessorios' tipo='anelMedio' %}" alt="AnelMedio">
+            <area shape="rect" coords="429,324,559,365"  href="{% url 'cadastrar_efeitos_acessorios' tipo='anelMedio' %}" alt="AnelMedio">
+            <area shape="rect" coords="280,395,419,437" href="{% url 'cadastrar_atributos_acessorios' tipo='anelMinimo' %}" alt="AnelMinimo">
+            <area shape="rect" coords="428,393,558,434" href="{% url 'cadastrar_efeitos_acessorios' tipo='anelMinimo' %}" alt="AnelMinimo">
+            
+            <area shape="rect" coords="999,175,1138,217" href="{% url 'cadastrar_atributos_acessorios' tipo='braceleteEsquerdo' %}" alt="BraceleteEsquerdo">
+            <area shape="rect" coords="1150,174,1280,215" href="{% url 'cadastrar_efeitos_acessorios' tipo='braceleteEsquerdo' %}" alt="BraceleteEsquerdo">
+            <area shape="rect" coords="998,247,1137,289"  href="{% url 'cadastrar_atributos_acessorios' tipo='braceleteDireito' %}" alt="BraceleteDireito">
+            <area shape="rect" coords="1146,248,1276,289" href="{% url 'cadastrar_efeitos_acessorios' tipo='braceleteDireito' %}" alt="BraceleteDireito">
+            
+            <area shape="rect" coords="278,665,417,707"  href="{% url 'cadastrar_atributos_acessorios' tipo='brincoEsquerdo' %}" alt="BrincoEsquerdo">
+            <area shape="rect" coords="429,665,559,706" href="{% url 'cadastrar_efeitos_acessorios' tipo='brincoEsquerdo' %}" alt="BrincoEsquerdo">
+            <area shape="rect" coords="281,739,420,781" href="{% url 'cadastrar_atributos_acessorios' tipo='brincoDireito' %}" alt="BrincoDireito">
+            <area shape="rect" coords="430,741,560,782" href="{% url 'cadastrar_efeitos_acessorios' tipo='brincoDireito' %}" alt="BrincoEDireito">
+            
+            <area shape="rect" coords="992,661,1131,703" href="{% url 'cadastrar_atributos_acessorios' tipo='acessorioP' %}" alt="AcessorioP">
+            <area shape="rect" coords="1151,661,1281,702" href="{% url 'cadastrar_efeitos_acessorios' tipo='acessorioP' %}" alt="AcessorioP">
+            <area shape="rect" coords="1001,738,1140,780" href="{% url 'cadastrar_atributos_acessorios' tipo='acessorioS' %}" alt="AcessorioS">
+            <area shape="rect" coords="1148,738,1278,779" href="{% url 'cadastrar_efeitos_acessorios' tipo='acessorioS' %}" alt="AcessorioS">
+            
+            <area shape="rect" coords="992,453,1131,495" href="{% url 'cadastrar_atributos_acessorios' tipo='cinturao' %}" alt="Cinturao">
+            <area shape="rect" coords="1143,454,1273,495" href="{% url 'cadastrar_efeitos_acessorios' tipo='cinturao' %}" alt="Cinturao">            
+        </map>
+    </div>
+    <div>
+        <a href="{% url 'arma' %}"><button class="button" role="button">Arma</button></a>
+        <a href="{% url 'conjunto' %}"><button class="button" role="button">Conjunto</button></a>
+        <a href="{% url 'exibir_personagem' %}" class="buttonLink"><button class="button" role="button">Personagem</button></a>
+    </div>
 </body>
 </html>

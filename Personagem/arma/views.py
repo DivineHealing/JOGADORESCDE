@@ -1,17 +1,42 @@
-from django.shortcuts import render
-from .forms import ArmaForm
+from pyexpat.errors import messages
+from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse
+
+from .models import Arma
+from .forms import EquipamentoForm
+from lib.utilitarios import *
 
 def arma(request):
-    resultado = 0  # Inicializa a variável resultado
+    return render(request, 'arma.html')
 
+def cadastrar_equipamento_armas(request, tipo):
     if request.method == 'POST':
-        form = ArmaForm(request.POST)
+        form = EquipamentoForm(request.POST)
         if form.is_valid():
-
-            for i in range(1, 7):  # Itera de 1 a 6 (incluindo 6)
-                numero = form.cleaned_data.get(f'numero{i}', 0)  # Obtém o valor do campo
-                if numero is not None:  # Verifica se o valor é válido
-                    resultado += numero
+            equipamento = form.save(commit=False)
+            equipamento.tipo = tipo  # Define o tipo com base na URL
+            equipamento.save()
+            return redirect('cadastrar_atributos_armas')  # Redireciona para a lista (você ainda vai criar)
     else:
-        form = ArmaForm()
-    return render(request, 'arma.html', {'form': form, 'resultado': resultado})
+        form = EquipamentoForm(initial={'tipo': tipo})  # Pré-preenche o tipo
+
+    return render(request, 'cadastrar_atributos_arma.html', {'form': form, 'tipo': tipo})
+
+
+def cadastrar_efeitos_armas(request, tipo):
+    if request.method == 'POST':
+        form = EquipamentoForm(request.POST)
+        if form.is_valid():
+            equipamento = form.save(commit=False)
+            equipamento.tipo = tipo  # Define o tipo com base na URL
+            equipamento.save()
+            return redirect('cadastrar_efeitos_armas')  # Redireciona para a lista (você ainda vai criar)
+    else:
+        form = EquipamentoForm(initial={'tipo': tipo})  # Pré-preenche o tipo
+
+    return render(request, 'cadastrar_efeitos_arma.html', {'form': form, 'tipo': tipo})
+
+
+def perfil(request, user_id):
+    messages.success(request, 'Cadastro de equipamentos realizados')
+    return redirect(reverse('tela_cadastro'), kwargs={'user-id': user_id})
