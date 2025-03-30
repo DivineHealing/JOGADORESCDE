@@ -455,14 +455,16 @@ area {
 grid-template-columns: 1fr 1fr; /* Two columns for Tipo, Valor */
 }
 
-.atributo-row{
+.dano-row,
+.defesa-row{
   grid-template-columns: 1fr 1fr 1fr; /* Three columns for Elemento, Defesa, Resistencia */
 }
 
 .regeneracao-row,
 .amplificacao-row, 
 .rolagem-row, 
-.atributo-row {
+.dano-row,
+.defesa-row {
   display: grid;
   gap: 15px;
   margin-bottom: 10px;
@@ -474,13 +476,15 @@ grid-template-columns: 1fr 1fr; /* Two columns for Tipo, Valor */
 .regeneracao-row:last-child,
 .amplificacao-row:last-child,
 .rolagem-row :last-child,
-.atributo-row:last-child {
+.dano-row:last-child,
+.defesa-row:last-child {
   margin-bottom: 0; /* No bottom margin for the last row */
 }
 .regeneracao-row label,
 .amplificacao-row label, 
 .rolagem-row label,
-.atributo-row label {
+.dano-row label,
+.defesa-row label {
   display: block;
   transition: 0.2s;
   font-size: 1rem;
@@ -503,7 +507,9 @@ grid-template-columns: 1fr 1fr; /* Two columns for Tipo, Valor */
 .regeneracao-row select,
 .amplificacao-row select,
 .rolagem-row select,
-.atributo-row select {
+.atributo-row select
+.dano-row select,
+.defesa-row select {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;

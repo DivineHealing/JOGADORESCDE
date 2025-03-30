@@ -4,6 +4,35 @@ function selecionarPersonagem() {
     window.location.href = "/" + personagem_id + "/";
 }
 
+const addDefesaBtn = document.getElementById('addDefesa');
+const defesaContainer = document.getElementById('defesaContainer');
+let defesaCount = 0; // Counter to keep track of attribute rows
+
+addDefesaBtn.addEventListener('click', function () {
+    defesaCount++; // Increment counter for each new attribute row
+
+    const atributoRow = document.createElement('div');
+    if (defesaCount <= 7) {
+        atributoRow.classList.add('defesa-row');
+        atributoRow.innerHTML = `
+            <div>
+                <label for="elemento${defesaCount}">Elemento</label>
+                <input type="text" id="elemento${defesaCount}" name="elemento${defesaCount}" placeholder="Ex: Fogo">
+            </div>
+            <div>
+                <label for="defesa${defesaCount}">Defesa Fixa</label>
+                <input type="number" id="defesa${defesaCount}" name="defesa${defesaCount}" value="0">
+            </div>
+            <div>
+                <label for="resistencia${defesaCount}">Resistência</label>
+                <input type="number" id="resistencia${defesaCount}" name="resistencia${defesaCount}" value="0">
+            </div>
+        `;
+
+        defesaContainer.appendChild(atributoRow);
+    }
+});
+
 const addAtributoBtn = document.getElementById('addAtributo');
 const atributosContainer = document.getElementById('atributosContainer');
 let danoCount = 0; // Counter to keep track of attribute rows
@@ -13,7 +42,7 @@ addAtributoBtn.addEventListener('click', function () {
 
     const atributoRow = document.createElement('div');
     if (danoCount <= 7) {
-        atributoRow.classList.add('atributo-row');
+        atributoRow.classList.add('dano-row');
         atributoRow.innerHTML = `
             <div>
                 <label for="elemento${danoCount}">Elemento</label>
@@ -111,11 +140,10 @@ addRegeneracaoBtn.addEventListener('click', function () {
     }
 });
 
+const atrOfensivo = document.getElementById("atributosOfensivo");
+const atrDefensivo = document.getElementById("atributosDefensivo");
 
-
-const AtrOfensivoDefensivo = document.getElementById('atributoOfensivoDefensivo');
-
-AtrOfensivoDefensivo.addEventListener('change', function(){
-    console.log('1')
-
-})
+function definirAtr(alterarAtr) {
+    atrOfensivo.style.display = alterarAtr.checked ? "block" : "none";
+    atrDefensivo.style.display = alterarAtr.checked ? "none" : "block";
+};

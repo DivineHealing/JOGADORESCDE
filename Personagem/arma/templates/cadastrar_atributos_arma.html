@@ -66,14 +66,14 @@
             <div class="right-column">
                 <div class="character-abilities bordered-section">
                     <div class="checkbox-wrapper-8">
-                        <input type="checkbox" id="atributoOfensivoDefensivo" class="tgl tgl-skewed" onchange="definirAtr()">
-                        <label for="atributoOfensivoDefensivo" data-tg-on="OFENSIVO" data-tg-off="DEFENSIVO" class="tgl-btn"></label>
+                        <input type="checkbox" id="alterarAtr" class="tgl tgl-skewed" onclick='definirAtr(this)'/>
+                        <label for="alterarAtr" data-tg-on="ARMA" data-tg-off="ESCUDO" class="tgl-btn" ></label>
                     </div>            
 
-                    <div class="atributosDefensivo">
+                    <div id="atributosDefensivo" style="display: block">
                         <div class="abilities section-title">ATRIBUTOS DEFENSIVOS</div>
-                        <button class="add-atributo-btn" id="addAtributo">Add</button>
-                        <div class="atributos-added-container" id="atributosContainer">
+                        <button class="add-atributo-btn" id="addDefesa">Add</button>
+                        <div class="atributos-added-container" id="defesaContainer">
                             <!-- Atributos serão adicionados aqui dinamicamente -->
                         </div>
                             
@@ -88,7 +88,7 @@
                         </div>    
                     </div>
 
-                    <div class="atributosOfensivo">
+                    <div id="atributosOfensivo" style="display: none">
                         <div class="abilities section-title">ATRIBUTOS OFENSIVOS</div>
                         <button class="add-atributo-btn" id="addAtributo">Add</button>
                         <div class="atributos-added-container" id="atributosContainer">
