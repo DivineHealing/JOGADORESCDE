@@ -230,6 +230,8 @@ const cadastroNovo = document.getElementById("cadastrarNovo");
 const selecao = document.getElementById("personagem_select");
 const selecaoLb = document.getElementById("selectLabel");
 
+const novoPersonagem = document.getElementById("novoPersonagem")
+
 const btnCad = document.getElementById("btnCad")
 const btnSalvar = document.getElementById("btnSalvar")
 
@@ -242,7 +244,7 @@ btnCad.addEventListener('click', function(){
 });
 
 btnSalvar.addEventListener('click', function(){
-    console.log("Funciona Salvar")
+    console.log(novoPersonagem.value)
     cadastroNovo.style.display = "none";
     selecao.style.display = "";
     btnCad.style.display = "";
