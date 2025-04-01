@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HUD do Personagem</title>
+    <title>Ficha - Cronicas de Errat</title>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'tela_personagem/style.css' %}">
 </head>
@@ -14,15 +14,21 @@
     <div class="background-container">
 
         <div class="header">
-            <div class="name" style="color: white;">Nome do Personagem:
-              <select class='personagem_select' id="personagem_select" onchange="selecionarPersonagem()">
+            <div class="name" style="color: white;">
+                <label for="personagem_select" class="selectLabel" id="selectLabel">Nome do Personagem</label>
+                <select class='personagem_select' id="personagem_select" onchange="selecionarPersonagem()">
                 {% for personagem in personagens %}
                     <option value="{{ personagem.id }}" {% if personagem.id == tela_personagem.id %}selected{% endif %}>
                         {{ personagem.nome }}
                     </option>
                   {% endfor %}  
-              </select>              
-              <a href="{% url 'cadastro' %}"><button class="buff-button" role="button">ADD</button></a>
+              </select>
+              <div class="formGroup field" style="display: none" id="cadastrarNovo">
+                <input type="text" placeholder="Nome do Personagem" id='novoPersonagem'/>
+                <label for="novoPersonagem" class="formLabel">Nome do Personagem</label>
+                <button id="btnSalvar" class="button"/>Cadastrar</button>
+            </div>
+              <button id="btnCad" class="cad-button"/>Novo</button>
             </div>
         </div>
 

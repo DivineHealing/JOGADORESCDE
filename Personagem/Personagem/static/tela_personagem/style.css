@@ -267,7 +267,7 @@ select:after {
 }
 
 /* ... CSS anterior ... */
-
+.cad-button,
 .buff-button {
   background-color: transparent;
   color: #dfdfdf;
@@ -278,7 +278,7 @@ select:after {
   font-size: 0.8em; /* Menor para "BUFF" */
   vertical-align: middle;
 }
-
+.cad-button:hover,
 .buff-button:hover {
   color: #f7f7f7;
 }
@@ -308,6 +308,7 @@ select:after {
 .buffed-value.hidden {
   display: none;
 }
+
 input[type=number]::-webkit-inner-spin-button { 
   -webkit-appearance: none;
   
@@ -316,4 +317,113 @@ input[type=number] {
  -moz-appearance: textfield;
  appearance: textfield;
 
+}
+
+
+.formGroup {
+  position: relative;
+  padding: 15px 0 0;
+  margin-top: 1em;
+  width: 50%;
+} 
+
+.formGroupRed {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; /* Three columns for Elemento, Defesa, Resistencia */
+  gap: 15px;
+  position: relative;
+  padding: 15px 0 0;
+  margin-top: 1em;
+  width: 50%;
+} 
+
+.formLabel {
+  position: absolute;
+  top: -.5em;
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem;
+  color: #00d9ff;
+  font-weight: bold;
+  color: silver;
+  text-shadow:
+    1px 1px 2px black,
+    0 0 1em blue,
+    0 0 0.2em blue;
+}
+
+
+.formGroup {
+  position: relative;
+  padding: 15px 0 0;
+  margin-top: 1em;
+  width: 50%;
+} 
+
+.formGroupRed {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; /* Three columns for Elemento, Defesa, Resistencia */
+  gap: 15px;
+  position: relative;
+  padding: 15px 0 0;
+  margin-top: 1em;
+  width: 50%;
+} 
+
+.formLabel {
+  position: absolute;
+  top: -.5em;
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem;
+  color: #00d9ff;
+  font-weight: bold;
+  color: silver;
+  text-shadow:
+    1px 1px 2px black,
+    0 0 1em blue,
+    0 0 0.2em blue;
+}
+.selectLabel {
+  transition: 0.2s;
+  font-size: 1rem;
+  color: #00d9ff;
+  font-weight: bold;
+  color: silver;
+  text-shadow:
+    1px 1px 2px black,
+    0 0 1em blue,
+    0 0 0.2em blue;
+}
+
+input {
+  box-shadow: inset #e2e2e2 0 0 0 2px;
+  border: 0;
+  background: #0f0f0f00;
+  appearance: none;
+  width: 10em;
+  position: relative;
+  border-radius: 4px;
+  padding: 9px 12px;
+  line-height: 1.4;
+  color: #00d9ff;
+  font-size: 16px;
+  font-weight: 400;
+  height: 1.5em;
+  transition: all .2s ease;
+  margin-bottom: .75em;
+}
+
+input:hover {
+  box-shadow: 0 0 0 0 #7e7e7e inset, #00d9ff 0 0 0 2px;
+}
+
+input:focus {
+  background: #000000;
+  outline: 0;
+  box-shadow: 0 0 0 0 #7e7e7e inset, #00d9ff 0 0 0 3px;
+}
+
+area {
+  box-shadow: inset #e2e2e2 0 0 0 2px;
 }

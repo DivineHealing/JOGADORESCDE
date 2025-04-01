@@ -1,9 +1,383 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-    <title>Cronicas de Errat - Habilidades</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HUD do Personagem</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'habilidade/style.css' %}">
 </head>
 <body>
-    <h1>Essa é a tela de Habilidades</h1>
+    {% load l10n %}
+    {% load humanize %}
+    {% localize on %}
+    <div class="background-container">
+
+        <div class="header">
+            <div class="name" style="color: white;">Nome do Personagem:
+              <select class='personagem_select' id="personagem_select" onchange="selecionarPersonagem()">
+                {% for personagem in personagens %}
+                    <option value="{{ personagem.id }}" {% if personagem.id == tela_personagem.id %}selected{% endif %}>
+                        {{ personagem.nome }}
+                    </option>
+                  {% endfor %}
+              </select>
+            </div>
+        </div>
+
+        <div class="top-section">
+            <div class="vida-mana-vigor bordered-section">                  
+                
+                <div class="abilities section-title">HABILIDADE 1</div>                
+                <div class="atributos-added-container habilidade-row">
+                    <div class='habilidade-row-container'>
+                        <div class='habilidade-row-miniContainer'>
+                            <label for="habilidadeTipo91">Tipo do habilidade</label>
+                            <select class='personagem_select' id="habilidadeTipo91" name="habilidadeTipo91">
+                                <option value="habilidadePassivo" selected> Habilidade Passivo</option>
+                                <option value="habilidadeAtivo"> Habilidade Ativo</option>
+                                <option value="habilidadeAura"> Habilidade Aura</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="habilidadeNome1">Nome do habilidade:</label>
+                            <input style="width: 100%"; type="text" id="habilidadeNome1" name="habilidadeNome1" placeholder="Nome do habilidade">
+                            <label for="habilidadeCusto1">Custo do habilidade:</label>
+                            <input style="width: 50%"; type="text" id="habilidadeCusto1" name="habilidadeCusto1" placeholder="Custo do habilidade">
+                        </div class='habilidade-row-miniContainer'>
+                        <div class='habilidade-row-miniContainer'>
+                            <label for="habilidadeDesc1">Descrição do habilidade:</label>
+                            <textarea style="width: 100%; height: 10em; wrap: "hard""; type="text" id="habilidadeDesc1" name="habilidadeDesc1" placeholder="Descrição do habilidade"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <button class="add-atributo-btn" id="addHab1">Add</button>
+                <div class="atributos-added-container" id="hab1Container">
+                      <!-- Atributos serão adicionados aqui dinamicamente -->
+                </div>
+
+                <div class="abilities section-title">HABILIDADE 2</div>                
+                <div class="atributos-added-container habilidade-row">
+                    <div class='habilidade-row-container'>
+                        <div class='habilidade-row-miniContainer'>
+                            <label for="habilidadeTipo92">Tipo do habilidade</label>
+                            <select class='personagem_select' id="habilidadeTipo92" name="habilidadeTipo92">
+                                <option value="habilidadePassivo" selected> Habilidade Passivo</option>
+                                <option value="habilidadeAtivo"> Habilidade Ativo</option>
+                                <option value="habilidadeAura"> Habilidade Aura</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="habilidadeNome2">Nome do habilidade:</label>
+                            <input style="width: 100%"; type="text" id="habilidadeNome2" name="habilidadeNome2" placeholder="Nome do habilidade">
+                            <label for="habilidadeCusto2">Custo do habilidade:</label>
+                            <input style="width: 50%"; type="text" id="habilidadeCusto2" name="habilidadeCusto2" placeholder="Custo do habilidade">
+                        </div class='habilidade-row-miniContainer'>
+                        <div class='habilidade-row-miniContainer'>
+                            <label for="habilidadeDesc2">Descrição do habilidade:</label>
+                            <textarea style="width: 100%; height: 10em; wrap: "hard""; type="text" id="habilidadeDesc2" name="habilidadeDesc2" placeholder="Descrição do habilidade"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <button class="add-atributo-btn" id="addHab2">Add</button>
+                <div class="atributos-added-container" id="hab2Container">
+                      <!-- Atributos serão adicionados aqui dinamicamente -->
+                </div>
+                
+                <div class="abilities section-title">HABILIDADE 3</div>                
+                <div class="atributos-added-container habilidade-row">                
+                    <div class='habilidade-row-container'>
+                        <div class='habilidade-row-miniContainer'>
+                            <label for="habilidadeTipo93">Tipo do habilidade</label>
+                            <select class='personagem_select' id="habilidadeTipo93" name="habilidadeTipo93">
+                                <option value="habilidadePassivo" selected> Habilidade Passivo</option>
+                                <option value="habilidadeAtivo"> Habilidade Ativo</option>
+                                <option value="habilidadeAura"> Habilidade Aura</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="habilidadeNome3">Nome do habilidade:</label>
+                            <input style="width: 100%"; type="text" id="habilidadeNome3" name="habilidadeNome3" placeholder="Nome do habilidade">
+                            <label for="habilidadeCusto3">Custo do habilidade:</label>
+                            <input style="width: 50%"; type="text" id="habilidadeCusto3" name="habilidadeCusto3" placeholder="Custo do habilidade">
+                        </div class='habilidade-row-miniContainer'>
+                        <div class='habilidade-row-miniContainer'>
+                            <label for="habilidadeDesc3">Descrição do habilidade:</label>
+                            <textarea style="width: 100%; height: 10em; wrap: "hard""; type="text" id="habilidadeDesc3" name="habilidadeDesc3" placeholder="Descrição do habilidade"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <button class="add-atributo-btn" id="addHab3">Add</button>
+                <div class="atributos-added-container" id="hab3Container">
+                      <!-- Atributos serão adicionados aqui dinamicamente -->
+                </div>
+
+                <div class="abilities section-title">HABILIDADE 4</div>                
+                <div class="atributos-added-container habilidade-row">
+                    <div class='habilidade-row-container'>
+                        <div class='habilidade-row-miniContainer'>
+                            <label for="habilidadeTipo94">Tipo do habilidade</label>
+                            <select class='personagem_select' id="habilidadeTipo94" name="habilidadeTipo94">
+                                <option value="habilidadePassivo" selected> Habilidade Passivo</option>
+                                <option value="habilidadeAtivo"> Habilidade Ativo</option>
+                                <option value="habilidadeAura"> Habilidade Aura</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="habilidadeNome4">Nome do habilidade:</label>
+                            <input style="width: 100%"; type="text" id="habilidadeNome4" name="habilidadeNome4" placeholder="Nome do habilidade">
+                            <label for="habilidadeCusto4">Custo do habilidade:</label>
+                            <input style="width: 50%"; type="text" id="habilidadeCusto4" name="habilidadeCusto4" placeholder="Custo do habilidade">
+                        </div class='habilidade-row-miniContainer'>
+                        <div class='habilidade-row-miniContainer'>
+                            <label for="habilidadeDesc4">Descrição do habilidade:</label>
+                            <textarea style="width: 100%; height: 10em; wrap: "hard""; type="text" id="habilidadeDesc4" name="habilidadeDesc4" placeholder="Descrição do habilidade"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <button class="add-atributo-btn" id="addHab4">Add</button>
+                <div class="atributos-added-container" id="hab4Container">
+                      <!-- Atributos serão adicionados aqui dinamicamente -->
+                </div>
+
+                <div class="abilities section-title">HABILIDADE 5</div>                
+                <div class="atributos-added-container habilidade-row">
+                    <div class='habilidade-row-container'>
+                        <div class='habilidade-row-miniContainer'>
+                            <label for="habilidadeTipo95">Tipo do habilidade</label>
+                            <select class='personagem_select' id="habilidadeTipo95" name="habilidadeTipo95">
+                                <option value="habilidadePassivo" selected> Habilidade Passivo</option>
+                                <option value="habilidadeAtivo"> Habilidade Ativo</option>
+                                <option value="habilidadeAura"> Habilidade Aura</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="habilidadeNome5">Nome do habilidade:</label>
+                            <input style="width: 100%"; type="text" id="habilidadeNome5" name="habilidadeNome5" placeholder="Nome do habilidade">
+                            <label for="habilidadeCusto5">Custo do habilidade:</label>
+                            <input style="width: 50%"; type="text" id="habilidadeCusto5" name="habilidadeCusto5" placeholder="Custo do habilidade">
+                        </div class='habilidade-row-miniContainer'>
+                        <div class='habilidade-row-miniContainer'>
+                            <label for="habilidadeDesc5">Descrição do habilidade:</label>
+                            <textarea style="width: 100%; height: 10em; wrap: "hard""; type="text" id="habilidadeDesc5" name="habilidadeDesc5" placeholder="Descrição do habilidade"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <button class="add-atributo-btn" id="addHab5">Add</button>
+                <div class="atributos-added-container" id="hab5Container">
+                      <!-- Atributos serão adicionados aqui dinamicamente -->
+                </div>
+
+                <div class="abilities section-title">HABILIDADE 6</div>                
+                <div class="atributos-added-container habilidade-row">
+                    <div class='habilidade-row-container'>
+                        <div class='habilidade-row-miniContainer'>
+                            <label for="habilidadeTipo96">Tipo do habilidade</label>
+                            <select class='personagem_select' id="habilidadeTipo96" name="habilidadeTipo96">
+                                <option value="habilidadePassivo" selected> Habilidade Passivo</option>
+                                <option value="habilidadeAtivo"> Habilidade Ativo</option>
+                                <option value="habilidadeAura"> Habilidade Aura</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="habilidadeNome6">Nome do habilidade:</label>
+                            <input style="width: 100%"; type="text" id="habilidadeNome6" name="habilidadeNome6" placeholder="Nome do habilidade">
+                            <label for="habilidadeCusto6">Custo do habilidade:</label>
+                            <input style="width: 50%"; type="text" id="habilidadeCusto6" name="habilidadeCusto6" placeholder="Custo do habilidade">
+                        </div class='habilidade-row-miniContainer'>
+                        <div class='habilidade-row-miniContainer'>
+                            <label for="habilidadeDesc6">Descrição do habilidade:</label>
+                            <textarea style="width: 100%; height: 10em; wrap: "hard""; type="text" id="habilidadeDesc6" name="habilidadeDesc6" placeholder="Descrição do habilidade"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <button class="add-atributo-btn" id="addHab6">Add</button>
+                <div class="atributos-added-container" id="hab6Container">
+                      <!-- Atributos serão adicionados aqui dinamicamente -->
+                </div>
+
+                <div class="abilities section-title">HABILIDADE 7</div>                
+                <div class="atributos-added-container habilidade-row">
+                    <div class='habilidade-row-container'>
+                        <div class='habilidade-row-miniContainer'>
+                            <label for="habilidadeTipo97">Tipo do habilidade</label>
+                            <select class='personagem_select' id="habilidadeTipo97" name="habilidadeTipo97">
+                                <option value="habilidadePassivo" selected> Habilidade Passivo</option>
+                                <option value="habilidadeAtivo"> Habilidade Ativo</option>
+                                <option value="habilidadeAura"> Habilidade Aura</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="habilidadeNome7">Nome do habilidade:</label>
+                            <input style="width: 100%"; type="text" id="habilidadeNome7" name="habilidadeNome7" placeholder="Nome do habilidade">
+                            <label for="habilidadeCusto7">Custo do habilidade:</label>
+                            <input style="width: 50%"; type="text" id="habilidadeCusto7" name="habilidadeCusto7" placeholder="Custo do habilidade">
+                        </div class='habilidade-row-miniContainer'>
+                        <div class='habilidade-row-miniContainer'>
+                            <label for="habilidadeDesc7">Descrição do habilidade:</label>
+                            <textarea style="width: 100%; height: 10em; wrap: "hard""; type="text" id="habilidadeDesc7" name="habilidadeDesc7" placeholder="Descrição do habilidade"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <button class="add-atributo-btn" id="addHab7">Add</button>
+                <div class="atributos-added-container" id="hab7Container">
+                      <!-- Atributos serão adicionados aqui dinamicamente -->
+                </div>
+
+                <div class="abilities section-title">HABILIDADE 8</div>                
+                <div class="atributos-added-container habilidade-row">
+                    <div class='habilidade-row-container'>
+                        <div class='habilidade-row-miniContainer'>
+                            <label for="habilidadeTipo98">Tipo do habilidade</label>
+                            <select class='personagem_select' id="habilidadeTipo98" name="habilidadeTipo98">
+                                <option value="habilidadePassivo" selected> Habilidade Passivo</option>
+                                <option value="habilidadeAtivo"> Habilidade Ativo</option>
+                                <option value="habilidadeAura"> Habilidade Aura</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="habilidadeNome8">Nome do habilidade:</label>
+                            <input style="width: 100%"; type="text" id="habilidadeNome8" name="habilidadeNome8" placeholder="Nome do habilidade">
+                            <label for="habilidadeCusto8">Custo do habilidade:</label>
+                            <input style="width: 50%"; type="text" id="habilidadeCusto8" name="habilidadeCusto8" placeholder="Custo do habilidade">
+                        </div class='habilidade-row-miniContainer'>
+                        <div class='habilidade-row-miniContainer'>
+                            <label for="habilidadeDesc8">Descrição do habilidade:</label>
+                            <textarea style="width: 100%; height: 10em; wrap: "hard""; type="text" id="habilidadeDesc8" name="habilidadeDesc8" placeholder="Descrição do habilidade"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <button class="add-atributo-btn" id="addHab8">Add</button>
+                <div class="atributos-added-container" id="hab8Container">
+                      <!-- Atributos serão adicionados aqui dinamicamente -->
+                </div>
+
+                <div class="abilities section-title">HABILIDADE 9</div>                
+                <div class="atributos-added-container habilidade-row">
+                    <div class='habilidade-row-container'>
+                        <div class='habilidade-row-miniContainer'>
+                            <label for="habilidadeTipo9">Tipo do habilidade</label>
+                            <select class='personagem_select' id="habilidadeTipo9" name="habilidadeTipo9">
+                                <option value="habilidadePassivo" selected> Habilidade Passivo</option>
+                                <option value="habilidadeAtivo"> Habilidade Ativo</option>
+                                <option value="habilidadeAura"> Habilidade Aura</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="habilidadeNome9">Nome do habilidade:</label>
+                            <input style="width: 100%"; type="text" id="habilidadeNome9" name="habilidadeNome9" placeholder="Nome do habilidade">
+                            <label for="habilidadeCusto9">Custo do habilidade:</label>
+                            <input style="width: 50%"; type="text" id="habilidadeCusto9" name="habilidadeCusto9" placeholder="Custo do habilidade">
+                        </div class='habilidade-row-miniContainer'>
+                        <div class='habilidade-row-miniContainer'>
+                            <label for="habilidadeDesc9">Descrição do habilidade:</label>
+                            <textarea style="width: 100%; height: 10em; wrap: "hard""; type="text" id="habilidadeDesc9" name="habilidadeDesc9" placeholder="Descrição do habilidade"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <button class="add-atributo-btn" id="addHab9">Add</button>
+                <div class="atributos-added-container" id="hab9Container">
+                      <!-- Atributos serão adicionados aqui dinamicamente -->
+                </div>
+
+                <div class="abilities section-title">HABILIDADE 10</div>                
+                <div class="atributos-added-container habilidade-row">
+                    <div class='habilidade-row-container'>
+                        <div class='habilidade-row-miniContainer'>
+                            <label for="habilidadeTipo10">Tipo do habilidade</label>
+                            <select class='personagem_select' id="habilidadeTipo10" name="habilidadeTipo10">
+                                <option value="habilidadePassivo" selected> Habilidade Passivo</option>
+                                <option value="habilidadeAtivo"> Habilidade Ativo</option>
+                                <option value="habilidadeAura"> Habilidade Aura</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="habilidadeNome10">Nome do habilidade:</label>
+                            <input style="width: 100%"; type="text" id="habilidadeNome10" name="habilidadeNome10" placeholder="Nome do habilidade">
+                            <label for="habilidadeCusto10">Custo do habilidade:</label>
+                            <input style="width: 50%"; type="text" id="habilidadeCusto10" name="habilidadeCusto10" placeholder="Custo do habilidade">
+                        </div class='habilidade-row-miniContainer'>
+                        <div class='habilidade-row-miniContainer'>
+                            <label for="habilidadeDesc10">Descrição do habilidade:</label>
+                            <textarea style="width: 100%; height: 10em; wrap: "hard""; type="text" id="habilidadeDesc10" name="habilidadeDesc10" placeholder="Descrição do habilidade"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <button class="add-atributo-btn" id="addHab10">Add</button>
+                <div class="atributos-added-container" id="hab10Container">
+                      <!-- Atributos serão adicionados aqui dinamicamente -->
+                </div>
+
+                <div class="abilities section-title">HABILIDADE 11</div>                
+                <div class="atributos-added-container habilidade-row">
+                    <div class='habilidade-row-container'>
+                        <div class='habilidade-row-miniContainer'>
+                            <label for="habilidadeTipo11">Tipo do habilidade</label>
+                            <select class='personagem_select' id="habilidadeTipo11" name="habilidadeTipo11">
+                                <option value="habilidadePassivo" selected> Habilidade Passivo</option>
+                                <option value="habilidadeAtivo"> Habilidade Ativo</option>
+                                <option value="habilidadeAura"> Habilidade Aura</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="habilidadeNome11">Nome do habilidade:</label>
+                            <input style="width: 100%"; type="text" id="habilidadeNome11" name="habilidadeNome11" placeholder="Nome do habilidade">
+                            <label for="habilidadeCusto11">Custo do habilidade:</label>
+                            <input style="width: 50%"; type="text" id="habilidadeCusto11" name="habilidadeCusto11" placeholder="Custo do habilidade">
+                        </div class='habilidade-row-miniContainer'>
+                        <div class='habilidade-row-miniContainer'>
+                            <label for="habilidadeDesc11">Descrição do habilidade:</label>
+                            <textarea style="width: 100%; height: 10em; wrap: "hard""; type="text" id="habilidadeDesc11" name="habilidadeDesc11" placeholder="Descrição do habilidade"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <button class="add-atributo-btn" id="addHab11">Add</button>
+                <div class="atributos-added-container" id="hab11Container">
+                      <!-- Atributos serão adicionados aqui dinamicamente -->
+                </div>
+
+                <div class="abilities section-title">HABILIDADE 12</div>                
+                <div class="atributos-added-container habilidade-row">
+                    <div class='habilidade-row-container'>
+                        <div class='habilidade-row-miniContainer'>
+                            <label for="habilidadeTipo12">Tipo do habilidade</label>
+                            <select class='personagem_select' id="habilidadeTipo12" name="habilidadeTipo12">
+                                <option value="habilidadePassivo" selected> Habilidade Passivo</option>
+                                <option value="habilidadeAtivo"> Habilidade Ativo</option>
+                                <option value="habilidadeAura"> Habilidade Aura</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="habilidadeNome12">Nome do habilidade:</label>
+                            <input style="width: 100%"; type="text" id="habilidadeNome12" name="habilidadeNome12" placeholder="Nome do habilidade">
+                            <label for="habilidadeCusto12">Custo do habilidade:</label>
+                            <input style="width: 50%"; type="text" id="habilidadeCusto12" name="habilidadeCusto12" placeholder="Custo do habilidade">
+                        </div class='habilidade-row-miniContainer'>
+                        <div class='habilidade-row-miniContainer'>
+                            <label for="habilidadeDesc12">Descrição do habilidade:</label>
+                            <textarea style="width: 100%; height: 10em; wrap: "hard""; type="text" id="habilidadeDesc12" name="habilidadeDesc12" placeholder="Descrição do habilidade"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <button class="add-atributo-btn" id="addHab12">Add</button>
+                <div class="atributos-added-container" id="hab12Container">
+                      <!-- Atributos serão adicionados aqui dinamicamente -->
+                </div>                
+            </div>
+        </div>
+    <div>
+        <a href="{% url 'base_personagem'%}"><button class="button" role="button">Voltar</button></a>
+        <a href="{% url 'exibir_personagem' %}" class="buttonLink"><button class="button" role="button">Personagem</button></a>
+        <button class="button" role="button" id="save">Salvar</button>
+    {% endlocalize %}
+    <script src="{% static 'habilidade\script_efeitos.js' %}"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+

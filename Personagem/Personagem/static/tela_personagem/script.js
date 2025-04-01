@@ -199,7 +199,7 @@ document.addEventListener('DOMContentLoaded', function() {
             buffInput.focus(); // Foca no input
 
             buffInput.addEventListener('blur', handleBuff);
-            buffInput.addEventListener('keydown', function(event) { // Adiciona evento para Enter key
+            buffInput.addEventListener('keydown', function() { // Adiciona evento para Enter key
                 if (event.key === 'Enter') {
                     handleBuff.call(this); // Chama a função handleBuff
                     event.preventDefault(); // Evita comportamento padrão do Enter em forms
@@ -224,3 +224,36 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+
+const cadastroNovo = document.getElementById("cadastrarNovo");
+const selecao = document.getElementById("personagem_select");
+const selecaoLb = document.getElementById("selectLabel");
+
+const btnCad = document.getElementById("btnCad")
+const btnSalvar = document.getElementById("btnSalvar")
+
+btnCad.addEventListener('click', function(){
+    console.log("Funciona Cadastrar")
+    selecao.style.display = "none";
+    cadastroNovo.style.display = "block";
+    btnCad.style.display = "none";
+    selecaoLb.style.display = "none";
+});
+
+btnSalvar.addEventListener('click', function(){
+    console.log("Funciona Salvar")
+    cadastroNovo.style.display = "none";
+    selecao.style.display = "";
+    btnCad.style.display = "";
+    selecaoLb.style.display = "";
+});
+
+/* Layout para botão
+
+const btnCad = document.getElementById("btnCad")
+btnCad.addEventListener('click', function(){
+    console.log("Teste")
+});
+
+*/
