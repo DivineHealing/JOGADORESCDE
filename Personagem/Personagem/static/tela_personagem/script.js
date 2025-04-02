@@ -182,44 +182,81 @@ window.onload = function () {
     atualizarTela();
 }
 
-// FUNÇÃO DEBUFF
-document.addEventListener('DOMContentLoaded', function() {
+// FUNÇÃO DE BUFF
+document.addEventListener('DOMContentLoaded', function () {
     const buffButtons = document.querySelectorAll('.buff-button');
 
     buffButtons.forEach(button => {
-        button.addEventListener('click', function(event) {
+        button.addEventListener('click', function (event) {
             event.preventDefault();
             const fieldName = this.dataset.field;
             const buffInput = document.getElementById(`${fieldName}BuffInput`);
             const buffedValueSpan = document.getElementById(`${fieldName}Buffed`);
             const originalValueSpan = document.getElementById(fieldName);
 
-            originalValueSpan.classList.add('hidden'); // Esconde o valor original
-            buffInput.classList.remove('hidden'); // Mostra o input
-            buffInput.focus(); // Foca no input
+            originalValueSpan.classList.add('hidden');  // Esconde o valor original
+            buffInput.classList.remove('hidden');       // Mostra o input
+            buffInput.focus();
 
+            // Remove os listeners existentes (se houver)
+            buffInput.removeEventListener('blur', handleBuff);
+            buffInput.removeEventListener('keydown', handleEnter);
+            buffInput.removeEventListener('keypress', handleF);
+
+            // Adiciona os novos listeners
             buffInput.addEventListener('blur', handleBuff);
-            buffInput.addEventListener('keydown', function() { // Adiciona evento para Enter key
-                if (event.key === 'Enter') {
-                    handleBuff.call(this); // Chama a função handleBuff
-                    event.preventDefault(); // Evita comportamento padrão do Enter em forms
-                }
-            });
+            buffInput.addEventListener('keydown', handleEnter);
+            buffInput.addEventListener('keypress', handleF);
 
             function handleBuff() {
-                buffInput.removeEventListener('blur', handleBuff); // Remove o listener para evitar múltiplas execuções
+                buffInput.removeEventListener('blur', handleBuff);
+                buffInput.removeEventListener('keydown', handleEnter); // Remove também o listener de Enter
+                buffInput.removeEventListener('keypress', handleF); // Remove também o listener de Enter
 
                 const buffValue = parseInt(buffInput.value, 10) || 0;
-                const originalValue = parseInt(originalValueSpan.textContent.replace(/\./g, ''), 10) || 0; // Remove commas and parse
-                const totalValue = Math.trunc(originalValue * ((buffValue/100)+1));
+                const originalValue = parseInt(originalValueSpan.textContent.replace(/\./g, ''), 10) || 0;
 
-                buffedValueSpan.textContent = totalValue.toLocaleString('pt-BR'); // Formata com separador de milhar
-                buffedValueSpan.classList.remove('hidden'); // Mostra o valor buffado
+                const totalValue = Math.trunc(originalValue * ((buffValue / 100) + 1));
 
-                buffInput.classList.add('hidden'); // Esconde o input
-                // originalValueSpan.classList.remove('hidden'); // O valor original fica escondido após buff, se quiser mostrar novamente, descomente
+                buffedValueSpan.textContent = totalValue.toLocaleString('pt-BR');
+                buffedValueSpan.classList.remove('hidden');
 
-                buffInput.value = ''; // Limpa o input para a próxima vez
+                buffInput.classList.add('hidden');
+                originalValueSpan.classList.remove('hidden');
+
+                buffInput.value = '';
+            }
+
+            function handleBuffFixo() {
+                buffInput.removeEventListener('blur', handleBuff);
+                buffInput.removeEventListener('keypress', handleF); // Remove também o listener de Enter
+                buffInput.removeEventListener('keydown', handleEnter); // Remove também o listener de Enter
+
+                const buffValue = parseInt(buffInput.value, 10) || 0;
+                const originalValue = parseInt(originalValueSpan.textContent.replace(/\./g, ''), 10) || 0;
+
+                const totalValue = Math.trunc(originalValue + buffValue);
+
+                buffedValueSpan.textContent = totalValue.toLocaleString('pt-BR');
+                buffedValueSpan.classList.remove('hidden');
+
+                buffInput.classList.add('hidden');
+                originalValueSpan.classList.remove('hidden');
+
+                buffInput.value = '';
+            }
+
+            function handleEnter(event) {
+                if (event.key === 'Enter') {
+                    handleBuff();
+                    event.preventDefault();
+                }            
+            }
+            function handleF(event) {
+                if (event.key === 'F') {
+                    handleBuffFixo();
+                    event.preventDefault();
+                }
             }
         });
     });
@@ -236,7 +273,6 @@ const btnCad = document.getElementById("btnCad")
 const btnSalvar = document.getElementById("btnSalvar")
 
 btnCad.addEventListener('click', function(){
-    console.log("Funciona Cadastrar")
     selecao.style.display = "none";
     cadastroNovo.style.display = "block";
     btnCad.style.display = "none";
@@ -244,7 +280,6 @@ btnCad.addEventListener('click', function(){
 });
 
 btnSalvar.addEventListener('click', function(){
-    console.log(novoPersonagem.value)
     cadastroNovo.style.display = "none";
     selecao.style.display = "";
     btnCad.style.display = "";
