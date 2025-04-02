@@ -24,13 +24,17 @@
                   {% endfor %}  
               </select>
               <div class="formGroup field" style="display: none" id="cadastrarNovo">
-                <input type="text" placeholder="Nome do Personagem" id='novoPersonagem'/>
-                <label for="novoPersonagem" class="formLabel">Nome do Personagem</label>
-                <button id="btnSalvar" class="button"/>Cadastrar</button>
+                <form method="POST" action="{% url 'cadastrar_personagem' %}">
+                    {% csrf_token %}
+                    <input type="text" name="novoPersonagem" placeholder="Nome do Personagem" required/>
+                    <label for="novoPersonagem" class="formLabel">Nome do Personagem</label>
+                    <button type="submit" class="button">Cadastrar</button>
+                </form>
             </div>
-              <button id="btnCad" class="cad-button"/>Novo</button>
-            </div>
+    
+            <button id="btnCad" class="cad-button">Novo</button>
         </div>
+    </div>
 
         <div class="top-section">
             <div class="vida-mana-vigor bordered-section">

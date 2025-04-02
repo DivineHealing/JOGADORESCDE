@@ -1,6 +1,8 @@
 # tela_personagens/views.py
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
+from django.http import HttpResponse
 from .models import Tela_personagem, Elementos_personagem
+from django.apps import apps
 
 def exibir_personagem(request, personagem_id=None):
     
@@ -20,3 +22,14 @@ def exibir_personagem(request, personagem_id=None):
 
     context = {'tela_personagem': tela_personagem, 'personagens': personagens, 'elementos': elementos, 'elementos_personagem': elementos_personagem} #troca na variavel pessoa para tela_personagem
     return render(request, 'tela_personagem.html', context)
+
+def cadastrar_personagem(request):
+    if request.method == "POST":
+        nome_personagem = request.POST.get("novoPersonagem")  # pega nome do input
+        print(apps.get_models())
+
+        if nome_personagem:  # se o nome não estiver vazio
+            print(f'Nome do novo personagem: {nome_personagem}')
+            return redirect('/')
+
+    return redirect('/')
