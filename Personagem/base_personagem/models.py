@@ -1,6 +1,7 @@
 from django.db import models
 
 class Base_personagem(models.Model):
+    # NOME DO PERSONAGEM
     personagem = models.CharField(max_length=100, default="")
 
     # ATRIBUTOS e REGENERAÇÃO

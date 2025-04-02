@@ -40,3 +40,15 @@ def cadastrar_efeitos(request, tipo):
 def perfil(request, user_id):
     messages.success(request, 'Cadastro de equipamentos realizados')
     return redirect(reverse('tela_cadastro'), kwargs={'user-id': user_id})
+
+def salvar_conjunto_atributo(request):
+    if request.method == "POST":        
+        print('FUNCIONA')
+
+    return redirect('conjunto')
+
+def salvar_conjunto_efeitos(request):
+    if request.method == "POST":        
+        print('FUNCIONA')
+
+    return redirect('conjunto')

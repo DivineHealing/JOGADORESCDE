@@ -143,3 +143,5 @@ addRegBtn.addEventListener('click', function () {
         regeneracaoContainer.appendChild(regeneracaoRow);
     }
 });
+
+

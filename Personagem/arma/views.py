@@ -40,3 +40,15 @@ def cadastrar_efeitos_armas(request, tipo):
 def perfil(request, user_id):
     messages.success(request, 'Cadastro de equipamentos realizados')
     return redirect(reverse('tela_cadastro'), kwargs={'user-id': user_id})
+
+def salvar_arma_atributo(request):
+    if request.method == "POST":        
+        print('FUNCIONA')
+
+    return redirect('arma')
+
+def salvar_arma_efeitos(request):
+    if request.method == "POST":        
+        print('FUNCIONA')
+
+    return redirect('arma')

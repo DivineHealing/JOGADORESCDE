@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.apps import apps
+from django.shortcuts import redirect, render
 from .forms import BaseForm
 from lib.utilitarios import *
 
@@ -16,3 +17,9 @@ def base_personagem(request):
     else:
         form = BaseForm()
     return render(request, 'base_personagem.html', {'form': form, 'resultado': resultado})
+
+def salvar_base_personagem(request):
+    if request.method == "POST":        
+        print('FUNCIONA')
+
+    return redirect('base_personagem')

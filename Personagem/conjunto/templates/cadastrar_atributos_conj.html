@@ -111,7 +111,10 @@
         <div>
             <a href="{% url 'conjunto'%}"><button class="button" role="button">Voltar</button></a>
             <a href="{% url 'exibir_personagem' %}" class="buttonLink"><button class="button" role="button">Personagem</button></a>
-            <button class="button" role="button" id="save">Salvar</button>
+            <form method="POST" action="{% url 'cadastrar_personagem' %}">
+                {% csrf_token %}
+                <button class="button" role="button" id="save">Salvar</button>
+            </form>
         </div>
     </div>
     {% endlocalize %}

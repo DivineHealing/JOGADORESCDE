@@ -133,9 +133,12 @@
             </div>
         </div>
         <div>
-            <a href="{% url 'arma'%}"><button class="button" role="button">Voltei</button></a>
+            <a href="{% url 'arma'%}"><button class="button" role="button">Voltar</button></a>
             <a href="{% url 'exibir_personagem' %}" class="buttonLink"><button class="button" role="button">Personagem</button></a>
-            <button class="button" role="button" id="save">Salvar</button>
+            <form method="POST" action="{% url 'salvar_arma_atributo' %}">
+                {% csrf_token %}
+                <button class="submit" role="button">Salvar</button>
+            </form>
         </div>
     </div>
     {% endlocalize %}

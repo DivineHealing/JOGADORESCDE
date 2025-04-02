@@ -40,3 +40,15 @@ def cadastrar_efeitos_acessorios(request, tipo):
 def perfil(request, user_id):
     messages.success(request, 'Cadastro de equipamentos realizados')
     return redirect(reverse('tela_cadastro'), kwargs={'user-id': user_id})
+
+def salvar_acessorio_atributos(request):
+    if request.method == "POST":        
+        print('acessorios')
+
+    return redirect('arma')
+
+def salvar_acessorio_efeitos(request):
+    if request.method == "POST":        
+        print('FUNCIONA')
+
+    return redirect('acessorios')

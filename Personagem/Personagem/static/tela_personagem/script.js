@@ -280,6 +280,7 @@ btnCad.addEventListener('click', function(){
 });
 
 btnSalvar.addEventListener('click', function(){
+    enviarDados()
     cadastroNovo.style.display = "none";
     selecao.style.display = "";
     btnCad.style.display = "";

@@ -368,7 +368,10 @@
     <div>
         <a href="{% url 'base_personagem'%}"><button class="button" role="button">Voltar</button></a>
         <a href="{% url 'exibir_personagem' %}" class="buttonLink"><button class="button" role="button">Personagem</button></a>
-        <button class="button" role="button" id="save">Salvar</button>
+        <form method="POST" action="{% url 'salvar_habilidade' %}">
+            {% csrf_token %}
+            <button class="submit" role="button">Salvar</button>
+        </form>
     {% endlocalize %}
     <script src="{% static 'habilidade\script_efeitos.js' %}"></script>
 </body>
