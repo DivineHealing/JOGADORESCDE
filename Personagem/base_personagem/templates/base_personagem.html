@@ -107,13 +107,10 @@
                 </div>
             </div>
         </div>
-        <div>
+        <div class="formGroupRed" >
             <a href="{% url 'exibir_personagem'%}"><button class="button" role="button">Voltar</button></a>
             <a href="{% url 'habilidade' %}" class="buttonLink"><button class="button" role="button">Habilidades</button></a>
-            <form method="POST" action="{% url 'salvar_base_personagem' %}">
-                {% csrf_token %}
-                <button class="submit" role="button">Salvar</button>
-            </form>
+            <form method="POST" action="{% url 'salvar_base_personagem' %}">{% csrf_token %}<button class="submit" role="button">Salvar</button></form>
         </div>
     </div>
     {% endlocalize %}

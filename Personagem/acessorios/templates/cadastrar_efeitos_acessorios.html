@@ -34,13 +34,14 @@
                 </div>
             </div>
         </div>
-    <div>
+    <div class="formGroupRed">        
         <a href="{% url 'acessorios' %}"><button class="button" role="button">Voltar</button></a>
         <a href="{% url 'exibir_personagem' %}" class="buttonLink"><button class="button" role="button">Personagem</button></a>
         <form method="POST" action="{% url 'salvar_acessorio_efeitos' %}">
             {% csrf_token %}
             <button class="button" role="button">Salvar</button>
         </form>
+    </div>
     {% endlocalize %}
     <script src="{% static 'acessorios\script_efeitos.js' %}"></script>
 </body>
