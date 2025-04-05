@@ -3,6 +3,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from .models import Tela_personagem, Elementos_personagem
 from django.apps import apps
+from lib.utilitarios import criar_personagem_completo
 
 def exibir_personagem(request, personagem_id=None):
     
@@ -26,10 +27,10 @@ def exibir_personagem(request, personagem_id=None):
 def cadastrar_personagem(request):
     if request.method == "POST":
         nome_personagem = request.POST.get("novoPersonagem")  # pega nome do input
-        print(apps.get_models())
 
         if nome_personagem:  # se o nome não estiver vazio
-            print(f'Nome do novo personagem: {nome_personagem}')
+            criar_personagem_completo(nome_personagem)
             return redirect('/')
+            #print(f'Nome do novo personagem: {nome_personagem}')
 
     return redirect('/')
