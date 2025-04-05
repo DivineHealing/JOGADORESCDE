@@ -2,16 +2,16 @@ from django.db import models
 
 class Acessorios(models.Model):
     TIPO_CHOICES = [
-        ('anelAnelar', 'AnelAnelar'),
-        ('anelIndicador', 'AnelIndicador'),
-        ('anelMedio', 'AnelMedio'),
-        ('anelMinimo', 'AnelMinimo'),
-        ('braceleteEsquerdo', 'BraceleteEsquerdo'),
-        ('braceleteDireito', 'BraceleteDireito'),
-        ('brincoEsquerdo', 'BrincoEsquerdo'),
-        ('brincoDireito', 'BrincoDireito'),
-        ('acessorioP', 'AcessorioP'),
-        ('acessorioS', 'AcessorioS'),
+        ('anelAnelar', 'Anel_Anelar'),
+        ('anelIndicador', 'Anel_Indicador'),
+        ('anelMedio', 'Anel_Medio'),
+        ('anelMinimo', 'Anel_Minimo'),
+        ('braceleteEsquerdo', 'Bracelete_Esquerdo'),
+        ('braceleteDireito', 'Bracelete_Direito'),
+        ('brincoEsquerdo', 'Brinco_Esquerdo'),
+        ('brincoDireito', 'Brinco_Direito'),
+        ('acessorioP', 'Acessorio_Principal'),
+        ('acessorioS', 'Acessorio_Secundario'),
         ('cinturao', 'Cinturao'),
     ]
 

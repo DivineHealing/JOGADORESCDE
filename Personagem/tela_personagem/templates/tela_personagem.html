@@ -19,14 +19,14 @@
                 <select class='personagem_select' id="personagem_select" onchange="selecionarPersonagem()">
                 {% for personagem in personagens %}
                     <option value="{{ personagem.id }}" {% if personagem.id == tela_personagem.id %}selected{% endif %}>
-                        {{ personagem.nome }}
+                        {{ personagem.personagem }}
                     </option>
                   {% endfor %}  
               </select>
               <div class="formGroup field" style="display: none" id="cadastrarNovo">
                 <form method="POST" action="{% url 'cadastrar_personagem' %}">
                     {% csrf_token %}
-                    <input type="text" name="novoPersonagem" placeholder="Nome do Personagem" required/>
+                    <input type="text" name="novoPersonagem" placeholder="Nome do Personagem" maxlength="30" required/>
                     <label for="novoPersonagem" class="formLabel">Nome do Personagem</label>
                     <button type="submit" class="button">Cadastrar</button>
                 </form>
