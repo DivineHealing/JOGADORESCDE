@@ -2,7 +2,7 @@ from django.db import models
 
 class Base_personagem(models.Model):
     # NOME DO PERSONAGEM
-    personagem = models.CharField(max_length=100, default="")
+    personagem = models.CharField(max_length=100, default="", unique=True)
 
     # ATRIBUTOS e REGENERAÇÃO
     vida = models.IntegerField(default=0, blank=True)

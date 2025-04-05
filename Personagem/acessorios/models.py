@@ -20,6 +20,7 @@ class Acessorios(models.Model):
 
     # NOME DO PERSONAGEM
     personagem = models.CharField(max_length=100, default="")
+    nome = models.CharField(max_length=100, default="")
 
     # ATRIBUTOS e REGENERAÇÃO
     regenVida = models.DecimalField(max_digits=5, decimal_places=2, default=0.0, blank=True)

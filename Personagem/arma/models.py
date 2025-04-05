@@ -10,6 +10,7 @@ class Arma(models.Model):
 
     # NOME DO PERSONAGEM
     personagem = models.CharField(max_length=100, default="")
+    nome = models.CharField(max_length=100, default="")
 
     # ATRIBUTOS e REGENERAÇÃO
     regenVida = models.DecimalField(max_digits=5, decimal_places=2, default=0.0, blank=True)
@@ -79,20 +80,20 @@ class Arma(models.Model):
     rolagem_25 = models.CharField(max_length=25, blank=True, default="")
 
     # DEFESA
-    elementoDefesa_1 = models.CharField(max_length=100, default="")
-    elementoDefesa_2 = models.CharField(max_length=100, default="")
-    elementoDefesa_3 = models.CharField(max_length=100, default="")
-    elementoDefesa_4 = models.CharField(max_length=100, default="")
-    elementoDefesa_5 = models.CharField(max_length=100, default="")
-    elementoDefesa_6 = models.CharField(max_length=100, default="")
-    elementoDefesa_7 = models.CharField(max_length=100, default="")
-    elementoResistencia_1 = models.CharField(max_length=100, default="")
-    elementoResistencia_2 = models.CharField(max_length=100, default="")
-    elementoResistencia_3 = models.CharField(max_length=100, default="")
-    elementoResistencia_4 = models.CharField(max_length=100, default="")
-    elementoResistencia_5 = models.CharField(max_length=100, default="")
-    elementoResistencia_6 = models.CharField(max_length=100, default="")
-    elementoResistencia_7 = models.CharField(max_length=100, default="")
+    elementoDefesa_1 = models.CharField(max_length=100, default="", blank=True)
+    elementoDefesa_2 = models.CharField(max_length=100, default="", blank=True)
+    elementoDefesa_3 = models.CharField(max_length=100, default="", blank=True)
+    elementoDefesa_4 = models.CharField(max_length=100, default="", blank=True)
+    elementoDefesa_5 = models.CharField(max_length=100, default="", blank=True)
+    elementoDefesa_6 = models.CharField(max_length=100, default="", blank=True)
+    elementoDefesa_7 = models.CharField(max_length=100, default="", blank=True)
+    elementoResistencia_1 = models.CharField(max_length=100, default="", blank=True)
+    elementoResistencia_2 = models.CharField(max_length=100, default="", blank=True)
+    elementoResistencia_3 = models.CharField(max_length=100, default="", blank=True)
+    elementoResistencia_4 = models.CharField(max_length=100, default="", blank=True)
+    elementoResistencia_5 = models.CharField(max_length=100, default="", blank=True)
+    elementoResistencia_6 = models.CharField(max_length=100, default="", blank=True)
+    elementoResistencia_7 = models.CharField(max_length=100, default="", blank=True)
     defesaFixa_1 = models.IntegerField(default=0, blank=True)
     defesaFixa_2 = models.IntegerField(default=0, blank=True)
     defesaFixa_3 = models.IntegerField(default=0, blank=True)

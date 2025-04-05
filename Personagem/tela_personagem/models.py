@@ -3,6 +3,7 @@ from django.db import models
 
 class Tela_personagem(models.Model):
     personagem = models.CharField(max_length=30, default="")  # Valor padrão para começar
+
     vida = models.IntegerField(default=100)
     regenVida = models.IntegerField(default=0)
     mana = models.IntegerField(default=100)
@@ -101,10 +102,11 @@ class Tela_personagem(models.Model):
     outros15 = models.IntegerField(default=0)
     
     def __str__(self):
-        return self.nome
+        return self.personagem
     
 class Elementos_personagem(models.Model):
     personagem = models.CharField(max_length=30, default="")  # Valor padrão para começar
+
     danoFixo_1 = models.CharField(max_length=25, blank=True, default="")
     penetracao_1 = models.CharField(max_length=25, blank=True, default="")
     danoFixo_2 = models.CharField(max_length=25, blank=True, default="")
@@ -183,4 +185,4 @@ class Elementos_personagem(models.Model):
     outros15 = models.CharField(max_length=25, blank=True, default="")
     
     def __str__(self):
-        return self.nome
+        return self.personagem
