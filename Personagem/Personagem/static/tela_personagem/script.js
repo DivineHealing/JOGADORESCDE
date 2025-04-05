@@ -4,6 +4,13 @@ function selecionarPersonagem() {
     window.location.href = "/" + personagem_id + "/";
 }
 
+function validarNome() {
+    const select = document.getElementById("personagem_select");
+    //var personagem = select.value;
+    console.log(select.value);
+    console.log("Teste")
+}
+
 const atributos = [
     { nome: "regenVida", containerId:"regenVida_container"},
     { nome: "regenMana", containerId:"regenMana_container"},
@@ -264,27 +271,30 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 const cadastroNovo = document.getElementById("cadastrarNovo");
+const deletar = document.getElementById("deletar");
 const selecao = document.getElementById("personagem_select");
 const selecaoLb = document.getElementById("selectLabel");
 
 const novoPersonagem = document.getElementById("novoPersonagem")
 
 const btnCad = document.getElementById("btnCad")
+const btnDel = document.getElementById("btnDel")
 const btnSalvar = document.getElementById("btnSalvar")
 
 btnCad.addEventListener('click', function(){
-    selecao.style.display = "none";
     cadastroNovo.style.display = "block";
+    selecao.style.display = "none";
     btnCad.style.display = "none";
+    btnDel.style.display = "none";
     selecaoLb.style.display = "none";
 });
 
-btnSalvar.addEventListener('click', function(){
-    enviarDados()
-    cadastroNovo.style.display = "none";
-    selecao.style.display = "";
-    btnCad.style.display = "";
-    selecaoLb.style.display = "";
+btnDel.addEventListener('click', function(){
+    deletar.style.display = "block";
+    selecao.style.display = "none";
+    btnCad.style.display = "none";
+    selecaoLb.style.display = "none";
+    btnDel.style.display = "none";
 });
 
 /* Layout para botão

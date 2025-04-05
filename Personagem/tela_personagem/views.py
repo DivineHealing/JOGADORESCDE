@@ -31,6 +31,16 @@ def cadastrar_personagem(request):
         if nome_personagem:  # se o nome não estiver vazio
             criar_personagem_completo(nome_personagem)
             return redirect('/')
-            #print(f'Nome do novo personagem: {nome_personagem}')
 
+    return redirect('/')
+
+def deletar_personagem(request):
+    if request.method == "POST":
+        nome_personagem = request.POST.get("deletarPersonagem")  # pega nome do input
+        print(nome_personagem)
+
+        if nome_personagem is not None:  # se o nome não estiver vazio
+        #    deletar_personagem_completo(nome_personagem)
+            return redirect('/')
+        
     return redirect('/')
