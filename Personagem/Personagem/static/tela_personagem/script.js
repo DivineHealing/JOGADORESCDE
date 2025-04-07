@@ -4,11 +4,22 @@ function selecionarPersonagem() {
     window.location.href = "/" + personagem_id + "/";
 }
 
+
+const deleter = document.getElementById("deleter");
+
 function validarNome() {
+    const input = document.getElementById("impDel");
     const select = document.getElementById("personagem_select");
+    const personagemId = select.value; // Pega o ID do personagem do <option> selecionado
+    const selectedOption = select.options[select.selectedIndex]; // Pega o elemento <option>
+    const personagemNome = selectedOption.text; // Pega o nome para confirmação
+    deleter.style.display = "none";
+    if (personagemNome == input.value){
+        deleter.style.display = "";
+    }    
+
     //var personagem = select.value;
-    console.log(select.value);
-    console.log("Teste")
+    console.log(personagemNome)
 }
 
 const atributos = [
@@ -144,6 +155,7 @@ function formatarAtributo(atributo) {
 function exibirOuOcultarAtributo(atributo) {
     const element = document.getElementById(atributo.nome);
     const containerElement = document.getElementById(atributo.containerId);
+    
 
     if (!element) {
         console.warn(`Elemento '${atributo.nome}' não encontrado.`);
@@ -170,8 +182,7 @@ function exibirOuOcultarAtributo(atributo) {
         console.error(`Container '${atributo.containerId}' não encontrado.`);
         return;
     }
-
-    if (vazio) {
+    if (vazio && atributo.nome != "forca" && atributo.nome != "destreza" && atributo.nome != "inteligencia" && atributo.nome != "determinacao" && atributo.nome != "perspicacia" && atributo.nome != "carisma") {
         containerElement.style.display = 'none';
     } else {
         containerElement.style.display = 'block';

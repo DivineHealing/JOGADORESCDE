@@ -34,9 +34,9 @@
             <div class="formGroup field" style="display: none" id="deletar">
                 <form method="POST" action="{% url 'deletar_personagem' %}">
                     {% csrf_token %}
-                    <input type="text" name="deletarPersonagem" placeholder="Nome do Personagem" maxlength="70" oninput="validarNome()"/>
+                    <input type="text" id="impDel" name="deletarPersonagem" placeholder="Nome do Personagem" maxlength="70" oninput="validarNome()"/>
                     <label for="deletarPersonagem" class="formLabel" >Insira o Nome do Personagem á ser removido.</label>
-                    <button type="submit" class="cad-button">Confirmar</button>
+                    <button type="submit" id="deleter" class="cad-button">Confirmar</button>
                 </form>
             </div>
     
