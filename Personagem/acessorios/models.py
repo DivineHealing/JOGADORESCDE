@@ -146,4 +146,4 @@ class Acessorios(models.Model):
     amplificacao_25 = models.DecimalField(max_digits=5, decimal_places=2, default=0.0, blank=True)
     
     def __str__(self):
-        return self.personagem
+        return self.nome

@@ -193,5 +193,5 @@ class Elementos_personagem(models.Model):
     outros14 = models.CharField(max_length=25, blank=True, default="")
     outros15 = models.CharField(max_length=25, blank=True, default="")
     
-    def __str__(self):
-        return self.personagem
+    #def __str__(self):
+    #    return self.personagem
