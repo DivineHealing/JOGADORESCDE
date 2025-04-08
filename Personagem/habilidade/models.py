@@ -1,8 +1,9 @@
 from django.db import models
+from base_personagem.models import Base_personagem
 
 class Habilidade(models.Model):
     # NOME DO PERSONAGEM
-    personagem = models.CharField(max_length=100, default="")
+    personagem = models.ForeignKey(Base_personagem, on_delete=models.CASCADE)
 
     hab1_1_descricao = models.TextField(default="", blank=True)
     hab1_1_nome = models.CharField(max_length=70, default="", blank=True)

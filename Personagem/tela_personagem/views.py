@@ -1,6 +1,8 @@
 # tela_personagens/views.py
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
+
+from base_personagem.models import Base_personagem
 from .models import Tela_personagem, Elementos_personagem
 from django.apps import apps
 from lib.utilitarios import criar_personagem_completo
@@ -41,6 +43,7 @@ def deletar_personagem(request):
 
         if nome_personagem is not None:  # se o nome não estiver vazio
         #    deletar_personagem_completo(nome_personagem)
+            Base_personagem.objects.filter(personagem=nome_personagem).delete()
             return redirect('/')
         
     return redirect('/')

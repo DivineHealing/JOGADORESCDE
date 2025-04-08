@@ -1,4 +1,5 @@
 from django.db import models
+from base_personagem.models import Base_personagem
 
 class Arma(models.Model):
     TIPO_CHOICES = [
@@ -9,7 +10,7 @@ class Arma(models.Model):
     peca = models.CharField(max_length=25, choices=TIPO_CHOICES, default='principal')
 
     # NOME DO PERSONAGEM
-    personagem = models.CharField(max_length=100, default="")
+    personagem = models.ForeignKey(Base_personagem, on_delete=models.CASCADE)
     nome = models.CharField(max_length=100, default="")
 
     # ATRIBUTOS e REGENERAÇÃO

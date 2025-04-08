@@ -1,8 +1,9 @@
 # personagens/models.py
 from django.db import models
+from base_personagem.models import Base_personagem
 
 class Tela_personagem(models.Model):
-    personagem = models.CharField(max_length=30, default="")  # Valor padrão para começar
+    personagem = models.ForeignKey(Base_personagem, on_delete=models.CASCADE)
 
     vida = models.IntegerField(default=100)
     regenVida = models.IntegerField(default=0)
@@ -100,12 +101,20 @@ class Tela_personagem(models.Model):
     outros13 = models.IntegerField(default=0)
     outros14 = models.IntegerField(default=0)
     outros15 = models.IntegerField(default=0)
-    
-    def __str__(self):
-        return self.personagem
+
+#    def __str__(self):
+#        if self.personagem:
+#            # Tenta usar o __str__ do modelo Personagem vinculado
+#            return f"Base de Atributos para: {str(self.personagem)}"
+#        else:
+#            return "Base de Atributos (sem personagem vinculado)"
+#
+#    class Meta:
+#        verbose_name = "Base de Atributos do Personagem"
+#        verbose_name_plural = "Bases de Atributos dos Personagens"
     
 class Elementos_personagem(models.Model):
-    personagem = models.CharField(max_length=30, default="")  # Valor padrão para começar
+    personagem = models.ForeignKey(Base_personagem, on_delete=models.CASCADE)
 
     danoFixo_1 = models.CharField(max_length=25, blank=True, default="")
     penetracao_1 = models.CharField(max_length=25, blank=True, default="")
