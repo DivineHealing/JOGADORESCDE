@@ -1,0 +1,25 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'maestria/styleConj.css' %}"> </head>
+<body>
+
+    <div class="container">
+        <img src="{% static 'maestria/maestria.png' %}" alt="Personagem" usemap="#mapa-personagem">
+
+        <map name="mapa-personagem">
+            <area shape="rect" coords="520,107,814,162" href="{% url 'cadastrar_maestria' tipo='exemplar' %}" alt="Exemplar">
+
+            <area shape="rect" coords="887,287,1160,337" href="{% url 'cadastrar_maestria' tipo='auxiliar' %}" alt="Auxiliar">
+
+            <area shape="rect" coords="146,276,437,324" href="{% url 'cadastrar_maestria' tipo='oficio' %}" alt="Oficio">
+        </map>
+    </div>
+    <div>
+        <a href="{% url 'base_personagem'%}"><button class="button" role="button">Voltar</button></a>
+        <a href="{% url 'exibir_personagem' %}" class="buttonLink"><button class="button" role="button">Personagem</button></a>
+    </div>
+</body>
+</html>

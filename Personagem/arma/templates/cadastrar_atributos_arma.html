@@ -135,13 +135,13 @@
         <div>
             <a href="{% url 'arma'%}"><button class="button" role="button">Voltar</button></a>
             <a href="{% url 'exibir_personagem' %}" class="buttonLink"><button class="button" role="button">Personagem</button></a>
-            <form method="POST" action="{% url 'salvar_arma_atributo' %}">
+            <form method="POST" action="{% url 'salvar_maestria_atributo' %}">
                 {% csrf_token %}
                 <button class="submit" role="button">Salvar</button>
             </form>
         </div>
     </div>
     {% endlocalize %}
-    <script src="{% static 'arma\script.js' %}"></script>
+    <script src="{% static 'maestria\script.js' %}"></script>
 </body>
 </html>

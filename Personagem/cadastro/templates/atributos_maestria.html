@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HUD do Personagem</title>
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'base_personagem/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'maestria/style.css' %}">
 </head>
 <body>
     {% load l10n %}
@@ -75,7 +75,12 @@
                         <div class="formGroup field">
                             <input pattern="[0-9]+$" type="number" placeholder="Redução de Dano" id='reducao' />
                             <label for="reducao" class="formLabel">Redução</label>
-                        </div> 
+                        </div>
+                        <div class="formGroupRed field">
+                            <input pattern="[0-9]+$" type="number" placeholder="Defesa Espiritual" id='defEspiritual' />
+                            <input pattern="[0-9]+$" type="number" placeholder="Redução Espiritual" id='redEspiritual' />
+                            <label for="defEspiritual" class="formLabel">Espiritual</label>
+                        </div>    
                     </div>
 
                     <div id="atributosOfensivo">
@@ -84,11 +89,26 @@
                         <div class="atributos-added-container" id="atributosContainer">
                             <!-- Atributos serão adicionados aqui dinamicamente -->
                         </div>
+                        
+                        
+                        <div class="formGroup field">
+                            <input pattern="[0-9]+$" type="number" placeholder="Esmagamento" id='esmagamento' />
+                            <label for="esmagamento" class="formLabel">Esmagamento</label>
+                        </div>
+                        <div class="formGroup field">
+                            <input pattern="[0-9]+$" type="number" placeholder="Penetração Extra" id='penExtra' />
+                            <label for="penExtra" class="formLabel">Penetração Extra</label>
+                        </div>
                         <div class="formGroupRed field">
                             <input pattern="[0-9]+$" type="number" placeholder="Dano Final" id='dmgFinal' />
                             <label for="dmgFinal" class="formLabel">Dano Final</label>
+                        </div>                    
+                        <div class="formGroupRed field">
+                            <input pattern="[0-9]+$" type="number" placeholder="Dano Espiritual" id='dmgEspiritual' />
+                            <label for="dmgEspiritual" class="formLabel">Espiritual</label>
                         </div>
-                    </div>
+
+                    </div>               
                 </div>
 
                 <div class="character-equipment bordered-section">
@@ -107,14 +127,16 @@
                 </div>
             </div>
         </div>
-        <div class="formGroupRed" >
-            <a href="{% url 'exibir_personagem'%}"><button class="button" role="button">Voltar</button></a>
-            <a href="{% url 'habilidade' %}" class="buttonLink"><button class="button" role="button">Habilidades</button></a>
-            <a href="{% url 'cadastro'%}"><button class="button" role="button">Maestria</button></a>
-            <form method="POST" action="{% url 'salvar_base_personagem' %}">{% csrf_token %}<button class="submit" role="button">Salvar</button></form>
+        <div>
+            <a href="{% url 'base_personagem'%}"><button class="button" role="button">Voltar</button></a>
+            <a href="{% url 'exibir_personagem' %}" class="buttonLink"><button class="button" role="button">Personagem</button></a>
+            <form method="POST" action="{% url 'salvar_maestria_atributo' %}">
+                {% csrf_token %}
+                <button class="submit" role="button">Salvar</button>
+            </form>
         </div>
     </div>
     {% endlocalize %}
-    <script src="{% static 'base_personagem\script.js' %}"></script>
+    <script src="{% static 'maestria\script.js' %}"></script>
 </body>
 </html>

@@ -1,27 +1,34 @@
-# produtos/views.py
 from pyexpat.errors import messages
 from django.shortcuts import get_object_or_404, redirect, render
-from .forms import SomaForm
+from django.urls import reverse
+
+from .models import Maestria
+from .forms import EquipamentoForm
+from lib.utilitarios import *
 
 def cadastro(request):
-    
-    '''personagem = get_object_or_404(Personagem, id=user_id)
-    context = {
-        'personagem': personagem,
-        'user_id': user_id,  # Passa user_id também
-    }'''
-    
-    resultado = 0  # Inicializa a variável resultado
+    return render(request, 'maestria.html')
 
+def cadastrar_maestria(request, tipo):
     if request.method == 'POST':
-        form = SomaForm(request.POST)
+        form = EquipamentoForm(request.POST)
         if form.is_valid():
-
-            for i in range(1, 7):  # Itera de 1 a 6 (incluindo 6)
-                numero = form.cleaned_data.get(f'numero{i}', 0)  # Obtém o valor do campo
-                if numero is not None:  # Verifica se o valor é válido
-                    resultado += numero
+            equipamento = form.save(commit=False)
+            equipamento.tipo = tipo  # Define o tipo com base na URL
+            equipamento.save()
+            return redirect('atributos_maestria')  # Redireciona para a lista (você ainda vai criar)
     else:
-        form = SomaForm()
+        form = EquipamentoForm(initial={'tipo': tipo})  # Pré-preenche o tipo
 
-    return render(request, 'cadastro.html', {'form': form, 'resultado': resultado})
+    return render(request, 'atributos_maestria.html', {'form': form, 'tipo': tipo})
+
+
+def perfil(request, user_id):
+    messages.success(request, 'Cadastro de equipamentos realizados')
+    return redirect(reverse('tela_cadastro'), kwargs={'user-id': user_id})
+
+def salvar_maestria_atributo(request):
+    if request.method == "POST":        
+        print('FUNCIONA')
+
+    return redirect('cadastro')

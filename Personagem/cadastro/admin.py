@@ -1,6 +1,5 @@
 from django.contrib import admin
-from .models import Cadastro
-
+from .models import Maestria
 
 # Register your models here.
-admin.site.register(Cadastro)
+admin.site.register(Maestria)
