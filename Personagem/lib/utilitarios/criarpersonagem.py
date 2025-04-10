@@ -4,6 +4,7 @@ from base_personagem.models import Base_personagem
 from arma.models import Arma
 from acessorios.models import Acessorios
 from habilidade.models import Habilidade
+from cadastro.models import Maestria
 
 def criar_personagem_completo(nome_personagem: str):
     base_instance =  Base_personagem.objects.create(personagem= nome_personagem)
@@ -17,3 +18,5 @@ def criar_personagem_completo(nome_personagem: str):
         Arma.objects.create(personagem = base_instance, peca= tabela, nome='Arma ' + conteudo)
     for tabela, conteudo in Acessorios.TIPO_CHOICES: 
         Acessorios.objects.create(personagem = base_instance, peca= tabela, nome= conteudo + ' comum')
+    for tabela, conteudo in Maestria.TIPO_CHOICES:
+        Maestria.objects.create(personagem= base_instance, peca= tabela, nome= 'Maestria ' + conteudo)

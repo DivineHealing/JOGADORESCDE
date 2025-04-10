@@ -5,6 +5,7 @@ from arma.models import Arma
 from base_personagem.models import Base_personagem
 from conjunto.models import Conjunto
 from tela_personagem.models import Tela_personagem
+from cadastro.models import Maestria
 
 
 def pegar_atributos(idescolha: int, attescolhido: str):
@@ -47,7 +48,7 @@ def pegar_atributos(idescolha: int, attescolhido: str):
     A função não retorna nenhum valor explícito, mas atualiza a instância de Tela_personagem no banco com a soma total
     e imprime em debug o dicionário contendo a soma dos valores obtidos para cada modelo.
     """
-    MODELOS_RELEVANTES = [Base_personagem, Acessorios, Arma, Conjunto]  # colocando os modelos que sera usado na lista
+    MODELOS_RELEVANTES = [Base_personagem, Acessorios, Arma, Conjunto, Maestria]  # colocando os modelos que sera usado na lista
     base_instance = MODELOS_RELEVANTES[0].objects.filter(id=idescolha).first()
     attpego = {}
     soma_total = 0
