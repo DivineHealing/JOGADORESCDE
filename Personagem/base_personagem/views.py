@@ -20,6 +20,8 @@ def base_personagem(request):
 
 def salvar_base_personagem(request):
     if request.method == "POST":        
+        pegar_atributos(1, 'forca')   
         print('FUNCIONA')
+        return redirect('base_personagem')
 
     return redirect('base_personagem')
