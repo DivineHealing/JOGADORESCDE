@@ -29,27 +29,27 @@
 
                     {% comment %} Atributos principais {% endcomment %}
                     <div class="formGroup field">
-                        <input pattern="[0-9]+$" type="number" placeholder="Valor da Força" id='forca' name="forca" value="{{ personagem.forca }}" />
+                        <input pattern="[0-9]+$" type="number" placeholder="Valor da Força" id='forca' name="forca" value="{{ base_personagem.forca }}" />
                         <label for="forca" class="formLabel">Força</label>
                     </div>
                     <div class="formGroup field">
-                        <input pattern="[0-9]+$" type="number" placeholder="Valor da Destreza" id='destreza' name="destreza" value="{{ personagem.destreza }}" />
+                        <input pattern="[0-9]+$" type="number" placeholder="Valor da Destreza" id='destreza' name="destreza" value="{{ base_personagem.destreza }}" />
                         <label for="destreza" class="formLabel">Destreza</label>
                     </div>
                     <div class="formGroup field">
-                        <input pattern="[0-9]+$" type="number" placeholder="Valor da Inteligência" id='inteligencia' name="inteligencia" value="{{ personagem.inteligencia }}" />
+                        <input pattern="[0-9]+$" type="number" placeholder="Valor da Inteligência" id='inteligencia' name="inteligencia" value="{{ base_personagem.inteligencia }}" />
                         <label for="inteligencia" class="formLabel">Inteligência</label>
                     </div>
                     <div class="formGroup field">
-                        <input pattern="[0-9]+$" type="number" placeholder="Valor da Determinação" id='determinacao' name="determinacao" value="{{ personagem.determinacao }}" />
+                        <input pattern="[0-9]+$" type="number" placeholder="Valor da Determinação" id='determinacao' name="determinacao" value="{{ base_personagem.determinacao }}" />
                         <label for="determinacao" class="formLabel">Determinação</label>
                     </div>
                     <div class="formGroup field">
-                        <input pattern="[0-9]+$" type="number" placeholder="Valor da Perspicácia" id='perspicacia' name="perspicacia" value="{{ personagem.perspicacia }}" />
+                        <input pattern="[0-9]+$" type="number" placeholder="Valor da Perspicácia" id='perspicacia' name="perspicacia" value="{{ base_personagem.perspicacia }}" />
                         <label for="perspicacia" class="formLabel">Perspicácia</label>
                     </div>
                     <div class="formGroup field">
-                        <input pattern="[0-9]+$" type="number" placeholder="Valor da Carisma" id='carisma' name="carisma" value="{{ personagem.carisma }}" />
+                        <input pattern="[0-9]+$" type="number" placeholder="Valor da Carisma" id='carisma' name="carisma" value="{{ base_personagem.carisma }}" />
                         <label for="carisma" class="formLabel">Carisma</label>
                     </div>
                 </div>
@@ -103,13 +103,17 @@
                     <div class="atributos-added-container" id="regeneracaoContainer">
                         <!-- Regeneração -->
                     </div>
+                    <div class="formGroup field">
+                        <input type="number" maxlength="12" name="vidaMax" id="vidaMax" placeholder="Valor da Vida" value="{{ base_personagem.vida }}" onkeypress="if (!isNaN(String.fromCharCode(window.event.keyCode))) return true; else return false;"/>
+                        <label for="vidaMax" class="formLabel">Vida Máxima</label>
+                    </div>
                 </div>
             </div>
         </div>
 
         <div class="formGroupRed">
             <a href="{% url 'exibir_personagem' %}"><button type="button" class="button">Voltar</button></a>
-            <a href="{% url 'habilidade' %}" class="buttonLink"><button type="button" class="button">Habilidades</button></a>
+            <a href="{% url 'habilidade' personagem_id=tela_personagem.id %}" class="buttonLink"><button type="button" class="button">Habilidades</button></a>
             <a href="{% url 'cadastro' %}"><button type="button" class="button">Maestria</button></a>
 
             <button type="submit" class="submit">Salvar</button>

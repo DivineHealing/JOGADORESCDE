@@ -19,6 +19,7 @@ def exibir_personagem(request, personagem_id=None):
         # Se nenhum ID for especificado, exibe o primeiro personagem (ou None)
         tela_personagem = Tela_personagem.objects.first()
         elementos_personagem = Elementos_personagem.objects.first()
+        
         if not tela_personagem:
             tela_personagem = None #Define como none para tratar no HTML
 

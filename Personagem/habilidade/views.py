@@ -1,9 +1,20 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
+
+from tela_personagem.models import Tela_personagem
 from .models import Habilidade
 
-def habilidade(request):
-    habilidade = Habilidade.objects.all()  # Obtém todos os produtos do banco de dados
-    return render(request, 'habilidade.html', {'Habilidade': habilidade})
+def habilidade(request, personagem_id):
+    if not personagem_id:
+        return redirect('exibir_personagem')  # ou qualquer outra tela de seleção
+    
+    tela_personagem = get_object_or_404(Tela_personagem, pk=personagem_id)   
+    habilidade = get_object_or_404(Habilidade, pk=personagem_id)   
+     
+    context = {
+        'tela_personagem': tela_personagem,
+        'habilidade': habilidade,
+    }
+    return render(request, 'habilidade.html', context)
 
 def salvar_habilidade(request):
     if request.method == "POST":        

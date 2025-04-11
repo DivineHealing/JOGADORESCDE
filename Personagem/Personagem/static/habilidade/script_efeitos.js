@@ -1,3 +1,12 @@
+function selecionarPersonagem() {
+    const select = document.getElementById("personagem_select");
+    const selectedOption = select.options[select.selectedIndex];
+    const url = selectedOption.getAttribute("data-url");
+    if (url) {
+        window.location.href = url;
+    }
+}
+
 const addHab1Btn = document.getElementById('addHab1');
 const addHab2Btn = document.getElementById('addHab2');
 const addHab3Btn = document.getElementById('addHab3');

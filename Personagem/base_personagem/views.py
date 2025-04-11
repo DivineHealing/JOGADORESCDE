@@ -9,9 +9,12 @@ def base_personagem(request, personagem_id):
     if not personagem_id:
         return redirect('exibir_personagem')  # ou qualquer outra tela de seleção
     
-    tela_personagem = get_object_or_404(Tela_personagem, pk=personagem_id)    
+    tela_personagem = get_object_or_404(Tela_personagem, pk=personagem_id)   
+    base_personagem = get_object_or_404(Base_personagem, pk=personagem_id)   
+     
     context = {
         'tela_personagem': tela_personagem,
+        'base_personagem': base_personagem,
     }
     return render(request, 'base_personagem.html', context)
 
@@ -40,6 +43,8 @@ def salvar_base_personagem(request):
         personagem = Base_personagem.objects.get(id=personagem_id) 
 
         # ATRIBUTOS BASE
+        personagem.vida = int(request.POST.get("vidaMax", 0) or 0)
+
         personagem.forca = int(request.POST.get("forca", 0) or 0)
         personagem.destreza = int(request.POST.get("destreza", 0) or 0)
         personagem.inteligencia = int(request.POST.get("inteligencia", 0) or 0)
@@ -96,6 +101,7 @@ def salvar_base_personagem(request):
                 personagem.regenVigor = valor
 
         personagem.save()
+        pegar_atributos(personagem_id, 'vida')  # <- esse 2 ainda é fixo
         pegar_atributos(personagem_id, 'forca')  # <- esse 2 ainda é fixo
         pegar_atributos(personagem_id, 'destreza')  # <- esse 2 ainda é fixo
         pegar_atributos(personagem_id, 'inteligencia')  # <- esse 2 ainda é fixo
