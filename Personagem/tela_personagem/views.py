@@ -8,7 +8,6 @@ from django.apps import apps
 from lib.utilitarios import criar_personagem_completo
 
 def exibir_personagem(request, personagem_id=None):
-    
     personagens = Tela_personagem.objects.all()  # Obtém todos os personagens
     elementos = Elementos_personagem.objects.all() # Obtem todos os elementos
 
@@ -23,6 +22,9 @@ def exibir_personagem(request, personagem_id=None):
         if not tela_personagem:
             tela_personagem = None #Define como none para tratar no HTML
 
+    # Salvar o ID do personagem na sessão
+    request.session['personagem_id'] = personagem_id
+
     context = {'tela_personagem': tela_personagem, 'personagens': personagens, 'elementos': elementos, 'elementos_personagem': elementos_personagem} #troca na variavel pessoa para tela_personagem
     return render(request, 'tela_personagem.html', context)
 
@@ -31,7 +33,8 @@ def cadastrar_personagem(request):
         nome_personagem = request.POST.get("novoPersonagem")  # pega nome do input
 
         if nome_personagem:  # se o nome não estiver vazio
-            criar_personagem_completo(nome_personagem)
+            if not Base_personagem.objects.filter(personagem= nome_personagem).exists(): # verificando se o personagem ja existe
+                criar_personagem_completo(nome_personagem)
             return redirect('/')
 
     return redirect('/')
@@ -39,7 +42,6 @@ def cadastrar_personagem(request):
 def deletar_personagem(request):
     if request.method == "POST":
         nome_personagem = request.POST.get("deletarPersonagem")  # pega nome do input
-        print(nome_personagem)
 
         if nome_personagem is not None:  # se o nome não estiver vazio
         #    deletar_personagem_completo(nome_personagem)

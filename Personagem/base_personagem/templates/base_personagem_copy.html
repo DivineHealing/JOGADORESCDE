@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HUD do Personagem</title>
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'conjunto/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'base_personagem/style.css' %}">
 </head>
 <body>
     {% load l10n %}
@@ -24,22 +24,12 @@
               </select>
             </div>
         </div>
-
-        <div class="top-section">
-            <div class="vida-mana-vigor bordered-section">
-                <div class="formGroup field">
-                    <input pattern="[0-9]+$" type="number" placeholder="Valor da Vida" id='vida'/>
-                    <label for="vida" class="formLabel">Vida</label>
-                  </div>
-            </div>
-        </div>
-
         <div class="middle-section">
             <div class="left-column">
                 <div class="attribute-stats bordered-section">
                     <div class="stat section-title">STATUS</div>
                     <div class="formGroup field">
-                        <input pattern="[0-9]+$" type="number" placeholder="Valor da Força" id='forca'/>
+                        <input pattern="[0-9]+$" type="number" placeholder="Valor da Força" id='forca' />
                         <label for="forca" class="formLabel">Força</label>
                     </div>
                     <div class="formGroup field">
@@ -75,21 +65,30 @@
 
             <div class="right-column">
                 <div class="character-abilities bordered-section">
-                    <div class="abilities section-title">ATRIBUTOS DEFENSIVOS</div>
-                    <button class="add-atributo-btn" id="addAtributo">Add</button>
-                    <div class="atributos-added-container" id="atributosContainer">
-                        <!-- Atributos serão adicionados aqui dinamicamente -->
+                    <div id="atributosDefensivo">
+                        <div class="abilities section-title">ATRIBUTOS DEFENSIVOS</div>
+                        <button class="add-atributo-btn" id="addDefesa">Add</button>
+                        <div class="atributos-added-container" id="defesaContainer">
+                            <!-- Atributos serão adicionados aqui dinamicamente -->
+                        </div>
+                            
+                        <div class="formGroup field">
+                            <input pattern="[0-9]+$" type="number" placeholder="Redução de Dano" id='reducao' />
+                            <label for="reducao" class="formLabel">Redução</label>
+                        </div> 
                     </div>
-                        
-                    <div class="formGroup field">
-                        <input pattern="[0-9]+$" type="number" placeholder="Redução de Dano" id='reducao' />
-                        <label for="reducao" class="formLabel">Redução</label>
+
+                    <div id="atributosOfensivo">
+                        <div class="abilities section-title">ATRIBUTOS OFENSIVOS</div>
+                        <button class="add-atributo-btn" id="addAtributo">Add</button>
+                        <div class="atributos-added-container" id="atributosContainer">
+                            <!-- Atributos serão adicionados aqui dinamicamente -->
+                        </div>
+                        <div class="formGroupRed field">
+                            <input pattern="[0-9]+$" type="number" placeholder="Dano Final" id='dmgFinal' />
+                            <label for="dmgFinal" class="formLabel">Dano Final</label>
+                        </div>
                     </div>
-                    <div class="formGroupRed field">
-                        <input pattern="[0-9]+$" type="number" placeholder="Defesa Espiritual" id='defEspiritual' />
-                        <input pattern="[0-9]+$" type="number" placeholder="Redução Espiritual" id='redEspiritual' />
-                        <label for="defEspiritual" class="formLabel">Espiritual</label>
-                    </div>                    
                 </div>
 
                 <div class="character-equipment bordered-section">
@@ -108,16 +107,14 @@
                 </div>
             </div>
         </div>
-        <div class="formGroupRed">
-            <a href="{% url 'conjunto'%}"><button class="button" role="button">Voltar</button></a>
-            <a href="{% url 'exibir_personagem' %}" class="buttonLink"><button class="button" role="button">Personagem</button></a>
-            <form method="POST" action="{% url 'salvar_conjunto_atributo' %}">
-                {% csrf_token %}
-                <button class="button" role="button" id="save">Salvar</button>
-            </form>
+        <div class="formGroupRed" >
+            <a href="{% url 'exibir_personagem'%}"><button class="button" role="button">Voltar</button></a>
+            <a href="{% url 'habilidade' %}" class="buttonLink"><button class="button" role="button">Habilidades</button></a>
+            <a href="{% url 'cadastro'%}"><button class="button" role="button">Maestria</button></a>
+            <form method="POST" action="{% url 'salvar_base_personagem' %}">{% csrf_token %}<button class="submit" role="button">Salvar</button></form>
         </div>
     </div>
     {% endlocalize %}
-    <script src="{% static 'Conjunto\script.js' %}"></script>
+    <script src="{% static 'base_personagem\script.js' %}"></script>
 </body>
 </html>

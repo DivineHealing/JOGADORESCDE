@@ -1,4 +1,5 @@
 from django.apps import apps
+from django.shortcuts import render
 from django.core.exceptions import FieldDoesNotExist
 from acessorios.models import Acessorios
 from arma.models import Arma
@@ -67,3 +68,15 @@ def pegar_atributos(idescolha: int, attescolhido: str):
         print(f"Erro ao atualizar a 'Tela_personagem:{attescolhido} do personagem {idescolha}': {e}")  # apontando qual erro ocorreu
 
     print(attpego)  # depois retirar esse debug
+
+
+def obter_personagem_sessao(request):
+    personagem_id = request.session.get('personagem_id')
+    if not personagem_id: # se não conseguiu achar nenhum personagem
+        primeiro_personagem =  Base_personagem.objects.first()  # obtém o primeiro personagem
+        if primeiro_personagem:  # se existir um personagem
+            personagem_id = primeiro_personagem.id
+            request.session['personagem_id'] = personagem_id  # ja salva para sessões futuras
+            return personagem_id
+        return None  # se não existir nenhum personagem
+    return personagem_id

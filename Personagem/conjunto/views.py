@@ -42,7 +42,10 @@ def perfil(request, user_id):
     return redirect(reverse('tela_cadastro'), kwargs={'user-id': user_id})
 
 def salvar_conjunto_atributo(request):
-    if request.method == "POST":     
+    if request.method == "POST":
+        personagem_id = obter_personagem_sessao(request)
+
+        print(personagem_id)
         print('FUNCIONA')
 
     return redirect('conjunto')
