@@ -1,5 +1,4 @@
 from django.apps import apps
-from django.shortcuts import render
 from django.core.exceptions import FieldDoesNotExist
 from acessorios.models import Acessorios
 from arma.models import Arma
@@ -8,8 +7,26 @@ from conjunto.models import Conjunto
 from tela_personagem.models import Tela_personagem
 from cadastro.models import Maestria
 
+campos_personagem = [
+    "regenVida", "regenMana", "regenVigor", "vida",
+    "forca", "destreza", "inteligencia", "determinacao", "perspicacia", "carisma",
+    # TIPO ROLAGEM
+    #*[f"tipoRolagem_{i}" for i in range(1, 26)],
+    # ROLAGEM
+    #*[f"rolagem_{i}" for i in range(1, 26)],
+    # DEFESA
+    *[f"defesaFixa_{i}" for i in range(1, 8)],
+    *[f"resistencia_{i}" for i in range(1, 8)],
+    "reducao", "defesaFixaEspiritual", "reducaoEspiritual",
+    # DANO
+    *[f"danoFixo_{i}" for i in range(1, 8)],
+    *[f"penetracao_{i}" for i in range(1, 8)],
+    "esmagamento", "penExtra", "danoFinal", "espiritualPerc", "espiritualFixo",
+    # AMPLIFICAÇÃO
+    *[f"amplificacao_{i}" for i in range(1, 26)],
+]
 
-def pegar_atributos(idescolha: int, attescolhido: str):
+def pegar_atributos(idescolha: int):
     """
     Obtém e soma os valores de um atributo específico de vários modelos relacionados a um personagem,
     filtrando pelos registros que possuem uma ForeignKey para a instância de Base_personagem identificada por `idescolha`,
@@ -51,23 +68,25 @@ def pegar_atributos(idescolha: int, attescolhido: str):
     """
     MODELOS_RELEVANTES = [Base_personagem, Acessorios, Arma, Conjunto, Maestria]  # colocando os modelos que sera usado na lista
     base_instance = MODELOS_RELEVANTES[0].objects.filter(id=idescolha).first()
-    attpego = {}
-    soma_total = 0
+    # se der errado tirar a iteração,e colocar att escolhido como parametro na função e substituir todos os "campo" por att escolhido
+    for campo in campos_personagem:
+        attpego = {}
+        soma_total = 0
 
-    for model in MODELOS_RELEVANTES:
-        if attescolhido in [field.name for field in model._meta.fields]:  # achara o campo especificado
-            valores = model.objects.filter(personagem=base_instance).values_list(attescolhido, flat=True)  # pegara todos os vallores do campo especificado
-            attpego[model.__name__] = sum(valores)  # somara e guardara a informação
-            soma_total += sum(valores)
+        for model in MODELOS_RELEVANTES:
+            if campo in [field.name for field in model._meta.get_fields()]:  # verifica se o campo especificado existe
+                valores = model.objects.filter(personagem=base_instance).values_list(campo, flat=True)  # pegara todos os vallores do campo especificado
+                attpego[model.__name__] = sum(valores)  # somara e guardara a informação
+                soma_total += sum(valores)
 
-  
-    # atualizando a tabela tela personagem
-    try:
-        Tela_personagem.objects.filter(id=idescolha).update(**{attescolhido:soma_total})  # modifica o valor da tabela tela de personagem
-    except Exception as e:
-        print(f"Erro ao atualizar a 'Tela_personagem:{attescolhido} do personagem {idescolha}': {e}")  # apontando qual erro ocorreu
+    
+        # atualizando a tabela tela personagem
+        try:
+            Tela_personagem.objects.filter(id=idescolha).update(**{campo:soma_total})  # modifica o valor da tabela tela de personagem
+        except Exception as e:
+            print(f"Erro ao atualizar a 'Tela_personagem:{campo} do personagem {idescolha}': {e}")  # apontando qual erro ocorreu
 
-    print(attpego)  # depois retirar esse debug
+        print(attpego)  # depois retirar esse debug
 
 
 def obter_personagem_sessao(request):

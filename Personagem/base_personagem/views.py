@@ -101,13 +101,14 @@ def salvar_base_personagem(request):
                 personagem.regenVigor = valor
 
         personagem.save()
-        pegar_atributos(personagem_id, 'vida')  # <- esse 2 ainda é fixo
-        pegar_atributos(personagem_id, 'forca')  # <- esse 2 ainda é fixo
-        pegar_atributos(personagem_id, 'destreza')  # <- esse 2 ainda é fixo
-        pegar_atributos(personagem_id, 'inteligencia')  # <- esse 2 ainda é fixo
-        pegar_atributos(personagem_id, 'determinacao')  # <- esse 2 ainda é fixo
-        pegar_atributos(personagem_id, 'perspicacia')  # <- esse 2 ainda é fixo
-        pegar_atributos(personagem_id, 'carisma')  # <- esse 2 ainda é fixo
+        pegar_atributos(personagem_id)
+        #pegar_atributos(personagem_id, 'vida')  # <- esse 2 ainda é fixo
+        #pegar_atributos(personagem_id, 'forca')  # <- esse 2 ainda é fixo
+        #pegar_atributos(personagem_id, 'destreza')  # <- esse 2 ainda é fixo
+        #pegar_atributos(personagem_id, 'inteligencia')  # <- esse 2 ainda é fixo
+        #pegar_atributos(personagem_id, 'determinacao')  # <- esse 2 ainda é fixo
+        #pegar_atributos(personagem_id, 'perspicacia')  # <- esse 2 ainda é fixo
+        #pegar_atributos(personagem_id, 'carisma')  # <- esse 2 ainda é fixo
         print('FUNCIONA')
         return redirect('base_personagem', personagem_id=personagem_id)
 
