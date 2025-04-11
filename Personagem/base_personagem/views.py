@@ -9,7 +9,11 @@ def base_personagem(request, personagem_id):
     if not personagem_id:
         return redirect('exibir_personagem')  # ou qualquer outra tela de seleção
     
-    tela_personagem = get_object_or_404(Tela_personagem, pk=personagem_id)
+    tela_personagem = get_object_or_404(Tela_personagem, pk=personagem_id)    
+    context = {
+        'tela_personagem': tela_personagem,
+    }
+    return render(request, 'base_personagem.html', context)
 
 
 def editar_base_personagem(request):
@@ -93,6 +97,11 @@ def salvar_base_personagem(request):
 
         personagem.save()
         pegar_atributos(personagem_id, 'forca')  # <- esse 2 ainda é fixo
+        pegar_atributos(personagem_id, 'destreza')  # <- esse 2 ainda é fixo
+        pegar_atributos(personagem_id, 'inteligencia')  # <- esse 2 ainda é fixo
+        pegar_atributos(personagem_id, 'determinacao')  # <- esse 2 ainda é fixo
+        pegar_atributos(personagem_id, 'perspicacia')  # <- esse 2 ainda é fixo
+        pegar_atributos(personagem_id, 'carisma')  # <- esse 2 ainda é fixo
         print('FUNCIONA')
         return redirect('base_personagem', personagem_id=personagem_id)
 
