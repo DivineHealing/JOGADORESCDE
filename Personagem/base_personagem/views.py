@@ -35,8 +35,13 @@ def editar_base_personagem(request):
 
 def salvar_base_personagem(request):
     if request.method == "POST":
-        # personagem_id = request.POST.get("personagem_id")  
-        personagem = Base_personagem.objects.get(id=2)  # substitua isso depois pelo ID real
+        personagem_id = obter_personagem_sessao(request)
+
+        # se ainda nao tiver nenhum id de personagem por não existir personagem ele volta para pagina inicial
+        if not personagem_id:
+            return redirect('/')
+
+        personagem = Base_personagem.objects.get(id=personagem_id) 
 
         # ATRIBUTOS BASE
         personagem.forca = int(request.POST.get("forca", 0) or 0)
@@ -95,7 +100,7 @@ def salvar_base_personagem(request):
                 personagem.regenVigor = valor
 
         personagem.save()
-        pegar_atributos(2, 'forca')  # <- esse 2 ainda é fixo
+        pegar_atributos(personagem_id, 'forca')  # <- esse 2 ainda é fixo
         print('FUNCIONA')
         return redirect('base_personagem')
 

@@ -111,7 +111,7 @@
         <div class="formGroupRed">
             <a href="{% url 'conjunto'%}"><button class="button" role="button">Voltar</button></a>
             <a href="{% url 'exibir_personagem' %}" class="buttonLink"><button class="button" role="button">Personagem</button></a>
-            <form method="POST" action="{% url 'cadastrar_personagem' %}">
+            <form method="POST" action="{% url 'salvar_conjunto_atributo' %}">
                 {% csrf_token %}
                 <button class="button" role="button" id="save">Salvar</button>
             </form>
