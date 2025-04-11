@@ -1,27 +1,25 @@
 from django.apps import apps
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from .forms import BaseForm
 from lib.utilitarios import *
+from tela_personagem.models import Tela_personagem
 
-def base_personagem(request):
-    resultado = 0  # Inicializa a variável resultado
-    lvlup(185187)
-    if request.method == 'POST':
-        form = BaseForm(request.POST)
-        if form.is_valid():
-            pegar_atributos(1, 'forca')
-            for i in range(1, 7):  # Itera de 1 a 6 (incluindo 6)
-                numero = form.cleaned_data.get(f'numero{i}', 0)  # Obtém o valor do campo
-                if numero is not None:  # Verifica se o valor é válido
-                    resultado += numero
-    else:
-        form = BaseForm()
-    return render(request, 'base_personagem.html', {'form': form, 'resultado': resultado})
+def base_personagem(request, personagem_id):
+    if not personagem_id:
+        return redirect('exibir_personagem')  # ou qualquer outra tela de seleção
+    
+    tela_personagem = get_object_or_404(Tela_personagem, pk=personagem_id)
 
-def salvar_base_personagem(request):
-    if request.method == "POST":        
-        pegar_atributos(2, 'forca')   
+    context = {
+        'tela_personagem': tela_personagem,
+    }
+    return render(request, 'base_personagem.html', context)
+
+def salvar_base_personagem(request, personagem_id):
+    if request.method == "POST":
+        personagem_id = request.POST.get('personagem_id')  # Pega do form
+        pegar_atributos(2, 'forca')  # <- Essa parte é sua função
         print('FUNCIONA')
-        return redirect('base_personagem')
+        return redirect('base_personagem', personagem_id=personagem_id)
 
-    return redirect('base_personagem')
+    return redirect('exibir_personagem')

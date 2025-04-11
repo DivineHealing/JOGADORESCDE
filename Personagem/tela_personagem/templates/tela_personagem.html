@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+    {% load static %}
+    {% load l10n humanize %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ficha - Cronicas de Errat</title>
-    {% load static %}
+
     <link rel="stylesheet" type="text/css" href="{% static 'tela_personagem/style.css' %}">
 </head>
 <body>
-    {% load l10n %}
-    {% load humanize %}
     {% localize on %}
     <div class="background-container">
 
@@ -17,12 +17,16 @@
             <div class="name" style="color: white;">
                 <label for="personagem_select" class="selectLabel" id="selectLabel">Nome do Personagem</label>
                 <select class='personagem_select' id="personagem_select" onchange="selecionarPersonagem()">
-                {% for personagem in personagens %}
-                    <option value="{{ personagem.id }}" {% if personagem.id == tela_personagem.id %}selected{% endif %}>
-                        {{ personagem.personagem }}
-                    </option>
-                  {% endfor %}  
-              </select>
+                    {% for personagem in personagens %}
+                        <option 
+                            value="{{ personagem.id }}" 
+                            data-url="{% url 'exibir_personagem_id' personagem.id %}"
+                            {% if personagem.id == tela_personagem.id %}selected{% endif %}
+                        >
+                            {{ personagem.personagem }}
+                        </option>
+                    {% endfor %}
+                </select>                
               <div class="formGroup field" style="display: none" id="cadastrarNovo">
                 <form method="POST" action="{% url 'cadastrar_personagem' %}">
                     {% csrf_token %}
@@ -42,8 +46,8 @@
     
             <button id="btnCad" class="cad-button">Novo</button>
             <button id="btnDel" class="cad-button">Deletar</button>
+            </div>
         </div>
-    </div>
 
         <div class="top-section">
             <div class="vida-mana-vigor bordered-section">
@@ -229,7 +233,7 @@
             </div>
         </div>
         <div>
-            <a href="{% url 'base_personagem' %}"><button class="button" role="button">Caracteristicas</button></a>
+            <a href="{% url 'base_personagem' personagem_id=tela_personagem.id %}"><button class="button" role="button">Caracteristicas</button></a>
             <a href="{% url 'conjunto' %}" class="buttonLink"><button class="button" role="button">Conjunto</button></a>
             <a href="{% url 'acessorios' %}"><button class="button" role="button">Acessorios</button></a>
             <a href="{% url 'arma' %}"><button class="button" role="button">Armas</button></a>
