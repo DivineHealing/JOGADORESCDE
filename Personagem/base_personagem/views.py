@@ -82,7 +82,7 @@ def salvar_base_personagem(request):
             penetracao = float(request.POST.get(f'penetracao{i}', 0) or 0)
 
             setattr(personagem, f'elementoDano_{i}', elemento)
-            setattr(personagem, f'elementoPenetracao_{i}')
+            setattr(personagem, f'elementoPenetracao_{i}', elemento)
             setattr(personagem, f'danoFixo_{i}', dano)
             setattr(personagem, f'penetracao_{i}', penetracao)
             #setattr(telap, f"elementoDano_{i}", elemento)
