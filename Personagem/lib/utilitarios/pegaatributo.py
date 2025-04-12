@@ -11,7 +11,6 @@ campos_personagem = [
     "regenVida", "regenMana", "regenVigor", "vida",
     "forca", "destreza", "inteligencia", "determinacao", "perspicacia", "carisma",
     # TIPO ROLAGEM
-    #*[f"tipoRolagem_{i}" for i in range(1, 26)],
     # ROLAGEM
     #*[f"rolagem_{i}" for i in range(1, 26)],
     # DEFESA
@@ -25,6 +24,15 @@ campos_personagem = [
     # AMPLIFICAÇÃO
     *[f"amplificacao_{i}" for i in range(1, 26)],
 ]
+
+escolhas_personagem = {  # pegando o campo que recebem string
+    *[f"tipoRolagem_{i}" for i in range(1, 26)],
+    *[f"elementoDefesa_{i}" for i in range(1, 8)],
+    *[f"elementoResistencia_{i}" for i in range(1, 8)],
+    *[f"elementoDano_{i}" for i in range(1,8)],
+    *[f"elementoPenetracao_{i}" for i in range(1, 8)],
+    *[f"elementoAmplificacao_{i}" for i in range(1,26)]
+}
 
 def pegar_atributos(idescolha: int):
     """
@@ -86,7 +94,7 @@ def pegar_atributos(idescolha: int):
         except Exception as e:
             print(f"Erro ao atualizar a 'Tela_personagem:{campo} do personagem {idescolha}': {e}")  # apontando qual erro ocorreu
 
-        print(attpego)  # depois retirar esse debug
+        #print(attpego)  # depois retirar esse debug
 
 
 def obter_personagem_sessao(request):
