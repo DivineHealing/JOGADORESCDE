@@ -1,9 +1,9 @@
 from django.apps import apps
 from django.shortcuts import redirect, render, get_object_or_404
 from base_personagem.models import Base_personagem
+from tela_personagem.models import Tela_personagem
 from .forms import BaseForm
 from lib.utilitarios import *
-from tela_personagem.models import Tela_personagem
 
 def base_personagem(request, personagem_id):
     if not personagem_id:

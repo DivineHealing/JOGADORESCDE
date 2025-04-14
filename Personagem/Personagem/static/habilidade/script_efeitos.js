@@ -53,14 +53,14 @@ addHab1Btn.addEventListener('click', function () {
         habilidadeRow.innerHTML = `
             <div class='habilidade-row-container'>
                 <div class='habilidade-row-miniContainer'>
-                    <label for="habilidadeTipo${hab1Count}">Tipo do habilidade</label>
-                    <select class='personagem_select' id="habilidadeTipo${hab1Count}" name="habilidadeTipo${hab1Count}">
+                    <label for="habilidade1Tipo${hab1Count}">Tipo do habilidade</label>
+                    <select class='personagem_select' id="habilidade1Tipo${hab1Count}" name="habilidade1Tipo${hab1Count}">
                         <option value="habilidadePassivo" selected> Habilidade Passivo</option>
                         <option value="habilidadeAtivo"> Habilidade Ativo</option>
                         <option value="habilidadeAura"> Habilidade Aura</option>
                     </select>
-                    <label for="habilidadeNivel${hab1Count}">Nível do habilidade</label>
-                    <select class='personagem_select' id="habilidadeNivel${hab1Count}" name="habilidadeNivel${hab1Count}">                        
+                    <label for="habilidade1Nivel${hab1Count}">Nível do habilidade</label>
+                    <select class='personagem_select' id="habilidade1Nivel${hab1Count}" name="habilidade1Nivel${hab1Count}">                        
                         <option value="nivel2" selected>Nível 2</option>
                         <option value="nivel3">Nível 3</option>
                         <option value="nivel4">Nível 4</option>
@@ -69,14 +69,14 @@ addHab1Btn.addEventListener('click', function () {
                     </select>
                 </div>
                 <div>
-                    <label for="habilidadeNome${hab1Count}">Nome do habilidade:</label>
-                    <input style="width: 100%"; type="text" id="habilidadeNome${hab1Count}" name="habilidadeNome${hab1Count}" placeholder="Nome do habilidade">
-                    <label for="habilidadeCusto${hab1Count}">Custo do habilidade:</label>
-                    <input style="width: 50%"; type="text" id="habilidadeCusto${hab1Count}" name="habilidadeCusto${hab1Count}" placeholder="Custo do habilidade">
+                    <label for="habilidad1eNome${hab1Count}">Nome do habilidade:</label>
+                    <input style="width: 100%"; type="text" id="habilidade1Nome${hab1Count}" name="habilidade1Nome${hab1Count}" placeholder="Nome do habilidade">
+                    <label for="habilidade1Custo${hab1Count}">Custo do habilidade:</label>
+                    <input style="width: 50%"; type="text" id="habilidade1Custo${hab1Count}" name="habilidade1Custo${hab1Count}" placeholder="Custo do habilidade">
                 </div class='habilidade-row-miniContainer'>
                 <div class='habilidade-row-miniContainer'>
-                    <label for="habilidadeDesc${hab1Count}">Descrição do habilidade:</label>
-                    <textarea style="width: 100%; height: 10em; wrap: "hard""; type="text" id="habilidadeDesc${hab1Count}" name="habilidadeDesc${hab1Count}" placeholder="Descrição do habilidade"></textarea>
+                    <label for="habilidade1Desc${hab1Count}">Descrição do habilidade:</label>
+                    <textarea style="width: 100%; height: 10em; wrap: "hard""; type="text" id="habilidade1Desc${hab1Count}" name="habilidade1Desc${hab1Count}" placeholder="Descrição do habilidade"></textarea>
                 </div>
             </div>
         `;
@@ -92,34 +92,34 @@ addHab2Btn.addEventListener('click', function () {
     if (hab2Count <= 6) {
         habilidadeRow.classList.add('habilidade-row');
         habilidadeRow.innerHTML = `
-    <div class='habilidade-row-container'>
-        <div class='habilidade-row-miniContainer'>
-            <label for="habilidadeTipo${hab2Count}">Tipo do habilidade</label>
-            <select class='personagem_select' id="habilidadeTipo${hab2Count}" name="habilidadeTipo${hab2Count}">
-                <option value="habilidadePassivo" selected> Habilidade Passivo</option>
-                <option value="habilidadeAtivo"> Habilidade Ativo</option>
-                <option value="habilidadeAura"> Habilidade Aura</option>
-            </select>
-            <label for="habilidadeNivel${hab2Count}">Nível do habilidade</label>
-            <select class='personagem_select' id="habilidadeNivel${hab2Count}" name="habilidadeNivel${hab2Count}">
-                <option value="nivel2" selected>Nível 2</option>
-                <option value="nivel3">Nível 3</option>
-                <option value="nivel4">Nível 4</option>
-                <option value="nivel5">Nível 5</option>
-                <option value="nivel6">Nível 6</option>
-            </select>
+        <div class='habilidade-row-container'>
+            <div class='habilidade-row-miniContainer'>
+                <label for="habilidade2Tipo${hab2Count}">Tipo do habilidade</label>
+                <select class='personagem_select' id="habilidade2Tipo${hab2Count}" name="habilidade2Tipo${hab2Count}">
+                    <option value="habilidadePassivo" selected> Habilidade Passivo</option>
+                    <option value="habilidadeAtivo"> Habilidade Ativo</option>
+                    <option value="habilidadeAura"> Habilidade Aura</option>
+                </select>
+                <label for="habilidade2Nivel${hab2Count}">Nível do habilidade</label>
+                <select class='personagem_select' id="habilidade2Nivel${hab2Count}" name="habilidade2Nivel${hab2Count}">                        
+                    <option value="nivel2" selected>Nível 2</option>
+                    <option value="nivel3">Nível 3</option>
+                    <option value="nivel4">Nível 4</option>
+                    <option value="nivel5">Nível 5</option>
+                    <option value="nivel6">Nível 6</option>
+                </select>
+            </div>
+            <div>
+                <label for="habilidad1eNome${hab2Count}">Nome do habilidade:</label>
+                <input style="width: 100%"; type="text" id="habilidade2Nome${hab2Count}" name="habilidade2Nome${hab2Count}" placeholder="Nome do habilidade">
+                <label for="habilidade2Custo${hab2Count}">Custo do habilidade:</label>
+                <input style="width: 50%"; type="text" id="habilidade2Custo${hab2Count}" name="habilidade2Custo${hab2Count}" placeholder="Custo do habilidade">
+            </div class='habilidade-row-miniContainer'>
+            <div class='habilidade-row-miniContainer'>
+                <label for="habilidade2Desc${hab2Count}">Descrição do habilidade:</label>
+                <textarea style="width: 100%; height: 10em; wrap: "hard""; type="text" id="habilidade2Desc${hab2Count}" name="habilidade2Desc${hab2Count}" placeholder="Descrição do habilidade"></textarea>
+            </div>
         </div>
-        <div>
-            <label for="habilidadeNome${hab2Count}">Nome do habilidade:</label>
-            <input style="width: 100%"; type="text" id="habilidadeNome${hab2Count}" name="habilidadeNome${hab2Count}" placeholder="Nome do habilidade">
-            <label for="habilidadeCusto${hab2Count}">Custo do habilidade:</label>
-            <input style="width: 50%"; type="text" id="habilidadeCusto${hab2Count}" name="habilidadeCusto${hab2Count}" placeholder="Custo do habilidade">
-        </div class='habilidade-row-miniContainer'>
-        <div class='habilidade-row-miniContainer'>
-            <label for="habilidadeDesc${hab2Count}">Descrição do habilidade:</label>
-            <textarea style="width: 100%; height: 10em; wrap: "hard""; type="text" id="habilidadeDesc${hab2Count}" name="habilidadeDesc${hab2Count}" placeholder="Descrição do habilidade"></textarea>
-        </div>
-    </div>
 `;
 
         hab2Container.appendChild(habilidadeRow);
