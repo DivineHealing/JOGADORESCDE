@@ -41,6 +41,7 @@ def salvar_base_personagem(request):
             return redirect('/')
 
         personagem = Base_personagem.objects.get(id=personagem_id) 
+        #telap = Tela_personagem.objects.get(id=personagem_id)
 
         # ATRIBUTOS BASE
         personagem.vida = int(request.POST.get("vidaMax", 0) or 0)
@@ -53,40 +54,49 @@ def salvar_base_personagem(request):
         personagem.carisma = int(request.POST.get("carisma", 0) or 0)
 
         # ROLAGENS
-        for i in range(1, 6):
+        for i in range(1, 26):
             tipo = request.POST.get(f'rolagemTipo{i}', '')
             valor = int(request.POST.get(f'rolagem{i}', 0) or 0)
 
             setattr(personagem, f'tipoRolagem_{i}', tipo)
             setattr(personagem, f'rolagem_{i}', valor)
+            #setattr(telap, f"tipoRolagem_{i}", tipo)
 
         # DEFESAS
-        for i in range(1, 4):
+        for i in range(1, 8):
             elemento = request.POST.get(f'elemento{i}', '')
             defesa = int(request.POST.get(f'defesa{i}', 0) or 0)
             resistencia = float(request.POST.get(f'resistencia{i}', 0) or 0)
 
             setattr(personagem, f'elementoDefesa_{i}', elemento)
+            setattr(personagem, f'elementoResistencia_{i}', elemento)
             setattr(personagem, f'defesaFixa_{i}', defesa)
             setattr(personagem, f'resistencia_{i}', resistencia)
+            #setattr(telap, f"elementoDefesa_{i}", elemento)
+            #setattr(telap, f"elementoResistencia_{i}", elemento)
 
         # DANO
-        for i in range(1, 4):
+        for i in range(1, 8):
             elemento = request.POST.get(f'elemento{i}', '')
             dano = int(request.POST.get(f'dano{i}', 0) or 0)
             penetracao = float(request.POST.get(f'penetracao{i}', 0) or 0)
 
             setattr(personagem, f'elementoDano_{i}', elemento)
+            setattr(personagem, f'elementoPenetracao_{i}')
             setattr(personagem, f'danoFixo_{i}', dano)
             setattr(personagem, f'penetracao_{i}', penetracao)
+            #setattr(telap, f"elementoDano_{i}", elemento)
+            #setattr(telap, f"elementoPenetracao_{i}", elemento)
+        personagem.danoFinal = int(request.POST.get("dmgFinal", 0) or 0)
 
         # AMPLIFICAÇÃO
-        for i in range(1, 6):
+        for i in range(1, 26):
             tipo = request.POST.get(f'amplificacaoTipo{i}', '')
             valor = float(request.POST.get(f'amplificacao{i}', 0) or 0)
 
             setattr(personagem, f'elementoAmplificacao_{i}', tipo)
             setattr(personagem, f'amplificacao_{i}', valor)
+            #setattr(telap, f"elementoAmplificacao_{i}", tipo)
 
         # REGENERAÇÃO
         for i in range(1, 4):
@@ -101,13 +111,15 @@ def salvar_base_personagem(request):
                 personagem.regenVigor = valor
 
         personagem.save()
-        pegar_atributos(personagem_id, 'vida')  # <- esse 2 ainda é fixo
-        pegar_atributos(personagem_id, 'forca')  # <- esse 2 ainda é fixo
-        pegar_atributos(personagem_id, 'destreza')  # <- esse 2 ainda é fixo
-        pegar_atributos(personagem_id, 'inteligencia')  # <- esse 2 ainda é fixo
-        pegar_atributos(personagem_id, 'determinacao')  # <- esse 2 ainda é fixo
-        pegar_atributos(personagem_id, 'perspicacia')  # <- esse 2 ainda é fixo
-        pegar_atributos(personagem_id, 'carisma')  # <- esse 2 ainda é fixo
+        #telap.save()
+        pegar_atributos(personagem_id)
+        #pegar_atributos(personagem_id, 'vida')  # <- esse 2 ainda é fixo
+        #pegar_atributos(personagem_id, 'forca')  # <- esse 2 ainda é fixo
+        #pegar_atributos(personagem_id, 'destreza')  # <- esse 2 ainda é fixo
+        #pegar_atributos(personagem_id, 'inteligencia')  # <- esse 2 ainda é fixo
+        #pegar_atributos(personagem_id, 'determinacao')  # <- esse 2 ainda é fixo
+        #pegar_atributos(personagem_id, 'perspicacia')  # <- esse 2 ainda é fixo
+        #pegar_atributos(personagem_id, 'carisma')  # <- esse 2 ainda é fixo
         print('FUNCIONA')
         return redirect('base_personagem', personagem_id=personagem_id)
 
