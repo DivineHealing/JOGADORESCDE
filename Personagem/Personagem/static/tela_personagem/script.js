@@ -25,6 +25,9 @@ function validarNome() {
 }
 
 const atributos = [
+    { nome: "vida", containerId:"vida"},
+    { nome: "mana", containerId:"mana"},
+    { nome: "vigor", containerId:"vigor"},
     { nome: "regenVida", containerId:"regenVida_container"},
     { nome: "regenMana", containerId:"regenMana_container"},
     { nome: "regenVigor", containerId:"regenVigor_container"},
@@ -42,7 +45,19 @@ const atributos = [
     { nome: "penetracao_2", containerId: "penetracao2_container"},
     { nome: "danoFixo_3", containerId: "danoFixo3_container"},
     { nome: "penetracao_3", containerId: "penetracao3_container"},
+    { nome: "danoFixo_4", containerId: "danoFixo4_container"},
+    { nome: "penetracao_4", containerId: "penetracao4_container"},
+    { nome: "danoFixo_5", containerId: "danoFixo5_container"},
+    { nome: "penetracao_5", containerId: "penetracao5_container"},
+    { nome: "danoFixo_6", containerId: "danoFixo6_container"},
+    { nome: "penetracao_6", containerId: "penetracao6_container"},
+    { nome: "danoFixo_7", containerId: "danoFixo7_container"},
+    { nome: "penetracao_7", containerId: "penetracao7_container"},
+    { nome: "esmagamento", containerId: "esmagamento_container"},
+    { nome: "penExtra", containerId: "penExtra_container"},
     { nome: "danoFinal", containerId: "danoFinal_container"},
+    { nome: "espiritualFixo", containerId: "espiritualFixo_container"},
+    { nome: "espiritualPerc", containerId: "espiritualPerc_container"},
 
     { nome: "defesaFixa_1", containerId: "defesaFixa1_container" },
     { nome: "resistencia_1", containerId: "resistencia1_container"},
@@ -54,6 +69,13 @@ const atributos = [
     { nome: "resistencia_4", containerId: "resistencia4_container"},
     { nome: "defesaFixa_5", containerId: "defesaFixa5_container" },
     { nome: "resistencia_5", containerId: "resistencia5_container"},
+    { nome: "defesaFixa_6", containerId: "defesaFixa6_container" },
+    { nome: "resistencia_6", containerId: "resistencia6_container"},
+    { nome: "defesaFixa_7", containerId: "defesaFixa7_container" },
+    { nome: "resistencia_7", containerId: "resistencia7_container"},
+    { nome: "defesaFixaEspiritual", containerId: "defesaFixaEspiritual_container"},
+    { nome: "reducaoEspiritual", containerId: "reducaoEspiritual_container" },
+    { nome: "reducao", containerId: "reducao_container"},
 
     { nome: "rolagem1", containerId: "rolagem1_container"},
     { nome: "rolagem2", containerId: "rolagem2_container"},
@@ -70,7 +92,6 @@ const atributos = [
     { nome: "rolagem13", containerId: "rolagem13_container"},
     { nome: "rolagem14", containerId: "rolagem14_container"},
     { nome: "rolagem15", containerId: "rolagem15_container"},
-    { nome: "rolagem15", containerId: "rolagem15_container"},
     { nome: "rolagem16", containerId: "rolagem16_container"},
     { nome: "rolagem17", containerId: "rolagem17_container"},
     { nome: "rolagem18", containerId: "rolagem18_container"},
@@ -82,39 +103,47 @@ const atributos = [
     { nome: "rolagem24", containerId: "rolagem24_container"},
     { nome: "rolagem25", containerId: "rolagem25_container"},
 
-    { nome: "amplificacao1", containerId: "amplificacao1_container" },
+    { nome: "amplificacao1", containerId: "amplificacao1_container"},
     { nome: "amplificacao2", containerId: "amplificacao2_container"},
-    { nome: "amplificacao3", containerId: "amplificacao3_container" },
+    { nome: "amplificacao3", containerId: "amplificacao3_container"},
     { nome: "amplificacao4", containerId: "amplificacao4_container"},
-    { nome: "amplificacao5", containerId: "amplificacao5_container" },
+    { nome: "amplificacao5", containerId: "amplificacao5_container"},
     { nome: "amplificacao6", containerId: "amplificacao6_container"},
-    { nome: "amplificacao7", containerId: "amplificacao7_container" },
+    { nome: "amplificacao7", containerId: "amplificacao7_container"},
     { nome: "amplificacao8", containerId: "amplificacao8_container"},
-    { nome: "amplificacao9", containerId: "amplificacao9_container" },
+    { nome: "amplificacao9", containerId: "amplificacao9_container"},
     { nome: "amplificacao10", containerId: "amplificacao10_container"},
-    { nome: "amplificacao11", containerId: "amplificacao11_container" },
+    { nome: "amplificacao11", containerId: "amplificacao11_container"},
     { nome: "amplificacao12", containerId: "amplificacao12_container"},
-    { nome: "amplificacao13", containerId: "amplificacao13_container" },
+    { nome: "amplificacao13", containerId: "amplificacao13_container"},
     { nome: "amplificacao14", containerId: "amplificacao14_container"},
-    { nome: "amplificacao15", containerId: "amplificacao15_container" },
+    { nome: "amplificacao15", containerId: "amplificacao15_container"},
+    { nome: "amplificacao16", containerId: "amplificacao16_container"},
+    { nome: "amplificacao17", containerId: "amplificacao17_container"},
+    { nome: "amplificacao18", containerId: "amplificacao18_container"},
+    { nome: "amplificacao19", containerId: "amplificacao19_container"},
+    { nome: "amplificacao20", containerId: "amplificacao20_container"},
+    { nome: "amplificacao21", containerId: "amplificacao21_container"},
+    { nome: "amplificacao22", containerId: "amplificacao22_container"},
+    { nome: "amplificacao23", containerId: "amplificacao23_container"},
+    { nome: "amplificacao24", containerId: "amplificacao24_container"},
+    { nome: "amplificacao25", containerId: "amplificacao25_container"},
 
-    
-
-    { nome: "outros1", containerId: "outros1_container" },
+    { nome: "outros1", containerId: "outros1_container"},
     { nome: "outros2", containerId: "outros2_container"},
-    { nome: "outros3", containerId: "outros3_container" },
+    { nome: "outros3", containerId: "outros3_container"},
     { nome: "outros4", containerId: "outros4_container"},
-    { nome: "outros5", containerId: "outros5_container" },
+    { nome: "outros5", containerId: "outros5_container"},
     { nome: "outros6", containerId: "outros6_container"},
-    { nome: "outros7", containerId: "outros7_container" },
+    { nome: "outros7", containerId: "outros7_container"},
     { nome: "outros8", containerId: "outros8_container"},
-    { nome: "outros9", containerId: "outros9_container" },
+    { nome: "outros9", containerId: "outros9_container"},
     { nome: "outros10", containerId: "outros10_container"},
-    { nome: "outros11", containerId: "outros11_container" },
+    { nome: "outros11", containerId: "outros11_container"},
     { nome: "outros12", containerId: "outros12_container"},
-    { nome: "outros13", containerId: "outros13_container" },
+    { nome: "outros13", containerId: "outros13_container"},
     { nome: "outros14", containerId: "outros14_container"},
-    { nome: "outros15", containerId: "outros15_container" },
+    { nome: "outros15", containerId: "outros15_container"},
 ];
 
 let algumAtributoInvalido = false; // Flag para verificar se algum atributo é inválido
@@ -135,6 +164,7 @@ function formatarAtributo(atributo) {
 
     if (isNaN(valor) || valor < 0) {
         console.warn(`Valor inválido para '${atributo.nome}'. Definindo como 0.`);
+        console.log(valor)
         return null; // Retorna null se o valor for inválido
     }
 
@@ -167,7 +197,9 @@ function exibirOuOcultarAtributo(atributo) {
     let valorTexto = element.innerText;
 
     // Remove separadores de milhar e espaços em branco
-    valorTexto = valorTexto.replace(/\./g, '').trim();
+    valorTexto = valorTexto.replace(/\./g, '')  // Remove pontos (ex: 1.000 -> 1000)
+                       .replace(/,/g, '.')   // Troca vírgula por ponto (ex: "0,00" -> "0.00")
+                       .trim();
 
     // Converte para número se for um número, senão mantém como string
     let valor;
@@ -176,9 +208,10 @@ function exibirOuOcultarAtributo(atributo) {
     } else {
         valor = valorTexto; // Mantém como string
     }
-
     // Verifica se o valor é "vazio" (zero para números, string vazia ou null)
-    let vazio = (typeof valor === 'number' && valor === 0) || (typeof valor === 'string' && valor.trim() === "") || valor === null;
+    let vazio = (valor === null || valor === undefined) || // Checa null/undefined primeiro
+                (typeof valor === 'number' && (valor === 0 || isNaN(valor))) || // Checa 0 ou NaN
+                (typeof valor === 'string' && valor.trim() === "");
 
     if (!containerElement) {
         console.error(`Container '${atributo.containerId}' não encontrado.`);
