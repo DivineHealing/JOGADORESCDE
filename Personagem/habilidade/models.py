@@ -233,5 +233,5 @@ class Habilidade(models.Model):
     hab12_6_nome = models.CharField(max_length=70, default="", blank=True)
     hab12_6_custo = models.CharField(max_length=70, default="", blank=True)
 
-    def __str__(self):
-        return self.personagem
+    #def __str__(self):
+    #    return self.personagem

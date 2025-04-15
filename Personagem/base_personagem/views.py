@@ -65,7 +65,7 @@ def salvar_base_personagem(request):
 
         # DEFESAS
         for i in range(1, 8):
-            elemento = request.POST.get(f'elemento{i}', '')
+            elemento = request.POST.get(f'elementoDefesa{i}', '')
             defesa = to_int(request.POST.get(f'defesa{i}', 0) or 0)
             resistencia = to_float(request.POST.get(f'resistencia{i}', 0) or 0)
 
@@ -78,7 +78,7 @@ def salvar_base_personagem(request):
 
         # DANO
         for i in range(1, 8):
-            elemento = request.POST.get(f'elemento{i}', '')
+            elemento = request.POST.get(f'elementoDano{i}', '')
             dano = to_int(request.POST.get(f'dano{i}', 0) or 0)
             penetracao = to_float(request.POST.get(f'penetracao{i}', 0) or 0)
 
