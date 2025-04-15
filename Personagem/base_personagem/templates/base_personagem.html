@@ -114,8 +114,7 @@
         <div class="formGroupRed">
             <a href="{% url 'exibir_personagem' %}"><button type="button" class="button">Voltar</button></a>
             <a href="{% url 'habilidade' personagem_id=tela_personagem.id %}" class="buttonLink"><button type="button" class="button">Habilidades</button></a>
-            <a href="{% url 'cadastro' %}"><button type="button" class="button">Maestria</button></a>
-
+            <a href="{% url 'cadastro' personagem_id=tela_personagem.id %}"><button type="button" class="button">Maestria</button></a>
             <button type="submit" class="submit">Salvar</button>
         </div>
 

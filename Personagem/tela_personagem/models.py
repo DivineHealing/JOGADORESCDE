@@ -6,9 +6,9 @@ class Tela_personagem(models.Model):
     personagem = models.ForeignKey(Base_personagem, on_delete=models.CASCADE)
 
     # ATRIBUTOS e REGENERAÇÃO
-    vida = models.IntegerField(default=0, blank=True)
-    mana = models.IntegerField(default=0, blank=True)
-    vigor = models.IntegerField(default=0, blank=True)
+    vida = models.IntegerField(default=100, blank=True)
+    mana = models.IntegerField(default=100, blank=True)
+    vigor = models.IntegerField(default=100, blank=True)
     regenVida = models.DecimalField(max_digits=5, decimal_places=2, default=0, blank=True)
     regenMana = models.DecimalField(max_digits=5, decimal_places=2, default=0, blank=True)
     regenVigor = models.DecimalField(max_digits=5, decimal_places=2, default=0, blank=True)

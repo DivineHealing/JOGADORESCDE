@@ -1,9 +1,3 @@
-function selecionarPersonagem() {
-    var select = document.getElementById("personagem_select");
-    var personagem_id = select.value;
-    window.location.href = "/" + personagem_id + "/";
-}
-
 const addDefesaBtn = document.getElementById('addDefesa');
 const defesaContainer = document.getElementById('defesaContainer');
 let defesaCount = 0; // Counter to keep track of attribute rows

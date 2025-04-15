@@ -10,15 +10,15 @@
         <img src="{% static 'maestria/maestria.png' %}" alt="Personagem" usemap="#mapa-personagem">
 
         <map name="mapa-personagem">
-            <area shape="rect" coords="520,107,814,162" href="{% url 'cadastrar_maestria' tipo='exemplar' %}" alt="Exemplar">
+            <area shape="rect" coords="520,107,814,162" href="{% url 'cadastrar_maestria' tipo='exemplar' personagem_id=tela_personagem.id %}" alt="Exemplar">
 
-            <area shape="rect" coords="887,287,1160,337" href="{% url 'cadastrar_maestria' tipo='auxiliar' %}" alt="Auxiliar">
+            <area shape="rect" coords="887,287,1160,337" href="{% url 'cadastrar_maestria' tipo='auxiliar' personagem_id=tela_personagem.id %}" alt="Auxiliar">
 
-            <area shape="rect" coords="146,276,437,324" href="{% url 'cadastrar_maestria' tipo='oficio' %}" alt="Oficio">
+            <area shape="rect" coords="146,276,437,324" href="{% url 'cadastrar_maestria' tipo='oficio' personagem_id=tela_personagem.id %}" alt="Oficio">
         </map>
     </div>
     <div>
-        <a href="{% url 'base_personagem'%}"><button class="button" role="button">Voltar</button></a>
+        <a href="{% url 'base_personagem' personagem_id=tela_personagem.id %}"><button class="button" role="button">Voltar</button></a>
         <a href="{% url 'exibir_personagem' %}" class="buttonLink"><button class="button" role="button">Personagem</button></a>
     </div>
 </body>

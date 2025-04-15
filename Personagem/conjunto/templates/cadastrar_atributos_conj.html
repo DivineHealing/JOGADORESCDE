@@ -14,16 +14,10 @@
     <div class="background-container">
 
         <div class="header">
-            <div class="name" style="color: white;">Nome do Personagem:
-              <select class='personagem_select' id="personagem_select" onchange="selecionarPersonagem()">
-                {% for personagem in personagens %}
-                    <option value="{{ personagem.id }}" {% if personagem.id == tela_personagem.id %}selected{% endif %}>
-                        {{ personagem.nome }}
-                    </option>
-                  {% endfor %}
-              </select>
-            </div>
-        </div>
+            <div class="name" style="color: white;">
+              <span >Nome do Personagem: {{ tela_personagem.personagem }}</span>
+          </div>
+      </div>
 
         <div class="top-section">
             <div class="vida-mana-vigor bordered-section">

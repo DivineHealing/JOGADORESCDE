@@ -1,4 +1,13 @@
 function selecionarPersonagem() {
+    const select = document.getElementById("personagem_select");
+    const selectedOption = select.options[select.selectedIndex];
+    const url = selectedOption.getAttribute("data-url");
+    if (url) {
+        window.location.href = url;
+    }
+}
+
+function selecionarPersonagem() {
     var select = document.getElementById("personagem_select");
     var personagem_id = select.value;
     window.location.href = "/" + personagem_id + "/";

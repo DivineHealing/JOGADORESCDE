@@ -6,10 +6,15 @@ from .models import Acessorios
 from .forms import EquipamentoForm
 from lib.utilitarios import *
 
+tipoEquipamento = "TIPO DO EQUIPAMENTO"
+
 def acessorios(request):
     return render(request, 'acessorios.html')
 
 def cadastrar_equipamento_acessorios(request, tipo):
+    global tipoEquipamento
+    tipoEquipamento = tipo
+
     if request.method == 'POST':
         form = EquipamentoForm(request.POST)
         if form.is_valid():

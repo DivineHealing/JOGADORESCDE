@@ -1,3 +1,13 @@
+function selecionarPersonagem() {
+    const select = document.getElementById("personagem_select");
+    const selectedOption = select.options[select.selectedIndex];
+    const url = selectedOption.getAttribute("data-url");
+    if (url) {
+        window.location.href = url;
+    }
+}
+
+
 const addEfeitosBtn = document.getElementById("addEfeito");
 const efeitosContainer = document.getElementById("efeitosContainer");
 let efeitosCount = 0; // Counter to keep track of attribute rows

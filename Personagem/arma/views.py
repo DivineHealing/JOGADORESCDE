@@ -6,10 +6,15 @@ from .models import Arma
 from .forms import EquipamentoForm
 from lib.utilitarios import *
 
+tipoEquipamento = "TIPO DO EQUIPAMENTO"
+
 def arma(request):
     return render(request, 'arma.html')
 
-def cadastrar_equipamento_armas(request, tipo):
+def cadastrar_equipamento_armas(request, tipo):    
+    global tipoEquipamento
+    tipoEquipamento = tipo
+
     if request.method == 'POST':
         form = EquipamentoForm(request.POST)
         if form.is_valid():

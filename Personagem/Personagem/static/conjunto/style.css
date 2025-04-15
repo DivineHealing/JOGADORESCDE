@@ -617,4 +617,17 @@ textarea:focus {
     grid-row: span 5 / span 5;
     grid-row-start: 4;
 }
-        
+
+span {
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem;
+  color: #00d9ff;
+  font-weight: bold;
+  color: silver;
+  text-shadow:
+    1px 1px 2px black,
+    0 0 1em blue,
+    0 0 0.2em blue;
+  margin-bottom: 5px;
+}

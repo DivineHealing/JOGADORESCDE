@@ -6,10 +6,15 @@ from .models import Conjunto
 from .forms import EquipamentoForm
 from lib.utilitarios import *
 
+tipoEquipamento = "TIPO DO EQUIPAMENTO"
+
 def conjunto(request):
     return render(request, 'conjunto.html')
 
 def cadastrar_equipamento(request, tipo):
+    global tipoEquipamento
+    tipoEquipamento = tipo
+    
     if request.method == 'POST':
         form = EquipamentoForm(request.POST)
         if form.is_valid():
