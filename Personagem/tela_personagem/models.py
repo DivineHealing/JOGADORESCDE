@@ -225,5 +225,5 @@ class Tela_personagem(models.Model):
     outros_14 = models.DecimalField(max_digits=5, decimal_places=2, default=0, blank=True)
     outros_15 = models.DecimalField(max_digits=5, decimal_places=2, default=0, blank=True)
     
-    def __str__(self):
-        return self.nome
+    '''def __str__(self):
+        return self.nome'''

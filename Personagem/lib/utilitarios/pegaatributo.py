@@ -1,4 +1,5 @@
 from django.apps import apps
+from django.db import models
 from django.core.exceptions import FieldDoesNotExist
 from acessorios.models import Acessorios
 from arma.models import Arma
@@ -10,9 +11,8 @@ from cadastro.models import Maestria
 campos_personagem = [
     "regenVida", "regenMana", "regenVigor", "vida",
     "forca", "destreza", "inteligencia", "determinacao", "perspicacia", "carisma",
-    # TIPO ROLAGEM
     # ROLAGEM
-    #*[f"rolagem_{i}" for i in range(1, 26)],
+    *[f"rolagem_{i}" for i in range(1, 26)],
     # DEFESA
     *[f"defesaFixa_{i}" for i in range(1, 8)],
     *[f"resistencia_{i}" for i in range(1, 8)],
@@ -79,18 +79,34 @@ def pegar_atributos(idescolha: int):
     # se der errado tirar a iteração,e colocar att escolhido como parametro na função e substituir todos os "campo" por att escolhido
     for campo in campos_personagem:
         attpego = {}
-        soma_total = 0
+        soma_total = 0 # zerando a soma total toda vez que pega um campo nome(para nao interferir entre outros campos)
 
         for model in MODELOS_RELEVANTES:
-            if campo in [field.name for field in model._meta.get_fields()]:  # verifica se o campo especificado existe
-                valores = model.objects.filter(personagem=base_instance).values_list(campo, flat=True)  # pegara todos os vallores do campo especificado
-                attpego[model.__name__] = sum(valores)  # somara e guardara a informação
-                soma_total += sum(valores)
+            # Cria um dicionário com os nomes dos campos do modelo como chave e o próprio campo como valor
+            model_fields = {f.name: f for f in model._meta.concrete_fields}
 
-    
+            if campo in model_fields: # verifica se o campo existe no modelo atual
+                field = model_fields[campo] # Obtém o objeto de campo (field) correspondente ao nome
+
+                # Pega todos os valores desse campo para registros que pertencem ao personagem selecionado
+                valores = model.objects.filter(personagem=base_instance).values_list(campo, flat=True)
+
+                # Escolhe o tipo de conversão baseado no tipo do campo
+                if isinstance(field, models.IntegerField): # se for um campo inteiro
+                    casted = list(map(to_int, valores)) # converte todos os valores para int
+                elif isinstance(field, (models.DecimalField, models.FloatField)): # se for um campo decimal ou float
+                    casted = list(map(to_float, valores)) # converte os valores para float
+                else:
+                    continue # Se não for um campo numérico, pula para o próximo modelo
+
+                # Guarda a soma individual dos valores convertidos no dicionário (para debug)
+                attpego[model.__name__] = sum(casted)
+                # Acumula a soma total de todos os modelos
+                soma_total += sum(casted)
+
         # atualizando a tabela tela personagem
         try:
-            Tela_personagem.objects.filter(id=idescolha).update(**{campo:soma_total})  # modifica o valor da tabela tela de personagem
+            Tela_personagem.objects.filter(personagem=base_instance).update(**{campo:soma_total})  # modifica o valor da tabela tela de personagem
         except Exception as e:
             print(f"Erro ao atualizar a 'Tela_personagem:{campo} do personagem {idescolha}': {e}")  # apontando qual erro ocorreu
 
@@ -107,3 +123,16 @@ def obter_personagem_sessao(request):
             return personagem_id
         return None  # se não existir nenhum personagem
     return personagem_id
+
+
+def to_int(value, default=0):
+    try:
+        return int(value)
+    except (ValueError, TypeError):
+        return default
+    
+def to_float(value, default=0):
+    try:
+        return float(value)
+    except (ValueError, TypeError):
+        return default
