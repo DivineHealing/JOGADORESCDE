@@ -53,21 +53,30 @@ def salvar_base_personagem(request):
         personagem.perspicacia = to_int(request.POST.get("perspicacia", 0) or 0)
         personagem.carisma = to_int(request.POST.get("carisma", 0) or 0)
 
-        # ROLAGENS
-        for i in range(1, 26):
-            tipo = request.POST.get(f'rolagemTipo{i}', '')
-            valor = to_int(request.POST.get(f'rolagem{i}', 0) or 0)
 
+        i = 1
+        # ROLAGENS
+        while True:
+            tipo = request.POST.get(f'rolagemTipo{i}')
+            valor = request.POST.get(f'rolagem{i}')
+
+            if not any([tipo, valor]):
+                break  # não tem mais campos entao para
+            
             setattr(personagem, f'tipoRolagem_{i}', tipo)
             setattr(personagem, f'rolagem_{i}', valor)
             setattr(telap, f"tipoRolagem_{i}", tipo)
+            i += 1
 
-
+        i = 1
         # DEFESAS
-        for i in range(1, 8):
-            elemento = request.POST.get(f'elementoDefesa{i}', '')
-            defesa = to_int(request.POST.get(f'defesa{i}', 0) or 0)
-            resistencia = to_float(request.POST.get(f'resistencia{i}', 0) or 0)
+        while True:
+            elemento = request.POST.get(f'elementoDefesa{i}')
+            defesa = request.POST.get(f'defesa{i}')
+            resistencia = request.POST.get(f'resistencia{i}')
+
+            if not any([elemento, defesa, resistencia]):  # se nenhum tiver valor para
+                break  # nao tem mais campos entao para
 
             setattr(personagem, f'elementoDefesa_{i}', elemento)
             setattr(personagem, f'elementoResistencia_{i}', elemento)
@@ -75,12 +84,17 @@ def salvar_base_personagem(request):
             setattr(personagem, f'resistencia_{i}', resistencia)
             setattr(telap, f"elementoDefesa_{i}", elemento)
             setattr(telap, f"elementoResistencia_{i}", elemento)
-
+            i += 1
+        
+        i = 1
         # DANO
-        for i in range(1, 8):
-            elemento = request.POST.get(f'elementoDano{i}', '')
-            dano = to_int(request.POST.get(f'dano{i}', 0) or 0)
-            penetracao = to_float(request.POST.get(f'penetracao{i}', 0) or 0)
+        while True:
+            elemento = request.POST.get(f'elementoDano{i}')
+            dano = request.POST.get(f'dano{i}')
+            penetracao = request.POST.get(f'penetracao{i}')
+
+            if not any([elemento, dano, penetracao]):
+                break
 
             setattr(personagem, f'elementoDano_{i}', elemento)
             setattr(personagem, f'elementoPenetracao_{i}', elemento)
@@ -88,28 +102,39 @@ def salvar_base_personagem(request):
             setattr(personagem, f'penetracao_{i}', penetracao)
             setattr(telap, f"elementoDano_{i}", elemento)
             setattr(telap, f"elementoPenetracao_{i}", elemento)
+            i += 1
         personagem.danoFinal = to_int(request.POST.get("dmgFinal", 0) or 0)
 
+        i = 1
         # AMPLIFICAÇÃO
-        for i in range(1, 26):
-            tipo = request.POST.get(f'amplificacaoTipo{i}', '')
-            valor = to_float(request.POST.get(f'amplificacao{i}', 0) or 0)
+        while True:
+            tipo = request.POST.get(f'amplificacaoTipo{i}')
+            valor = request.POST.get(f'amplificacao{i}')
+
+            if not any([tipo, valor]):
+                break
 
             setattr(personagem, f'elementoAmplificacao_{i}', tipo)
             setattr(personagem, f'amplificacao_{i}', valor)
             setattr(telap, f"elementoAmplificacao_{i}", tipo)
+            i += 1
 
+        i = 1
         # REGENERAÇÃO
-        for i in range(1, 4):
-            tipo = request.POST.get(f'regeneracaoTipo{i}', '')
-            valor = to_float(request.POST.get(f'regeneracao{i}', 0) or 0)
+        while True:
+            tipo = request.POST.get(f'regeneracaoTipo{i}')
+            valor = request.POST.get(f'regeneracao{i}')
 
+            if not any([tipo, valor]):
+                break
+            
             if tipo == "regenVida":
                 personagem.regenVida = valor
             elif tipo == "regenMana":
                 personagem.regenMana = valor
             elif tipo == "regenVigor":
                 personagem.regenVigor = valor
+            i += 1
 
         personagem.save()
         telap.save()
