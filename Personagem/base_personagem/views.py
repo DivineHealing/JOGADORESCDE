@@ -57,13 +57,13 @@ def salvar_base_personagem(request):
         i = 1
         # ROLAGENS
         while True:
-            tipo = request.POST.get(f'rolagemTipo{i}')
+            tipo = request.POST.get(f'rolagemTipo{i}') # pegando os valores no front
             valor = request.POST.get(f'rolagem{i}')
 
             if not any([tipo, valor]):
                 break  # não tem mais campos entao para
             
-            setattr(personagem, f'tipoRolagem_{i}', tipo)
+            setattr(personagem, f'tipoRolagem_{i}', tipo)  # distribuindo no back
             setattr(personagem, f'rolagem_{i}', valor)
             setattr(telap, f"tipoRolagem_{i}", tipo)
             i += 1
