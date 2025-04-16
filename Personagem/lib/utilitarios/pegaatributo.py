@@ -125,6 +125,107 @@ def obter_personagem_sessao(request):
     return personagem_id
 
 
+def pegar_front(request, escolha):
+    # ATRIBUTOS BASE
+    campos = { # guardando os camposem um dicionario(esquerda é onde salvara no banco|direita é o que via pegar no request)
+        "vida": "vidaMax",
+        "forca": "forca",
+        "destreza": "destreza",
+        "inteligencia": "inteligencia",
+        "determinacao": "determinacao",
+        "perspicacia": "perspicacia",
+        "carisma": "carisma",
+        "reducao": "reducao",
+        "danoFinal": "dmgFinal"
+    }
+    for attr, campo in campos.items():
+        if campo in request.POST:  # se o campo existe
+            setattr(escolha, attr, request.POST.get(campo, 0)or 0) # adicionara o valor
+
+
+    i = 1
+    # ROLAGENS
+    while True:
+        tipo = request.POST.get(f'rolagemTipo{i}') # pegando os valores no front
+        valor = request.POST.get(f'rolagem{i}')
+
+        if not any([tipo, valor]):
+            break  # não tem mais campos entao para
+        
+        setattr(escolha, f'tipoRolagem_{i}', tipo)  # distribuindo no back
+        setattr(escolha, f'rolagem_{i}', valor)
+        #setattr(telap, f"tipoRolagem_{i}", tipo)
+        i += 1
+
+    i = 1
+    # DEFESAS
+    while True:
+        elemento = request.POST.get(f'elementoDefesa{i}')
+        defesa = request.POST.get(f'defesa{i}')
+        resistencia = request.POST.get(f'resistencia{i}')
+
+        if not any([elemento, defesa, resistencia]):  # se nenhum tiver valor para
+            break  # nao tem mais campos entao para
+
+        setattr(escolha, f'elementoDefesa_{i}', elemento)
+        setattr(escolha, f'elementoResistencia_{i}', elemento)
+        setattr(escolha, f'defesaFixa_{i}', defesa)
+        setattr(escolha, f'resistencia_{i}', resistencia)
+        #setattr(telap, f"elementoDefesa_{i}", elemento)
+        #setattr(telap, f"elementoResistencia_{i}", elemento)
+        i += 1
+    
+    i = 1
+    # DANO
+    while True:
+        elemento = request.POST.get(f'elementoDano{i}')
+        dano = request.POST.get(f'dano{i}')
+        penetracao = request.POST.get(f'penetracao{i}')
+
+        if not any([elemento, dano, penetracao]):
+            break
+
+        setattr(escolha, f'elementoDano_{i}', elemento)
+        setattr(escolha, f'elementoPenetracao_{i}', elemento)
+        setattr(escolha, f'danoFixo_{i}', dano)
+        setattr(escolha, f'penetracao_{i}', penetracao)
+        #setattr(telap, f"elementoDano_{i}", elemento)
+        #setattr(telap, f"elementoPenetracao_{i}", elemento)
+        i += 1
+
+    i = 1
+    # AMPLIFICAÇÃO
+    while True:
+        tipo = request.POST.get(f'amplificacaoTipo{i}')
+        valor = request.POST.get(f'amplificacao{i}')
+
+        if not any([tipo, valor]):
+            break
+
+        setattr(escolha, f'elementoAmplificacao_{i}', tipo)
+        setattr(escolha, f'amplificacao_{i}', valor)
+        #setattr(telap, f"elementoAmplificacao_{i}", tipo)
+        i += 1
+
+    i = 1
+    # REGENERAÇÃO
+    while True:
+        tipo = request.POST.get(f'regeneracaoTipo{i}')
+        valor = request.POST.get(f'regeneracao{i}')
+
+        if not any([tipo, valor]):
+            break
+        
+        if tipo == "regenVida":
+            escolha.regenVida = valor
+        elif tipo == "regenMana":
+            escolha.regenMana = valor
+        elif tipo == "regenVigor":
+            escolha.regenVigor = valor
+        i += 1
+
+
+
 def to_int(value, default=0):
     try:
         return int(value)
