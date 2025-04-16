@@ -22,11 +22,11 @@ addRolagemBtn.addEventListener('click', function () {
         rolagemRow.classList.add('rolagem-row');
         rolagemRow.innerHTML = `
             <div>
-                <label for="elemento${rolagemCount}">Tipo</label>
+                <label for="rolagemTipo${rolagemCount}">Tipo</label>
                 <input type="text" id="rolagemTipo${rolagemCount}" name="rolagemTipo${rolagemCount}" placeholder="Ex: Invocação">
             </div>
             <div>
-                <label for="dano${rolagemCount}">Valor</label>
+                <label for="rolagem${rolagemCount}">Valor</label>
                 <input type="number" id="rolagem${rolagemCount}" name="rolagem${rolagemCount}" value="0">
             </div>
         `;
@@ -49,11 +49,11 @@ addAmplificacaoBtn.addEventListener('click', function () {
         amplificacaoRow.classList.add('amplificacao-row');
         amplificacaoRow.innerHTML = `
             <div>
-                <label for="elemento${amplificacaoCount}">Tipo</label>
+                <label for="amplificacaoTipo${amplificacaoCount}">Tipo</label>
                 <input type="text" id="amplificacaoTipo${amplificacaoCount}" name="amplificacaoTipo${amplificacaoCount}" placeholder="Ex: Fogo">
             </div>
             <div>
-                <label for="dano${amplificacaoCount}">Valor</label>
+                <label for="amplificacao${amplificacaoCount}">Valor</label>
                 <input type="number" id="amplificacao${amplificacaoCount}" name="amplificacao${amplificacaoCount}" value="0">
             </div>
         `;
@@ -77,11 +77,11 @@ addRegeneracaoBtn.addEventListener('click', function () {
         regeneracaoRow.classList.add('regeneracao-row');
         regeneracaoRow.innerHTML = `
             <div>
-                <label for="elemento${regeneracaoCount}">Tipo</label>
+                <label for="regeneracaoTipo${regeneracaoCount}">Tipo</label>
                 <input type="text" id="regeneracaoTipo${regeneracaoCount}" name="regeneracaoTipo${regeneracaoCount}" placeholder="Ex: Vida">
             </div>
             <div>
-                <label for="dano${regeneracaoCount}">Valor</label>
+                <label for="regeneracao${regeneracaoCount}">Valor</label>
                 <input type="number" id="regeneracao${regeneracaoCount}" name="regeneracao${regeneracaoCount}" value="0">
             </div>
         `;

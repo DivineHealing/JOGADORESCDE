@@ -19,6 +19,23 @@
           </div>
         </div>
 
+        <div class="top-section">             
+            <div class="vida-mana-vigor bordered-section">  
+                <div class="formGroupRed field">
+                    <input pattern="[0-9]+$" type="number" placeholder="Aumento de Vida Base" id='vidaBase' value="{{ maestria.vidaBase }}" />
+                    <input style="margin-Left: 1em" pattern="[0-9]+$" type="number" placeholder="Aumento de Vida Atual" id='vidaAtual' value="{{ maestria.vidaAtual }}" />
+                    <label style="width: 13em" for="bloqueio" class="formLabel">Aumento de Vida Base</label>
+                    <label style="margin-Left: 13.5em; width: 13.5em" for="redEspiritual" class="formLabel">Aumento de Vida Atual</label>
+                </div> 
+                <div class="formGroupRed field">
+                    <input pattern="[0-9]+$" type="number" placeholder="Valor da Mana" id='mana' value="{{ maestria.mana }}" />
+                    <input style="margin-Left: 1em" pattern="[0-9]+$" type="number" placeholder="Valor da Vigor" id='vigor' value="{{ maestria.vigor }}" />
+                    <label style="width: 13em" for="mana" class="formLabel">Aumento de Mana</label>
+                    <label style="margin-Left: 13.5em; width: 13.5em" for="vigor" class="formLabel">Aumento de Vigor</label>
+                </div> 
+            </div>
+        </div>
+
         <div class="middle-section">
             <div class="left-column">
                 <div class="attribute-stats bordered-section">
@@ -66,16 +83,18 @@
                         <div class="atributos-added-container" id="defesaContainer">
                             <!-- Atributos serão adicionados aqui dinamicamente -->
                         </div>
-                            
-                        <div class="formGroup field">
-                            <input pattern="[0-9]+$" type="number" placeholder="Redução de Dano" id='reducao' value="{{ maestria.reducao }}" />
-                            <label for="reducao" class="formLabel">Redução</label>
-                        </div>
+
                         <div class="formGroupRed field">
-                            <input pattern="[0-9]+$" type="number" placeholder="Defesa Espiritual" id='defEspiritual' value="{{ maestria.defesaFixaEspiritual }}" />
+                            <input pattern="[0-9]+$" type="number" placeholder="Redução de Dano" id='reducao' value="{{ maestria.reducao }}" />
+                            <input pattern="[0-9]+$" type="number" placeholder="Aumento de D.A" id='aumentoDA' value="{{ maestria.aumentoDA }}" />
+                            <label for="reducao" class="formLabel">Redução</label>
+                            <label style="margin-Left: 12.5em; width: 11em" for="aumentoDA" class="formLabel">Aumento de D.A</label>
+                        </div>   
+                        <div class="formGroupRed field">
+                            <input pattern="[0-9]+$" type="number" placeholder="Bloqueio" id='bloqueio' value="{{ maestria.bloqueio }}" />
                             <input pattern="[0-9]+$" type="number" placeholder="Redução Espiritual" id='redEspiritual' value="{{ maestria.reducaoEspiritual }}" />
-                            <label for="defEspiritual" class="formLabel">Espiritual</label>
-                            <label style="margin-Left: 12.5em" for="redEspiritual" class="formLabel">Redução</label>
+                            <label for="bloqueio" class="formLabel">Bloqueio</label>
+                            <label style="margin-Left: 12.5em; width: 11em" for="redEspiritual" class="formLabel">Redução Espiritual</label>
                         </div>    
                     </div>
 
@@ -88,17 +107,13 @@
                         
                         
                         <div class="formGroup field">
-                            <input pattern="[0-9]+$" type="number" placeholder="Esmagamento" id='esmagamento' value="{{ maestria.esmagamento }}" />
-                            <label for="esmagamento" class="formLabel">Esmagamento</label>
-                        </div>
-                        <div class="formGroup field">
                             <input pattern="[0-9]+$" type="number" placeholder="Penetração Extra" id='penExtra' value="{{ maestria.penExtra }}" />
                             <label for="penExtra" class="formLabel">Penetração Extra</label>
                         </div>
-                        <div class="formGroupRed field">
-                            <input pattern="[0-9]+$" type="number" placeholder="Dano Final" id='dmgFinal' value="{{ maestria.danoFinal }}" />
-                            <label for="dmgFinal" class="formLabel">Dano Final</label>
-                        </div>                    
+                        <div class="formGroup field">
+                            <input pattern="[0-9]+$" type="number" placeholder="Esmagamento" id='esmagamento' value="{{ maestria.esmagamento }}" />
+                            <label for="esmagamento" class="formLabel">Esmagamento</label>
+                        </div>                  
                         <div class="formGroupRed field">
                             <input pattern="[0-9]+$" type="number" placeholder="Dano Espiritual" id='dmgEspiritual' value="{{ maestria.espiritualPerc }}" />
                             <label for="dmgEspiritual" class="formLabel">Dano Espiritual</label>
@@ -120,6 +135,11 @@
                         <!-- Atributos serão adicionados aqui dinamicamente -->
                     </div>
                     
+                    <div class="equipment section-title">Efeito de Status</div>
+                    <button class="add-atributo-btn" id="addStatusEffect">Add</button>
+                    <div class="atributos-added-container" id="statusEffectContainer">
+                        <!-- Atributos serão adicionados aqui dinamicamente -->
+                    </div>
                 </div>
             </div>
         </div>
