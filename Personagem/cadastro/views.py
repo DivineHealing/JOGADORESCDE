@@ -68,6 +68,15 @@ def perfil(request, user_id):
 
 def salvar_maestria_atributo(request):
     if request.method == "POST":        
+        personagem_id = obter_personagem_sessao(request)
+
+        # se ainda nao tiver nenhum id de personagem por não existir personagem ele volta para pagina inicial
+        if not personagem_id:
+            return redirect('/')
+        
+        pecaalvo = Maestria.objects.get(personagem=personagem_id, peca=maestriaTipo)
+        #pegar_front(request, pecaalvo)  #////////////////////////////////////////////////TIRA O COMENTARIO\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
         print(f'Tipo da Maestria: {maestriaTipo}\nPersonagem: {personagem}')
         return redirect('cadastrar_maestria', personagem_id=personagem, tipo=maestriaTipo)
 

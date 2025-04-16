@@ -113,5 +113,5 @@ class Maestria(models.Model):
     amplificacao_3 = models.DecimalField(max_digits=5, decimal_places=2, default=0, blank=True)
     amplificacao_4 = models.DecimalField(max_digits=5, decimal_places=2, default=0, blank=True)
     amplificacao_5 = models.DecimalField(max_digits=5, decimal_places=2, default=0, blank=True)
-    def __str__(self):
-        return self.personagem
+    #def __str__(self):
+    #    return self.personagem

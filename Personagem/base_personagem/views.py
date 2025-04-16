@@ -43,76 +43,9 @@ def salvar_base_personagem(request):
         personagem = Base_personagem.objects.get(id=personagem_id) 
         telap = Tela_personagem.objects.get(id=personagem_id)
 
-        # ATRIBUTOS BASE
-        personagem.vida = to_int(request.POST.get("vidaMax", 0) or 0)
+        pegar_front(request, personagem)
 
-        personagem.forca = to_int(request.POST.get("forca", 0) or 0)
-        personagem.destreza = to_int(request.POST.get("destreza", 0) or 0)
-        personagem.inteligencia = to_int(request.POST.get("inteligencia", 0) or 0)
-        personagem.determinacao = to_int(request.POST.get("determinacao", 0) or 0)
-        personagem.perspicacia = to_int(request.POST.get("perspicacia", 0) or 0)
-        personagem.carisma = to_int(request.POST.get("carisma", 0) or 0)
-
-        # ROLAGENS
-        for i in range(1, 26):
-            tipo = request.POST.get(f'rolagemTipo{i}', '')
-            valor = to_int(request.POST.get(f'rolagem{i}', 0) or 0)
-
-            setattr(personagem, f'tipoRolagem_{i}', tipo)
-            setattr(personagem, f'rolagem_{i}', valor)
-            setattr(telap, f"tipoRolagem_{i}", tipo)
-
-
-        # DEFESAS
-        for i in range(1, 8):
-            elemento = request.POST.get(f'elemento{i}', '')
-            defesa = to_int(request.POST.get(f'defesa{i}', 0) or 0)
-            resistencia = to_float(request.POST.get(f'resistencia{i}', 0) or 0)
-
-            setattr(personagem, f'elementoDefesa_{i}', elemento)
-            setattr(personagem, f'elementoResistencia_{i}', elemento)
-            setattr(personagem, f'defesaFixa_{i}', defesa)
-            setattr(personagem, f'resistencia_{i}', resistencia)
-            setattr(telap, f"elementoDefesa_{i}", elemento)
-            setattr(telap, f"elementoResistencia_{i}", elemento)
-
-        # DANO
-        for i in range(1, 8):
-            elemento = request.POST.get(f'elemento{i}', '')
-            dano = to_int(request.POST.get(f'dano{i}', 0) or 0)
-            penetracao = to_float(request.POST.get(f'penetracao{i}', 0) or 0)
-
-            setattr(personagem, f'elementoDano_{i}', elemento)
-            setattr(personagem, f'elementoPenetracao_{i}', elemento)
-            setattr(personagem, f'danoFixo_{i}', dano)
-            setattr(personagem, f'penetracao_{i}', penetracao)
-            setattr(telap, f"elementoDano_{i}", elemento)
-            setattr(telap, f"elementoPenetracao_{i}", elemento)
-        personagem.danoFinal = to_int(request.POST.get("dmgFinal", 0) or 0)
-
-        # AMPLIFICAÇÃO
-        for i in range(1, 26):
-            tipo = request.POST.get(f'amplificacaoTipo{i}', '')
-            valor = to_float(request.POST.get(f'amplificacao{i}', 0) or 0)
-
-            setattr(personagem, f'elementoAmplificacao_{i}', tipo)
-            setattr(personagem, f'amplificacao_{i}', valor)
-            setattr(telap, f"elementoAmplificacao_{i}", tipo)
-
-        # REGENERAÇÃO
-        for i in range(1, 4):
-            tipo = request.POST.get(f'regeneracaoTipo{i}', '')
-            valor = to_float(request.POST.get(f'regeneracao{i}', 0) or 0)
-
-            if tipo == "regenVida":
-                personagem.regenVida = valor
-            elif tipo == "regenMana":
-                personagem.regenMana = valor
-            elif tipo == "regenVigor":
-                personagem.regenVigor = valor
-
-        personagem.save()
-        telap.save()
+        #telap.save()
         pegar_atributos(personagem_id)
         #pegar_atributos(personagem_id, 'vida')  # <- esse 2 ainda é fixo
         #pegar_atributos(personagem_id, 'forca')  # <- esse 2 ainda é fixo
