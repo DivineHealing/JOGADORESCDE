@@ -28,29 +28,41 @@
                     <div class="stat section-title">STATUS</div>
 
                     {% comment %} Atributos principais {% endcomment %}
-                    <div class="formGroup field">
+                    <div class="formGroupRed field">
                         <input pattern="[0-9]+$" type="number" placeholder="Valor da Força" id='forca' name="forca" value="{{ base_personagem.forca }}" />
+                        <input style="width: 5em" pattern="[0-9]+$" type="number" placeholder="Valor da Força" id='forca' name="forca" value="{{ base_personagem.forcaPer }}" />
                         <label for="forca" class="formLabel">Força</label>
+                        <label style="margin-left: 12.5em; width: 15em" for="forcaPer" class="formLabel">(%)</label>
                     </div>
-                    <div class="formGroup field">
+                    <div class="formGroupRed field">
                         <input pattern="[0-9]+$" type="number" placeholder="Valor da Destreza" id='destreza' name="destreza" value="{{ base_personagem.destreza }}" />
+                        <input style="width: 5em" pattern="[0-9]+$" type="number" placeholder="Valor da Destreza" id='destreza' name="destreza" value="{{ base_personagem.destrezaPer }}" />
                         <label for="destreza" class="formLabel">Destreza</label>
+                        <label style="margin-left: 12.5em; width: 15em" for="destrezaPer" class="formLabel">(%)</label>
                     </div>
-                    <div class="formGroup field">
+                    <div class="formGroupRed field">
                         <input pattern="[0-9]+$" type="number" placeholder="Valor da Inteligência" id='inteligencia' name="inteligencia" value="{{ base_personagem.inteligencia }}" />
+                        <input style="width: 5em" pattern="[0-9]+$" type="number" placeholder="Valor da Inteligência" id='inteligencia' name="inteligencia" value="{{ base_personagem.inteligenciaPer }}" />
                         <label for="inteligencia" class="formLabel">Inteligência</label>
+                        <label style="margin-left: 12.5em; width: 15em" for="inteligenciaPer" class="formLabel">(%)</label>
                     </div>
-                    <div class="formGroup field">
+                    <div class="formGroupRed field">
                         <input pattern="[0-9]+$" type="number" placeholder="Valor da Determinação" id='determinacao' name="determinacao" value="{{ base_personagem.determinacao }}" />
+                        <input style="width: 5em" pattern="[0-9]+$" type="number" placeholder="Valor da Determinação" id='determinacao' name="determinacao" value="{{ base_personagem.determinacaoPer }}" />
                         <label for="determinacao" class="formLabel">Determinação</label>
+                        <label style="margin-left: 12.5em; width: 15em" for="determinacaoPer" class="formLabel">(%)</label>
                     </div>
-                    <div class="formGroup field">
+                    <div class="formGroupRed field">
                         <input pattern="[0-9]+$" type="number" placeholder="Valor da Perspicácia" id='perspicacia' name="perspicacia" value="{{ base_personagem.perspicacia }}" />
+                        <input style="width: 5em" pattern="[0-9]+$" type="number" placeholder="Valor da Perspicácia" id='perspicacia' name="perspicacia" value="{{ base_personagem.perspicaciaPer }}" />
                         <label for="perspicacia" class="formLabel">Perspicácia</label>
+                        <label style="margin-left: 12.5em; width: 15em" for="perspicaciaPer" class="formLabel">(%)</label>
                     </div>
-                    <div class="formGroup field">
-                        <input pattern="[0-9]+$" type="number" placeholder="Valor da Carisma" id='carisma' name="carisma" value="{{ base_personagem.carisma }}" />
+                    <div class="formGroupRed field">
+                        <input pattern="[0-9]+$" type="number" placeholder="Valor da Perspicácia" id='perspicacia' name="perspicacia" value="{{ base_personagem.perspicacia }}" />
+                        <input style="width: 5em" pattern="[0-9]+$" type="number" placeholder="Valor da Perspicácia" id='perspicacia' name="perspicacia" value="{{ base_personagem.perspicaciaPer }}" />
                         <label for="carisma" class="formLabel">Carisma</label>
+                        <label style="margin-left: 12.5em; width: 15em" for="carismaPer" class="formLabel">(%)</label>
                     </div>
                 </div>
 
