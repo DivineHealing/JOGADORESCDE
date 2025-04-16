@@ -223,6 +223,7 @@ def pegar_front(request, escolha):
         elif tipo == "regenVigor":
             escolha.regenVigor = valor
         i += 1
+    escolha.save()
 
 
 

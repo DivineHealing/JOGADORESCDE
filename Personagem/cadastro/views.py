@@ -75,7 +75,7 @@ def salvar_maestria_atributo(request):
             return redirect('/')
         
         pecaalvo = Maestria.objects.get(personagem=personagem_id, peca=maestriaTipo)
-        #pegar_front(request, pecaalvo)
+        #pegar_front(request, pecaalvo)  #////////////////////////////////////////////////TIRA O COMENTARIO\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
         print(f'Tipo da Maestria: {maestriaTipo}\nPersonagem: {personagem}')
         return redirect('cadastrar_maestria', personagem_id=personagem, tipo=maestriaTipo)

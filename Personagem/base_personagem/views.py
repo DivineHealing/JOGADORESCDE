@@ -45,8 +45,7 @@ def salvar_base_personagem(request):
 
         pegar_front(request, personagem)
 
-        personagem.save()
-        telap.save()
+        #telap.save()
         pegar_atributos(personagem_id)
         #pegar_atributos(personagem_id, 'vida')  # <- esse 2 ainda é fixo
         #pegar_atributos(personagem_id, 'forca')  # <- esse 2 ainda é fixo
