@@ -351,3 +351,140 @@ btnCad.addEventListener('click', function(){
 });
 
 */
+
+document.addEventListener('DOMContentLoaded', function() {
+    // 1. Obter os dados formatados das habilidades
+    const habilidadesDataElement = document.getElementById('all-habilidades-data');
+    let allHabilidadesData = {};
+    let dataArray = []; // INICIALIZA COMO ARRAY VAZIO POR PADRÃO
+
+    if (habilidadesDataElement && habilidadesDataElement.textContent) {
+        console.log("Raw textContent:", habilidadesDataElement.textContent); // Log para debug
+        try {
+            const parsedData = JSON.parse(habilidadesDataElement.textContent);
+            console.log("Parsed data type:", typeof parsedData); // Log para debug
+            console.log("Parsed data value:", parsedData);      // Log para debug
+
+            // *** VERIFICAÇÃO CRÍTICA ***
+            // Checa se o resultado do parse é realmente um array
+            if (Array.isArray(parsedData)) {
+                dataArray = parsedData; // Usa o array parseado
+            } else {
+                 // Se não for array (pode ser null, objeto, etc.), mantém dataArray como []
+                 console.warn("Os dados parseados de 'all-habilidades-data' não são um array. Tratando como vazio.", parsedData);
+            }
+
+        } catch (e) {
+            console.error("Erro ao parsear dados das habilidades:", e);
+            // Mantém dataArray como [] em caso de erro de parse
+        }
+    } else {
+        console.warn("Elemento 'all-habilidades-data' ou seu conteúdo não encontrado. Tratando como vazio.");
+        // Mantém dataArray como []
+    }
+
+    // Neste ponto, dataArray é garantido ser um array (pode estar vazio)
+    console.log("Final dataArray para processar:", dataArray);
+
+    // Converte o array (possivelmente vazio) em um objeto/map
+    dataArray.forEach(hab => { // Agora seguro usar forEach
+        allHabilidadesData[hab.id] = hab;
+    });
+
+
+    const titulos = document.querySelectorAll('.habilidade-titulo');
+    const allDetalhesDivs = document.querySelectorAll('.habilidade-detalhes');
+
+    // --- O resto do seu código continua aqui ---
+    // (A lógica de adicionar listeners e popular os detalhes)
+    // ...
+
+     titulos.forEach(titulo => {
+        const slotId = titulo.dataset.slotId;
+        const detalhesDiv = document.querySelector(`.habilidade-detalhes[data-details-for="${slotId}"]`);
+
+        if (!detalhesDiv) {
+            console.warn(`Div de detalhes não encontrado para slot ID: ${slotId}`);
+            return;
+        }
+
+        titulo.addEventListener('click', (event) => {
+            event.stopPropagation();
+
+            const isCurrentlyVisible = detalhesDiv.classList.contains('visible');
+
+            allDetalhesDivs.forEach(div => {
+                if (div !== detalhesDiv) {
+                    div.classList.remove('visible');
+                }
+            });
+
+            if (!isCurrentlyVisible) {
+                const habilidadeData = allHabilidadesData[slotId]; // Busca pelo slot ID
+                // Verifica se ENCONTROU os dados para este slot específico
+                if (!habilidadeData || !habilidadeData.niveis) {
+                    console.error(`Dados formatados não encontrados no objeto JS para slot ID: ${slotId}`);
+                    detalhesDiv.innerHTML = '<p>Detalhes não disponíveis.</p>';
+                    detalhesDiv.classList.add('visible');
+                    return;
+                }
+
+                // --- Restante da lógica para popular detalhes ---
+                detalhesDiv.innerHTML = ''; // Limpa
+                habilidadeData.niveis.forEach(nivelData => {
+                    // ... (código para criar nivelDiv e nivelHTML) ...
+                     const nivelDiv = document.createElement('div');
+                    nivelDiv.classList.add('nivel-info');
+
+                    let nivelHTML = `<p><strong>Nível ${nivelData.nivel}:</strong></p>`;
+                    if (nivelData.custo) { nivelHTML += `<p><strong>Custo:</strong> ${nivelData.custo}</p>`; }
+                    if (nivelData.tipo) { nivelHTML += `<p><strong>Tipo:</strong> ${nivelData.tipo}</p>`; }
+                    if (nivelData.descricao) {
+                        const descFormatada = nivelData.descricao.replace(/\r\n|\r|\n/g, '<br>');
+                        nivelHTML += `<p><strong>Descrição:</strong> ${descFormatada}</p>`;
+                    }
+                     // if (nivelData.notas) { nivelHTML += `<p><em>${nivelData.notas}</em></p>`; }
+
+                    nivelDiv.innerHTML = nivelHTML;
+                    detalhesDiv.appendChild(nivelDiv);
+                });
+                 // --- Fim da lógica para popular detalhes ---
+
+                detalhesDiv.classList.add('visible');
+
+            } else {
+                detalhesDiv.classList.remove('visible');
+            }
+        });
+
+         detalhesDiv.addEventListener('click', (event) => {
+             event.stopPropagation();
+         });
+    });
+
+    // Fecha ao clicar fora
+    document.addEventListener('click', () => {
+        allDetalhesDivs.forEach(div => {
+            div.classList.remove('visible');
+        });
+    });
+
+    // Acessibilidade com Teclado
+     titulos.forEach(titulo => {
+        titulo.addEventListener('keydown', (event) => {
+             if (event.key === 'Enter' || event.key === ' ') {
+                 event.preventDefault();
+                 titulo.click();
+             }
+             if (event.key === 'Escape') {
+                 const slotId = titulo.dataset.slotId;
+                 const detalhesDiv = document.querySelector(`.habilidade-detalhes[data-details-for="${slotId}"]`);
+                 if (detalhesDiv && detalhesDiv.classList.contains('visible')) {
+                     detalhesDiv.classList.remove('visible');
+                 }
+             }
+         });
+     });
+
+
+}); // Fim do DOMContentLoaded

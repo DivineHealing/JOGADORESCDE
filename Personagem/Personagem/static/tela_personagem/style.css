@@ -427,3 +427,66 @@ input:focus {
 area {
   box-shadow: inset #e2e2e2 0 0 0 2px;
 }
+
+/* --- CORREÇÕES --- */
+
+/* Garante que cada container de habilidade ocupe a linha inteira e fique um abaixo do outro */
+.habilidade-container {
+  position: relative; /* Mantém para posicionar os detalhes */
+  display: block;     /* FORÇA o empilhamento vertical */
+  margin-bottom: 8px; /* Ajusta o espaçamento vertical entre habilidades */
+  /* Remova 'display: inline-block' ou 'float' se existirem para esta classe */
+}
+
+/* Título da habilidade - Remove aparência de link */
+.habilidade-titulo {
+  cursor: pointer;        /* Mantém o cursor para indicar que é clicável */
+  color: inherit;         /* Usa a cor padrão do texto do elemento pai */
+  /* Ou defina uma cor específica, ex: color: #e0e0e0; se o fundo for escuro */
+  text-decoration: none;  /* REMOVE qualquer sublinhado */
+  display: inline-block;  /* Mantém para controle de padding/margin se necessário */
+  padding: 2px 0;
+  font-weight: normal;    /* Remove negrito se houver, ou use 'bold' se preferir */
+  /* Remova 'text-decoration: underline dotted;' se existir */
+}
+
+/* Garante que não haja sublinhado ao passar o mouse */
+.habilidade-titulo:hover {
+  text-decoration: none; /* Remove sublinhado do hover */
+  /* Você pode adicionar outro efeito de hover sutil se desejar, ex: */
+  /* color: #ffffff; */
+  /* background-color: rgba(255, 255, 255, 0.05); */
+}
+
+/* Estilo de foco para acessibilidade pode ser mantido ou ajustado */
+.habilidade-titulo:focus {
+  outline: 2px solid orange; /* Ou outra cor de sua preferência */
+  text-decoration: none; /* Garante que não tenha sublinhado no foco */
+}
+
+
+/* --- O RESTO DO SEU CSS PARA .habilidade-detalhes PODE PERMANECER IGUAL --- */
+
+.habilidade-detalhes {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 15px;
+  margin-top: 2px;
+  background-color: #2c2c2c;
+  color: #e0e0e0;
+  border: 1px solid #444;
+  border-radius: 4px;
+  padding: 12px;
+  min-width: 300px;
+  max-width: 500px;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+  z-index: 10;
+  font-size: 0.95em;
+}
+
+.habilidade-detalhes.visible {
+  display: block;
+}
+
+/* ... (demais regras internas para .nivel-info, p, strong, em) ... */

@@ -7,29 +7,33 @@ from .models import Maestria
 from tela_personagem.models import Tela_personagem
 from .forms import EquipamentoForm
 from lib.utilitarios import *
+
 maestriaTipo = "Tipo da Porra da Maestria"
-personagem = 0
+personagemSelec = 0
+
 def cadastro(request, personagem_id):
-    global personagem
-    personagem = personagem_id
-    # Busca o personagem pelo ID vindo da URL
+    global personagemSelec # DEFINE O PERSONAGEM SELECIONADO COMO GLOBAL
+    personagemSelec = personagem_id # PASSA O PERSONAGEM DA SESSÃO PARA O PERSONAGEM GLOBAL
+    
+    # PESQUISA O PERSONAGEM, USANDO O ID COMO PARAMETRO DE BUSCA
     tela_personagem = get_object_or_404(Tela_personagem, pk=personagem_id)
-    # Cria o contexto com o objeto encontrado
+
     context = {
         'tela_personagem': tela_personagem
     }
-    # Renderiza o template passando o contexto
+
     return render(request, 'maestria.html', context)
 
 def cadastrar_maestria(request, tipo, personagem_id):
-    global maestriaTipo # VARIAVEL DO TIPO DA MAESTRIA
-    maestriaTipo = tipo # SETA O TIPO DA PEÇA
+    global maestriaTipo # DEFINE A VARIAVEL TIPO DA MAESTRIA ESCOLHIDA COMO GLOBAL
+    maestriaTipo = tipo # PASSA O TIPO MAESTRIA DA ESCOLHIDA PARA A MAESTRIA GLOBAL
 
     tela_personagem = get_object_or_404(Tela_personagem, pk=personagem_id)
 
-    try:
-        base_personagem = tela_personagem.personagem
-        maestria = Maestria.objects.get(personagem=base_personagem, peca=tipo)
+    try: # 
+        personagem_selecionado = tela_personagem.personagem
+        print(personagem_selecionado)
+        maestria = Maestria.objects.get(personagem=personagem_selecionado, peca=tipo)
 
     except Maestria.DoesNotExist:
         raise Http404("Maestria não encontrada para este personagem.")
@@ -45,22 +49,17 @@ def cadastrar_maestria(request, tipo, personagem_id):
         try:
             equipamento = form.save(commit=False)
             equipamento.tipo = tipo
-            # Associar ao personagem/maestria aqui, se necessário
-            # equipamento.personagem = tela_personagem
-            # equipamento.maestria = maestria
             equipamento.save()
-            # Considere redirecionar para uma página de sucesso ou de volta para a tela anterior
             return redirect('atributos_maestria')
         except:
             # Se o form for inválido no POST, adicione o form com erros ao contexto
             context['form'] = form
             return render(request, 'atributos_maestria.html', context) # Renderiza com erros
-    else: # Método GET
+    else:
         form = EquipamentoForm(initial={'tipo': tipo})
-        context['form'] = form # Adiciona o form vazio ao contexto
+        context['form'] = form
 
-    # Renderiza a página no GET ou se o POST falhou (sem redirect no POST inválido acima)
-    return render(request, 'atributos_maestria.html', context) # Passa o dicionário context inteiro
+    return render(request, 'atributos_maestria.html', context)
 
 def perfil(request, user_id):
     messages.success(request, 'Cadastro de equipamentos realizados')
@@ -77,7 +76,7 @@ def salvar_maestria_atributo(request):
         pecaalvo = Maestria.objects.get(personagem=personagem_id, peca=maestriaTipo)
         #pegar_front(request, pecaalvo)  #////////////////////////////////////////////////TIRA O COMENTARIO\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-        print(f'Tipo da Maestria: {maestriaTipo}\nPersonagem: {personagem}')
-        return redirect('cadastrar_maestria', personagem_id=personagem, tipo=maestriaTipo)
+        print(f'Tipo da Maestria: {maestriaTipo}\nPersonagem: {personagemSelec}')
+        return redirect('cadastrar_maestria', personagem_id=personagemSelec, tipo=maestriaTipo)
 
     return redirect('cadastrar_maestria')

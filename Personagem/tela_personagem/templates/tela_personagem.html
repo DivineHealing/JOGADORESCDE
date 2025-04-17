@@ -238,18 +238,37 @@
                         <div class="reg" id="regenMana_container">Mana: <span id="regenMana">{{ tela_personagem.regenMana|intcomma }}</span>%</div>
                         <div class="reg" id="regenVigor_container">Vigor: <span id="regenVigor">{{ tela_personagem.regenVigor|intcomma }}</span>%</div>
                     </div>
-                    
-                    
                 </div>
             </div>
 
             <div class="right-column">
                 <div class="character-abilities bordered-section">
                     <div class="abilities section-title">HABILIDADES DO PERSONAGEM</div>
-                    <div class="abilities-content">
-                        <div title="Consegue criar e/ou manipular a energia maldita no ambiente, podendo criar, imbuir, atacar, ou se defender com a energia. A energia criada ou manipulada recebe a du-reza baseada em 350% Determinação.
-                        Pode ser usada como uma reação.
-                        " id="forca_container">Manipulação da Energia Maldita</div>
+                    {% load static %}
+
+                    <div class="secao-habilidades">
+                    
+                        {% if lista_habilidades_data %}
+                        {% for habilidade in lista_habilidades_data %}
+                            <div class="habilidade-container">
+                                 <span class="habilidade-titulo"
+                                       tabindex="0"
+                                       data-slot-id="{{ habilidade.id }}">
+                                     {{ forloop.counter }} – {{ habilidade.nome }}
+                                 </span>
+                                 <div class="habilidade-detalhes"
+                                      data-details-for="{{ habilidade.id }}">
+                                      <!-- Conteúdo será gerado dinamicamente -->
+                                 </div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <p>Nenhuma habilidade encontrada para este personagem.</p>
+                    {% endif %}
+        
+                     <!-- Mova o json_script para FORA do if/else -->
+                     <!-- Ele será renderizado mesmo se a lista estiver vazia -->
+                     {{ lista_habilidades_data|json_script:"all-habilidades-data" }}
                     </div>
                 </div>
 

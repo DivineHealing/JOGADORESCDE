@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HUD do Personagem</title>
+    <title>Maestria do Personagem - CdE</title>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'maestria/style.css' %}">
 </head>
@@ -12,6 +12,9 @@
     {% load humanize %}
     {% localize on %}
     <div class="background-container">
+
+        <form method="POST" action="{% url 'salvar_maestria_atributo' %}">
+        {% csrf_token %}
 
         <div class="header">
             <div class="name" style="color: white;">
@@ -22,14 +25,14 @@
         <div class="top-section">             
             <div class="vida-mana-vigor bordered-section">  
                 <div class="formGroupRed field">
-                    <input pattern="[0-9]+$" type="number" placeholder="Aumento de Vida Base" id='vidaBase' value="{{ maestria.vidaBase }}" />
-                    <input style="margin-Left: 1em" pattern="[0-9]+$" type="number" placeholder="Aumento de Vida Atual" id='vidaAtual' value="{{ maestria.vidaAtual }}" />
+                    <input pattern="[0-9]+$" type="number" placeholder="Aumento de Vida Base" name='vidaBase' id='vidaBase' value="{{ maestria.vidaBase }}" />
+                    <input style="margin-Left: 1em" pattern="[0-9]+$" type="number" placeholder="Aumento de Vida Atual" name='vidaAtual' id='vidaAtual' value="{{ maestria.vidaAtual }}" />
                     <label style="width: 13em" for="bloqueio" class="formLabel">Aumento de Vida Base</label>
                     <label style="margin-Left: 13.5em; width: 13.5em" for="redEspiritual" class="formLabel">Aumento de Vida Atual</label>
                 </div> 
                 <div class="formGroupRed field">
-                    <input pattern="[0-9]+$" type="number" placeholder="Valor da Mana" id='mana' value="{{ maestria.mana }}" />
-                    <input style="margin-Left: 1em" pattern="[0-9]+$" type="number" placeholder="Valor da Vigor" id='vigor' value="{{ maestria.vigor }}" />
+                    <input pattern="[0-9]+$" type="number" placeholder="Valor da Mana" name='mana' id='mana' value="{{ maestria.mana }}" />
+                    <input style="margin-Left: 1em" pattern="[0-9]+$" type="number" placeholder="Valor da Vigor" name='vigor' id='vigor' value="{{ maestria.vigor }}" />
                     <label style="width: 13em" for="mana" class="formLabel">Aumento de Mana</label>
                     <label style="margin-Left: 13.5em; width: 13.5em" for="vigor" class="formLabel">Aumento de Vigor</label>
                 </div> 
@@ -41,33 +44,33 @@
                 <div class="attribute-stats bordered-section">
                     <div class="stat section-title">STATUS</div>
                     <div class="formGroup field">
-                        <input pattern="[0-9]+$" type="number" placeholder="Valor da Força" id='forca' name="forca" value="{{ maestria.forca }}" />
-                        <label for="forca" class="formLabel">Força</label>
+                        <input pattern="[0-9]+$" type="number" placeholder="Valor da Força" id='forcaPer' name="forcaPer" value="{{ maestria.forcaPer }}" />
+                        <label for="forcaPer" class="formLabel">Força (%)</label>
                     </div>
                     <div class="formGroup field">
-                        <input pattern="[0-9]+$" type="number" placeholder="Valor da Destreza" id='destreza' name="destreza" value="{{ maestria.destreza }}" />
-                        <label for="destreza" class="formLabel">Destreza</label>
+                        <input pattern="[0-9]+$" type="number" placeholder="Valor da Destreza" id='destrezaPer' name="destrezaPer" value="{{ maestria.destrezaPer }}" />
+                        <label for="destrezaPer" class="formLabel">Destreza (%)</label>
                     </div>
                     <div class="formGroup field">
-                        <input pattern="[0-9]+$" type="number" placeholder="Valor da Inteligência" id='inteligencia' name="inteligencia" value="{{ maestria.inteligencia }}" />
-                        <label for="inteligencia" class="formLabel">Inteligência</label>
+                        <input pattern="[0-9]+$" type="number" placeholder="Valor da Inteligência" id='inteligenciaPer' name="inteligenciaPer" value="{{ maestria.inteligenciaPer }}" />
+                        <label for="inteligenciaPer" class="formLabel">Inteligência (%)</label>
                     </div>
                     <div class="formGroup field">
-                        <input pattern="[0-9]+$" type="number" placeholder="Valor da Determinação" id='determinacao' name="determinacao" value="{{ maestria.determinacao }}" />
-                        <label for="determinacao" class="formLabel">Determinação</label>
+                        <input pattern="[0-9]+$" type="number" placeholder="Valor da Determinação" id='determinacaoPer' name="determinacaoPer" value="{{ maestria.determinacaoPer }}" />
+                        <label for="determinacaoPer" class="formLabel">Determinação (%)</label>
                     </div>
                     <div class="formGroup field">
-                        <input pattern="[0-9]+$" type="number" placeholder="Valor da Perspicácia" id='perspicacia' name="perspicacia" value="{{ maestria.perspicacia }}" />
-                        <label for="perspicacia" class="formLabel">Perspicácia</label>
+                        <input pattern="[0-9]+$" type="number" placeholder="Valor da Perspicácia" id='perspicaciaPer' name="perspicaciaPer" value="{{ maestria.perspicaciaPer }}" />
+                        <label for="perspicaciaPer" class="formLabel">Perspicácia (%)</label>
                     </div>
                     <div class="formGroup field">
-                        <input pattern="[0-9]+$" type="number" placeholder="Valor da Carisma" id='carisma' name="carisma" value="{{ maestria.carisma }}" />
-                        <label for="carisma" class="formLabel">Carisma</label>
+                        <input pattern="[0-9]+$" type="number" placeholder="Valor da Carisma" id='carismaPer' name="carismaPer" value="{{ maestria.carismaPer }}" />
+                        <label for="carismaPer" class="formLabel">Carisma (%)</label>
                     </div>
                 </div>
                 <div class="rolling-bonus-stats bordered-section">
                     <div class="bonus section-title">BÔNUS DE ROLAGEM</div>
-                        <button class="add-atributo-btn" id="addRolagem">Add</button>
+                        <button type="button" class="add-atributo-btn" id="addRolagem">Add</button >
                         <div class="atributos-added-container" id="rolagemContainer">
                             <!-- Atributos serão adicionados aqui dinamicamente -->
                     </div>
@@ -79,20 +82,20 @@
                 <div class="character-abilities bordered-section">
                     <div id="atributosDefensivo">
                         <div class="abilities section-title">ATRIBUTOS DEFENSIVOS</div>
-                        <button class="add-atributo-btn" id="addDefesa">Add</button>
+                        <button type="button" class="add-atributo-btn" id="addDefesa">Add</button >
                         <div class="atributos-added-container" id="defesaContainer">
                             <!-- Atributos serão adicionados aqui dinamicamente -->
                         </div>
 
                         <div class="formGroupRed field">
-                            <input pattern="[0-9]+$" type="number" placeholder="Redução de Dano" id='reducao' value="{{ maestria.reducao }}" />
-                            <input pattern="[0-9]+$" type="number" placeholder="Aumento de D.A" id='aumentoDA' value="{{ maestria.aumentoDA }}" />
+                            <input pattern="[0-9]+$" type="number" placeholder="Redução de Dano" name='reducao' id='reducao' value="{{ maestria.reducao }}" />
+                            <input pattern="[0-9]+$" type="number" placeholder="Aumento de D.A" name='aumentoDA' id='aumentoDA' value="{{ maestria.aumentoDA }}" />
                             <label for="reducao" class="formLabel">Redução</label>
                             <label style="margin-Left: 12.5em; width: 11em" for="aumentoDA" class="formLabel">Aumento de D.A</label>
                         </div>   
                         <div class="formGroupRed field">
-                            <input pattern="[0-9]+$" type="number" placeholder="Bloqueio" id='bloqueio' value="{{ maestria.bloqueio }}" />
-                            <input pattern="[0-9]+$" type="number" placeholder="Redução Espiritual" id='redEspiritual' value="{{ maestria.reducaoEspiritual }}" />
+                            <input pattern="[0-9]+$" type="number" placeholder="Bloqueio" name='bloqueio' id='bloqueio' value="{{ maestria.bloqueio }}" />
+                            <input pattern="[0-9]+$" type="number" placeholder="Redução Espiritual" name='redEspiritual' id='redEspiritual' value="{{ maestria.reducaoEspiritual }}" />
                             <label for="bloqueio" class="formLabel">Bloqueio</label>
                             <label style="margin-Left: 12.5em; width: 11em" for="redEspiritual" class="formLabel">Redução Espiritual</label>
                         </div>    
@@ -100,22 +103,22 @@
 
                     <div id="atributosOfensivo">
                         <div class="abilities section-title">ATRIBUTOS OFENSIVOS</div>
-                        <button class="add-atributo-btn" id="addAtributo">Add</button>
+                        <button type="button" class="add-atributo-btn" id="addAtributo">Add</button >
                         <div class="atributos-added-container" id="atributosContainer">
                             <!-- Atributos serão adicionados aqui dinamicamente -->
                         </div>
                         
                         
                         <div class="formGroup field">
-                            <input pattern="[0-9]+$" type="number" placeholder="Penetração Extra" id='penExtra' value="{{ maestria.penExtra }}" />
+                            <input pattern="[0-9]+$" type="number" placeholder="Penetração Extra" name='penExtra' id='penExtra' value="{{ maestria.penExtra }}" />
                             <label for="penExtra" class="formLabel">Penetração Extra</label>
                         </div>
                         <div class="formGroup field">
-                            <input pattern="[0-9]+$" type="number" placeholder="Esmagamento" id='esmagamento' value="{{ maestria.esmagamento }}" />
+                            <input pattern="[0-9]+$" type="number" placeholder="Esmagamento" name='esmagamento' id='esmagamento' value="{{ maestria.esmagamento }}" />
                             <label for="esmagamento" class="formLabel">Esmagamento</label>
                         </div>                  
                         <div class="formGroupRed field">
-                            <input pattern="[0-9]+$" type="number" placeholder="Dano Espiritual" id='dmgEspiritual' value="{{ maestria.espiritualPerc }}" />
+                            <input pattern="[0-9]+$" type="number" placeholder="Dano Espiritual" name='dmgEspiritual' id='dmgEspiritual' value="{{ maestria.espiritualPerc }}" />
                             <label for="dmgEspiritual" class="formLabel">Dano Espiritual</label>
                         </div>
 
@@ -124,34 +127,35 @@
 
                 <div class="character-equipment bordered-section">
                     <div class="equipment section-title">AMPLIFICAÇÕES</div>
-                    <button class="add-atributo-btn" id="addAmplificacao">Add</button>
+                    <button type="button" class="add-atributo-btn" id="addAmplificacao">Add</button >
                     <div class="atributos-added-container" id="amplificacaoContainer">
                         <!-- Atributos serão adicionados aqui dinamicamente -->
                     </div>
                     
                     <div class="equipment section-title">REGENERAÇÃO</div>
-                    <button class="add-atributo-btn" id="addRegeneracao">Add</button>
+                    <button type="button" class="add-atributo-btn" id="addRegeneracao">Add</button >
                     <div class="atributos-added-container" id="regeneracaoContainer">
                         <!-- Atributos serão adicionados aqui dinamicamente -->
                     </div>
                     
                     <div class="equipment section-title">Efeito de Status</div>
-                    <button class="add-atributo-btn" id="addStatusEffect">Add</button>
+                    <button type="button" class="add-atributo-btn" id="addStatusEffect">Add</button >
                     <div class="atributos-added-container" id="statusEffectContainer">
                         <!-- Atributos serão adicionados aqui dinamicamente -->
                     </div>
                 </div>
             </div>
         </div>
+
         <div class='formGroupRed'>
-            <a href="{% url 'cadastro' personagem_id=tela_personagem.id %}"><button class="button" role="button">Voltar</button></a>
-            <a href="{% url 'exibir_personagem' %}" class="buttonLink"><button class="button" role="button">Personagem</button></a>
-            <form method="POST" action="{% url 'salvar_maestria_atributo' %}">
-                {% csrf_token %}
-            <button class="submit" role="button">Salvar</button>
-            </form>
+            <a href="{% url 'cadastro' personagem_id=tela_personagem.id %}"><button type="button" class="button " role="button ">Voltar</button ></a>
+            <a href="{% url 'exibir_personagem' %}" class="button Link"><button type="button" class="button " role="button ">Personagem</button ></a>                
+            <button type="submit" class="submit">Salvar</button >
         </div>
+
+        </form>
     </div>
+
     {% endlocalize %}
     <script src="{% static 'maestria\script.js' %}"></script>
 </body>
