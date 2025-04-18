@@ -125,10 +125,12 @@ def obter_personagem_sessao(request):
     return personagem_id
 
 
-def pegar_front(request, escolha):
+def pegar_front(request, escolha, percent=False):
     # ATRIBUTOS BASE
     campos = { # guardando os camposem um dicionario(esquerda é onde salvara no banco|direita é o que via pegar no request)
         "vida": "vidaMax",
+        "vigor": "vigor",
+        "mana": "mana",
         "forca": "forca",
         "destreza": "destreza",
         "inteligencia": "inteligencia",
@@ -136,21 +138,43 @@ def pegar_front(request, escolha):
         "perspicacia": "perspicacia",
         "carisma": "carisma",
         "reducao": "reducao",
-        "danoFinal": "dmgFinal"
+        "danoFinal": "dmgFinal",
+        # definir se a parte de baixo vai ficar junto ou em outro
+        "vidaBase": "vidaBase",
+        "vidaAtual": "vidaAtual",
+        "bloqueio": "bloqueio",
+        "aumentoDA": "aumentoDA",
+        "reducaoEspiritual": "redEspiritual",
+        "esmagamento": "esmagamento",
+        "penExtra": "penExtra",
+        "espiritualPerc": "dmgEspiritual"
     }
     for attr, campo in campos.items():
         if campo in request.POST:  # se o campo existe
             setattr(escolha, attr, request.POST.get(campo, 0)or 0) # adicionara o valor
 
+    if percent:
+        # ATRIBUTOS BASE
+        camposp = { # guardando os camposem um dicionario(esquerda é onde salvara no banco|direita é o que via pegar no request)
+            "forcaPer": "forcaPer",
+            "destrezaPer": "destrezaPer",
+            "inteligenciaPer": "inteligenciaPer",
+            "determinacaoPer": "determinacaoPer",
+            "perspicaciaPer": "perspicaciaPer",
+            "carismaPer": "carismaPer",
+        }
+        for attr, campo in camposp.items():
+            if campo in request.POST:  # se o campo existe
+                setattr(escolha, attr, request.POST.get(campo, 0)or 0) # adicionara o valor
 
     i = 1
     # ROLAGENS
     while True:
-        tipo = request.POST.get(f'rolagemTipo{i}') # pegando os valores no front
+        tipo = request.POST.get(f'rolagemTipo{i}') # tentando pegar os valores no front
         valor = request.POST.get(f'rolagem{i}')
 
-        if not any([tipo, valor]):
-            break  # não tem mais campos entao para
+        if not any([tipo, valor]): # se nenhum dos dois campos tem valores
+            break  # sai do loop
         
         setattr(escolha, f'tipoRolagem_{i}', tipo)  # distribuindo no back
         setattr(escolha, f'rolagem_{i}', valor)

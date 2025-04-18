@@ -31,6 +31,7 @@ def salvar_habilidade(request):
         
         personagem = Habilidade.objects.get(personagem=personagem_id)
 
+        # itera entre as 12 slots de habilidades
         for i in range(1, 13):
             count = 1
             while True:
@@ -43,7 +44,8 @@ def salvar_habilidade(request):
 
                 if nome_key not in request.POST:
                     break  # não há mais campos para esse grupo
-
+                
+                #pega os valores se só existirem
                 nome = request.POST.get(nome_key)
                 tipo = request.POST.get(tipo_key)
                 nivel = request.POST.get(nivel_key)
@@ -52,6 +54,7 @@ def salvar_habilidade(request):
 
                 # distribui a habilidade associada ao personagem atual
                 setattr(personagem, f"hab{i}_{count}_nome", nome)
+                setattr(personagem, f"hab{i}_{count}_tipo", tipo)
                 setattr(personagem, f"hab{i}_{count}_custo", custo)
                 setattr(personagem, f"hab{i}_{count}_descricao", descricao)
 
