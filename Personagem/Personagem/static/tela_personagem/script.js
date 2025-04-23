@@ -359,11 +359,8 @@ document.addEventListener('DOMContentLoaded', function() {
     let dataArray = []; // INICIALIZA COMO ARRAY VAZIO POR PADRÃO
 
     if (habilidadesDataElement && habilidadesDataElement.textContent) {
-        console.log("Raw textContent:", habilidadesDataElement.textContent); // Log para debug
         try {
             const parsedData = JSON.parse(habilidadesDataElement.textContent);
-            console.log("Parsed data type:", typeof parsedData); // Log para debug
-            console.log("Parsed data value:", parsedData);      // Log para debug
 
             // *** VERIFICAÇÃO CRÍTICA ***
             // Checa se o resultado do parse é realmente um array
@@ -382,9 +379,6 @@ document.addEventListener('DOMContentLoaded', function() {
         console.warn("Elemento 'all-habilidades-data' ou seu conteúdo não encontrado. Tratando como vazio.");
         // Mantém dataArray como []
     }
-
-    // Neste ponto, dataArray é garantido ser um array (pode estar vazio)
-    console.log("Final dataArray para processar:", dataArray);
 
     // Converte o array (possivelmente vazio) em um objeto/map
     dataArray.forEach(hab => { // Agora seguro usar forEach

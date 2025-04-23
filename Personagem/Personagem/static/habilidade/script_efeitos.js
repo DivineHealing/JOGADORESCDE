@@ -44,46 +44,159 @@ let hab10Count = 1; // Counter to keep track of attribute rows
 let hab11Count = 1; // Counter to keep track of attribute rows
 let hab12Count = 1; // Counter to keep track of attribute rows
 
-addHab1Btn.addEventListener('click', function () {
-    hab1Count++; // Increment counter for each new attribute row
+document.addEventListener('DOMContentLoaded', function() {
 
-    const habilidadeRow = document.createElement('div');
-    if (hab1Count <= 6) {
-        habilidadeRow.classList.add('habilidade-row');
+    const addHab1Btn = document.getElementById('addHab1');
+    const hab1Container = document.getElementById('hab1Container');
+    const maxNiveis = 6; // Máximo de níveis permitidos
+
+    // --- 1. Obter e Processar Dados das Habilidades ---
+    const habilidadesDataElement = document.getElementById('all-habilidades-data');
+    let allHabilidadesData = {};
+    let dataArray = [];
+
+    if (habilidadesDataElement && habilidadesDataElement.textContent) {
+        try {
+            const parsedData = JSON.parse(habilidadesDataElement.textContent);
+            if (Array.isArray(parsedData)) {
+                dataArray = parsedData;
+            } else {
+                console.warn("Dados de habilidades não são um array.", parsedData);
+            }
+        } catch (e) {
+            console.error("Erro ao parsear dados das habilidades:", e);
+        }
+    } else {
+        console.warn("Elemento 'all-habilidades-data' não encontrado ou vazio.");
+    }
+
+    // Encontra os dados específicos da Habilidade 1 (Slot ID 1)
+    const habilidade1Data = dataArray.find(hab => hab.id === 1);
+    console.log("Dados encontrados para Habilidade 1:", habilidade1Data);
+
+    // --- 2. Função Reutilizável para Criar Linha de Nível ---
+    //    (Adaptada da sua função original no botão Add)
+    function createHabilidadeLevelRow(slotNum, levelNum, data = {}) {
+        const habilidadeRow = document.createElement('div');
+        habilidadeRow.classList.add('habilidade-row', `habilidade-${slotNum}-nivel-${levelNum}`); // Adiciona classes para identificação
+        habilidadeRow.dataset.level = levelNum; // Guarda o nível no dataset
+
+        // Usamos os dados passados (data) ou valores padrão/vazios
+        const tipo = data.tipo || 'habilidadePassivo'; // Valor padrão se não houver dado
+        const nome = data.nome || '';
+        const custo = data.custo || '';
+        const descricao = data.descricao || '';
+
         habilidadeRow.innerHTML = `
             <div class='habilidade-row-container'>
+                <h4>Nível ${levelNum}</h4> <!-- Adiciona título do Nível -->
                 <div class='habilidade-row-miniContainer'>
-                    <label for="habilidade1Tipo${hab1Count}">Tipo do habilidade</label>
-                    <select class='personagem_select' id="habilidade1Tipo${hab1Count}" name="habilidade1Tipo${hab1Count}">
-                        <option value="habilidadePassivo" selected> Habilidade Passivo</option>
-                        <option value="habilidadeAtivo"> Habilidade Ativo</option>
-                        <option value="habilidadeAura"> Habilidade Aura</option>
+                    <label for="habilidade${slotNum}Tipo${levelNum}">Tipo da Habilidade</label>
+                    <select class='personagem_select' id="habilidade${slotNum}Tipo${levelNum}" name="habilidade${slotNum}Tipo${levelNum}">
+                        <option value="habilidadePassivo" ${tipo === 'habilidadePassivo' ? 'selected' : ''}> Habilidade Passivo</option>
+                        <option value="habilidadeAtivo" ${tipo === 'habilidadeAtivo' ? 'selected' : ''}> Habilidade Ativo</option>
+                        <option value="habilidadeAura" ${tipo === 'habilidadeAura' ? 'selected' : ''}> Habilidade Aura</option>
                     </select>
-                    <label for="habilidade1Nivel${hab1Count}">Nível do habilidade</label>
-                    <select class='personagem_select' id="habilidade1Nivel${hab1Count}" name="habilidade1Nivel${hab1Count}">                        
-                        <option value="nivel2" selected>Nível 2</option>
-                        <option value="nivel3">Nível 3</option>
-                        <option value="nivel4">Nível 4</option>
-                        <option value="nivel5">Nível 5</option>
-                        <option value="nivel6">Nível 6</option>
-                    </select>
+                    <!-- Removido Select de Nível daqui, pois o nível é definido pelo loop/contador -->
                 </div>
                 <div>
-                    <label for="habilidade1Nome${hab1Count}">Nome do habilidade:</label>
-                    <input style="width: 100%"; type="text" id="habilidade1Nome${hab1Count}" name="habilidade1Nome${hab1Count}" placeholder="Nome do habilidade">
-                    <label for="habilidade1Custo${hab1Count}">Custo do habilidade:</label>
-                    <input style="width: 50%"; type="text" id="habilidade1Custo${hab1Count}" name="habilidade1Custo${hab1Count}" placeholder="Custo do habilidade">
-                </div class='habilidade-row-miniContainer'>
-                <div class='habilidade-row-miniContainer'>
-                    <label for="habilidade1Desc${hab1Count}">Descrição do habilidade:</label>
-                    <textarea style="width: 100%; height: 10em; wrap: "hard""; type="text" id="habilidade1Desc${hab1Count}" name="habilidade1Desc${hab1Count}" placeholder="Descrição do habilidade"></textarea>
+                    <label for="habilidade${slotNum}Nome${levelNum}">Nome da Habilidade:</label>
+                    <input style="width: 100%"; type="text" id="habilidade${slotNum}Nome${levelNum}" name="habilidade${slotNum}Nome${levelNum}" placeholder="Nome (Nível ${levelNum})" value="${nome}">
+                    <label for="habilidade${slotNum}Custo${levelNum}">Custo da Habilidade:</label>
+                    <input style="width: 50%"; type="text" id="habilidade${slotNum}Custo${levelNum}" name="habilidade${slotNum}Custo${levelNum}" placeholder="Custo (Nível ${levelNum})" value="${custo}">
                 </div>
+                <div class='habilidade-row-miniContainer'>
+                    <label for="habilidade${slotNum}Desc${levelNum}">Descrição da Habilidade:</label>
+                    <textarea style="width: 100%; height: 10em;" type="text" id="habilidade${slotNum}Desc${levelNum}" name="habilidade${slotNum}Desc${levelNum}" placeholder="Descrição (Nível ${levelNum})">${descricao}</textarea>
+                </div>
+                <!-- Opcional: Botão Remover -->
+                <!-- <button type="button" class="remove-habilidade-nivel" data-slot="${slotNum}" data-level="${levelNum}">Remover Nível</button> -->
             </div>
         `;
-
-        hab1Container.appendChild(habilidadeRow);
+        return habilidadeRow;
     }
-});
+
+    // --- 3. Exibir Níveis Existentes (2 a 6) ---
+    let maiorNivelExistente = 1; // Começa em 1 por causa do nível estático no HTML
+
+    if (habilidade1Data && habilidade1Data.niveis) {
+        // Ordena por nível para garantir a ordem correta de exibição e cálculo
+        habilidade1Data.niveis.sort((a, b) => a.nivel - b.nivel);
+
+        habilidade1Data.niveis.forEach(nivelData => {
+            if (nivelData.nivel > 1 && nivelData.nivel <= maxNiveis) { // Processa apenas níveis 2 a 6 existentes
+                console.log(`Renderizando nível existente ${nivelData.nivel} para Habilidade 1`);
+                const levelRow = createHabilidadeLevelRow(1, nivelData.nivel, nivelData);
+                hab1Container.appendChild(levelRow);
+                if (nivelData.nivel > maiorNivelExistente) {
+                    maiorNivelExistente = nivelData.nivel;
+                }
+            } else if (nivelData.nivel === 1) {
+                 // Atualiza o maior nível se o nível 1 for o único encontrado até agora
+                 // (embora já comecemos com 1)
+                 if (1 > maiorNivelExistente) {
+                     maiorNivelExistente = 1;
+                 }
+            }
+        });
+    }
+
+    // --- 4. Inicializar Contador e Botão Add ---
+    let hab1Count = maiorNivelExistente; // Contador começa no maior nível JÁ existente
+
+    // Desabilita o botão se todos os níveis já existem
+    if (hab1Count >= maxNiveis) {
+        addHab1Btn.disabled = true;
+        addHab1Btn.textContent = "Máx Níveis";
+    } else {
+         addHab1Btn.disabled = false;
+         addHab1Btn.textContent = `Add Nível ${hab1Count + 1}`; // Mostra qual nível será adicionado
+    }
+
+
+    // --- 5. Event Listener do Botão Add ---
+    addHab1Btn.addEventListener('click', function () {
+        if (hab1Count < maxNiveis) {
+            hab1Count++; // Incrementa para o PRÓXIMO nível a ser adicionado
+
+            console.log(`Adicionando Nível ${hab1Count} para Habilidade 1`);
+            // Cria a linha para o novo nível (sem dados pré-preenchidos)
+            const newLevelRow = createHabilidadeLevelRow(1, hab1Count, {}); // Passa objeto vazio como dados
+            hab1Container.appendChild(newLevelRow);
+
+            // Atualiza e desabilita o botão se atingir o limite
+            if (hab1Count >= maxNiveis) {
+                addHab1Btn.disabled = true;
+                addHab1Btn.textContent = "Máx Níveis";
+            } else {
+                 addHab1Btn.textContent = `Add Nível ${hab1Count + 1}`; // Atualiza texto do botão
+            }
+        }
+    });
+
+     // --- Opcional: Lógica para Remover Níveis (Mais Complexo) ---
+     // hab1Container.addEventListener('click', function(event) {
+     //     if (event.target.classList.contains('remove-habilidade-nivel')) {
+     //         const levelToRemove = event.target.dataset.level;
+     //         const rowToRemove = event.target.closest('.habilidade-row'); // Encontra a linha pai
+     //         if (rowToRemove) {
+     //             rowToRemove.remove();
+     //             // IMPORTANTE: Ajustar hab1Count e reabilitar botão Add é complexo
+     //             // pois pode criar "buracos" na sequência de níveis.
+     //             // Talvez seja melhor apenas marcar para exclusão no backend.
+     //             // Para simplificar, podemos reabilitar o botão Add:
+     //             addHab1Btn.disabled = false;
+     //             // Atualizar o texto do botão para o próximo nível a partir do maior restante?
+     //             // Calcular maiorNivelRestante = ... (iterando sobre os .habilidade-row restantes)
+     //             // hab1Count = maiorNivelRestante; // Atualiza contador
+     //             // addHab1Btn.textContent = `Add Nível ${hab1Count + 1}`;
+     //             console.log(`Nível ${levelToRemove} removido (visualmente).`);
+     //         }
+     //     }
+     // });
+
+
+}); // Fim do DOMContentLoaded
 
 addHab2Btn.addEventListener('click', function () {
     hab2Count++; // Increment counter for each new attribute row

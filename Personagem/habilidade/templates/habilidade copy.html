@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HUD do Personagem</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'habilidade/style.css' %}">
+</head>
+<body>    
+    {% load custom_tags %}
+    {% load l10n %}
+    {% load humanize %}
+    {% localize on %}
+    
+    <div class="background-container">
+        <form method="POST" action="{% url 'salvar_habilidade' %}">
+        {% csrf_token %}
+
+        <div class="header">
+              <div class="name" style="color: white;">
+                <span >Nome do Personagem: {{ tela_personagem.personagem }}</span>
+            </div>
+        </div>
+
+        <div class="top-section">
+            <div class="vida-mana-vigor bordered-section">
+                
+                {% for i in range_habilidades %}
+                    <div class="abilities section-title">HABILIDADE {{ i }}</div>
+
+                    <div class="atributos-added-container habilidade-row">
+                        <div class='habilidade-row-container'>
+                            <!-- mesmos campos com name/id como habilidade{{ i }}_1_nome etc -->
+
+                            <div class='habilidade-row-miniContainer'>
+                                {% with "hab"|concat:i|stringformat:"s"|concat:"_1_tipo" as attr_nome %}
+                                    <label for="habilidade{{ i }}Tipo1">Tipo da Habilidade</label>
+                                    <select class="personagem_select" id="habilidade{{ i }}Tipo1" name="habilidade{{ i }}Tipo1">
+                                        <option value="habilidadePassivo" {% if habilidade|get_attr:attr_tipo == "habilidadePassivo" %}selected{% endif %}>Habilidade Passivo</option>
+                                        <option value="habilidadeAtivo" {% if habilidade|get_attr:attr_tipo == "habilidadeAtivo" %}selected{% endif %}>Habilidade Ativo</option>
+                                        <option value="habilidadeAura" {% if habilidade|get_attr:attr_tipo == "habilidadeAura" %}selected{% endif %}>Habilidade Aura</option>
+                                    </select>
+                                {% endwith %}
+                            </div>
+                            
+                            <div>
+                                {% with "hab"|concat:i|stringformat:"s"|concat:"_1_nome" as attr_nome %}
+                                    <label for="habilidade{{ i }}Nome1">Nome da Habilidade:</label>
+                                    <input style="width: 100%;" type="text" id="habilidade{{ i }}Nome1" name="habilidade{{ i }}Nome1" placeholder="Nome da Habilidade" value="{{ habilidade|get_attr:attr_nome }}">
+                                {% endwith %}
+                            
+                                {% with "hab"|concat:i|stringformat:"s"|concat:"_1_custo" as attr_custo %}
+                                    <label for="habilidade{{ i }}Custo1">Custo da Habilidade:</label>
+                                    <input style="width: 50%;" type="text" id="habilidade{{ i }}Custo1" name="habilidade{{ i }}Custo1" placeholder="Custo da Habilidade" value="{{ habilidade|get_attr:attr_custo }}">
+                                {% endwith %}
+                            </div>
+                            
+                            <div class='habilidade-row-miniContainer'>
+                                {% with "hab"|concat:i|stringformat:"s"|concat:"_1_descricao" as attr_descricao %}
+                                    <label for="habilidade{{ i }}Desc1">Descrição da Habilidade:</label>
+                                    <textarea style="width: 100%; height: 10em;" id="habilidade{{ i }}Desc1" name="habilidade{{ i }}Desc1" placeholder="Descrição da Habilidade">{{ habilidade|get_attr:attr_descricao }}</textarea>
+                                {% endwith %}
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <button type="button" class="add-atributo-btn" data-group="habilidade{{ i }}">Add</button>
+                    <div class="atributos-added-container" id="habilidade{{ i }}Container" name="habilidade{{ i }}Container"></div>
+                {% endfor %}
+
+            <div class="formGroupRed">
+                <a href="{% url 'base_personagem' personagem_id=tela_personagem.id %}"><button type="button" class="button" role="button">Voltar</button></a>
+                <a href="{% url 'exibir_personagem' %}" class="buttonLink"><button type="button" class="button" role="button">Personagem</button></a>
+                <button type="submit" class="submit" role="submit">Salvar</button>
+            </div>
+        </form>
+    <div>
+    {% endlocalize %}
+    <script src="{% static 'habilidade/script_efeitos copy.js' %}"></script>
+</body>
+</html>

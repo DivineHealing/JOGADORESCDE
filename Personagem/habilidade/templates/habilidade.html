@@ -30,7 +30,7 @@
                     <div class='habilidade-row-container'>
                         <div class='habilidade-row-miniContainer'>
                             <label for="habilidade1Tipo1">Tipo da Habilidade</label>
-                            <select class='personagem_select' id="habilidade1Tipo1" name="habilidade1Tipo1">
+                            <select class='personagem_select' id="habilidade1Tipo1" name="habilidade1Tipo1" value="{{ habilidade.hab1_1_tipo }}">
                                 <option value="habilidadePassivo" selected> Habilidade Passivo</option>
                                 <option value="habilidadeAtivo"> Habilidade Ativo</option>
                                 <option value="habilidadeAura"> Habilidade Aura</option>
@@ -38,17 +38,17 @@
                         </div>
                         <div>
                             <label for="habilidade1Nome1">Nome da Habilidade:</label>
-                            <input style="width: 100%"; type="text" id="habilidade1Nome1" name="habilidade1Nome1" placeholder="Nome da Habilidade">
+                            <input style="width: 100%"; type="text" id="habilidade1Nome1" name="habilidade1Nome1" placeholder="Nome da Habilidade" value="{{ habilidade.hab1_1_nome }}">
                             <label for="habilidade1Custo1">Custo da Habilidade:</label>
-                            <input style="width: 50%"; type="text" id="habilidade1Custo1" name="habilidade1Custo1" placeholder="Custo da Habilidade">
+                            <input style="width: 50%"; type="text" id="habilidade1Custo1" name="habilidade1Custo1" placeholder="Custo da Habilidade" value="{{ habilidade.hab1_1_custo }}">
                         </div class='habilidade-row-miniContainer'>
                         <div class='habilidade-row-miniContainer'>
                             <label for="habilidade1Desc1">Descrição da Habilidade:</label>
-                            <textarea style="width: 100%; height: 10em; wrap: "hard""; type="text" id="habilidade1Desc1" name="habilidade1Desc1" placeholder="Descrição da Habilidade"></textarea>
+                            <textarea style="width: 100%; height: 10em; wrap: "hard""; type="text" id="habilidade1Desc1" name="habilidade1Desc1" placeholder="Descrição da Habilidade" >{{ habilidade.hab1_1_descricao }}</textarea>
                         </div>
                     </div>
                 </div>
-                <button class="add-atributo-btn" id="addHab1">Add</button>
+                <button type="button" class="add-atributo-btn" id="addHab1">Add</button>
                 <div class="atributos-added-container" id="hab1Container">
                       <!-- Atributos serão adicionados aqui dinamicamente -->
                 </div>
@@ -76,7 +76,7 @@
                         </div>
                     </div>
                 </div>
-                <button class="add-atributo-btn" id="addHab2">Add</button>
+                <button type="button" class="add-atributo-btn" id="addHab2">Add</button>
                 <div class="atributos-added-container" id="hab2Container">
                       <!-- Atributos serão adicionados aqui dinamicamente -->
                 </div>
@@ -104,7 +104,7 @@
                         </div>
                     </div>
                 </div>
-                <button class="add-atributo-btn" id="addHab3">Add</button>
+                <button type="button" class="add-atributo-btn" id="addHab3">Add</button>
                 <div class="atributos-added-container" id="hab3Container">
                       <!-- Atributos serão adicionados aqui dinamicamente -->
                 </div>
@@ -132,7 +132,7 @@
                         </div>
                     </div>
                 </div>
-                <button class="add-atributo-btn" id="addHab4">Add</button>
+                <button type="button" class="add-atributo-btn" id="addHab4">Add</button>
                 <div class="atributos-added-container" id="hab4Container">
                       <!-- Atributos serão adicionados aqui dinamicamente -->
                 </div>
@@ -160,7 +160,7 @@
                         </div>
                     </div>
                 </div>
-                <button class="add-atributo-btn" id="addHab5">Add</button>
+                <button type="button" class="add-atributo-btn" id="addHab5">Add</button>
                 <div class="atributos-added-container" id="hab5Container">
                       <!-- Atributos serão adicionados aqui dinamicamente -->
                 </div>
@@ -188,7 +188,7 @@
                         </div>
                     </div>
                 </div>
-                <button class="add-atributo-btn" id="addHab6">Add</button>
+                <button type="button" class="add-atributo-btn" id="addHab6">Add</button>
                 <div class="atributos-added-container" id="hab6Container">
                       <!-- Atributos serão adicionados aqui dinamicamente -->
                 </div>
@@ -216,7 +216,7 @@
                         </div>
                     </div>
                 </div>
-                <button class="add-atributo-btn" id="addHab7">Add</button>
+                <button type="button" class="add-atributo-btn" id="addHab7">Add</button>
                 <div class="atributos-added-container" id="hab7Container">
                       <!-- Atributos serão adicionados aqui dinamicamente -->
                 </div>
@@ -244,7 +244,7 @@
                         </div>
                     </div>
                 </div>
-                <button class="add-atributo-btn" id="addHab8">Add</button>
+                <button type="button" class="add-atributo-btn" id="addHab8">Add</button>
                 <div class="atributos-added-container" id="hab8Container">
                       <!-- Atributos serão adicionados aqui dinamicamente -->
                 </div>
@@ -272,7 +272,7 @@
                         </div>
                     </div>
                 </div>
-                <button class="add-atributo-btn" id="addHab9">Add</button>
+                <button type="button" class="add-atributo-btn" id="addHab9">Add</button>
                 <div class="atributos-added-container" id="hab9Container">
                       <!-- Atributos serão adicionados aqui dinamicamente -->
                 </div>
@@ -300,7 +300,7 @@
                         </div>
                     </div>
                 </div>
-                <button class="add-atributo-btn" id="addHab10">Add</button>
+                <button type="button" class="add-atributo-btn" id="addHab10">Add</button>
                 <div class="atributos-added-container" id="hab10Container">
                       <!-- Atributos serão adicionados aqui dinamicamente -->
                 </div>
@@ -328,7 +328,7 @@
                         </div>
                     </div>
                 </div>
-                <button class="add-atributo-btn" id="addHab11">Add</button>
+                <button type="button" class="add-atributo-btn" id="addHab11">Add</button>
                 <div class="atributos-added-container" id="hab11Container">
                       <!-- Atributos serão adicionados aqui dinamicamente -->
                 </div>
@@ -356,18 +356,20 @@
                         </div>
                     </div>
                 </div>
-                <button class="add-atributo-btn" id="addHab12">Add</button>
+                <button type="button" class="add-atributo-btn" id="addHab12">Add</button>
                 <div class="atributos-added-container" id="hab12Container">
                       <!-- Atributos serão adicionados aqui dinamicamente -->
                 </div>                
-            </div>
+            </div>        
+        </div>
+
+        <div class="formGroupRed">
+            <a href="{% url 'base_personagem' personagem_id=tela_personagem.id %}"><button type="button" class="button" role="button">Voltar</button></a>
+            <a href="{% url 'exibir_personagem' %}" class="buttonLink"><button type="button" class="button" role="button">Personagem</button></a>
+            <button type="submit" class="submit" role="submit">Salvar</button>
         </div>
     </form>
     <div>
-        <a href="{% url 'base_personagem' personagem_id=tela_personagem.id %}"><button class="button" role="button">Voltar</button></a>
-        <a href="{% url 'exibir_personagem' %}" class="buttonLink"><button class="button" role="button">Personagem</button></a>
-
-            <button class="submit" role="button">Salvar</button>
     {% endlocalize %}
     <script src="{% static 'habilidade\script_efeitos.js' %}"></script>
 </body>

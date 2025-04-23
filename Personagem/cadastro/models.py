@@ -24,12 +24,12 @@ class Maestria(models.Model):
     regenVigor = models.IntegerField(default=0, blank=True)
 
     # STATUS
-    forca = models.IntegerField(default=0, blank=True)
-    destreza = models.IntegerField(default=0, blank=True)
-    inteligencia = models.IntegerField(default=0, blank=True)
-    determinacao = models.IntegerField(default=0, blank=True)
-    perspicacia = models.IntegerField(default=0, blank=True)
-    carisma = models.IntegerField(default=0, blank=True)
+    forcaPer = models.IntegerField(default=0, blank=True)
+    destrezaPer = models.IntegerField(default=0, blank=True)
+    inteligenciaPer = models.IntegerField(default=0, blank=True)
+    determinacaoPer = models.IntegerField(default=0, blank=True)
+    perspicaciaPer = models.IntegerField(default=0, blank=True)
+    carismaPer = models.IntegerField(default=0, blank=True)
 
     # ROLAGEM
     tipoRolagem_1 = models.CharField(max_length=100, default="")

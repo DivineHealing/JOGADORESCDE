@@ -5,21 +5,23 @@ from .models import Habilidade
 from lib.utilitarios import *
 
 personagem = 0 # PERSONAGEM ATRIBUTO
+
 def habilidade(request, personagem_id):
     global personagem
     personagem = personagem_id
 
     if not personagem_id:
-        return redirect('exibir_personagem')  # ou qualquer outra tela de seleção
+        return redirect('exibir_personagem')
+
+    tela_personagem = get_object_or_404(Tela_personagem, pk=personagem_id)
+    habilidade = get_object_or_404(Habilidade, personagem_id=personagem_id)  # <- Aqui está a mudança chave
     
-    tela_personagem = get_object_or_404(Tela_personagem, pk=personagem_id)   
-    habilidade = get_object_or_404(Habilidade, pk=personagem_id)   
-     
     context = {
         'tela_personagem': tela_personagem,
         'habilidade': habilidade,
+        'range_habilidades': range(1, 13),
     }
-    return render(request, 'habilidade.html', context)
+    return render(request, 'habilidade copy.html', context)
 
 def salvar_habilidade(request):
     if request.method == "POST":
@@ -57,7 +59,6 @@ def salvar_habilidade(request):
 
                 count += 1
         personagem.save()
-        return redirect('base_personagem', personagem_id=personagem_id)
-        print('FUNCIONA')
+        return redirect('habilidade', personagem_id=personagem_id)
 
     return redirect('base_personagem', personagem_id=personagem_id)
