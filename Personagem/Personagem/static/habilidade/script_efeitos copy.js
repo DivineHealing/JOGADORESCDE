@@ -71,12 +71,7 @@ function createHabilidadeRow(grupo) {
 
             <div class='habilidade-row-miniContainer'>
                 <label for="${grupo}Desc${count}">Descrição da Habilidade:</label>
-                <textarea 
-                    style="width: 100%; height: 10em;" 
-                    id="${grupo}Descricao${count}" 
-                    name="${grupo}Descricao${count}" 
-                    placeholder="Descrição da Habilidade" 
-                    wrap="hard"
+                <textarea style="width: 100%; height: 10em;" id="${grupo}Desc${count}" name="${grupo}Desc${count}" placeholder="Descrição da Habilidade" wrap="hard"
                 ></textarea>
             </div>
         </div>
