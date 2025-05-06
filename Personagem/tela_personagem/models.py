@@ -227,3 +227,15 @@ class Tela_personagem(models.Model):
     
     '''def __str__(self):
         return self.nome'''
+    
+    class nome(models.Model):
+        personagem = models.ForeignKey(Base_personagem, on_delete=models.CASCADE)
+        variavelTipo = models.CharField(max_length=50)
+        variavelPropriedade = models.CharField(max_length=50)
+        variavelValor = models.IntegerField(default=0, blank=True)
+        posicao = models.CharField(max_length=50)
+        peca = models.CharField(max_length=50)
+        origem = models.CharField(max_length=50)
+
+        def __str__(self):
+            return self.nome

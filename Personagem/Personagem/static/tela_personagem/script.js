@@ -430,12 +430,14 @@ document.addEventListener('DOMContentLoaded', function() {
                      const nivelDiv = document.createElement('div');
                     nivelDiv.classList.add('nivel-info');
 
-                    let nivelHTML = `<p><strong>Nível ${nivelData.nivel}:</strong></p>`;
-                    if (nivelData.custo) { nivelHTML += `<p><strong>Custo:</strong> ${nivelData.custo}</p>`; }
-                    if (nivelData.tipo) { nivelHTML += `<p><strong>Tipo:</strong> ${nivelData.tipo}</p>`; }
+                    let nivelHTML = `<p style="color: Orange;"><strong>Nível ${nivelData.nivel}:</strong></p>`;
+                    if (nivelData.custo) { nivelHTML += `<p><strong style="color: red;">Custo:</strong> ${nivelData.custo}</p>`; }
+                    if (nivelData.tipo) { nivelHTML += `<p><strong style="color: red;">Tipo:</strong> ${nivelData.tipo}</p>`; }
                     if (nivelData.descricao) {
                         const descFormatada = nivelData.descricao.replace(/\r\n|\r|\n/g, '<br>');
-                        nivelHTML += `<p><strong>Descrição:</strong> ${descFormatada}</p>`;
+                        nivelHTML += `<p><strong style="color: red;">Descrição:</strong></p>`;
+                        nivelHTML += `<span style="font-style: Italic">${descFormatada}</span>`;
+                        nivelHTML += `<p>_______________________________________________________</p>`
                     }
                      // if (nivelData.notas) { nivelHTML += `<p><em>${nivelData.notas}</em></p>`; }
 
