@@ -5,7 +5,7 @@ from acessorios.models import Acessorios
 from arma.models import Arma
 from base_personagem.models import Base_personagem
 from conjunto.models import Conjunto
-from tela_personagem.models import Tela_personagem
+from tela_personagem.models import Tela_personagem, nome
 from cadastro.models import Maestria
 
 campos_personagem = [
@@ -125,7 +125,7 @@ def obter_personagem_sessao(request):
     return personagem_id
 
 
-def pegar_front(request, escolha, percent=False):
+def pegar_front(request, escolha, personagem, origem, peca= "", percent=False):
     # ATRIBUTOS BASE
     campos = { # guardando os camposem um dicionario(esquerda é onde salvara no banco|direita é o que via pegar no request)
         "vida": "vidaMax",
@@ -168,70 +168,6 @@ def pegar_front(request, escolha, percent=False):
                 setattr(escolha, attr, request.POST.get(campo, 0)or 0) # adicionara o valor
 
     i = 1
-    # ROLAGENS
-    while True:
-        tipo = request.POST.get(f'rolagemTipo{i}') # tentando pegar os valores no front
-        valor = request.POST.get(f'rolagem{i}')
-
-        if not any([tipo, valor]): # se nenhum dos dois campos tem valores
-            break  # sai do loop
-        
-        setattr(escolha, f'tipoRolagem_{i}', tipo)  # distribuindo no back
-        setattr(escolha, f'rolagem_{i}', valor)
-        #setattr(telap, f"tipoRolagem_{i}", tipo)
-        i += 1
-
-    i = 1
-    # DEFESAS
-    while True:
-        elemento = request.POST.get(f'elementoDefesa{i}')
-        defesa = request.POST.get(f'defesa{i}')
-        resistencia = request.POST.get(f'resistencia{i}')
-
-        if not any([elemento, defesa, resistencia]):  # se nenhum tiver valor para
-            break  # nao tem mais campos entao para
-
-        setattr(escolha, f'elementoDefesa_{i}', elemento)
-        setattr(escolha, f'elementoResistencia_{i}', elemento)
-        setattr(escolha, f'defesaFixa_{i}', defesa)
-        setattr(escolha, f'resistencia_{i}', resistencia)
-        #setattr(telap, f"elementoDefesa_{i}", elemento)
-        #setattr(telap, f"elementoResistencia_{i}", elemento)
-        i += 1
-    
-    i = 1
-    # DANO
-    while True:
-        elemento = request.POST.get(f'elementoDano{i}')
-        dano = request.POST.get(f'dano{i}')
-        penetracao = request.POST.get(f'penetracao{i}')
-
-        if not any([elemento, dano, penetracao]):
-            break
-
-        setattr(escolha, f'elementoDano_{i}', elemento)
-        setattr(escolha, f'elementoPenetracao_{i}', elemento)
-        setattr(escolha, f'danoFixo_{i}', dano)
-        setattr(escolha, f'penetracao_{i}', penetracao)
-        #setattr(telap, f"elementoDano_{i}", elemento)
-        #setattr(telap, f"elementoPenetracao_{i}", elemento)
-        i += 1
-
-    i = 1
-    # AMPLIFICAÇÃO
-    while True:
-        tipo = request.POST.get(f'amplificacaoTipo{i}')
-        valor = request.POST.get(f'amplificacao{i}')
-
-        if not any([tipo, valor]):
-            break
-
-        setattr(escolha, f'elementoAmplificacao_{i}', tipo)
-        setattr(escolha, f'amplificacao_{i}', valor)
-        #setattr(telap, f"elementoAmplificacao_{i}", tipo)
-        i += 1
-
-    i = 1
     # REGENERAÇÃO
     while True:
         tipo = request.POST.get(f'regeneracaoTipo{i}')
@@ -249,6 +185,144 @@ def pegar_front(request, escolha, percent=False):
         i += 1
     escolha.save()
 
+    i = 1
+    # ROLAGENS
+    while True:
+        tipo = request.POST.get(f'rolagemTipo{i}') # tentando pegar os valores no front
+        valor = request.POST.get(f'rolagem{i}')
+
+        if not any([tipo, valor]): # se nenhum dos dois campos tem valores
+            break  # sai do loop
+        
+        #  verificando se existe o objeto especifico na tabela, se nao existir, cria
+        roll, _ = nome.objects.update_or_create(personagem= personagem, 
+            posicao= i, 
+            variavelTipo= "rolagem", 
+            origem= origem,
+            defaults={
+                "personagem": personagem,
+                "variavelTipo": "rolagem",
+                "variavelPropriedade": tipo,
+                "variavelValor": valor,
+                "posicao": i,
+                "peca": peca,
+                "origem": origem
+            }
+        )
+        roll.save()
+        i += 1
+
+    i = 1
+    # DEFESAS
+    while True:
+        elemento = request.POST.get(f'elementoDefesa{i}')
+        defesa = request.POST.get(f'defesa{i}')
+        resistencia = request.POST.get(f'resistencia{i}')
+
+        if not any([elemento, defesa, resistencia]):  # se nenhum tiver valor para
+            break  # nao tem mais campos entao para
+        
+        defesa_obj, _ = nome.objects.update_or_create(personagem= personagem, 
+            posicao= i, 
+            variavelTipo= "defesa", 
+            origem= origem,
+            defaults={
+                "personagem": personagem,
+                "variavelTipo": "defesa",
+                "variavelPropriedade": elemento,
+                "variavelValor": defesa,
+                "posicao": i,
+                "peca": peca,
+                "origem": origem
+            }
+        )
+        resistencia_obj, _ = nome.objects.update_or_create(personagem= personagem, 
+            posicao= i, 
+            variavelTipo= "resistencia", 
+            origem= origem,
+            defaults={
+                "personagem": personagem,
+                "variavelTipo": "resistencia",
+                "variavelPropriedade": elemento,
+                "variavelValor": resistencia,
+                "posicao": i,
+                "peca": peca,
+                "origem": origem
+            }
+        )
+        #setattr(telap, f"elementoDefesa_{i}", elemento)
+        #setattr(telap, f"elementoResistencia_{i}", elemento)
+        defesa_obj.save()
+        resistencia_obj.save()
+        i += 1
+    
+    i = 1
+    # DANO
+    while True:
+        elemento = request.POST.get(f'elementoDano{i}')
+        dano = request.POST.get(f'dano{i}')
+        penetracao = request.POST.get(f'penetracao{i}')
+
+        if not any([elemento, dano, penetracao]):
+            break
+        
+        dano_obj, _ = nome.objects.update_or_create(personagem= personagem, 
+            posicao= i, 
+            variavelTipo= "dano", 
+            origem= origem,
+            defaults={
+                "personagem": personagem,
+                "variavelTipo": "dano",
+                "variavelPropriedade": elemento,
+                "variavelValor": dano,
+                "posicao": i,
+                "peca": peca,
+                "origem": origem
+            }
+        )
+        penetracao_obj, _ = nome.objects.update_or_create(personagem= personagem, 
+            posicao= i, 
+            variavelTipo= "penetracao", 
+            origem= origem,
+            defaults={
+                "personagem": personagem,
+                "variavelTipo": "penetracao",
+                "variavelPropriedade": elemento,
+                "variavelValor": penetracao,
+                "posicao": i,
+                "peca": peca,
+                "origem": origem
+            }
+        )
+        dano_obj.save()
+        penetracao_obj.save()
+        i += 1
+
+    i = 1
+    # AMPLIFICAÇÃO
+    while True:
+        tipo = request.POST.get(f'amplificacaoTipo{i}')
+        valor = request.POST.get(f'amplificacao{i}')
+
+        if not any([tipo, valor]):
+            break
+        
+        amplificacao, _ = nome.objects.update_or_create(personagem= personagem, 
+            posicao= i, 
+            variavelTipo= "amplificacao", 
+            origem= origem,
+            defaults={
+                "personagem": personagem,
+                "variavelTipo": "amplificacao",
+                "variavelPropriedade": tipo,
+                "variavelValor": valor,
+                "posicao": i,
+                "peca": peca,
+                "origem": origem
+            }
+        )
+        amplificacao.save()
+        i += 1
 
 
 def to_int(value, default=0):
@@ -256,6 +330,7 @@ def to_int(value, default=0):
         return int(value)
     except (ValueError, TypeError):
         return default
+ 
     
 def to_float(value, default=0):
     try:

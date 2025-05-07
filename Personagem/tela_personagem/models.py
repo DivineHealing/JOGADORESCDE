@@ -228,14 +228,14 @@ class Tela_personagem(models.Model):
     '''def __str__(self):
         return self.nome'''
     
-    class nome(models.Model):
-        personagem = models.ForeignKey(Base_personagem, on_delete=models.CASCADE)
-        variavelTipo = models.CharField(max_length=50)
-        variavelPropriedade = models.CharField(max_length=50)
-        variavelValor = models.IntegerField(default=0, blank=True)
-        posicao = models.CharField(max_length=50)
-        peca = models.CharField(max_length=50)
-        origem = models.CharField(max_length=50)
+class nome(models.Model):
+    personagem = models.ForeignKey(Base_personagem, on_delete=models.CASCADE)
+    variavelTipo = models.CharField(max_length=50, default="", blank=True)
+    variavelPropriedade = models.CharField(max_length=50, default="", blank=True)
+    variavelValor = models.IntegerField(default=0, blank=True)
+    posicao = models.IntegerField()
+    peca = models.CharField(max_length=50, default="", blank=True)
+    origem = models.CharField(max_length=50, default="", blank=True)
 
-        def __str__(self):
-            return self.nome
+    '''def __str__(self):
+        return self.nome'''
