@@ -50,7 +50,7 @@
                 </div>
                 <div class="rolling-bonus-stats bordered-section">
                     <div class="bonus section-title">BÔNUS DE ROLAGEM</div>
-                        <button class="add-atributo-btn" id="addRolagem">Add</button>
+                        <button class="add-atributo-btn" type="button" id="addRolagem">Add</button>
                         <div class="atributos-added-container" id="rolagemContainer">
                             <!-- Atributos serão adicionados aqui dinamicamente -->
                     </div>
@@ -67,7 +67,7 @@
 
                     <div id="atributosDefensivo" style="display: block">
                         <div class="abilities section-title">ATRIBUTOS DEFENSIVOS</div>
-                        <button class="add-atributo-btn" id="addDefesa">Add</button>
+                        <button class="add-atributo-btn" type="button" id="addDefesa">Add</button>
                         <div class="atributos-added-container" id="defesaContainer">
                             <!-- Atributos serão adicionados aqui dinamicamente -->
                         </div>
@@ -85,7 +85,7 @@
 
                     <div id="atributosOfensivo" style="display: none">
                         <div class="abilities section-title">ATRIBUTOS OFENSIVOS</div>
-                        <button class="add-atributo-btn" id="addAtributo">Add</button>
+                        <button class="add-atributo-btn" type="button" id="addAtributo">Add</button>
                         <div class="atributos-added-container" id="atributosContainer">
                             <!-- Atributos serão adicionados aqui dinamicamente -->
                         </div>
@@ -113,30 +113,30 @@
 
                 <div class="character-equipment bordered-section">
                     <div class="equipment section-title">AMPLIFICAÇÕES</div>
-                    <button class="add-atributo-btn" id="addAmplificacao">Add</button>
+                    <button class="add-atributo-btn" type="button" id="addAmplificacao">Add</button>
                     <div class="atributos-added-container" id="amplificacaoContainer">
                         <!-- Atributos serão adicionados aqui dinamicamente -->
                     </div>
                     
                     <div class="equipment section-title">REGENERAÇÃO</div>
-                    <button class="add-atributo-btn" id="addRegeneracao">Add</button>
+                    <button class="add-atributo-btn" type="button" id="addRegeneracao">Add</button>
                     <div class="atributos-added-container" id="regeneracaoContainer">
                         <!-- Atributos serão adicionados aqui dinamicamente -->
-                    </div>
+                    </div> 
                     
                 </div>
             </div>
         </div>
-        <div>
-            <a href="{% url 'arma'%}"><button class="button" role="button">Voltar</button></a>
-            <a href="{% url 'exibir_personagem' %}" class="buttonLink"><button class="button" role="button">Personagem</button></a>
-            <form method="POST" action="{% url 'salvar_maestria_atributo' %}">
+        <div class="formGroupRed">
+            <a href="{% url 'arma'%}"><button class="button" type="button" role="button">Voltar</button></a>
+            <a href="{% url 'exibir_personagem' %}"><button type="button" class="button" role="button">Personagem</button></a>
+            <form method="POST" action="{% url 'salvar_arma_atributo' %}">
                 {% csrf_token %}
                 <button class="submit" role="button">Salvar</button>
             </form>
         </div>
     </div>
     {% endlocalize %}
-    <script src="{% static 'maestria\script.js' %}"></script>
+    <script src="{% static 'arma\script.js' %}"></script>
 </body>
 </html>

@@ -81,8 +81,8 @@
             <a href="{% url 'exibir_personagem' %}" class="buttonLink"><button class="button" role="button">Personagem</button></a>
             <form method="POST" action="{% url 'salvar_acessorio_atributos' %}">
                 {% csrf_token %}
-                <button class="button" role="button">Salvar</button>
-            </form>
+                <button class="submit" role="button">Salvar</button>
+            </form> 
         </div>
     </div>
     {% endlocalize %}

@@ -5,6 +5,8 @@ from base_personagem.models import Base_personagem
 class Tela_personagem(models.Model):
     personagem = models.ForeignKey(Base_personagem, on_delete=models.CASCADE)
 
+    nome = models.CharField(max_length=25, blank=True, default="")
+
     # ATRIBUTOS e REGENERAÇÃO
     vida = models.IntegerField(default=100, blank=True)
     mana = models.IntegerField(default=100, blank=True)
