@@ -25,8 +25,8 @@ addAtributoBtn.addEventListener('click', function () {
         atributoRow.classList.add('atributo-row');
         atributoRow.innerHTML = `
             <div>
-                <label for="elementoDano${atributoCount}">Elemento</label>
-                <input type="text" id="elementoDano${atributoCount}" name="elementoDano${atributoCount}" placeholder="Ex: Fogo">
+                <label for="elementoDefesa${atributoCount}">Elemento</label>
+                <input type="text" id="elementoDefesa${atributoCount}" name="elementoDefesa${atributoCount}" placeholder="Ex: Fogo">
             </div>
             <div>
                 <label for="defesa${atributoCount}">Defesa Fixa</label>

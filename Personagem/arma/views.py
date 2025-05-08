@@ -54,6 +54,7 @@ def salvar_arma_atributo(request):
         if not personagem_id:
             return redirect('/')
 
+        print(tipoEquipamento)
         personagem = Base_personagem.objects.get(id=personagem_id)
         armalvo = Arma.objects.get(personagem= personagem_id, peca= tipoEquipamento)
         pegar_front(request, armalvo, personagem, "arma", tipoEquipamento)
