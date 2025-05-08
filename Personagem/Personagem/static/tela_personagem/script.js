@@ -148,6 +148,16 @@ const atributos = [
 
 let algumAtributoInvalido = false; // Flag para verificar se algum atributo é inválido
 
+function atualizarTela() {
+    for (const atributo of atributos) {
+        // Só continua se o container realmente existe
+        if (document.getElementById(atributo.containerId)) {
+            const valor = formatarAtributo(atributo);
+            exibirOuOcultarAtributo(atributo, valor);
+        }
+    }
+}
+
 // FUNÇÃO PARA FORMATAR OS NUMEROS MILHARES
 function formatarAtributo(atributo) {
     const element = document.getElementById(atributo.nome);
@@ -231,9 +241,9 @@ function atualizarTela() {
     }
 }
 // FUNÇÃO DE ATUALIZAR A TELA - ATUALIZAR DADOS PUXADOS DO BANCO
-window.onload = function () {
+document.addEventListener("DOMContentLoaded", function () {
     atualizarTela();
-}
+});
 
 // FUNÇÃO DE BUFF
 document.addEventListener('DOMContentLoaded', function () {

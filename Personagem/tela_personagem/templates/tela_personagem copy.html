@@ -107,15 +107,27 @@
 
                 <div class="dano-defesa bordered-section">
                     <div class="damage-stats ">
-                        <div class="dano-defesa section-title">DANO E DEFESA</div>
-                        <div class="atr-title" id="area-danos">DANO</div>
-                        
-                    
-                        <div class="damage" id="esmagamento_container">Esmagamento <span id="esmagamento">{{ tela_personagem.esmagamento|intcomma }}</span>%</div>
-                        <div class="damage" id="penExtra_container">Penetração Extra <span id="penExtra">{{ tela_personagem.penExtra|intcomma }}</span>%</div>
-                        <div class="damage" id="danoFinal_container">Dano Final <span id="danoFinal">{{ tela_personagem.danoFinal|intcomma }}</span>%</div>
-                        <div class="damage" id="espiritualFixo_container">Dano Fixo Espiritual <span id="espiritualFixo">{{ tela_personagem.espiritualFixo|intcomma }}</span></div>
-                        <div class="damage" id="espiritualPerc_container">Dano Espiritual <span id="espiritualPerc">{{ tela_personagem.espiritualPerc|intcomma }}</span>%</div>
+                      <div class="dano-defesa section-title">DANO E DEFESA</div>
+                      <div class="atr-title">DANO</div>
+                      <div class="damage" id="danoFixo1_container">Dano Fixo {{ tela_personagem.elementoDano_1 }} <span id="danoFixo_1">{{ tela_personagem.danoFixo_1|intcomma }}</span></div>
+                      <div class="damage" id="penetracao1_container">Penetração {{ tela_personagem.elementoPenetracao_1 }} <span id="penetracao_1">{{ tela_personagem.penetracao_1|intcomma }}</span>%</div>
+                      <div class="damage" id="danoFixo2_container">Dano Fixo {{ tela_personagem.elementoDano_2 }} <span id="danoFixo_2">{{ tela_personagem.danoFixo_2|intcomma }}</span></div>
+                      <div class="damage" id="penetracao2_container">Penetração {{ tela_personagem.elementoPenetracao_2 }} <span id="penetracao_2">{{ tela_personagem.penetracao_2|intcomma }}</span>%</div>
+                      <div class="damage" id="danoFixo3_container">Dano Fixo {{ tela_personagem.elementoDano_3 }} <span id="danoFixo_3">{{ tela_personagem.danoFixo_3|intcomma }}</span></div>
+                      <div class="damage" id="penetracao3_container">Penetração {{ tela_personagem.elementoPenetracao_3 }} <span id="penetracao_3">{{ tela_personagem.penetracao_3|intcomma }}</span>%</div>
+                      <div class="damage" id="danoFixo4_container">Dano Fixo {{ tela_personagem.elementoDano_4 }} <span id="danoFixo_4">{{ tela_personagem.danoFixo_4|intcomma }}</span></div>
+                      <div class="damage" id="penetracao4_container">Penetração {{ tela_personagem.elementoPenetracao_4 }} <span id="penetracao_4">{{ tela_personagem.penetracao_4|intcomma }}</span>%</div>
+                      <div class="damage" id="danoFixo5_container">Dano Fixo {{ tela_personagem.elementoDano_5 }} <span id="danoFixo_5">{{ tela_personagem.danoFixo_5|intcomma }}</span></div>
+                      <div class="damage" id="penetracao5_container">Penetração {{ tela_personagem.elementoPenetracao_5 }} <span id="penetracao_5">{{ tela_personagem.penetracao_5|intcomma }}</span>%</div>
+                      <div class="damage" id="danoFixo6_container">Dano Fixo {{ tela_personagem.elementoDano_6 }} <span id="danoFixo_6">{{ tela_personagem.danoFixo_6|intcomma }}</span></div>
+                      <div class="damage" id="penetracao6_container">Penetração {{ tela_personagem.elementoPenetracao_6 }} <span id="penetracao_6">{{ tela_personagem.penetracao_6|intcomma }}</span>%</div>
+                      <div class="damage" id="danoFixo7_container">Dano Fixo {{ tela_personagem.elementoDano_7 }} <span id="danoFixo_7">{{ tela_personagem.danoFixo_7|intcomma }}</span></div>
+                      <div class="damage" id="penetracao7_container">Penetração {{ tela_personagem.elementoPenetracao_7 }} <span id="penetracao_7">{{ tela_personagem.penetracao_7|intcomma }}</span>%</div>
+                      <div class="damage" id="esmagamento_container">Esmagamento <span id="esmagamento">{{ tela_personagem.esmagamento|intcomma }}</span>%</div>
+                      <div class="damage" id="penExtra_container">Penetração Extra <span id="penExtra">{{ tela_personagem.penExtra|intcomma }}</span>%</div>
+                      <div class="damage" id="danoFinal_container">Dano Final <span id="danoFinal">{{ tela_personagem.danoFinal|intcomma }}</span>%</div>
+                      <div class="damage" id="espiritualFixo_container">Dano Fixo Espiritual <span id="espiritualFixo">{{ tela_personagem.espiritualFixo|intcomma }}</span></div>
+                      <div class="damage" id="espiritualPerc_container">Dano Espiritual <span id="espiritualPerc">{{ tela_personagem.espiritualPerc|intcomma }}</span>%</div>
                   </div>
                   <br>
                   <div class="defense-stats ">
@@ -281,86 +293,7 @@
             <a href="{% url 'arma' %}"><button class="button" role="button">Armas</button></a>
         </div>
     </div>
-    
     {% endlocalize %}
     <script src="{% static 'tela_personagem\script.js' %}"></script>
-    {{ danos_json|json_script:"danos-json" }}
-    {{ penetracoes_json|json_script:"penetracoes-json" }}
-    <script>
-    
-        document.addEventListener("DOMContentLoaded", function () {
-            const area = document.getElementById('area-danos');
-        
-            // Validação inicial do JSON embutido no HTML
-            const dadosJsonEl = document.getElementById('danos-json');
-            const penetracoesJsonEl = document.getElementById('penetracoes-json');
-        
-            let listaDanos = [];
-            let listaPenetracoes = [];
-        
-
-            try {
-                const listaDanos = JSON.parse(document.getElementById("danos-json").textContent);
-                const listaPenetracoes = JSON.parse(document.getElementById("penetracoes-json").textContent);
-
-                console.log("Danos JSON:", listaDanos);           // <--- Adicione isso
-                console.log("Penetrações JSON:", listaPenetracoes); // <--- E isso também
-
-                
-            } catch (e) {
-                console.error("Erro ao fazer parse dos dados de dano/penetração:", e);
-                return;
-            }
-        
-            if (!Array.isArray(listaDanos) || !Array.isArray(listaPenetracoes)) {
-                console.warn("Dados de dano ou penetração não estão em formato de array.");
-                return;
-            }
-        
-            if (listaDanos.length !== listaPenetracoes.length) {
-                console.warn("Quantidade de danos e penetrações não é igual:", listaDanos.length, listaPenetracoes.length);
-            }
-        
-            // Criação dinâmica das divs
-            listaDanos.forEach((danoObj, i) => {
-                const penObj = listaPenetracoes[i];
-        
-                // Validação individual
-                if (!danoObj || !danoObj.fields || !penObj || !penObj.fields) {
-                    console.warn(`Objeto de dano ou penetração inválido no índice ${i}:`, danoObj, penObj);
-                    return;
-                }
-        
-                const dano = danoObj.fields;
-                const pen = penObj.fields;
-        
-                // Segurança adicional: verificar se os campos existem
-                if (!dano.variavelPropriedade || dano.variavelValor === undefined) {
-                    console.warn(`Dado de dano malformado em ${i}:`, dano);
-                    return;
-                }
-        
-                if (!pen.variavelPropriedade || pen.variavelValor === undefined) {
-                    console.warn(`Dado de penetração malformado em ${i}:`, pen);
-                    return;
-                }
-        
-                // Criação dos elementos
-                const divDano = document.createElement('div');
-                divDano.className = 'damage';
-                divDano.id = `danoFixo${i + 1}_container`;
-                divDano.innerHTML = `Dano Fixo ${dano.variavelPropriedade} <span id="danoFixo_${i + 1}">${Number(dano.variavelValor).toLocaleString('pt-BR')}</span>`;
-        
-                const divPen = document.createElement('div');
-                divPen.className = 'damage';
-                divPen.id = `penetracao${i + 1}_container`;
-                divPen.innerHTML = `Penetração ${pen.variavelPropriedade} <span id="penetracao_${i + 1}">${Number(pen.variavelValor).toLocaleString('pt-BR')}</span>%`;
-        
-                area.appendChild(divDano);
-                area.appendChild(divPen);
-            });
-        });
-        
-    </script>
 </body>
 </html>

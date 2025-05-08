@@ -1,10 +1,10 @@
 # tela_personagens/views.py
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
-
+from django.core.serializers import serialize
 from habilidade.models import Habilidade
 from base_personagem.models import Base_personagem
-from .models import Tela_personagem
+from .models import Tela_personagem, nome
 from django.apps import apps
 from lib.utilitarios import criar_personagem_completo
 
@@ -48,12 +48,39 @@ def exibir_personagem(request, personagem_id=None):
                 habilidades_obj = Habilidade.objects.filter(personagem=base_personagem).first()
                 if habilidades_obj:
                     print(f"--- Usando o primeiro objeto Habilidade encontrado: ID={habilidades_obj.id} ---")
-
+    
         except AttributeError:
             # Se Tela_personagem não tiver o atributo 'personagem' (ou o nome que você usou)
             print(f"!!! ERRO: Não foi possível acessar Base_personagem a partir de Tela_personagem ID={tela_personagem.id}. Verifique o nome do campo ForeignKey. !!!")
             base_personagem = None # Garante que é None
             habilidades_obj = None # Garante que é None
+
+    if base_personagem:
+        origem = "base"  # ou ajuste conforme sua lógica, se usa um campo mais específico
+
+        dados_rolagens = nome.objects.filter(
+            personagem=base_personagem, origem=origem, variavelTipo="rolagem"
+        ).order_by("posicao")
+
+        dados_defesas = nome.objects.filter(
+            personagem=base_personagem, origem=origem, variavelTipo="defesa"
+        ).order_by("posicao")
+
+        dados_resistencias = nome.objects.filter(
+            personagem=base_personagem, origem=origem, variavelTipo="resistencia"
+        ).order_by("posicao")
+
+        dados_dano = nome.objects.filter(
+            personagem=base_personagem, origem=origem, variavelTipo="dano"
+        ).order_by("posicao")
+
+        dados_penetracao = nome.objects.filter(
+            personagem=base_personagem, origem=origem, variavelTipo="penetracao"
+        ).order_by("posicao")
+
+        dados_amplificacao = nome.objects.filter(
+            personagem=base_personagem, origem=origem, variavelTipo="amplificacao"
+        ).order_by("posicao")
 
         # --- Lógica para formatar os dados das Habilidades (SÓ SE habilidades_obj foi encontrado) ---
         if habilidades_obj:
@@ -96,7 +123,13 @@ def exibir_personagem(request, personagem_id=None):
 
 
     # --- Montagem Final do Contexto ---
+    danos_json = serialize("json", dados_dano, fields=("variavelPropriedade", "variavelValor"))
+    penetracoes_json = serialize("json", dados_penetracao, fields=("variavelPropriedade", "variavelValor"))
+
     context = {
+        'danos_json': danos_json,
+        'penetracoes_json': penetracoes_json,
+
         'tela_personagem': tela_personagem,          # Objeto Tela_personagem selecionado (ou None)
         'personagens': todos_personagens_tela,       # Lista de todos para o dropdown/menu
         'base_personagem': base_personagem,          # Objeto Base_personagem (ou None)

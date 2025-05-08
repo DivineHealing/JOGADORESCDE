@@ -20,8 +20,8 @@ addDefesaBtn.addEventListener('click', function () {
         atributoRow.classList.add('defesa-row');
         atributoRow.innerHTML = `
             <div>
-                <label for="elemento${defesaCount}">Elemento</label>
-                <input type="text" id="elemento${defesaCount}" name="elemento${defesaCount}" placeholder="Ex: Fogo">
+                <label for="elementoDefesa${defesaCount}">Elemento</label>
+                <input type="text" id="elementoDefesa${defesaCount}" name="elementoDefesa${defesaCount}" placeholder="Ex: Fogo">
             </div>
             <div>
                 <label for="defesa${defesaCount}">Defesa Fixa</label>
@@ -49,8 +49,8 @@ addAtributoBtn.addEventListener('click', function () {
         atributoRow.classList.add('dano-row');
         atributoRow.innerHTML = `
             <div>
-                <label for="elemento${danoCount}">Elemento</label>
-                <input type="text" id="elemento${danoCount}" name="elemento${danoCount}" placeholder="Ex: Fogo">
+                <label for="elementoDano${danoCount}">Elemento</label>
+                <input type="text" id="elementoDano${danoCount}" name="elementoDano${danoCount}" placeholder="Ex: Fogo">
             </div>
             <div>
                 <label for="dano${danoCount}">Dano Fixo</label>
@@ -79,11 +79,11 @@ addRolagemBtn.addEventListener('click', function () {
         rolagemRow.classList.add('rolagem-row');
         rolagemRow.innerHTML = `
             <div>
-                <label for="elemento${rolagemCount}">Tipo</label>
+                <label for="rolagemTipo${rolagemCount}">Tipo</label>
                 <input type="text" id="rolagemTipo${rolagemCount}" name="rolagemTipo${rolagemCount}" placeholder="Ex: Invocação">
             </div>
             <div>
-                <label for="dano${rolagemCount}">Valor</label>
+                <label for="rolagem${rolagemCount}">Valor</label>
                 <input type="number" id="rolagem${rolagemCount}" name="rolagem${rolagemCount}" value="0">
             </div>
         `;
@@ -105,11 +105,11 @@ addAmplificacaoBtn.addEventListener('click', function () {
         amplificacaoRow.classList.add('amplificacao-row');
         amplificacaoRow.innerHTML = `
             <div>
-                <label for="elemento${amplificacaoCount}">Tipo</label>
-                <input type="text" id="amplificacaoTipo${amplificacaoCount}" name="amplificacaoTipo${amplificacaoCount}" placeholder="Ex: Fogo">
+                <label for="amplificacaoTipo${amplificacaoCount}">Tipo</label>
+                <input style="width: 17em" type="text" id="amplificacaoTipo${amplificacaoCount}" name="amplificacaoTipo${amplificacaoCount}" placeholder="Ex: Fogo">
             </div>
             <div>
-                <label for="dano${amplificacaoCount}">Valor</label>
+                <label for="amplificacao${amplificacaoCount}">Valor</label>
                 <input type="number" id="amplificacao${amplificacaoCount}" name="amplificacao${amplificacaoCount}" value="0">
             </div>
         `;
@@ -129,13 +129,17 @@ addRegeneracaoBtn.addEventListener('click', function () {
     const regeneracaoRow = document.createElement('div');
     if (regeneracaoCount <= 3) {
         regeneracaoRow.classList.add('regeneracao-row');
-        regeneracaoRow.innerHTML = `
-            <div>
-                <label for="elemento${regeneracaoCount}">Tipo</label>
-                <input type="text" id="regeneracaoTipo${regeneracaoCount}" name="regeneracaoTipo${regeneracaoCount}" placeholder="Ex: Vida">
+        regeneracaoRow.innerHTML = 
+        `   <div>
+                <label for="regeneracaoTipo${regeneracaoCount}">Tipo</label>
+                <select class='personagem_select' id="regeneracaoTipo${regeneracaoCount}" name="regeneracaoTipo${regeneracaoCount}">                        
+                    <option value="regenVida" selected>Vida</option>
+                    <option value="regenMana">Mana</option>
+                    <option value="regenVigor">Vigor</option>
+                </select>
             </div>
             <div>
-                <label for="dano${regeneracaoCount}">Valor</label>
+                <label for="regeneracao${regeneracaoCount}">Valor</label>
                 <input type="number" id="regeneracao${regeneracaoCount}" name="regeneracao${regeneracaoCount}" value="0">
             </div>
         `;

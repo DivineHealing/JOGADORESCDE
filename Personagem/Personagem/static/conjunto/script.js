@@ -25,8 +25,8 @@ addAtributoBtn.addEventListener('click', function () {
         atributoRow.classList.add('atributo-row');
         atributoRow.innerHTML = `
             <div>
-                <label for="elemento${atributoCount}">Elemento</label>
-                <input type="text" id="elemento${atributoCount}" name="elemento${atributoCount}" placeholder="Ex: Fogo">
+                <label for="elementoDano${atributoCount}">Elemento</label>
+                <input type="text" id="elementoDano${atributoCount}" name="elementoDano${atributoCount}" placeholder="Ex: Fogo">
             </div>
             <div>
                 <label for="defesa${atributoCount}">Defesa Fixa</label>
@@ -55,11 +55,11 @@ addRolagemBtn.addEventListener('click', function () {
         rolagemRow.classList.add('rolagem-row');
         rolagemRow.innerHTML = `
             <div>
-                <label for="elemento${rolagemCount}">Tipo</label>
+                <label for="rolagemTipo${rolagemCount}">Tipo</label>
                 <input type="text" id="rolagemTipo${rolagemCount}" name="rolagemTipo${rolagemCount}" placeholder="Ex: Invocação">
             </div>
             <div>
-                <label for="defesa${rolagemCount}">Valor</label>
+                <label for="rolagem${rolagemCount}">Valor</label>
                 <input type="number" id="rolagem${rolagemCount}" name="rolagem${rolagemCount}" value="0">
             </div>
         `;
