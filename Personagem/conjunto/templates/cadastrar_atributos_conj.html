@@ -12,6 +12,9 @@
     {% load humanize %}
     {% localize on %}
     <div class="background-container">
+        
+        <form method="POST" action="{% url 'salvar_conjunto_atributo' %}">
+            {% csrf_token %}
 
         <div class="header">
             <div class="name" style="color: white;">
@@ -59,7 +62,7 @@
                 </div>
                 <div class="rolling-bonus-stats bordered-section">
                     <div class="bonus section-title">BÔNUS DE ROLAGEM</div>
-                        <button class="add-atributo-btn" id="addRolagem">Add</button>
+                        <button class="add-atributo-btn" type="button" id="addRolagem">Add</button>
                         <div class="atributos-added-container" id="rolagemContainer">
                             <!-- Atributos serão adicionados aqui dinamicamente -->
                     </div>
@@ -70,7 +73,7 @@
             <div class="right-column">
                 <div class="character-abilities bordered-section">
                     <div class="abilities section-title">ATRIBUTOS DEFENSIVOS</div>
-                    <button class="add-atributo-btn" id="addAtributo">Add</button>
+                    <button class="add-atributo-btn" type="button" id="addAtributo">Add</button>
                     <div class="atributos-added-container" id="atributosContainer">
                         <!-- Atributos serão adicionados aqui dinamicamente -->
                     </div>
@@ -88,13 +91,13 @@
 
                 <div class="character-equipment bordered-section">
                     <div class="equipment section-title">AMPLIFICAÇÕES</div>
-                    <button class="add-atributo-btn" id="addAmplificacao">Add</button>
+                    <button class="add-atributo-btn" type="button" id="addAmplificacao">Add</button>
                     <div class="atributos-added-container" id="amplificacaoContainer">
                         <!-- Atributos serão adicionados aqui dinamicamente -->
                     </div>
                     
                     <div class="equipment section-title">REGENERAÇÃO</div>
-                    <button class="add-atributo-btn" id="addRegeneracao">Add</button>
+                    <button class="add-atributo-btn" type="button" id="addRegeneracao">Add</button>
                     <div class="atributos-added-container" id="regeneracaoContainer">
                         <!-- Atributos serão adicionados aqui dinamicamente -->
                     </div>
@@ -105,11 +108,9 @@
         <div class="formGroupRed">
             <a href="{% url 'conjunto'%}"><button class="button" role="button">Voltar</button></a>
             <a href="{% url 'exibir_personagem' %}" class="buttonLink"><button class="button" role="button">Personagem</button></a>
-            <form method="POST" action="{% url 'salvar_conjunto_atributo' %}">
-                {% csrf_token %}
-                <button class="button" role="button" id="save">Salvar</button>
-            </form>
+            <button class="submit" role="button">Salvar</button>
         </div>
+    </form>
     </div>
     {% endlocalize %}
     <script src="{% static 'Conjunto\script.js' %}"></script>

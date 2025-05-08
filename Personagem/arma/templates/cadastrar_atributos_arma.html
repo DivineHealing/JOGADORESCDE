@@ -12,6 +12,9 @@
     {% load humanize %}
     {% localize on %}
     <div class="background-container">
+        
+        <form method="POST" action="{% url 'salvar_arma_atributo' %}">
+            {% csrf_token %}
 
         <div class="header">
             <div class="name" style="color: white;">
@@ -130,11 +133,9 @@
         <div class="formGroupRed">
             <a href="{% url 'arma'%}"><button class="button" type="button" role="button">Voltar</button></a>
             <a href="{% url 'exibir_personagem' %}"><button type="button" class="button" role="button">Personagem</button></a>
-            <form method="POST" action="{% url 'salvar_arma_atributo' %}">
-                {% csrf_token %}
-                <button class="submit" role="button">Salvar</button>
-            </form>
+            <button class="submit" role="button">Salvar</button>
         </div>
+    </form>
     </div>
     {% endlocalize %}
     <script src="{% static 'arma\script.js' %}"></script>
