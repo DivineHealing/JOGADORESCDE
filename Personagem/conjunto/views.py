@@ -50,6 +50,13 @@ def salvar_conjunto_atributo(request):
     if request.method == "POST":
         personagem_id = obter_personagem_sessao(request)
 
+        # se ainda nao tiver nenhum id de personagem por não existir personagem ele volta para pagina inicial
+        if not personagem_id:
+            return redirect('/')
+
+        personagem = Base_personagem.objects.get(id=personagem_id)
+        pecaalvo = Conjunto.objects.get(personagem= personagem_id, peca= tipoEquipamento)
+        pegar_front(request, pecaalvo, personagem, "conj", tipoEquipamento)
         print(personagem_id)
         print('FUNCIONA')
 

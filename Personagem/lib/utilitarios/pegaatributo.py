@@ -192,6 +192,16 @@ def pegar_front(request, escolha, personagem, origem, peca= "", percent=False):
         valor = request.POST.get(f'rolagem{i}')
 
         if not any([tipo, valor]): # se nenhum dos dois campos tem valores
+            #  ira pegar os itens sobressalentes e colocar numa variavel
+            extras = nome.objects.filter(
+                models.Q(personagem= personagem) &
+                models.Q(posicao__gte=i) &
+                models.Q(variavelTipo= "rolagem") &
+                models.Q(origem= origem)
+            )
+            for c in extras: # para cada um nos sobressalentes
+                setattr(c, "variavelValor", 0)
+                c.save()
             break  # sai do loop
         
         #  verificando se existe o objeto especifico na tabela, se nao existir, cria
@@ -220,6 +230,16 @@ def pegar_front(request, escolha, personagem, origem, peca= "", percent=False):
         resistencia = request.POST.get(f'resistencia{i}')
 
         if not any([elemento, defesa, resistencia]):  # se nenhum tiver valor para
+            #  ira pegar os itens sobressalentes e colocar numa variavel
+            extras = nome.objects.filter(
+                models.Q(personagem= personagem) &
+                models.Q(posicao__gte=i) &
+                (models.Q(variavelTipo= "defesa") | models.Q(variavelTipo= "resistencia")) &
+                models.Q(origem= origem)
+            )
+            for c in extras: # para cada um nos sobressalentes
+                setattr(c, "variavelValor", 0)
+                c.save()
             break  # nao tem mais campos entao para
         
         defesa_obj, _ = nome.objects.update_or_create(personagem= personagem, 
@@ -264,6 +284,16 @@ def pegar_front(request, escolha, personagem, origem, peca= "", percent=False):
         penetracao = request.POST.get(f'penetracao{i}')
 
         if not any([elemento, dano, penetracao]):
+            #  ira pegar os itens sobressalentes e colocar numa variavel
+            extras = nome.objects.filter(
+                models.Q(personagem= personagem) &
+                models.Q(posicao__gte=i) &
+                (models.Q(variavelTipo= "dano") | models.Q(variavelTipo= "penetracao")) &
+                models.Q(origem= origem)
+            )
+            for c in extras: # para cada um nos sobressalentes
+                setattr(c, "variavelValor", 0)
+                c.save()
             break
         
         dano_obj, _ = nome.objects.update_or_create(personagem= personagem, 
@@ -305,6 +335,16 @@ def pegar_front(request, escolha, personagem, origem, peca= "", percent=False):
         valor = request.POST.get(f'amplificacao{i}')
 
         if not any([tipo, valor]):
+            #  ira pegar os itens sobressalentes e colocar numa variavel
+            extras = nome.objects.filter(
+                models.Q(personagem= personagem) &
+                models.Q(posicao__gte=i) &
+                models.Q(variavelTipo= "amplificacao") &
+                models.Q(origem= origem)
+            )
+            for c in extras: # para cada um nos sobressalentes
+                setattr(c, "variavelValor", 0)
+                c.save()
             break
         
         amplificacao, _ = nome.objects.update_or_create(personagem= personagem, 
