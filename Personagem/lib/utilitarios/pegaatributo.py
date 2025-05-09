@@ -15,7 +15,9 @@ campos_personagem = [
     # DEFESA
     "reducao", "defesaFixaEspiritual", "reducaoEspiritual",
     # DANO
-    "esmagamento", "penExtra", "danoFinal", "espiritualPerc", "espiritualFixo"]
+    "esmagamento", "penExtra", "danoFinal", "espiritualPerc", "espiritualFixo",
+    #OUTROS
+    "dreno", "exaustao", "murchamento"]
  
 
 def pegar_atributos(idescolha: int):
@@ -166,6 +168,23 @@ def pegar_front(request, escolha, personagem, origem, peca= "", percent=False):
             escolha.regenMana = valor
         elif tipo == "regenVigor":
             escolha.regenVigor = valor
+        i += 1
+
+    i = 1
+    # Outros
+    while True:
+        tipo = request.POST.get(f'statusEffectTipo{i}')
+        valor = request.POST.get(f'statusEffect{i}')
+
+        if not any([tipo, valor]):
+            break
+        
+        if tipo == "dreno":
+            escolha.dreno = valor
+        elif tipo == "exaustao":
+            escolha.exaustao = valor
+        elif tipo == "murchamento":
+            escolha.murchamento = valor
         i += 1
     escolha.save()
 
