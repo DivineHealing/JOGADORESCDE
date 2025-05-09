@@ -44,9 +44,9 @@ def salvar_base_personagem(request):
         telap = Tela_personagem.objects.get(id=personagem_id)
 
         pegar_front(request, personagem, personagem, "base_p", "", True)
-
-        #telap.save()
         pegar_atributos(personagem_id)
+        #telap.save()
+        #pegar_atributos(personagem_id)
         #pegar_atributos(personagem_id, 'vida')  # <- esse 2 ainda é fixo
         #pegar_atributos(personagem_id, 'forca')  # <- esse 2 ainda é fixo
         #pegar_atributos(personagem_id, 'destreza')  # <- esse 2 ainda é fixo

@@ -9,30 +9,16 @@ from tela_personagem.models import Tela_personagem, Character_attribute
 from cadastro.models import Maestria
 
 campos_personagem = [
-    "regenVida", "regenMana", "regenVigor", "vida",
+    "regenVida", "regenMana", "regenVigor", "vida", "mana", "vigor"
     "forca", "destreza", "inteligencia", "determinacao", "perspicacia", "carisma",
-    # ROLAGEM
-    *[f"rolagem_{i}" for i in range(1, 26)],
+    "forcaPer", "destrezaPer", "inteligenciaPer", "determinacaoPer", "perspicaciaPer", "carismaPer",
     # DEFESA
-    *[f"defesaFixa_{i}" for i in range(1, 8)],
-    *[f"resistencia_{i}" for i in range(1, 8)],
     "reducao", "defesaFixaEspiritual", "reducaoEspiritual",
     # DANO
-    *[f"danoFixo_{i}" for i in range(1, 8)],
-    *[f"penetracao_{i}" for i in range(1, 8)],
     "esmagamento", "penExtra", "danoFinal", "espiritualPerc", "espiritualFixo",
-    # AMPLIFICAÇÃO
-    *[f"amplificacao_{i}" for i in range(1, 26)],
-]
-
-escolhas_personagem = {  # pegando o campo que recebem string
-    *[f"tipoRolagem_{i}" for i in range(1, 26)],
-    *[f"elementoDefesa_{i}" for i in range(1, 8)],
-    *[f"elementoResistencia_{i}" for i in range(1, 8)],
-    *[f"elementoDano_{i}" for i in range(1,8)],
-    *[f"elementoPenetracao_{i}" for i in range(1, 8)],
-    *[f"elementoAmplificacao_{i}" for i in range(1,26)]
-}
+    #OUTROS
+    "dreno", "exaustao", "murchamento"]
+ 
 
 def pegar_atributos(idescolha: int):
     """
@@ -182,6 +168,23 @@ def pegar_front(request, escolha, personagem, origem, peca= "", percent=False):
             escolha.regenMana = valor
         elif tipo == "regenVigor":
             escolha.regenVigor = valor
+        i += 1
+
+    i = 1
+    # Outros
+    while True:
+        tipo = request.POST.get(f'statusEffectTipo{i}')
+        valor = request.POST.get(f'statusEffect{i}')
+
+        if not any([tipo, valor]):
+            break
+        
+        if tipo == "dreno":
+            escolha.dreno = valor
+        elif tipo == "exaustao":
+            escolha.exaustao = valor
+        elif tipo == "murchamento":
+            escolha.murchamento = valor
         i += 1
     escolha.save()
 

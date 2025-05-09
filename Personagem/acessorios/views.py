@@ -57,6 +57,7 @@ def salvar_acessorio_atributos(request):
         personagem = Base_personagem.objects.get(id=personagem_id) 
         pecaalvo = Acessorios.objects.get(personagem= personagem_id, peca= tipoEquipamento)
         pegar_front(request, pecaalvo, personagem, "aces", tipoEquipamento)
+        pegar_atributos(personagem_id)
         print('acessorios')
 
     return redirect('arma')

@@ -57,6 +57,7 @@ def salvar_conjunto_atributo(request):
         personagem = Base_personagem.objects.get(id=personagem_id)
         pecaalvo = Conjunto.objects.get(personagem= personagem_id, peca= tipoEquipamento)
         pegar_front(request, pecaalvo, personagem, "conj", tipoEquipamento)
+        pegar_atributos(personagem_id)
         print(personagem_id)
         print('FUNCIONA')
 

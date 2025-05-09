@@ -22,6 +22,12 @@ class Tela_personagem(models.Model):
     determinacao = models.IntegerField(default=0, blank=True)
     perspicacia = models.IntegerField(default=0, blank=True)
     carisma = models.IntegerField(default=0, blank=True)
+    forcaPer = models.IntegerField(default=0, blank=True)
+    destrezaPer = models.IntegerField(default=0, blank=True)
+    inteligenciaPer = models.IntegerField(default=0, blank=True)
+    determinacaoPer = models.IntegerField(default=0, blank=True)
+    perspicaciaPer = models.IntegerField(default=0, blank=True)
+    carismaPer = models.IntegerField(default=0, blank=True)
 
     # ROLAGEM
     tipoRolagem_1 = models.CharField(max_length=25, blank=True, default="")
