@@ -8,6 +8,7 @@ from .models import Tela_personagem, Character_attribute
 from django.apps import apps
 from lib.utilitarios import criar_personagem_completo
 from django.db.models import Sum
+from lib.utilitarios import *
 
 def exibir_personagem(request, personagem_id=None):
     todos_personagens_tela = Tela_personagem.objects.all().order_by('personagem__personagem') # Lista para dropdown, ordenada pelo nome base

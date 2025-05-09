@@ -9,30 +9,14 @@ from tela_personagem.models import Tela_personagem, Character_attribute
 from cadastro.models import Maestria
 
 campos_personagem = [
-    "regenVida", "regenMana", "regenVigor", "vida",
+    "regenVida", "regenMana", "regenVigor", "vida", "mana", "vigor"
     "forca", "destreza", "inteligencia", "determinacao", "perspicacia", "carisma",
-    # ROLAGEM
-    *[f"rolagem_{i}" for i in range(1, 26)],
+    "forcaPer", "destrezaPer", "inteligenciaPer", "determinacaoPer", "perspicaciaPer", "carismaPer",
     # DEFESA
-    *[f"defesaFixa_{i}" for i in range(1, 8)],
-    *[f"resistencia_{i}" for i in range(1, 8)],
     "reducao", "defesaFixaEspiritual", "reducaoEspiritual",
     # DANO
-    *[f"danoFixo_{i}" for i in range(1, 8)],
-    *[f"penetracao_{i}" for i in range(1, 8)],
-    "esmagamento", "penExtra", "danoFinal", "espiritualPerc", "espiritualFixo",
-    # AMPLIFICAÇÃO
-    *[f"amplificacao_{i}" for i in range(1, 26)],
-]
-
-escolhas_personagem = {  # pegando o campo que recebem string
-    *[f"tipoRolagem_{i}" for i in range(1, 26)],
-    *[f"elementoDefesa_{i}" for i in range(1, 8)],
-    *[f"elementoResistencia_{i}" for i in range(1, 8)],
-    *[f"elementoDano_{i}" for i in range(1,8)],
-    *[f"elementoPenetracao_{i}" for i in range(1, 8)],
-    *[f"elementoAmplificacao_{i}" for i in range(1,26)]
-}
+    "esmagamento", "penExtra", "danoFinal", "espiritualPerc", "espiritualFixo"]
+ 
 
 def pegar_atributos(idescolha: int):
     """

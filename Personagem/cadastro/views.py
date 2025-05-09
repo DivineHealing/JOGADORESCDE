@@ -76,7 +76,7 @@ def salvar_maestria_atributo(request):
         personagem = Base_personagem.objects.get(id=personagem_id) 
         pecaalvo = Maestria.objects.get(personagem=personagem_id, peca=maestriaTipo)
         pegar_front(request, pecaalvo, personagem, "maestria", maestriaTipo, True)
-
+        pegar_atributos(personagem_id)
         print(f'Tipo da Maestria: {maestriaTipo}\nPersonagem: {personagemSelec}')
         return redirect('cadastrar_maestria', personagem_id=personagemSelec, tipo=maestriaTipo)
 
