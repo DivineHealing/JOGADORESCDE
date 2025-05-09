@@ -6,7 +6,7 @@ from .models import Arma
 from .forms import EquipamentoForm
 from lib.utilitarios import *
 
-tipoEquipamento = "TIPO DO EQUIPAMENTO"
+tipoEquipamento = ""
 
 def arma(request):
     return render(request, 'arma.html')

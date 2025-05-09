@@ -4,13 +4,14 @@ from django.http import HttpResponse
 from django.core.serializers import serialize
 from habilidade.models import Habilidade
 from base_personagem.models import Base_personagem
-from .models import Tela_personagem, nome
+from .models import Tela_personagem, Character_attribute
 from django.apps import apps
 from lib.utilitarios import criar_personagem_completo
+from django.db.models import Sum
 
 def exibir_personagem(request, personagem_id=None):
     todos_personagens_tela = Tela_personagem.objects.all().order_by('personagem__personagem') # Lista para dropdown, ordenada pelo nome base
-
+    atributos_origem = ["aces","base_p", "arma", "conj", "maestria"]
     tela_personagem = None
     base_personagem = None
     habilidades_obj = None
@@ -56,31 +57,41 @@ def exibir_personagem(request, personagem_id=None):
             habilidades_obj = None # Garante que é None
 
     if base_personagem:
-        origem = "base"  # ou ajuste conforme sua lógica, se usa um campo mais específico
+        dados_rolagens = Character_attribute.objects.filter(
+            personagem=base_personagem, 
+            variavelTipo="rolagem").values("variavelPropriedade").annotate(
+            variavelValor=Sum("variavelValor")
+        ).order_by("variavelPropriedade")
 
-        dados_rolagens = nome.objects.filter(
-            personagem=base_personagem, origem=origem, variavelTipo="rolagem"
-        ).order_by("posicao")
+        dados_defesas = Character_attribute.objects.filter(
+            personagem=base_personagem, 
+            variavelTipo="defesa").values("variavelPropriedade").annotate(
+            variavelValor=Sum("variavelValor")
+        ).order_by("variavelPropriedade")
 
-        dados_defesas = nome.objects.filter(
-            personagem=base_personagem, origem=origem, variavelTipo="defesa"
-        ).order_by("posicao")
+        dados_resistencias = Character_attribute.objects.filter(
+            personagem=base_personagem, 
+            variavelTipo="resistencia").values("variavelPropriedade").annotate(
+            variavelValor=Sum("variavelValor")
+        ).order_by("variavelPropriedade")
 
-        dados_resistencias = nome.objects.filter(
-            personagem=base_personagem, origem=origem, variavelTipo="resistencia"
-        ).order_by("posicao")
+        dados_dano = Character_attribute.objects.filter(
+            personagem=base_personagem,
+            variavelTipo="dano").values("variavelPropriedade").annotate(
+            variavelValor=Sum("variavelValor")
+        ).order_by("variavelPropriedade")
 
-        dados_dano = nome.objects.filter(
-            personagem=base_personagem, origem=origem, variavelTipo="dano"
-        ).order_by("posicao")
+        dados_penetracao = Character_attribute.objects.filter(
+            personagem=base_personagem,
+            variavelTipo="penetracao").values("variavelPropriedade").annotate(
+            variavelValor=Sum("variavelValor")
+        ).order_by("variavelPropriedade")
 
-        dados_penetracao = nome.objects.filter(
-            personagem=base_personagem, origem=origem, variavelTipo="penetracao"
-        ).order_by("posicao")
-
-        dados_amplificacao = nome.objects.filter(
-            personagem=base_personagem, origem=origem, variavelTipo="amplificacao"
-        ).order_by("posicao")
+        dados_amplificacao = Character_attribute.objects.filter(
+            personagem=base_personagem, 
+            variavelTipo="amplificacao").values("variavelPropriedade").annotate(
+            variavelValor=Sum("variavelValor")
+        ).order_by("variavelPropriedade")
 
         # --- Lógica para formatar os dados das Habilidades (SÓ SE habilidades_obj foi encontrado) ---
         if habilidades_obj:
@@ -111,7 +122,6 @@ def exibir_personagem(request, personagem_id=None):
                             'nome': nome_base_habilidade,
                             'niveis': slot_niveis
                         })
-            print(f"--- FINAL habilidades_data_formatada: {habilidades_data_formatada} ---")
         else:
              print(f"--- Formatação de Habilidades pulada (habilidades_obj é None) ---")
 
@@ -122,13 +132,68 @@ def exibir_personagem(request, personagem_id=None):
         request.session['personagem_id'] = None # Limpa/define como None na sessão
 
 
+    rolagens_json = [
+    {"fields": {"variavelPropriedade": rl["variavelPropriedade"], "variavelValor": rl["variavelValor"]}}
+    for rl in dados_rolagens
+    ]  
+    defesas_json = [
+    {"fields": {"variavelPropriedade": df["variavelPropriedade"], "variavelValor": df["variavelValor"]}}
+    for df in dados_defesas
+]    
+    resistencias_json = [
+    {"fields": {"variavelPropriedade": r["variavelPropriedade"], "variavelValor": r["variavelValor"]}}
+    for r in dados_resistencias
+]
+    danos_json = [
+    {"fields": {"variavelPropriedade": d["variavelPropriedade"], "variavelValor": d["variavelValor"]}}
+    for d in dados_dano
+]   
+    penetracoes_json = [
+    {"fields": {"variavelPropriedade": p["variavelPropriedade"], "variavelValor": p["variavelValor"]}}
+    for p in dados_penetracao
+]
+    amplificacoes_json = [
+    {"fields": {"variavelPropriedade": a["variavelPropriedade"], "variavelValor": a["variavelValor"]}}
+    for a in dados_amplificacao
+]
     # --- Montagem Final do Contexto ---
-    danos_json = serialize("json", dados_dano, fields=("variavelPropriedade", "variavelValor"))
-    penetracoes_json = serialize("json", dados_penetracao, fields=("variavelPropriedade", "variavelValor"))
+    print("--- DEBUG ROLAGENS ---")
+    print(f"Qtd rolagens: {len(dados_rolagens)}")
+    for rl in dados_rolagens:
+        print(f"{rl['variavelPropriedade']} = {rl['variavelValor']}")
 
+    print("--- DEBUG DEFESAS ---")
+    print(f"Qtd defesas: {len(dados_defesas)}")
+    for df in dados_defesas:
+        print(f"{df['variavelPropriedade']} = {df['variavelValor']}")
+    
+    print("--- DEBUG RESISTENCIAS ---")
+    print(f"Qtd resistências: {len(dados_resistencias)}")
+    for r in dados_resistencias:
+        print(f"{r['variavelPropriedade']} = {r['variavelValor']}")
+
+    print("--- DEBUG DANOS ---")
+    print(f"Qtd danos: {len(dados_dano)}")
+    for d in dados_dano:
+        print(f"{d['variavelPropriedade']} = {d['variavelValor']}")
+
+    print("--- DEBUG PENETRACOES ---")
+    print(f"Qtd penetrações: {len(dados_penetracao)}")
+    for p in dados_penetracao:
+        print(f"{p['variavelPropriedade']} = {p['variavelValor']}")
+    
+    print("--- DEBUG AMPLIFICACOES ---")
+    print(f"Qtd amplificações: {len(dados_amplificacao)}")
+    for a in dados_amplificacao:
+        print(f"{a['variavelPropriedade']} = {a['variavelValor']}")
+        
     context = {
         'danos_json': danos_json,
         'penetracoes_json': penetracoes_json,
+        'rolagens_json': rolagens_json,
+        'defesas_json': defesas_json,
+        'resistencias_json': resistencias_json,
+        'amplificacao_json': amplificacoes_json,
 
         'tela_personagem': tela_personagem,          # Objeto Tela_personagem selecionado (ou None)
         'personagens': todos_personagens_tela,       # Lista de todos para o dropdown/menu
@@ -171,9 +236,6 @@ def deletar_personagem(request):
             return redirect('/')
         
     return redirect('/')
-
-
-##### TESTE DE HABILIDADE PRA EXIBIÇÃO
 
 def exibir_ficha_personagem(request, personagem_id):
     # 1. CORRETO: Busca o Base_personagem usando o ID da URL
@@ -237,10 +299,6 @@ def exibir_ficha_personagem(request, personagem_id):
                     })
             # else:
                  # print(f"  >> Condição Nome Base FALHOU para Slot {i}.")
-
-    # VERIFICAÇÃO FINAL ANTES DO CONTEXTO
-    print(f"\n--- FINAL habilidades_data_formatada ---")
-    print(habilidades_data_formatada)
 
     context = {
         'base_personagem': base_personagem, # Passa o Base_personagem para o template

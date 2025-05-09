@@ -1,4 +1,4 @@
-from tela_personagem.models import Tela_personagem, nome
+from tela_personagem.models import Tela_personagem, Character_attribute
 from conjunto.models import Conjunto
 from base_personagem.models import Base_personagem
 from arma.models import Arma

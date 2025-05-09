@@ -108,8 +108,8 @@
                 <div class="dano-defesa bordered-section">
                     <div class="damage-stats ">
                         <div class="dano-defesa section-title">DANO E DEFESA</div>
-                        <div class="atr-title" id="area-danos">DANO</div>
-                        
+                        <div class="atr-title">DANO</div>
+                        <div id="area-danos"></div>
                     
                         <div class="damage" id="esmagamento_container">Esmagamento <span id="esmagamento">{{ tela_personagem.esmagamento|intcomma }}</span>%</div>
                         <div class="damage" id="penExtra_container">Penetração Extra <span id="penExtra">{{ tela_personagem.penExtra|intcomma }}</span>%</div>
@@ -119,21 +119,9 @@
                   </div>
                   <br>
                   <div class="defense-stats ">
-                      <div class="atr-title">DEFESA</div>
-                      <div class="defense" id="defesaFixa1_container">Defesa Fixa {{ tela_personagem.elementoDefesa_1 }} <span id="defesaFixa_1">{{ tela_personagem.defesaFixa_1|intcomma }}</span></div>
-                      <div class="defense" id="resistencia1_container">Resistência {{ tela_personagem.elementoResistencia_1 }} <span id="resistencia_1">{{ tela_personagem.resistencia_1|intcomma }}</span>%</div>
-                      <div class="defense" id="defesaFixa2_container">Defesa Fixa {{ tela_personagem.elementoDefesa_2 }} <span id="defesaFixa_2">{{ tela_personagem.defesaFixa_2|intcomma }}</span></div>
-                      <div class="defense" id="resistencia2_container">Resistência {{ tela_personagem.elementoResistencia_2 }} <span id="resistencia_2">{{ tela_personagem.resistencia_2|intcomma }}</span>%</div>
-                      <div class="defense" id="defesaFixa3_container">Defesa Fixa {{ tela_personagem.elementoDefesa_3 }} <span id="defesaFixa_3">{{ tela_personagem.defesaFixa_3|intcomma }}</span></div>
-                      <div class="defense" id="resistencia3_container">Resistência {{ tela_personagem.elementoResistencia_3 }} <span id="resistencia_3">{{ tela_personagem.resistencia_3|intcomma }}</span>%</div>
-                      <div class="defense" id="defesaFixa4_container">Defesa Fixa {{ tela_personagem.elementoDefesa_4 }} <span id="defesaFixa_4">{{ tela_personagem.defesaFixa_4|intcomma }}</span></div>
-                      <div class="defense" id="resistencia4_container">Resistência {{ tela_personagem.elementoResistencia_4 }} <span id="resistencia_4">{{ tela_personagem.resistencia_4|intcomma }}</span>%</div>
-                      <div class="defense" id="defesaFixa5_container">Defesa Fixa {{ tela_personagem.elementoDefesa_5 }} <span id="defesaFixa_5">{{ tela_personagem.defesaFixa_5|intcomma }}</span></div>
-                      <div class="defense" id="resistencia5_container">Resistência {{ tela_personagem.elementoResistencia_5 }} <span id="resistencia_5">{{ tela_personagem.resistencia_5|intcomma }}</span>%</div>
-                      <div class="defense" id="defesaFixa6_container">Defesa Fixa {{ tela_personagem.elementoDefesa_6 }} <span id="defesaFixa_6">{{ tela_personagem.defesaFixa_6|intcomma }}</span></div>
-                      <div class="defense" id="resistencia6_container">Resistência {{ tela_personagem.elementoResistencia_6 }} <span id="resistencia_6">{{ tela_personagem.resistencia_6|intcomma }}</span>%</div>
-                      <div class="defense" id="defesaFixa7_container">Defesa Fixa {{ tela_personagem.elementoDefesa_7 }} <span id="defesaFixa_7">{{ tela_personagem.defesaFixa_7|intcomma }}</span></div>
-                      <div class="defense" id="resistencia7_container">Resistência {{ tela_personagem.elementoResistencia_7 }} <span id="resistencia_7">{{ tela_personagem.resistencia_7|intcomma }}</span>%</div>
+                      <div class="atr-title">DEFESA</div>                      
+                      <div id="area-defesa"></div>
+                      
                       <div class="defense" id="defesaFixaEspiritual_container">Espiritual <span id="defesaFixaEspiritual">{{ tela_personagem.defesaFixaEspiritual|intcomma }}</span></div>
                       <div class="defense" id="reducaoEspiritual_container">Redução Espiritual <span id="reducaoEspiritual">{{ tela_personagem.reducaoEspiritual|intcomma }}</span>%</div>
                       <div class="defense" id="reducao_container">Redução de Dano <span id="reducao">{{ tela_personagem.reducao|intcomma }}</span>%</div>
@@ -143,62 +131,14 @@
 
                 <div class="rolling-bonus-stats bordered-section">
                     <div class="bonus section-title">BÔNUS DE ROLAGEM</div>
-                    <div class="roll" id="rolagem1_container">{{ tela_personagem.tipoRolagem_1 }} +<span id="rolagem1">{{ tela_personagem.rolagem_1 }}</span></div>
-                    <div class="roll" id="rolagem2_container">{{ tela_personagem.tipoRolagem_2 }} +<span id="rolagem2">{{ tela_personagem.rolagem_2 }}</span></div>
-                    <div class="roll" id="rolagem3_container">{{ tela_personagem.tipoRolagem_3 }} +<span id="rolagem3">{{ tela_personagem.rolagem_3 }}</span></div>
-                    <div class="roll" id="rolagem4_container">{{ tela_personagem.tipoRolagem_4 }} +<span id="rolagem4">{{ tela_personagem.rolagem_4 }}</span></div>
-                    <div class="roll" id="rolagem5_container">{{ tela_personagem.tipoRolagem_5 }} +<span id="rolagem5">{{ tela_personagem.rolagem_5 }}</span></div>
-                    <div class="roll" id="rolagem6_container">{{ tela_personagem.tipoRolagem_6 }} +<span id="rolagem6">{{ tela_personagem.rolagem_6 }}</span></div>
-                    <div class="roll" id="rolagem7_container">{{ tela_personagem.tipoRolagem_7 }} +<span id="rolagem7">{{ tela_personagem.rolagem_7 }}</span></div>
-                    <div class="roll" id="rolagem8_container">{{ tela_personagem.tipoRolagem_8 }} +<span id="rolagem8">{{ tela_personagem.rolagem_8 }}</span></div>
-                    <div class="roll" id="rolagem9_container">{{ tela_personagem.tipoRolagem_9 }} +<span id="rolagem9">{{ tela_personagem.rolagem_9 }}</span></div>
-                    <div class="roll" id="rolagem10_container">{{ tela_personagem.tipoRolagem_10 }} +<span id="rolagem10">{{ tela_personagem.rolagem_10 }}</span></div>
-                    <div class="roll" id="rolagem11_container">{{ tela_personagem.tipoRolagem_11 }} +<span id="rolagem11">{{ tela_personagem.rolagem_11 }}</span></div>
-                    <div class="roll" id="rolagem12_container">{{ tela_personagem.tipoRolagem_12 }} +<span id="rolagem12">{{ tela_personagem.rolagem_12 }}</span></div>
-                    <div class="roll" id="rolagem13_container">{{ tela_personagem.tipoRolagem_13 }} +<span id="rolagem13">{{ tela_personagem.rolagem_13 }}</span></div>
-                    <div class="roll" id="rolagem14_container">{{ tela_personagem.tipoRolagem_14 }} +<span id="rolagem14">{{ tela_personagem.rolagem_14 }}</span></div>
-                    <div class="roll" id="rolagem15_container">{{ tela_personagem.tipoRolagem_15 }} +<span id="rolagem15">{{ tela_personagem.rolagem_15 }}</span></div>
-                    <div class="roll" id="rolagem16_container">{{ tela_personagem.tipoRolagem_16 }} +<span id="rolagem16">{{ tela_personagem.rolagem_16 }}</span></div>
-                    <div class="roll" id="rolagem17_container">{{ tela_personagem.tipoRolagem_17 }} +<span id="rolagem17">{{ tela_personagem.rolagem_17 }}</span></div>
-                    <div class="roll" id="rolagem18_container">{{ tela_personagem.tipoRolagem_18 }} +<span id="rolagem18">{{ tela_personagem.rolagem_18 }}</span></div>
-                    <div class="roll" id="rolagem19_container">{{ tela_personagem.tipoRolagem_19 }} +<span id="rolagem19">{{ tela_personagem.rolagem_19 }}</span></div>
-                    <div class="roll" id="rolagem20_container">{{ tela_personagem.tipoRolagem_20 }} +<span id="rolagem20">{{ tela_personagem.rolagem_20 }}</span></div>
-                    <div class="roll" id="rolagem21_container">{{ tela_personagem.tipoRolagem_21 }} +<span id="rolagem21">{{ tela_personagem.rolagem_21 }}</span></div>
-                    <div class="roll" id="rolagem22_container">{{ tela_personagem.tipoRolagem_22 }} +<span id="rolagem22">{{ tela_personagem.rolagem_22 }}</span></div>
-                    <div class="roll" id="rolagem23_container">{{ tela_personagem.tipoRolagem_23 }} +<span id="rolagem23">{{ tela_personagem.rolagem_23 }}</span></div>
-                    <div class="roll" id="rolagem24_container">{{ tela_personagem.tipoRolagem_24 }} +<span id="rolagem24">{{ tela_personagem.rolagem_24 }}</span></div>
-                    <div class="roll" id="rolagem25_container">{{ tela_personagem.tipoRolagem_25 }} +<span id="rolagem25">{{ tela_personagem.rolagem_25 }}</span></div>
+                    <div id="area-rolagem"></div>
                 </div>
 
                 <div class="other-info-stats bordered-section">
                     <div class="section-title">OUTRAS INFORMAÇÕES</div>
                     <div class="amplifications">
                         <div class="atr-title">AMPLIFICAÇÕES</div>
-                        <div class="amp" id="amplificacao1_container">{{ tela_personagem.elementoAmplificacao_1 }} <span id="amplificacao1">{{ tela_personagem.amplificacao_1 }}</span>%</div>
-                        <div class="amp" id="amplificacao2_container">{{ tela_personagem.elementoAmplificacao_2 }} <span id="amplificacao2">{{ tela_personagem.amplificacao_2 }}</span>%</div>
-                        <div class="amp" id="amplificacao3_container">{{ tela_personagem.elementoAmplificacao_3 }} <span id="amplificacao3">{{ tela_personagem.amplificacao_3 }}</span>%</div>
-                        <div class="amp" id="amplificacao4_container">{{ tela_personagem.elementoAmplificacao_4 }} <span id="amplificacao4">{{ tela_personagem.amplificacao_4 }}</span>%</div>
-                        <div class="amp" id="amplificacao5_container">{{ tela_personagem.elementoAmplificacao_5 }} <span id="amplificacao5">{{ tela_personagem.amplificacao_5 }}</span>%</div>
-                        <div class="amp" id="amplificacao6_container">{{ tela_personagem.elementoAmplificacao_6 }} <span id="amplificacao6">{{ tela_personagem.amplificacao_6 }}</span>%</div>
-                        <div class="amp" id="amplificacao7_container">{{ tela_personagem.elementoAmplificacao_7 }} <span id="amplificacao7">{{ tela_personagem.amplificacao_7 }}</span>%</div>
-                        <div class="amp" id="amplificacao8_container">{{ tela_personagem.elementoAmplificacao_8 }} <span id="amplificacao8">{{ tela_personagem.amplificacao_8 }}</span>%</div>
-                        <div class="amp" id="amplificacao9_container">{{ tela_personagem.elementoAmplificacao_9 }} <span id="amplificacao9">{{ tela_personagem.amplificacao_9 }}</span>%</div>
-                        <div class="amp" id="amplificacao10_container">{{ tela_personagem.elementoAmplificacao_10 }} <span id="amplificacao10">{{ tela_personagem.amplificacao_10 }}</span>%</div>
-                        <div class="amp" id="amplificacao11_container">{{ tela_personagem.elementoAmplificacao_11 }} <span id="amplificacao11">{{ tela_personagem.amplificacao_11 }}</span>%</div>
-                        <div class="amp" id="amplificacao12_container">{{ tela_personagem.elementoAmplificacao_12 }} <span id="amplificacao12">{{ tela_personagem.amplificacao_12 }}</span>%</div>
-                        <div class="amp" id="amplificacao13_container">{{ tela_personagem.elementoAmplificacao_13 }} <span id="amplificacao13">{{ tela_personagem.amplificacao_13 }}</span>%</div>
-                        <div class="amp" id="amplificacao14_container">{{ tela_personagem.elementoAmplificacao_14 }} <span id="amplificacao14">{{ tela_personagem.amplificacao_14 }}</span>%</div>
-                        <div class="amp" id="amplificacao15_container">{{ tela_personagem.elementoAmplificacao_15 }} <span id="amplificacao15">{{ tela_personagem.amplificacao_15 }}</span>%</div>
-                        <div class="amp" id="amplificacao16_container">{{ tela_personagem.elementoAmplificacao_16 }} <span id="amplificacao16">{{ tela_personagem.amplificacao_16 }}</span>%</div>
-                        <div class="amp" id="amplificacao17_container">{{ tela_personagem.elementoAmplificacao_17 }} <span id="amplificacao17">{{ tela_personagem.amplificacao_17 }}</span>%</div>
-                        <div class="amp" id="amplificacao18_container">{{ tela_personagem.elementoAmplificacao_18 }} <span id="amplificacao18">{{ tela_personagem.amplificacao_18 }}</span>%</div>
-                        <div class="amp" id="amplificacao19_container">{{ tela_personagem.elementoAmplificacao_19 }} <span id="amplificacao19">{{ tela_personagem.amplificacao_19 }}</span>%</div>
-                        <div class="amp" id="amplificacao20_container">{{ tela_personagem.elementoAmplificacao_20 }} <span id="amplificacao20">{{ tela_personagem.amplificacao_20 }}</span>%</div>
-                        <div class="amp" id="amplificacao21_container">{{ tela_personagem.elementoAmplificacao_21 }} <span id="amplificacao21">{{ tela_personagem.amplificacao_21 }}</span>%</div>
-                        <div class="amp" id="amplificacao22_container">{{ tela_personagem.elementoAmplificacao_22 }} <span id="amplificacao22">{{ tela_personagem.amplificacao_22 }}</span>%</div>
-                        <div class="amp" id="amplificacao23_container">{{ tela_personagem.elementoAmplificacao_23 }} <span id="amplificacao23">{{ tela_personagem.amplificacao_23 }}</span>%</div>
-                        <div class="amp" id="amplificacao24_container">{{ tela_personagem.elementoAmplificacao_24 }} <span id="amplificacao24">{{ tela_personagem.amplificacao_24 }}</span>%</div>
-                        <div class="amp" id="amplificacao25_container">{{ tela_personagem.elementoAmplificacao_25 }} <span id="amplificacao25">{{ tela_personagem.amplificacao_25 }}</span>%</div>
+                        <div id="area-amplificacao"></div>
                     </div>
                     <br>
                     <div class="others">
@@ -286,81 +226,113 @@
     <script src="{% static 'tela_personagem\script.js' %}"></script>
     {{ danos_json|json_script:"danos-json" }}
     {{ penetracoes_json|json_script:"penetracoes-json" }}
+    {{ rolagens_json|json_script:"rolagens-json" }}
+    {{ defesas_json|json_script:"defesas-json" }}
+    {{ resistencias_json|json_script:"resistencias-json" }}
+    {{ amplificacoes_json|json_script:"amplificacoes-json" }}
     <script>
-    
         document.addEventListener("DOMContentLoaded", function () {
-            const area = document.getElementById('area-danos');
+            const danoArea = document.getElementById('area-danos');
+            const defArea = document.getElementById('area-defesa');
+            const ampArea = document.getElementById('area-amplificacao');
+            const rollArea = document.getElementById('area-rolagem');
+
         
-            // Validação inicial do JSON embutido no HTML
-            const dadosJsonEl = document.getElementById('danos-json');
+            // Captura os dados JSON no HTML
+            const rolagensJsonEl = document.getElementById('rolagens-json');
+            const defesasJsonEl = document.getElementById('defesas-json');
+            const danosJsonEl = document.getElementById('danos-json');
             const penetracoesJsonEl = document.getElementById('penetracoes-json');
+            const resistenciasJsonEl = document.getElementById('resistencias-json');
+            const amplificacoesJsonEl = document.getElementById('amplificacoes-json');
         
             let listaDanos = [];
             let listaPenetracoes = [];
+            let listaRolagens = [];
+            let listaDefesas = [];
+            let listaResistencias = [];
+            let listaAmplificacoes = [];
         
-
             try {
-                const listaDanos = JSON.parse(document.getElementById("danos-json").textContent);
-                const listaPenetracoes = JSON.parse(document.getElementById("penetracoes-json").textContent);
-
-                console.log("Danos JSON:", listaDanos);           // <--- Adicione isso
-                console.log("Penetrações JSON:", listaPenetracoes); // <--- E isso também
-
-                
+                listaDanos = JSON.parse(danosJsonEl.textContent);
+                listaPenetracoes = JSON.parse(penetracoesJsonEl.textContent);
+                listaRolagens = JSON.parse(rolagensJsonEl.textContent);
+                listaDefesas = JSON.parse(defesasJsonEl.textContent);
+                listaResistencias = JSON.parse(resistenciasJsonEl.textContent);
+                listaAmplificacoes = JSON.parse(amplificacoesJsonEl.textContent);
             } catch (e) {
-                console.error("Erro ao fazer parse dos dados de dano/penetração:", e);
+                console.error("Erro ao fazer parse dos dados JSON!", e);
                 return;
             }
         
-            if (!Array.isArray(listaDanos) || !Array.isArray(listaPenetracoes)) {
-                console.warn("Dados de dano ou penetração não estão em formato de array.");
-                return;
+            // Função auxiliar para criar divs
+            function criarDiv(classe, id, label, valor, sufixo = '') {
+                const div = document.createElement('div');
+                div.className = classe;
+                div.id = id;
+                div.innerHTML = `${label} <span>${Number(valor).toLocaleString('pt-BR')}${sufixo}</span>`;
+                return div;
             }
         
-            if (listaDanos.length !== listaPenetracoes.length) {
-                console.warn("Quantidade de danos e penetrações não é igual:", listaDanos.length, listaPenetracoes.length);
-            }
-        
-            // Criação dinâmica das divs
+            // ---------------- DANOS e PENETRAÇÕES ----------------
             listaDanos.forEach((danoObj, i) => {
                 const penObj = listaPenetracoes[i];
         
-                // Validação individual
-                if (!danoObj || !danoObj.fields || !penObj || !penObj.fields) {
-                    console.warn(`Objeto de dano ou penetração inválido no índice ${i}:`, danoObj, penObj);
-                    return;
-                }
+                if (!danoObj || !penObj || !danoObj.fields || !penObj.fields) return;
         
                 const dano = danoObj.fields;
                 const pen = penObj.fields;
         
-                // Segurança adicional: verificar se os campos existem
-                if (!dano.variavelPropriedade || dano.variavelValor === undefined) {
-                    console.warn(`Dado de dano malformado em ${i}:`, dano);
-                    return;
-                }
+                const divDano = criarDiv('damage', `danoFixo${i + 1}_container`, `Dano Fixo ${dano.variavelPropriedade}`, dano.variavelValor);
+                const divPen = criarDiv('damage', `penetracao${i + 1}_container`, `Penetração ${pen.variavelPropriedade}`, pen.variavelValor, '%');
         
-                if (!pen.variavelPropriedade || pen.variavelValor === undefined) {
-                    console.warn(`Dado de penetração malformado em ${i}:`, pen);
-                    return;
-                }
+                danoArea.appendChild(divDano);
+                danoArea.appendChild(divPen);
+            });
         
-                // Criação dos elementos
-                const divDano = document.createElement('div');
-                divDano.className = 'damage';
-                divDano.id = `danoFixo${i + 1}_container`;
-                divDano.innerHTML = `Dano Fixo ${dano.variavelPropriedade} <span id="danoFixo_${i + 1}">${Number(dano.variavelValor).toLocaleString('pt-BR')}</span>`;
+            // ---------------- DEFESAS e RESISTENCIA ----------------
+
+            listaDefesas.forEach((defObj, i) => {
+                const resObj = listaResistencias[i];
+
+                if (!defObj || !resObj || !defObj.fields || !resObj.fields) return;
+
+                const def = defObj.fields;
+                const res = resObj.fields;
+
+                if (!def.variavelPropriedade || def.variavelValor === undefined) return;
+                if (!res.variavelPropriedade || res.variavelValor === undefined) return;
+
+                const divDef = document.createElement('div');
+                divDef.className = 'defense';
+                divDef.id = `defesaFixa${i + 1}_container`;
+                divDef.innerHTML = `Defesa Fixa ${def.variavelPropriedade} <span id="defesaFixa_${i + 1}">${Number(def.variavelValor).toLocaleString('pt-BR')}</span>`;
+
+                const divRes = document.createElement('div');
+                divRes.className = 'defense';
+                divRes.id = `resistenciaExtra${i + 1}_container`;
+                divRes.innerHTML = `Resistência ${res.variavelPropriedade} <span id="resistencia_${i + 1}">${Number(res.variavelValor).toLocaleString('pt-BR')}</span>%`;
+
+                defArea.appendChild(divDef);
+                defArea.appendChild(divRes);
+            });
+
         
-                const divPen = document.createElement('div');
-                divPen.className = 'damage';
-                divPen.id = `penetracao${i + 1}_container`;
-                divPen.innerHTML = `Penetração ${pen.variavelPropriedade} <span id="penetracao_${i + 1}">${Number(pen.variavelValor).toLocaleString('pt-BR')}</span>%`;
+            // ---------------- ROLAGENS ----------------
+            listaRolagens.forEach((roll, i) => {
+                const info = roll.fields;
+                const div = criarDiv('roll', `rolagem${i + 1}_container`, `${info.variavelPropriedade}`, info.variavelValor, '');
+                rollArea.appendChild(div);
+            });
         
-                area.appendChild(divDano);
-                area.appendChild(divPen);
+            // ---------------- AMPLIFICAÇÕES ----------------
+            listaAmplificacoes.forEach((amp, i) => {
+                const info = amp.fields;
+                const div = criarDiv('amp', `amplificacao${i + 1}_container`, `${info.variavelPropriedade}`, info.variavelValor, '%');
+                ampArea.appendChild(div);
             });
         });
+        </script>
         
-    </script>
 </body>
 </html>

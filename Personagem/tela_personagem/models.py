@@ -230,7 +230,7 @@ class Tela_personagem(models.Model):
     '''def __str__(self):
         return self.nome'''
     
-class nome(models.Model):
+class Character_attribute(models.Model):
     personagem = models.ForeignKey(Base_personagem, on_delete=models.CASCADE)
     variavelTipo = models.CharField(max_length=50, default="", blank=True)
     variavelPropriedade = models.CharField(max_length=50, default="", blank=True)
