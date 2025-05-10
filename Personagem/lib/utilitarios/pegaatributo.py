@@ -9,7 +9,7 @@ from tela_personagem.models import Tela_personagem, Character_attribute
 from cadastro.models import Maestria
 
 campos_personagem = [
-    "regenVida", "regenMana", "regenVigor", "vida", "mana", "vigor"
+    "regenVida", "regenMana", "regenVigor", "vida", "vidaBase", "vidaTotal", "mana", "vigor"
     "forca", "destreza", "inteligencia", "determinacao", "perspicacia", "carisma",
     "forcaPer", "destrezaPer", "inteligenciaPer", "determinacaoPer", "perspicaciaPer", "carismaPer",
     # DEFESA
@@ -113,8 +113,13 @@ def obter_personagem_sessao(request):
 
 def pegar_front(request, escolha, personagem, origem, peca= "", percent=False):
     # ATRIBUTOS BASE
+<<<<<<< HEAD
     campos = { # guardando os camposem um dicionario(esquerda é onde salvara no banco|direita é o que via pegar no request)
         "vida": "vida",
+=======
+    campos = { # guardando os campos em um dicionario(esquerda é onde salvara no banco|direita é o que vai pegar no request)
+        "vida": "vidaMax",
+>>>>>>> e13982b9c6175e910899a32d2075d77d3ee76d10
         "vigor": "vigor",
         "mana": "mana",
         "forca": "forca",
@@ -130,9 +135,11 @@ def pegar_front(request, escolha, personagem, origem, peca= "", percent=False):
         "vidaTotal": "vidaTotal",
         "bloqueio": "bloqueio",
         "aumentoDA": "aumentoDA",
+        "defesaFixaEspiritual":"defEspiritual",
         "reducaoEspiritual": "redEspiritual",
         "esmagamento": "esmagamento",
         "penExtra": "penExtra",
+        "espiritualFixo": "",
         "espiritualPerc": "dmgEspiritual"
     }
     for attr, campo in campos.items():
@@ -142,6 +149,8 @@ def pegar_front(request, escolha, personagem, origem, peca= "", percent=False):
     if percent:
         # ATRIBUTOS BASE
         camposp = { # guardando os camposem um dicionario(esquerda é onde salvara no banco|direita é o que via pegar no request)
+            "vidaBase": "",
+            "vidaTotal": "",
             "forcaPer": "forcaPer",
             "destrezaPer": "destrezaPer",
             "inteligenciaPer": "inteligenciaPer",
