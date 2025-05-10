@@ -48,22 +48,6 @@ const atributos = [
     { nome: "defesaFixaEspiritual", containerId: "defesaFixaEspiritual_container"},
     { nome: "reducaoEspiritual", containerId: "reducaoEspiritual_container" },
     { nome: "reducao", containerId: "reducao_container"},
-
-    { nome: "outros1", containerId: "outros1_container"},
-    { nome: "outros2", containerId: "outros2_container"},
-    { nome: "outros3", containerId: "outros3_container"},
-    { nome: "outros4", containerId: "outros4_container"},
-    { nome: "outros5", containerId: "outros5_container"},
-    { nome: "outros6", containerId: "outros6_container"},
-    { nome: "outros7", containerId: "outros7_container"},
-    { nome: "outros8", containerId: "outros8_container"},
-    { nome: "outros9", containerId: "outros9_container"},
-    { nome: "outros10", containerId: "outros10_container"},
-    { nome: "outros11", containerId: "outros11_container"},
-    { nome: "outros12", containerId: "outros12_container"},
-    { nome: "outros13", containerId: "outros13_container"},
-    { nome: "outros14", containerId: "outros14_container"},
-    { nome: "outros15", containerId: "outros15_container"},
 ];
 
 let algumAtributoInvalido = false; // Flag para verificar se algum atributo é inválido

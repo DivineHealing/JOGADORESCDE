@@ -23,12 +23,12 @@
         </div>
 
         <div class="top-section">             
-            <div class="vida-mana-vigor bordered-section">  
+            <div class="vida-mana-vigor bordered-section">
                 <div class="formGroupRed field">
                     <input pattern="[0-9]+$" type="number" placeholder="Aumento de Vida Base" name='vidaBase' id='vidaBase' value="{{ maestria.vidaBase }}" />
-                    <input style="margin-Left: 1em" pattern="[0-9]+$" type="number" placeholder="Aumento de Vida Atual" name='vidaAtual' id='vidaAtual' value="{{ maestria.vidaAtual }}" />
-                    <label style="width: 13em" for="bloqueio" class="formLabel">Aumento de Vida Base</label>
-                    <label style="margin-Left: 13.5em; width: 13.5em" for="redEspiritual" class="formLabel">Aumento de Vida Atual</label>
+                    <input style="margin-Left: 1em" pattern="[0-9]+$" type="number" placeholder="Aumento de Vida Atual" name='vidaTotal' id='vidaTotal' value="{{ maestria.vidaAtual }}" />
+                    <label style="width: 13em" for="vidaBase" class="formLabel">Aumento de Vida Base</label>
+                    <label style="margin-Left: 13.5em; width: 13.5em" for="vidaTotal" class="formLabel">Aumento de Vida Atual</label>
                 </div> 
                 <div class="formGroupRed field">
                     <input pattern="[0-9]+$" type="number" placeholder="Valor da Mana" name='mana' id='mana' value="{{ maestria.mana }}" />

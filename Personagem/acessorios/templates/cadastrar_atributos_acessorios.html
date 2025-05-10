@@ -20,7 +20,18 @@
                 <span >Nome do Personagem: {{ tela_personagem.personagem }}</span>
             </div>
         </div>
-      
+        
+        <div class="top-section">
+            <div class="vida-mana-vigor bordered-section">
+                <div class="formGroupRed field">
+                    <input type="number" maxlength="12" name="vida" id="vida" placeholder="Valor da Vida" value="{{ base_personagem.vida }}" onkeypress="if (!isNaN(String.fromCharCode(window.event.keyCode))) return true; else return false;"/>
+                    <input style="margin-Left: 1em" pattern="[0-9]+$" type="number" placeholder="Aumento de Vida (%)" name='vidaTotal' id='vidaTotal' value="{{ maestria.vidaBase }}" />
+                    <label style="margin-Left: 13.5em; width: 13.5em" for="vidaMax" class="formLabel">Aumento de Vida (%)</label>
+                    <label style="width: 13em" for="vida" class="formLabel">Aumento de Vida</label>
+                </div>
+            </div>
+        </div>
+
         <div class="middle-section">
             <div class="left-column">
                 <div class="attribute-stats bordered-section">
@@ -79,8 +90,8 @@
             </div>
         </div>
         <div class="formGroupRed">
-            <a href="{% url 'acessorios' %}"><button class="button" role="button">Voltar</button></a>
-            <a href="{% url 'exibir_personagem' %}" class="buttonLink"><button class="button" role="button">Personagem</button></a>
+            <a href="{% url 'acessorios' %}"><button type="button" class="button" role="button">Voltar</button></a>
+            <a href="{% url 'exibir_personagem' %}" class="buttonLink"><button type="button" class="button" role="button">Personagem</button></a>
             <button class="submit" role="button">Salvar</button>
         </div>
     </form> 

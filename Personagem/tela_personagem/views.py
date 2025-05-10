@@ -74,6 +74,16 @@ def exibir_personagem(request, personagem_id=None):
         request.session['personagem_id'] = tela_personagem.id
     else:
         request.session['personagem_id'] = None
+    
+    # SEGURANÇA PRA INICIALIZAÇÃO DO SISTEMA, SE NÃO HOUVER NENHUM PERSONAGEM CADASTRADO
+    if not todos_personagens_tela:
+        dados_rolagens = []
+        dados_defesas = []
+        dados_resistencias = []
+        dados_dano = []
+        dados_penetracao = []
+        dados_amplificacao = []
+        habilidades_data_formatada = []
 
     if base_personagem:
         def agrupar_variaveis(tipo):
@@ -94,10 +104,9 @@ def exibir_personagem(request, personagem_id=None):
         # --- Lógica para formatar os dados das Habilidades (SÓ SE habilidades_obj foi encontrado) ---
         habilidades_data_formatada = formatar_habilidades(habilidades_obj)
 
-
-
     def formatar_para_json(dados):
         return [{"fields": {"variavelPropriedade": item["variavelPropriedade"], "variavelValor": item["variavelValor"]}} for item in dados]
+    
     rolagens_json = formatar_para_json(dados_rolagens)
     defesas_json = formatar_para_json(dados_defesas)
     resistencias_json = formatar_para_json(dados_resistencias)

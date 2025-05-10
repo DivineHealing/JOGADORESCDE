@@ -143,21 +143,7 @@
                     <br>
                     <div class="others">
                         <div class="atr-title">OUTROS</div>
-                        <div class="other" id="outros1_container">{{ tela_personagem.elementoOutros_1 }} <span id="outros1">{{ tela_personagem.outros_1 }}</span>%</div>
-                        <div class="other" id="outros2_container">{{ tela_personagem.elementoOutros_2 }} <span id="outros2">{{ tela_personagem.outros_2 }}</span>%</div>
-                        <div class="other" id="outros3_container">{{ tela_personagem.elementoOutros_3 }} <span id="outros3">{{ tela_personagem.outros_3 }}</span>%</div>
-                        <div class="other" id="outros4_container">{{ tela_personagem.elementoOutros_4 }} <span id="outros4">{{ tela_personagem.outros_4 }}</span>%</div>
-                        <div class="other" id="outros5_container">{{ tela_personagem.elementoOutros_5 }} <span id="outros5">{{ tela_personagem.outros_5 }}</span>%</div>
-                        <div class="other" id="outros6_container">{{ tela_personagem.elementoOutros_6 }} <span id="outros6">{{ tela_personagem.outros_6 }}</span>%</div>
-                        <div class="other" id="outros7_container">{{ tela_personagem.elementoOutros_7 }} <span id="outros7">{{ tela_personagem.outros_7 }}</span>%</div>
-                        <div class="other" id="outros8_container">{{ tela_personagem.elementoOutros_8 }} <span id="outros8">{{ tela_personagem.outros_8 }}</span>%</div>
-                        <div class="other" id="outros9_container">{{ tela_personagem.elementoOutros_9 }} <span id="outros9">{{ tela_personagem.outros_9 }}</span>%</div>
-                        <div class="other" id="outros10_container">{{ tela_personagem.elementoOutros_10 }} <span id="outros10">{{ tela_personagem.outros_10 }}</span>%</div>
-                        <div class="other" id="outros11_container">{{ tela_personagem.elementoOutros_11 }} <span id="outros11">{{ tela_personagem.outros_11 }}</span>%</div>
-                        <div class="other" id="outros12_container">{{ tela_personagem.elementoOutros_12 }} <span id="outros12">{{ tela_personagem.outros_12 }}</span>%</div>
-                        <div class="other" id="outros13_container">{{ tela_personagem.elementoOutros_13 }} <span id="outros13">{{ tela_personagem.outros_13 }}</span>%</div>
-                        <div class="other" id="outros14_container">{{ tela_personagem.elementoOutros_14 }} <span id="outros14">{{ tela_personagem.outros_14 }}</span>%</div>
-                        <div class="other" id="outros15_container">{{ tela_personagem.elementoOutros_15 }} <span id="outros15">{{ tela_personagem.outros_15 }}</span>%</div>
+                        <div class="other" id="outros1_container" hidden>{{ tela_personagem.elementoOutros_1 }} <span id="outros1">{{ tela_personagem.outros_1 }}</span>%</div>
                     </div>
                     <br>
                     <div class="regeneration">
@@ -217,8 +203,8 @@
                 <button class="button" role="button" disabled title="Selecione um personagem primeiro">Características</button>
             {% endif %}
             <a href="{% url 'conjunto' %}" class="buttonLink"><button class="button" role="button">Conjunto</button></a>
-            <a href="{% url 'acessorios' %}"><button class="button" role="button">Acessorios</button></a>
-            <a href="{% url 'arma' %}"><button class="button" role="button">Armas</button></a>
+            <a href="{% url 'acessorios' %}" class="buttonLink"><button class="button" role="button">Acessorios</button></a>
+            <a href="{% url 'arma'  %}"><button class="button" role="button">Armas</button></a>
         </div>
     </div>
     

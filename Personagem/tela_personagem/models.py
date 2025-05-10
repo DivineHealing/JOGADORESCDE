@@ -22,6 +22,8 @@ class Tela_personagem(models.Model):
     determinacao = models.IntegerField(default=0, blank=True)
     perspicacia = models.IntegerField(default=0, blank=True)
     carisma = models.IntegerField(default=0, blank=True)
+
+    # STATUS PERCENTUAL
     forcaPer = models.IntegerField(default=0, blank=True)
     destrezaPer = models.IntegerField(default=0, blank=True)
     inteligenciaPer = models.IntegerField(default=0, blank=True)
@@ -35,11 +37,14 @@ class Tela_personagem(models.Model):
     reducaoEspiritual = models.DecimalField(max_digits=5, decimal_places=2, default=0, blank=True)
 
     # DANO
-    esmagamento = models.DecimalField(max_digits=5, decimal_places=2, default=0, blank=True)
-    penExtra = models.DecimalField(max_digits=5, decimal_places=2, default=0, blank=True)
-    danoFinal = models.DecimalField(max_digits=5, decimal_places=2, default=0, blank=True)
-    espiritualPerc = models.DecimalField(max_digits=5, decimal_places=2, default=0, blank=True)
+    esmagamento = models.IntegerField(default=0, blank=True)
+    penExtra = models.IntegerField(default=0, blank=True)
+    danoFinal = models.IntegerField(default=0, blank=True)
+    espiritualPerc = models.IntegerField(default=0, blank=True)
     espiritualFixo = models.IntegerField(default=0, blank=True)
+    dreno = models.IntegerField(default=0, blank=True)
+    exaustao = models.IntegerField(default=0, blank=True)
+    murchamento = models.IntegerField(default=0, blank=True)
     
     '''def __str__(self):
         return self.nome'''

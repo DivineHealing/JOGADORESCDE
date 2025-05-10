@@ -25,7 +25,14 @@ def cadastrar_equipamento_acessorios(request, tipo):
     else:
         form = EquipamentoForm(initial={'tipo': tipo})  # Pré-preenche o tipo
 
-    return render(request, 'cadastrar_atributos_acessorios.html', {'form': form, 'tipo': tipo})
+    personagem_id = obter_personagem_sessao(request)
+
+    if not personagem_id:
+        return redirect('exibir_personagem')
+
+    tela_personagem = get_object_or_404(Arma, pk=personagem_id)
+
+    return render(request, 'cadastrar_atributos_acessorios.html', {'form': form, 'tipo': tipo, 'tela_personagem': tela_personagem})
 
 
 def cadastrar_efeitos_acessorios(request, tipo):
@@ -39,7 +46,14 @@ def cadastrar_efeitos_acessorios(request, tipo):
     else:
         form = EquipamentoForm(initial={'tipo': tipo})  # Pré-preenche o tipo
 
-    return render(request, 'cadastrar_efeitos_acessorios.html', {'form': form, 'tipo': tipo})
+    personagem_id = obter_personagem_sessao(request)
+
+    if not personagem_id:
+        return redirect('exibir_personagem')
+
+    tela_personagem = get_object_or_404(Arma, pk=personagem_id)
+
+    return render(request, 'cadastrar_efeitos_acessorios.html', {'form': form, 'tipo': tipo, 'tela_personagem': tela_personagem})
 
 
 def perfil(request, user_id):

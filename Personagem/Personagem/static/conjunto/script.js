@@ -105,13 +105,17 @@ addRegeneracaoBtn.addEventListener('click', function () {
     const regeneracaoRow = document.createElement('div');
     if (regeneracaoCount <= 3) {
         regeneracaoRow.classList.add('regeneracao-row');
-        regeneracaoRow.innerHTML = `
-            <div>
-                <label for="elemento${regeneracaoCount}">Tipo</label>
-                <input type="text" id="regeneracaoTipo${regeneracaoCount}" name="regeneracaoTipo${regeneracaoCount}" placeholder="Ex: Vida">
+        regeneracaoRow.innerHTML =
+        `   <div>
+                <label for="regeneracaoTipo${regeneracaoCount}">Tipo</label>
+                <select class='personagem_select' id="regeneracaoTipo${regeneracaoCount}" name="regeneracaoTipo${regeneracaoCount}">                        
+                    <option value="regenVida" selected>Vida</option>
+                    <option value="regenMana">Mana</option>
+                    <option value="regenVigor">Vigor</option>
+                </select>
             </div>
             <div>
-                <label for="defesa${regeneracaoCount}">Valor</label>
+                <label for="regeneracao${regeneracaoCount}">Valor</label>
                 <input type="number" id="regeneracao${regeneracaoCount}" name="regeneracao${regeneracaoCount}" value="0">
             </div>
         `;

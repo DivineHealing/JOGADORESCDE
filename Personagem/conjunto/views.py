@@ -8,8 +8,18 @@ from lib.utilitarios import *
 
 tipoEquipamento = "TIPO DO EQUIPAMENTO"
 
-def conjunto(request):
-    return render(request, 'conjunto.html')
+def conjunto(request):    
+    personagem_id = obter_personagem_sessao(request)
+
+    if not personagem_id:
+        return redirect('exibir_personagem')
+
+    tela_personagem = get_object_or_404(Conjunto, pk=personagem_id)
+
+    context = {
+        'tela_personagem': tela_personagem
+    }
+    return render(request, 'conjunto.html', context)
 
 def cadastrar_equipamento(request, tipo):
     global tipoEquipamento
@@ -25,7 +35,14 @@ def cadastrar_equipamento(request, tipo):
     else:
         form = EquipamentoForm(initial={'tipo': tipo})  # Pré-preenche o tipo
 
-    return render(request, 'cadastrar_atributos_conj.html', {'form': form, 'tipo': tipo})
+    personagem_id = obter_personagem_sessao(request)
+
+    if not personagem_id:
+        return redirect('exibir_personagem')
+
+    tela_personagem = get_object_or_404(Conjunto, pk=personagem_id)
+
+    return render(request, 'cadastrar_atributos_conj.html', {'form': form, 'tipo': tipo, 'tela_personagem': tela_personagem})
 
 
 def cadastrar_efeitos(request, tipo):
@@ -38,8 +55,15 @@ def cadastrar_efeitos(request, tipo):
             return redirect('cadastrar_efeitos')  # Redireciona para a lista (você ainda vai criar)
     else:
         form = EquipamentoForm(initial={'tipo': tipo})  # Pré-preenche o tipo
+    
+    personagem_id = obter_personagem_sessao(request)
 
-    return render(request, 'cadastrar_efeitos_conj.html', {'form': form, 'tipo': tipo})
+    if not personagem_id:
+        return redirect('exibir_personagem')
+
+    tela_personagem = get_object_or_404(Arma, pk=personagem_id)
+
+    return render(request, 'cadastrar_efeitos_conj.html', {'form': form, 'tipo': tipo, 'tela_personagem': tela_personagem})
 
 
 def perfil(request, user_id):
