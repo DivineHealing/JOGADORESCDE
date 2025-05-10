@@ -25,8 +25,8 @@
         <div class="top-section">
             <div class="vida-mana-vigor bordered-section">
                 <div class="formGroupRed field">
-                    <input type="number" maxlength="12" name="vida" id="vida" placeholder="Valor da Vida" value="{{ base_personagem.vida }}" onkeypress="if (!isNaN(String.fromCharCode(window.event.keyCode))) return true; else return false;"/>
-                    <input style="margin-Left: 1em" pattern="[0-9]+$" type="number" placeholder="Aumento de Vida (%)" name='vidaTotal' id='vidaTotal' value="{{ maestria.vidaBase }}" />
+                    <input type="number" maxlength="12" name="vida" id="vida" placeholder="Valor da Vida" value="{{ tela_personagem.vida }}" onkeypress="if (!isNaN(String.fromCharCode(window.event.keyCode))) return true; else return false;"/>
+                    <input style="margin-Left: 1em" pattern="[0-9]+$" type="number" placeholder="Aumento de Vida (%)" name='vidaTotal' id='vidaTotal' value="{{ tela_personagem.vidaBase }}" />
                     <label style="margin-Left: 13.5em; width: 13.5em" for="vidaMax" class="formLabel">Aumento de Vida (%)</label>
                     <label style="width: 13em" for="vida" class="formLabel">Aumento de Vida</label>
                 </div>
@@ -37,29 +37,41 @@
             <div class="left-column">
                 <div class="attribute-stats bordered-section">
                     <div class="stat section-title">STATUS</div>
-                    <div class="formGroup field">
-                        <input pattern="[0-9]+$" type="number" placeholder="Valor da Força" id='forca'/>
+                    <div class="formGroupRed field">
+                        <input pattern="[0-9]+$" type="number" placeholder="Valor da Força" id='forca' name="forca" value="{{ tela_personagem.forca }}" />
+                        <input style="width: 5em" pattern="[0-9]+$" type="number" placeholder="Valor da Força" id='forcaPer' name="forcaPer" value="{{ tela_personagem.forcaPer }}" />
                         <label for="forca" class="formLabel">Força</label>
+                        <label style="margin-left: 12.5em; width: 15em" for="forcaPer" class="formLabel">(%)</label>
                     </div>
-                    <div class="formGroup field">
-                        <input pattern="[0-9]+$" type="number" placeholder="Valor da Destreza" id='destreza'/>
+                    <div class="formGroupRed field">
+                        <input pattern="[0-9]+$" type="number" placeholder="Valor da Destreza" id='destreza' name="destreza" value="{{ tela_personagem.destreza }}" />
+                        <input style="width: 5em" pattern="[0-9]+$" type="number" placeholder="Valor da Destreza" id='destrezaPer' name="destrezaPer" value="{{ tela_personagem.destrezaPer }}" />
                         <label for="destreza" class="formLabel">Destreza</label>
+                        <label style="margin-left: 12.5em; width: 15em" for="destrezaPer" class="formLabel">(%)</label>
                     </div>
-                    <div class="formGroup field">
-                        <input pattern="[0-9]+$" type="number" placeholder="Valor da Inteligência" id='inteligencia'/>
+                    <div class="formGroupRed field">
+                        <input pattern="[0-9]+$" type="number" placeholder="Valor da Inteligência" id='inteligencia' name="inteligencia" value="{{ tela_personagem.inteligencia }}" />
+                        <input style="width: 5em" pattern="[0-9]+$" type="number" placeholder="Valor da Inteligência" id='inteligenciaPer' name="inteligenciaPer" value="{{ tela_personagem.inteligenciaPer }}" />
                         <label for="inteligencia" class="formLabel">Inteligência</label>
+                        <label style="margin-left: 12.5em; width: 15em" for="inteligenciaPer" class="formLabel">(%)</label>
                     </div>
-                    <div class="formGroup field">
-                        <input pattern="[0-9]+$" type="number" placeholder="Valor da Determinação" id='determinacao'/>
+                    <div class="formGroupRed field">
+                        <input pattern="[0-9]+$" type="number" placeholder="Valor da Determinação" id='determinacao' name="determinacao" value="{{ tela_personagem.determinacao }}" />
+                        <input style="width: 5em" pattern="[0-9]+$" type="number" placeholder="Valor da Determinação" id='determinacaoPer' name="determinacaoPer" value="{{ tela_personagem.determinacaoPer }}" />
                         <label for="determinacao" class="formLabel">Determinação</label>
+                        <label style="margin-left: 12.5em; width: 15em" for="determinacaoPer" class="formLabel">(%)</label>
                     </div>
-                    <div class="formGroup field">
-                        <input pattern="[0-9]+$" type="number" placeholder="Valor da Perspicácia" id='perspicacia'/>
+                    <div class="formGroupRed field">
+                        <input pattern="[0-9]+$" type="number" placeholder="Valor da Perspicácia" id='perspicacia' name="perspicacia" value="{{ tela_personagem.perspicacia }}" />
+                        <input style="width: 5em" pattern="[0-9]+$" type="number" placeholder="Valor da Perspicácia" id='perspicaciaPer' name="perspicaciaPer" value="{{ tela_personagem.perspicaciaPer }}" />
                         <label for="perspicacia" class="formLabel">Perspicácia</label>
+                        <label style="margin-left: 12.5em; width: 15em" for="perspicaciaPer" class="formLabel">(%)</label>
                     </div>
-                    <div class="formGroup field">
-                        <input pattern="[0-9]+$" type="number" placeholder="Valor da Carisma" id='carisma'/>
+                    <div class="formGroupRed field">
+                        <input pattern="[0-9]+$" type="number" placeholder="Valor da Perspicácia" id='perspicacia' name="perspicacia" value="{{ tela_personagem.perspicacia }}" />
+                        <input style="width: 5em" pattern="[0-9]+$" type="number" placeholder="Valor da Perspicácia" id='perspicaciaPer' name="perspicaciaPer" value="{{ tela_personagem.perspicaciaPer }}" />
                         <label for="carisma" class="formLabel">Carisma</label>
+                        <label style="margin-left: 12.5em; width: 15em" for="carismaPer" class="formLabel">(%)</label>
                     </div>
                 </div>
                 <div class="rolling-bonus-stats bordered-section">

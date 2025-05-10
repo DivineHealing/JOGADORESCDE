@@ -40,6 +40,14 @@ class Acessorios(models.Model):
     determinacao = models.IntegerField(default=0, blank=True)
     perspicacia = models.IntegerField(default=0, blank=True)
     carisma = models.IntegerField(default=0, blank=True)
+
+    # STATUS PERCENTUAL
+    forcaPer = models.IntegerField(default=0, blank=True)
+    destrezaPer = models.IntegerField(default=0, blank=True)
+    inteligenciaPer = models.IntegerField(default=0, blank=True)
+    determinacaoPer = models.IntegerField(default=0, blank=True)
+    perspicaciaPer = models.IntegerField(default=0, blank=True)
+    carismaPer = models.IntegerField(default=0, blank=True)
     
     def __str__(self):
         return self.nome

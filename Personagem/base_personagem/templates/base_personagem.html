@@ -26,13 +26,13 @@
             <div class="vida-mana-vigor bordered-section">
                 <div class="formGroupRed field">
                     <input type="number" maxlength="12" name="vida" id="vida" placeholder="Valor da Vida" value="{{ base_personagem.vida }}" onkeypress="if (!isNaN(String.fromCharCode(window.event.keyCode))) return true; else return false;"/>
-                    <input style="margin-Left: 1em" pattern="[0-9]+$" type="number" placeholder="Aumento de Vida Base" name='vidaBase' id='vidaBase' value="{{ maestria.vidaBase }}" />
+                    <input style="margin-Left: 1em" pattern="[0-9]+$" type="number" placeholder="Aumento de Vida Base" name='vidaBase' id='vidaBase' value="{{ base_personagem.vidaBase }}" />
                     <label style="margin-Left: 13.5em; width: 13.5em" for="vidaBase" class="formLabel">Aumento de Vida Base</label>
                     <label style="width: 13em" for="vida" class="formLabel">Vida Máxima</label>
                 </div> 
                 <div class="formGroupRed field">
-                    <input pattern="[0-9]+$" type="number" placeholder="Valor da Mana" name='mana' id='mana' value="{{ maestria.mana }}" />
-                    <input style="margin-Left: 1em" pattern="[0-9]+$" type="number" placeholder="Valor da Vigor" name='vigor' id='vigor' value="{{ maestria.vigor }}" />
+                    <input pattern="[0-9]+$" type="number" placeholder="Valor da Mana" name='mana' id='mana' value="{{ base_personagem.mana }}" />
+                    <input style="margin-Left: 1em" pattern="[0-9]+$" type="number" placeholder="Valor da Vigor" name='vigor' id='vigor' value="{{ base_personagem.vigor }}" />
                     <label style="width: 13em" for="mana" class="formLabel">Aumento de Mana</label>
                     <label style="margin-Left: 13.5em; width: 13.5em" for="vigor" class="formLabel">Aumento de Vigor</label>
                 </div> 
@@ -102,7 +102,7 @@
                             <!-- Defensivos dinâmicos -->
                         </div>
                         <div class="formGroup field">
-                            <input type="number" name="reducao" id="reducao" placeholder="Redução de Dano" />
+                            <input type="number" name="reducao" id="reducao" placeholder="Redução de Dano" value="{{ base_personagem.reducao }}"/>
                             <label for="reducao" class="formLabel">Redução</label>
                         </div>
                     </div>
@@ -114,7 +114,7 @@
                             <!-- Ofensivos dinâmicos -->
                         </div>
                         <div class="formGroupRed field">
-                            <input type="number" name="dmgFinal" id="dmgFinal" placeholder="Dano Final" />
+                            <input type="number" name="dmgFinal" id="dmgFinal" placeholder="Dano Final" value="{{ base_personagem.danoFinal }}"/>
                             <label for="dmgFinal" class="formLabel">Dano Final</label>
                         </div>
                     </div>
@@ -131,10 +131,6 @@
                     <button type="button" class="add-atributo-btn" id="addRegeneracao">Add</button>
                     <div class="atributos-added-container" id="regeneracaoContainer">
                         <!-- Regeneração -->
-                    </div>
-                    <div class="formGroup field">
-                        <input type="number" maxlength="12" name="vidaMax" id="vidaMax" placeholder="Valor da Vida" value="{{ base_personagem.vida }}" onkeypress="if (!isNaN(String.fromCharCode(window.event.keyCode))) return true; else return false;"/>
-                        <label for="vidaMax" class="formLabel">Vida Máxima</label>
                     </div>
                 </div>
             </div>

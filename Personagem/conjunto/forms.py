@@ -6,20 +6,30 @@ class EquipamentoForm(forms.ModelForm):
     class Meta:
         model = Conjunto
         fields = [
-'peca',
-'personagem',
-'regenVida',
-'regenMana',
-'regenVigor',
-'forca',
-'destreza',
-'inteligencia',
-'determinacao',
-'perspicacia',
-'carisma',
-'reducao',
-'defesaFixaEspiritual',
-'reducaoEspiritual'
+    'peca',
+    'nome',
+    'vida',
+    'vidaBase',
+    'regenVida',
+    'mana',
+    'regenMana',
+    'vigor',
+    'regenVigor',
+    'forca',
+    'destreza',
+    'inteligencia',
+    'determinacao',
+    'perspicacia',
+    'carisma',
+    'forcaPer',
+    'destrezaPer',
+    'inteligenciaPer',
+    'determinacaoPer',
+    'perspicaciaPer',
+    'carismaPer',
+    'reducao',
+    'defesaFixaEspiritual',
+    'reducaoEspiritual'
 ]
     widgets = {
         'tipo': forms.HiddenInput(), #Oculta o campo, pois já será preenchido

@@ -7,24 +7,46 @@ class BaseForm(forms.ModelForm):
     class Meta:
         model = Base
         fields = [
-'personagem',
-'regenVida',
-'regenMana',
-'regenVigor',
-'forca',
-'destreza',
-'inteligencia',
-'determinacao',
-'perspicacia',
-'carisma',
-'reducao',
-'defesaFixaEspiritual',
-'reducaoEspiritual',
-'esmagamento',
-'penExtra',
-'danoFinal',
-'espiritualPerc',
-'espiritualFixo',
+    'vida',
+    'vidaBase',
+    'regenVida',
+    'mana',
+    'regenMana',
+    'vigor',
+    'regenVigor',
+
+    # STATUS
+    'forca',
+    'destreza',
+    'inteligencia',
+    'determinacao',
+    'perspicacia',
+    'carisma',
+
+    # STATUS PERCENTUAL
+    'forcaPer',
+    'destrezaPer',
+    'inteligenciaPer',
+    'determinacaoPer',
+    'perspicaciaPer',
+    'carismaPer',
+
+    # DEFESA
+    'reducao',
+    'defesaFixaEspiritual',
+    'reducaoEspiritual',
+
+    # DANO
+    'esmagamento',
+    'penExtra',
+    'danoFinal',
+    'espiritualPerc',
+    'espiritualFixo',
+    'dreno',
+    'exaustao',
+    'murchamento'
+    
+
 ]
     widgets = {
         'tipo': forms.HiddenInput(), #Oculta o campo, pois já será preenchido

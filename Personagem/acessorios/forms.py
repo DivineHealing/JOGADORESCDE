@@ -7,18 +7,36 @@ class EquipamentoForm(forms.ModelForm):
     class Meta:
         model = Acessorios
         fields = [
-'peca',
-'personagem',
-'regenVida',
-'regenMana',
-'regenVigor',
-'forca',
-'destreza',
-'inteligencia',
-'determinacao',
-'perspicacia',
-'carisma',
-]
+    'peca',
+    
+    # NOME DO PERSONAGEM
+    'nome',
+
+    # ATRIBUTOS e REGENERAÇÃO
+    'vida',
+    'vidaTotal',
+    'regenVida',
+    'mana',
+    'regenMana',
+    'vigor',
+    'regenVigor',
+
+    # STATUS
+    'forca',
+    'destreza',
+    'inteligencia',
+    'determinacao',
+    'perspicacia',
+    'carisma',
+    
+    # STATUS PERCENTUAL
+    'forcaPer',
+    'destrezaPer',
+    'inteligenciaPer',
+    'determinacaoPer',
+    'perspicaciaPer',
+    'carismaPer'
+    ]
 
     widgets = {
         'tipo': forms.HiddenInput(), #Oculta o campo, pois já será preenchido

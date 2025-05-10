@@ -114,7 +114,7 @@ def obter_personagem_sessao(request):
 def pegar_front(request, escolha, personagem, origem, peca= "", percent=False):
     # ATRIBUTOS BASE
     campos = { # guardando os camposem um dicionario(esquerda é onde salvara no banco|direita é o que via pegar no request)
-        "vida": "vidaMax",
+        "vida": "vida",
         "vigor": "vigor",
         "mana": "mana",
         "forca": "forca",
@@ -127,7 +127,7 @@ def pegar_front(request, escolha, personagem, origem, peca= "", percent=False):
         "danoFinal": "dmgFinal",
         # definir se a parte de baixo vai ficar junto ou em outro
         "vidaBase": "vidaBase",
-        "vidaAtual": "vidaAtual",
+        "vidaTotal": "vidaTotal",
         "bloqueio": "bloqueio",
         "aumentoDA": "aumentoDA",
         "reducaoEspiritual": "redEspiritual",

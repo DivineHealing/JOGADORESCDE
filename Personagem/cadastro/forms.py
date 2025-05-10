@@ -7,25 +7,44 @@ class EquipamentoForm(forms.ModelForm):
     class Meta:
         model = Maestria
         fields = [
-'peca',
-'personagem',
-'regenVida',
-'regenMana',
-'regenVigor',
-'forcaPer',
-'destrezaPer',
-'inteligenciaPer',
-'determinacaoPer',
-'perspicaciaPer',
-'carismaPer',
-'reducao',
-'vidaAtual',
-'reducaoEspiritual',
-'esmagamento',
-'penExtra',
-'aumentoDA',
-'espiritualPerc',
-'vidaBase',
+    'peca',
+
+    # NOME DO PERSONAGEM
+    'personagem',
+    'nome',
+    
+    # ATRIBUTOS e REGENERAÇÃO
+    'vidaBase',
+    'vidaTotal',
+    'regenVida',
+    'mana',
+    'regenMana',
+    'vigor',
+    'regenVigor',
+
+    # STATUS
+    'forcaPer',
+    'destrezaPer',
+    'inteligenciaPer',
+    'determinacaoPer',
+    'perspicaciaPer',
+    'carismaPer',
+
+    # DEFESA
+    'reducao',
+    'bloqueio',
+    'aumentoDA',
+    'reducaoEspiritual',
+
+    # DANO
+    'esmagamento',
+    'penExtra',
+    'danoFinal',
+    'espiritualPerc',
+    'espiritualFixo',
+    'dreno',
+    'exaustao',
+    'murchamento'
 ]
     widgets = {
         'tipo': forms.HiddenInput(), #Oculta o campo, pois já será preenchido

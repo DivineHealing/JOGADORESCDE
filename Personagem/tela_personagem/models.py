@@ -11,9 +11,9 @@ class Tela_personagem(models.Model):
     vida = models.IntegerField(default=100, blank=True)
     mana = models.IntegerField(default=100, blank=True)
     vigor = models.IntegerField(default=100, blank=True)
-    regenVida = models.DecimalField(max_digits=5, decimal_places=2, default=0, blank=True)
-    regenMana = models.DecimalField(max_digits=5, decimal_places=2, default=0, blank=True)
-    regenVigor = models.DecimalField(max_digits=5, decimal_places=2, default=0, blank=True)
+    regenVida = models.IntegerField(default=100, blank=True)
+    regenMana = models.IntegerField(default=100, blank=True)
+    regenVigor = models.IntegerField(default=100, blank=True)
 
     # STATUS
     forca = models.IntegerField(default=0, blank=True)
@@ -32,9 +32,9 @@ class Tela_personagem(models.Model):
     carismaPer = models.IntegerField(default=0, blank=True)
 
     # DEFESA
-    reducao = models.DecimalField(max_digits=5, decimal_places=2, default=0, blank=True)
+    reducao = models.IntegerField(default=0, blank=True)
     defesaFixaEspiritual = models.IntegerField(default=0, blank=True)
-    reducaoEspiritual = models.DecimalField(max_digits=5, decimal_places=2, default=0, blank=True)
+    reducaoEspiritual = models.IntegerField(default=0, blank=True)
 
     # DANO
     esmagamento = models.IntegerField(default=0, blank=True)
@@ -54,6 +54,18 @@ class Character_attribute(models.Model):
     variavelTipo = models.CharField(max_length=50, default="", blank=True)
     variavelPropriedade = models.CharField(max_length=50, default="", blank=True)
     variavelValor = models.IntegerField(default=0, blank=True)
+    posicao = models.IntegerField()
+    peca = models.CharField(max_length=50, default="", blank=True)
+    origem = models.CharField(max_length=50, default="", blank=True)
+
+    '''def __str__(self):
+        return self.nome'''
+    
+class Character_effects(models.Model):
+    personagem = models.ForeignKey(Base_personagem, on_delete=models.CASCADE)
+    variavelTipo = models.CharField(max_length=50, default="", blank=True) # efeitoTipo
+    variavelNome = models.CharField(max_length=50, default="", blank=True) # efeitoNome
+    variavelDescricao = models.IntegerField(default=0, blank=True) # efeitoDescricao
     posicao = models.IntegerField()
     peca = models.CharField(max_length=50, default="", blank=True)
     origem = models.CharField(max_length=50, default="", blank=True)

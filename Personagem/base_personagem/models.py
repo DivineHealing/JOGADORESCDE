@@ -30,9 +30,9 @@ class Base_personagem(models.Model):
     carismaPer = models.IntegerField(default=0, blank=True)
 
     # DEFESA
-    reducao = models.DecimalField(max_digits=5, decimal_places=2, default=0.0, blank=True)
+    reducao = models.IntegerField(default=0, blank=True)
     defesaFixaEspiritual = models.IntegerField(default=0, blank=True)
-    reducaoEspiritual = models.DecimalField(max_digits=5, decimal_places=2, default=0.0, blank=True)
+    reducaoEspiritual = models.IntegerField(default=0, blank=True)
 
     # DANO
     esmagamento = models.IntegerField(default=0, blank=True)
