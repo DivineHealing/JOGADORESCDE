@@ -375,8 +375,8 @@ def pegar_efeito(request, personagem, origem, peca):
     #Tipo do efeito
     while True:
         tipo = request.POST.get(f"efeitoTipo{i}")
-        nome = request.POST.get(f"efeitoAcessoriosNome{i}")
-        descricao = request.POST.get(f"efeitoAcessoriosDesc{i}")
+        nome = request.POST.get(f"efeitoNome{i}")
+        descricao = request.POST.get(f"efeitoDesc{i}")
 
         if not any([tipo, nome, descricao]):  # se não houver nenhum dos tipos
             extras = Character_effects.objects.filter(

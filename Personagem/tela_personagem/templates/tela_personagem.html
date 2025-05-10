@@ -269,8 +269,14 @@
                 const dano = danoObj.fields;
                 const pen = penObj.fields;
         
-                const divDano = criarDiv('damage', `danoFixo${i + 1}_container`, `Dano Fixo ${dano.variavelPropriedade}`, dano.variavelValor);
-                const divPen = criarDiv('damage', `penetracao${i + 1}_container`, `Penetração ${pen.variavelPropriedade}`, pen.variavelValor, '%');
+                if (dano.variavelValor > 0) {
+                    const divDano = criarDiv('damage', `danoFixo${i + 1}_container`, `Dano Fixo ${dano.variavelPropriedade}`, dano.variavelValor);
+                    danoArea.appendChild(divDano);
+                }
+                if (pen.variavelValor > 0) {
+                    const divPen = criarDiv('damage', `penetracao${i + 1}_container`, `Penetração ${pen.variavelPropriedade}`, pen.variavelValor, '%');
+                    danoArea.appendChild(divPen);
+                }
         
                 danoArea.appendChild(divDano);
                 danoArea.appendChild(divPen);
@@ -289,36 +295,40 @@
                 if (!def.variavelPropriedade || def.variavelValor === undefined) return;
                 if (!res.variavelPropriedade || res.variavelValor === undefined) return;
 
-                const divDef = document.createElement('div');
-                divDef.className = 'defense';
-                divDef.id = `defesaFixa${i + 1}_container`;
-                divDef.innerHTML = `Defesa Fixa ${def.variavelPropriedade} <span id="defesaFixa_${i + 1}">${Number(def.variavelValor).toLocaleString('pt-BR')}</span>`;
-
-                const divRes = document.createElement('div');
-                divRes.className = 'defense';
-                divRes.id = `resistenciaExtra${i + 1}_container`;
-                divRes.innerHTML = `Resistência ${res.variavelPropriedade} <span id="resistencia_${i + 1}">${Number(res.variavelValor).toLocaleString('pt-BR')}</span>%`;
-
+                if (def.variavelValor > 0) {
+                    const divDef = document.createElement('div');
+                    divDef.className = 'defense';
+                    divDef.id = `defesaFixa${i + 1}_container`;
+                    divDef.innerHTML = `Defesa Fixa ${def.variavelPropriedade} <span id="defesaFixa_${i + 1}">${Number(def.variavelValor).toLocaleString('pt-BR')}</span>`;
+                    defArea.appendChild(divDef);
+                }
+                if (res.variavelValor > 0) {
+                    const divRes = document.createElement('div');
+                    divRes.className = 'defense';
+                    divRes.id = `resistenciaExtra${i + 1}_container`;
+                    divRes.innerHTML = `Resistência ${res.variavelPropriedade} <span id="resistencia_${i + 1}">${Number(res.variavelValor).toLocaleString('pt-BR')}</span>%`;
+                    defArea.appendChild(divRes);
+                }
                 defArea.appendChild(divDef);
                 defArea.appendChild(divRes);
-            });
-
-        
+            });        
             // ---------------- ROLAGENS ----------------
             listaRolagens.forEach((roll, i) => {
                 const info = roll.fields;
-                const div = criarDiv('roll', `rolagem${i + 1}_container`, `${info.variavelPropriedade}`, info.variavelValor, '');
-                rollArea.appendChild(div);
-            });
-        
+                if (roll.variavelValor > 0) {
+                    const div = criarDiv('roll', `rolagem${i + 1}_container`, `${info.variavelPropriedade}`, info.variavelValor, '');
+                    rollArea.appendChild(div);
+                }
+            });        
             // ---------------- AMPLIFICAÇÕES ----------------
             listaAmplificacoes.forEach((amp, i) => {
                 const info = amp.fields;
+            if (amp.variavelValor > 0) {
                 const div = criarDiv('amp', `amplificacao${i + 1}_container`, `${info.variavelPropriedade}`, info.variavelValor, '%');
                 ampArea.appendChild(div);
-            });
+            }
         });
-        </script>
+    </script>
         
 </body>
 </html>

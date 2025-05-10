@@ -4,7 +4,7 @@ from base_personagem.models import Base_personagem
 
 class Tela_personagem(models.Model):
     personagem = models.ForeignKey(Base_personagem, on_delete=models.CASCADE)
-
+    
     nome = models.CharField(max_length=25, blank=True, default="")
 
     # ATRIBUTOS e REGENERAÇÃO
@@ -65,7 +65,7 @@ class Character_effects(models.Model):
     personagem = models.ForeignKey(Base_personagem, on_delete=models.CASCADE)
     variavelTipo = models.CharField(max_length=50, default="", blank=True) # efeitoTipo
     variavelNome = models.CharField(max_length=50, default="", blank=True) # efeitoNome
-    variavelDescricao = models.CharField(max_length=50, default="", blank=True) # efeitoDescricao
+    variavelDescricao = models.CharField(max_length=1000, default="", blank=True) # efeitoDescricao
     posicao = models.IntegerField()
     peca = models.CharField(max_length=50, default="", blank=True)
     origem = models.CharField(max_length=50, default="", blank=True)

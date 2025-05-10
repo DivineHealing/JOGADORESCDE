@@ -44,11 +44,6 @@ addEfeitosBtn.addEventListener("click", function () {
     <div class="div6">
         <textarea style="width: 100%; height: 10em; wrap: "hard""; type="text" id="efeitoDesc${efeitosCount}" name="efeitoDesc${efeitosCount}" placeholder="Descrição do Efeito"></textarea>
     </div>
-</div>
-
-
-
-    
-        `;
+</div>`;
     efeitosContainer.appendChild(efeitoRow);
 });

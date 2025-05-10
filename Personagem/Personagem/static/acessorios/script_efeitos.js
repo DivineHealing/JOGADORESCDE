@@ -33,16 +33,16 @@ addEfeitosAcessoriosBtn.addEventListener("click", function () {
         </select>
     </div>
     <div class="div3">
-        <label for="efeitoAcessoriosNome${efeitosAcessoriosCount}">Nome do Efeito:</label>
+        <label for="efeitoNome${efeitosAcessoriosCount}">Nome do Efeito:</label>
     </div>
     <div class="div4">
-        <input style="width: 100%"; type="text" id="efeitoAcessoriosNome${efeitosAcessoriosCount}" name="efeitoAcessoriosNome${efeitosAcessoriosCount}" placeholder="Nome do efeito">
+        <input style="width: 100%"; type="text" id="efeitoNome${efeitosAcessoriosCount}" name="efeitoNome${efeitosAcessoriosCount}" placeholder="Nome do efeito">
     </div>
     <div class="div5">
         <label for="efeitoAcessoriosDesc${efeitosAcessoriosCount}">Descrição do Efeito:</label>
     </div>
     <div class="div6">
-        <textarea style="width: 100%; height: 10em; wrap: "hard""; type="text" id="efeitoAcessoriosDesc${efeitosAcessoriosCount}" name="efeitoAcessoriosDesc${efeitosAcessoriosCount}" placeholder="Descrição do Efeito"></textarea>
+        <textarea style="width: 100%; height: 10em; wrap: "hard""; type="text" id="efeitoDesc${efeitosAcessoriosCount}" name="efeitoDesc${efeitosAcessoriosCount}" placeholder="Descrição do Efeito"></textarea>
     </div>
 </div>
 
