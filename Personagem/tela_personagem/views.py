@@ -1,7 +1,6 @@
 # tela_personagens/views.py
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponse
-from django.core.serializers import serialize
+from django.http import HttpResponse, JsonResponse
 from habilidade.models import Habilidade
 from base_personagem.models import Base_personagem
 from .models import Tela_personagem, Character_attribute
@@ -231,7 +230,51 @@ def exibir_ficha_personagem(request, personagem_id):
     # Certifique-se que está renderizando o template correto
     return render(request, 'tela_personagem.html', context) # Ou 'seu_template_ficha.html'
 
+from django.db.models import F
+
 def calcular_status(request):
-    def obter_valor_status(dados, status):
-        return [{"fields": {"status": item["valor"], "variavelValor": item["variavelValor"]}} for item in dados]
-    forca = Base_personagem.objects.values_list('forca', flat=False)
+
+    # Modelos de onde os dados serão extraídos
+    bancos = [Base_personagem, Tela_personagem, Arma, Conjunto, Acessorios, Maestria]
+
+    # Campos que queremos coletar
+    status = [
+        'forca', 'destreza', 'inteligencia', 'determinacao', 'perspicacia', 'carisma',
+        'forcaPer', 'destrezaPer', 'inteligenciaPer', 'determinacaoPer', 'perspicaciaPer', 'carismaPer'
+    ]
+
+    # Armazenar os dados coletados
+    acumulado_total = defaultdict(int)
+
+    # Armazena os valores individuais por modelo, caso queira tambem
+    status_valores = []
+    
+    for modelo in bancos:
+        try:
+            dados = modelo.objects.all().values(*status)
+        except Exception as e:
+            print(f"Erro ao coletar dados do modelo {modelo.__name__}: {e}")
+            continue
+
+        for registro in dados:
+            registro_limpo = {}
+            for campo in status:
+                valor = registro.get(campo, 0)
+                if isinstance(valor, (int, float)):
+                    registro_limpo[campo] = valor
+                    acumulado_total[campo] += valor
+            status_valores.append({
+                'tabela': modelo.__name__,
+                'valores': registro_limpo
+            })
+    
+    resultado = {
+        'detalhes_por_modelo': status_valores,
+        'soma_total_por_satus': dict(acumulado_total),
+    }
+
+    # Exemplo de retorno ou uso dos dados
+    return JsonResponse(resultado)
+
+
+    

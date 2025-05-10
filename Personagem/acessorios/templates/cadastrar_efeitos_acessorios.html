@@ -12,30 +12,31 @@
     {% load humanize %}
     {% localize on %}
     <div class="background-container">
-
-        <div class="header">
-            <div class="name" style="color: white;">
-                <span >Nome do Personagem: {{ tela_personagem.personagem }}</span>
-            </div>
-        </div>
-
-        <div class="top-section">
-            <div class="vida-mana-vigor bordered-section">                  
-                <div class="abilities section-title">EFEITOS DO EQUIPAMENTO</div>
-                <button class="add-atributo-btn" id="addEfeitoAcessorios">Add</button>
-                <div class="atributos-added-container" id="efeitosAcessoriosContainer">
-                      <!-- Atributos serão adicionados aqui dinamicamente -->
-                </div>
-            </div>
-        </div>
-    <div class="formGroupRed">        
-        <a href="{% url 'acessorios' %}"><button class="button" role="button">Voltar</button></a>
-        <a href="{% url 'exibir_personagem' %}" class="buttonLink"><button class="button" role="button">Personagem</button></a>
         <form method="POST" action="{% url 'salvar_acessorio_efeitos' %}">
             {% csrf_token %}
-            <button class="button" role="button">Salvar</button>
-        </form>
-    </div>
+            <div class="header">
+                <div class="name" style="color: white;">
+                    <span >Nome do Personagem: {{ tela_personagem.personagem }}</span>
+                </div>
+            </div>
+
+            <div class="top-section">
+                <div class="vida-mana-vigor bordered-section">                  
+                    <div class="abilities section-title">EFEITOS DO EQUIPAMENTO</div>
+                    <button  type="button" class="add-atributo-btn" id="addEfeitoAcessorios">Add</button>
+                    <div class="atributos-added-container" id="efeitosAcessoriosContainer">
+                        <!-- Atributos serão adicionados aqui dinamicamente -->
+                    </div>
+                </div>
+            </div>
+        <div class="formGroupRed">        
+            <a href="{% url 'acessorios' %}"><button type="button" class="button" role="button">Voltar</button></a>
+            <a href="{% url 'exibir_personagem' %}" class="buttonLink"><button  type="button" class="button" role="button">Personagem</button></a>
+            
+                <button type="submit" class="button" role="button">Salvar</button>
+            
+        </div>
+    </form>
     {% endlocalize %}
     <script src="{% static 'acessorios\script_efeitos.js' %}"></script>
 </body>

@@ -9,7 +9,7 @@ from tela_personagem.models import Tela_personagem, Character_attribute
 from cadastro.models import Maestria
 
 campos_personagem = [
-    "regenVida", "regenMana", "regenVigor", "vida", "vidaBase", "vidaTotal", "mana", "vigor"
+    "regenVida", "regenMana", "regenVigor", "vida", "vidaBase", "vidaTotal", "mana", "vigor",
     "forca", "destreza", "inteligencia", "determinacao", "perspicacia", "carisma",
     "forcaPer", "destrezaPer", "inteligenciaPer", "determinacaoPer", "perspicaciaPer", "carismaPer",
     # DEFESA
