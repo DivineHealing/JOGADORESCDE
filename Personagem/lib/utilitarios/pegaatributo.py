@@ -217,7 +217,7 @@ def pegar_front(request, escolha, personagem, origem, peca= "", percent=False):
             defaults={
                 "personagem": personagem,
                 "variavelTipo": "rolagem",
-                "variavelPropriedade": tipo,
+                "variavelPropriedade": tipo.strip().capitalize(),
                 "variavelValor": valor,
                 "posicao": i,
                 "peca": peca,
@@ -254,7 +254,7 @@ def pegar_front(request, escolha, personagem, origem, peca= "", percent=False):
             defaults={
                 "personagem": personagem,
                 "variavelTipo": "defesa",
-                "variavelPropriedade": elemento,
+                "variavelPropriedade": elemento.strip().capitalize(),
                 "variavelValor": defesa,
                 "posicao": i,
                 "peca": peca,
@@ -268,7 +268,7 @@ def pegar_front(request, escolha, personagem, origem, peca= "", percent=False):
             defaults={
                 "personagem": personagem,
                 "variavelTipo": "resistencia",
-                "variavelPropriedade": elemento,
+                "variavelPropriedade": elemento.strip().capitalize(),
                 "variavelValor": resistencia,
                 "posicao": i,
                 "peca": peca,
@@ -308,7 +308,7 @@ def pegar_front(request, escolha, personagem, origem, peca= "", percent=False):
             defaults={
                 "personagem": personagem,
                 "variavelTipo": "dano",
-                "variavelPropriedade": elemento,
+                "variavelPropriedade": elemento.strip().capitalize(),
                 "variavelValor": dano,
                 "posicao": i,
                 "peca": peca,
@@ -322,7 +322,7 @@ def pegar_front(request, escolha, personagem, origem, peca= "", percent=False):
             defaults={
                 "personagem": personagem,
                 "variavelTipo": "penetracao",
-                "variavelPropriedade": elemento,
+                "variavelPropriedade": elemento.strip().capitalize(),
                 "variavelValor": penetracao,
                 "posicao": i,
                 "peca": peca,
@@ -359,7 +359,7 @@ def pegar_front(request, escolha, personagem, origem, peca= "", percent=False):
             defaults={
                 "personagem": personagem,
                 "variavelTipo": "amplificacao",
-                "variavelPropriedade": tipo,
+                "variavelPropriedade": tipo.strip().capitalize(),
                 "variavelValor": valor,
                 "posicao": i,
                 "peca": peca,
