@@ -388,6 +388,7 @@ def pegar_efeito(request, personagem, origem, peca):
                 setattr(c, "variavelTipo", "")
                 setattr(c, "variavelNome", "")
                 setattr(c, "variavelDescricao", "")
+                c.save()
             break
 
         #  verificando se existe o objeto especifico na tabela, se nao existir, ele ira criar

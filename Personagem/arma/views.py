@@ -89,7 +89,17 @@ def salvar_arma_atributo(request):
     return redirect('arma')
 
 def salvar_arma_efeitos(request):
-    if request.method == "POST":        
+    if request.method == "POST":
+        personagem_id = obter_personagem_sessao(request)
+
+        # se ainda nao tiver nenhum id de personagem por não existir personagem ele volta para pagina inicial
+        if not personagem_id:
+            return redirect('/')
+
+        print(tipoEquipamento)
+        personagem = Base_personagem.objects.get(id=personagem_id)
+        pegar_efeito(request, personagem, "arma", tipoEquipamento)
         print('FUNCIONA')
+        return redirect('arma')
 
     return redirect('arma')
