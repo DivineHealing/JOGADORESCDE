@@ -5,7 +5,7 @@ from acessorios.models import Acessorios
 from arma.models import Arma
 from base_personagem.models import Base_personagem
 from conjunto.models import Conjunto
-from tela_personagem.models import Tela_personagem, Character_attribute
+from tela_personagem.models import Tela_personagem, Character_attribute, Character_effects
 from cadastro.models import Maestria
 
 campos_personagem = [
@@ -113,8 +113,10 @@ def obter_personagem_sessao(request):
 
 def pegar_front(request, escolha, personagem, origem, peca= "", percent=False):
     # ATRIBUTOS BASE
-    campos = { # guardando os camposem um dicionario(esquerda é onde salvara no banco|direita é o que via pegar no request)
+    campos = { # guardando os campos em um dicionario(esquerda é onde salvara no banco|direita é o que vai pegar no request)
         "vida": "vida",
+        "vidaBase": "vidaBase",
+        "vidaTotal": "vidaTotal",
         "vigor": "vigor",
         "mana": "mana",
         "forca": "forca",
@@ -126,8 +128,6 @@ def pegar_front(request, escolha, personagem, origem, peca= "", percent=False):
         "reducao": "reducao",
         "danoFinal": "dmgFinal",
         # definir se a parte de baixo vai ficar junto ou em outro
-        "vidaBase": "vidaBase",
-        "vidaTotal": "vidaTotal",
         "bloqueio": "bloqueio",
         "aumentoDA": "aumentoDA",
         "defesaFixaEspiritual":"defEspiritual",
@@ -144,8 +144,6 @@ def pegar_front(request, escolha, personagem, origem, peca= "", percent=False):
     if percent:
         # ATRIBUTOS BASE
         camposp = { # guardando os camposem um dicionario(esquerda é onde salvara no banco|direita é o que via pegar no request)
-            "vidaBase": "",
-            "vidaTotal": "",
             "forcaPer": "forcaPer",
             "destrezaPer": "destrezaPer",
             "inteligenciaPer": "inteligenciaPer",
@@ -369,6 +367,45 @@ def pegar_front(request, escolha, personagem, origem, peca= "", percent=False):
             }
         )
         amplificacao.save()
+        i += 1
+
+
+def pegar_efeito(request, escolha, personagem, origem, peca):
+    i = 1
+    #Tipo do efeito
+    while True:
+        tipo = request.POST.get(f"efeitoTipo{i}")
+        nome = request.POST.get(f"efeitoAcessoriosNome{i}")
+        descricao = request.POST.get(f"efeitoAcessoriosDesc{i}")
+
+        if not any([tipo, nome, descricao]):  # se não houver nenhum dos tipos
+            extras = Character_effects.objects.filter(
+                models.Q(personagem= personagem) &
+                models.Q(posicao__gte=i) &
+                models.Q(peca= peca)
+            )
+            for c in extras:  # para cada peça sobressalent
+                setattr(c, "variavelTipo", "")
+                setattr(c, "variavelNome", "")
+                setattr(c, "variavelDescricao", "")
+            break
+
+        #  verificando se existe o objeto especifico na tabela, se nao existir, ele ira criar
+        efeito, _ = Character_effects.objects.update_or_create(
+            personagem= personagem,
+            posicao= i,
+            peca= peca,
+            defaults={
+                "personagem": personagem,
+                "variavelTipo": tipo,
+                "variavelNome": nome,
+                "variavelDescricao": descricao,
+                "posicao": i,
+                "peca": peca,
+                "origem": origem
+            }
+        )
+        efeito.save()
         i += 1
 
 

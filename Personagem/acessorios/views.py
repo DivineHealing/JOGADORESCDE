@@ -79,14 +79,23 @@ def salvar_acessorio_atributos(request):
         
         personagem = Base_personagem.objects.get(id=personagem_id) 
         pecaalvo = Acessorios.objects.get(personagem= personagem_id, peca= tipoEquipamento)
-        pegar_front(request, pecaalvo, personagem, "aces", tipoEquipamento)
+        pegar_front(request, pecaalvo, personagem, "aces", tipoEquipamento, True)
         pegar_atributos(personagem_id)
         print('acessorios')
 
     return redirect('arma')
 
 def salvar_acessorio_efeitos(request):
-    if request.method == "POST":        
+    if request.method == "POST":   
+        personagem_id = obter_personagem_sessao(request)
+
+        # se ainda nao tiver nenhum id de personagem por não existir personagem ele volta para pagina inicial
+        if not personagem_id:
+            return redirect('/')
+
+        personagem = Base_personagem.objects.get(id=personagem_id) 
+        pecaalvo = Character_effects.objects.get(personagem= personagem_id, peca= tipoEquipamento)
+        pegar_efeito(request, pecaalvo, personagem, "aces", tipoEquipamento)       
         print('FUNCIONA')
 
     return redirect('acessorios')
