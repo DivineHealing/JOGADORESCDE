@@ -94,8 +94,8 @@ def salvar_acessorio_efeitos(request):
             return redirect('/')
 
         personagem = Base_personagem.objects.get(id=personagem_id) 
-        pecaalvo = Character_effects.objects.get(personagem= personagem_id, peca= tipoEquipamento)
-        pegar_efeito(request, pecaalvo, personagem, "aces", tipoEquipamento)       
+        #pecaalvo = Character_effects.objects.get(personagem= personagem_id, peca= tipoEquipamento)
+        pegar_efeito(request, personagem, "aces", tipoEquipamento)       
         print('FUNCIONA')
 
     return redirect('acessorios')

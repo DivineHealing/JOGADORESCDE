@@ -370,7 +370,7 @@ def pegar_front(request, escolha, personagem, origem, peca= "", percent=False):
         i += 1
 
 
-def pegar_efeito(request, escolha, personagem, origem, peca):
+def pegar_efeito(request, personagem, origem, peca):
     i = 1
     #Tipo do efeito
     while True:
