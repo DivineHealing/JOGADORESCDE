@@ -154,6 +154,7 @@ def deletar_personagem(request):
     return redirect('/')
 
 def exibir_ficha_personagem(request, personagem_id):
+
     # 1. CORRETO: Busca o Base_personagem usando o ID da URL
     base_personagem = get_object_or_404(Base_personagem, pk=personagem_id)
     print(f"--- Base_personagem encontrado: ID={base_personagem.id}, Nome={getattr(base_personagem, 'personagem', 'N/A')} ---") # Ajuste o nome do campo se necessário
@@ -229,3 +230,8 @@ def exibir_ficha_personagem(request, personagem_id):
     # print(context)
     # Certifique-se que está renderizando o template correto
     return render(request, 'tela_personagem.html', context) # Ou 'seu_template_ficha.html'
+
+def calcular_status(request):
+    def obter_valor_status(dados, status):
+        return [{"fields": {"status": item["valor"], "variavelValor": item["variavelValor"]}} for item in dados]
+    forca = Base_personagem.objects.values_list('forca', flat=False)

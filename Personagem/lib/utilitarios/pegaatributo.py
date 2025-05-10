@@ -113,13 +113,8 @@ def obter_personagem_sessao(request):
 
 def pegar_front(request, escolha, personagem, origem, peca= "", percent=False):
     # ATRIBUTOS BASE
-<<<<<<< HEAD
     campos = { # guardando os camposem um dicionario(esquerda é onde salvara no banco|direita é o que via pegar no request)
         "vida": "vida",
-=======
-    campos = { # guardando os campos em um dicionario(esquerda é onde salvara no banco|direita é o que vai pegar no request)
-        "vida": "vidaMax",
->>>>>>> e13982b9c6175e910899a32d2075d77d3ee76d10
         "vigor": "vigor",
         "mana": "mana",
         "forca": "forca",

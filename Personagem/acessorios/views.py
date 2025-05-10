@@ -9,7 +9,15 @@ from lib.utilitarios import *
 tipoEquipamento = "TIPO DO EQUIPAMENTO"
 
 def acessorios(request):
-    return render(request, 'acessorios.html')
+    personagem_id = obter_personagem_sessao(request)
+
+    if not personagem_id:
+        return redirect('exibir_personagem')
+
+    tela_personagem = get_object_or_404(Tela_personagem, pk=personagem_id)
+    acessorios = get_object_or_404(Acessorios, pk=personagem_id)   
+
+    return render(request, 'acessorios.html', {'tela_personagem': tela_personagem, 'acessorios': acessorios})
 
 def cadastrar_equipamento_acessorios(request, tipo):
     global tipoEquipamento
@@ -30,7 +38,7 @@ def cadastrar_equipamento_acessorios(request, tipo):
     if not personagem_id:
         return redirect('exibir_personagem')
 
-    tela_personagem = get_object_or_404(Arma, pk=personagem_id)
+    tela_personagem = get_object_or_404(Tela_personagem, pk=personagem_id)
     acessorios = get_object_or_404(Acessorios, pk=personagem_id)   
 
     return render(request, 'cadastrar_atributos_acessorios.html', {'form': form, 'tipo': tipo, 'tela_personagem': tela_personagem, 'acessorios': acessorios})

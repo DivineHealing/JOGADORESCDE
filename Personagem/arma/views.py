@@ -41,8 +41,9 @@ def cadastrar_equipamento_armas(request, tipo):
         return redirect('exibir_personagem')
 
     tela_personagem = get_object_or_404(Arma, pk=personagem_id)
+    arma = get_object_or_404(Arma, pk=personagem_id)
 
-    return render(request, 'cadastrar_atributos_arma.html', {'form': form, 'tipo': tipo, 'tela_personagem': tela_personagem})
+    return render(request, 'cadastrar_atributos_arma.html', {'form': form, 'tipo': tipo, 'tela_personagem': tela_personagem, 'arma': arma})
 
 
 def cadastrar_efeitos_armas(request, tipo):
