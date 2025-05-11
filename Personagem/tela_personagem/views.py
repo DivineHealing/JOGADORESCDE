@@ -9,6 +9,7 @@ from django.apps import apps
 from lib.utilitarios import criar_personagem_completo
 from django.db.models import Sum
 from lib.utilitarios import *
+from math import floor
 
 def exibir_personagem(request, personagem_id=None):
 
@@ -277,5 +278,19 @@ def calcular_status(request):
     # Exemplo de retorno ou uso dos dados
     return JsonResponse(resultado)
 
+def status_perc(request, personagem_id):
+    status = ['forca', 'destreza', 'inteligencia', 'determinacao', 'perspicacia', 'carisma']
+    statusper = ['forcaPer', 'destrezaPer', 'inteligenciaPer', 'determinacaoPer', 'perspicaciaPer', 'carismaPer']
+    resultado = []
 
-    
+    personagem = Tela_personagem.objects.get(id=personagem_id) 
+
+    for i in range(6):
+        flat = getattr(personagem, status[i])  # pegando atributoflat
+        perc = getattr(personagem, statusper[i])  # pegando atributo porcentual
+
+        calc = floor(flat + flat * perc / 100)  # fazendo o calculo
+        resultado.append({status[i]: calc})  # adicionando ele na liste de resultado como um dicionario
+        print(f'{status[i]} = {flat}')
+    print(resultado)
+    #return resultado
