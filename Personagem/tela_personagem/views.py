@@ -73,6 +73,18 @@ def exibir_personagem(request, personagem_id=None):
 
     if tela_personagem:
         request.session['personagem_id'] = tela_personagem.id
+
+        status = ['forca', 'destreza', 'inteligencia', 'determinacao', 'perspicacia', 'carisma']
+        status_perc = ['forcaPer', 'destrezaPer', 'inteligenciaPer', 'determinacaoPer', 'perspicaciaPer', 'carismaPer']
+        status_total = ['forcaTotal', 'destrezaTotal', 'inteligenciaTotal', 'determinacaoTotal', 'perspicaciaTotal', 'carismaTotal']
+
+        for base, perc, total in zip(status, status_perc, status_total):
+            valor_base = getattr(tela_personagem, base, 0)
+            valor_perc = getattr(tela_personagem, perc, 0)
+            valor_total = floor(valor_base + valor_base * valor_perc / 100)
+            setattr(tela_personagem, total, valor_total)
+
+        tela_personagem.save()
     else:
         request.session['personagem_id'] = None
     
@@ -233,20 +245,3 @@ def exibir_ficha_personagem(request, personagem_id):
     return render(request, 'tela_personagem.html', context) # Ou 'seu_template_ficha.html'
 
 from django.db.models import F
-
-def status_perc(request, personagem_id):
-    status = ['forca', 'destreza', 'inteligencia', 'determinacao', 'perspicacia', 'carisma']
-    statusper = ['forcaPer', 'destrezaPer', 'inteligenciaPer', 'determinacaoPer', 'perspicaciaPer', 'carismaPer']
-    resultado = []
-
-    personagem = Tela_personagem.objects.get(id=personagem_id) 
-
-    for i in range(6):
-        flat = getattr(personagem, status[i])  # pegando atributoflat
-        perc = getattr(personagem, statusper[i])  # pegando atributo porcentual
-
-        calc = floor(flat + flat * perc / 100)  # fazendo o calculo
-        resultado.append({status[i]: calc})  # adicionando ele na liste de resultado como um dicionario
-        print(f'{status[i]} = {flat}')
-    print(resultado)
-    return JsonResponse(resultado)
