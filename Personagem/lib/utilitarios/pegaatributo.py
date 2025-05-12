@@ -7,6 +7,7 @@ from base_personagem.models import Base_personagem
 from conjunto.models import Conjunto
 from tela_personagem.models import Tela_personagem, Character_attribute, Character_effects
 from cadastro.models import Maestria
+from math import floor
 
 campos_personagem = [
     "regenVida", "regenMana", "regenVigor", "vida", "vidaBase", "vidaTotal", "mana", "vigor",
@@ -408,6 +409,22 @@ def pegar_efeito(request, personagem, origem, peca):
         )
         efeito.save()
         i += 1
+
+
+def status_perc(personagem_id):
+    status = ['forca', 'destreza', 'inteligencia', 'determinacao', 'perspicacia', 'carisma']
+    statusper = ['forcaPer', 'destrezaPer', 'inteligenciaPer', 'determinacaoPer', 'perspicaciaPer', 'carismaPer']
+
+    personagem = Tela_personagem.objects.get(id=personagem_id) 
+
+    for i in range(6):
+        flat = getattr(personagem, status[i])  # pegando atributoflat
+        perc = getattr(personagem, statusper[i])  # pegando atributo porcentual
+
+        
+        calc = floor(flat + flat * perc / 100)  # fazendo o calculo
+        setattr(personagem, f'{status[i]}Total', calc)  # salvando no campo apropriado
+        personagem.save()
 
 
 def to_int(value, default=0):

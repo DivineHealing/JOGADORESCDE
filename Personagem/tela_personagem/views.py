@@ -9,7 +9,7 @@ from django.apps import apps
 from lib.utilitarios import criar_personagem_completo
 from django.db.models import Sum
 from lib.utilitarios import *
-from math import floor
+
 
 def exibir_personagem(request, personagem_id=None):
 
@@ -73,6 +73,7 @@ def exibir_personagem(request, personagem_id=None):
 
     if tela_personagem:
         request.session['personagem_id'] = tela_personagem.id
+        status_perc(tela_personagem.id)
     else:
         request.session['personagem_id'] = None
     
@@ -129,7 +130,7 @@ def exibir_personagem(request, personagem_id=None):
         'penetracoes_json': penetracoes_json,
         'amplificacoes_json': amplificacoes_json,
 }
-
+    
     return render(request, 'tela_personagem.html', context)
 
 def cadastrar_personagem(request):
@@ -233,20 +234,3 @@ def exibir_ficha_personagem(request, personagem_id):
     return render(request, 'tela_personagem.html', context) # Ou 'seu_template_ficha.html'
 
 from django.db.models import F
-
-def status_perc(request, personagem_id):
-    status = ['forca', 'destreza', 'inteligencia', 'determinacao', 'perspicacia', 'carisma']
-    statusper = ['forcaPer', 'destrezaPer', 'inteligenciaPer', 'determinacaoPer', 'perspicaciaPer', 'carismaPer']
-    resultado = []
-
-    personagem = Tela_personagem.objects.get(id=personagem_id) 
-
-    for i in range(6):
-        flat = getattr(personagem, status[i])  # pegando atributoflat
-        perc = getattr(personagem, statusper[i])  # pegando atributo porcentual
-
-        calc = floor(flat + flat * perc / 100)  # fazendo o calculo
-        resultado.append({status[i]: calc})  # adicionando ele na liste de resultado como um dicionario
-        print(f'{status[i]} = {flat}')
-    print(resultado)
-    return JsonResponse(resultado)
