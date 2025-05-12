@@ -234,50 +234,6 @@ def exibir_ficha_personagem(request, personagem_id):
 
 from django.db.models import F
 
-def calcular_status(request):
-
-    # Modelos de onde os dados serão extraídos
-    bancos = [Base_personagem, Tela_personagem, Arma, Conjunto, Acessorios, Maestria]
-
-    # Campos que queremos coletar
-    status = [
-        'forca', 'destreza', 'inteligencia', 'determinacao', 'perspicacia', 'carisma',
-        'forcaPer', 'destrezaPer', 'inteligenciaPer', 'determinacaoPer', 'perspicaciaPer', 'carismaPer'
-    ]
-
-    # Armazenar os dados coletados
-    acumulado_total = defaultdict(int)
-
-    # Armazena os valores individuais por modelo, caso queira tambem
-    status_valores = []
-    
-    for modelo in bancos:
-        try:
-            dados = modelo.objects.all().values(*status)
-        except Exception as e:
-            print(f"Erro ao coletar dados do modelo {modelo.__name__}: {e}")
-            continue
-
-        for registro in dados:
-            registro_limpo = {}
-            for campo in status:
-                valor = registro.get(campo, 0)
-                if isinstance(valor, (int, float)):
-                    registro_limpo[campo] = valor
-                    acumulado_total[campo] += valor
-            status_valores.append({
-                'tabela': modelo.__name__,
-                'valores': registro_limpo
-            })
-    
-    resultado = {
-        'detalhes_por_modelo': status_valores,
-        'soma_total_por_satus': dict(acumulado_total),
-    }
-
-    # Exemplo de retorno ou uso dos dados
-    return JsonResponse(resultado)
-
 def status_perc(request, personagem_id):
     status = ['forca', 'destreza', 'inteligencia', 'determinacao', 'perspicacia', 'carisma']
     statusper = ['forcaPer', 'destrezaPer', 'inteligenciaPer', 'determinacaoPer', 'perspicaciaPer', 'carismaPer']
@@ -293,4 +249,4 @@ def status_perc(request, personagem_id):
         resultado.append({status[i]: calc})  # adicionando ele na liste de resultado como um dicionario
         print(f'{status[i]} = {flat}')
     print(resultado)
-    #return resultado
+    return JsonResponse(resultado)

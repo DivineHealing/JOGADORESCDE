@@ -31,6 +31,14 @@ class Tela_personagem(models.Model):
     perspicaciaPer = models.IntegerField(default=0, blank=True)
     carismaPer = models.IntegerField(default=0, blank=True)
 
+    # STATUS
+    forcaTotal = models.IntegerField(default=0, blank=True)
+    destrezaTotal = models.IntegerField(default=0, blank=True)
+    inteligenciaTotal = models.IntegerField(default=0, blank=True)
+    determinacaoTotal = models.IntegerField(default=0, blank=True)
+    perspicaciaTotal = models.IntegerField(default=0, blank=True)
+    carismaTotal = models.IntegerField(default=0, blank=True)
+
     # DEFESA
     reducao = models.IntegerField(default=0, blank=True)
     defesaFixaEspiritual = models.IntegerField(default=0, blank=True)
