@@ -203,6 +203,7 @@ def pegar_front(request, escolha, personagem, origem, peca= "", percent=False):
                 models.Q(personagem= personagem) &
                 models.Q(posicao__gte=i) &
                 models.Q(variavelTipo= "rolagem") &
+                models.Q(peca= peca) &
                 models.Q(origem= origem)
             )
             for c in extras: # para cada um nos sobressalentes
@@ -214,6 +215,7 @@ def pegar_front(request, escolha, personagem, origem, peca= "", percent=False):
         roll, _ = Character_attribute.objects.update_or_create(personagem= personagem, 
             posicao= i, 
             variavelTipo= "rolagem", 
+            peca= peca,
             origem= origem,
             defaults={
                 "personagem": personagem,
@@ -241,6 +243,7 @@ def pegar_front(request, escolha, personagem, origem, peca= "", percent=False):
                 models.Q(personagem= personagem) &
                 models.Q(posicao__gte=i) &
                 (models.Q(variavelTipo= "defesa") | models.Q(variavelTipo= "resistencia")) &
+                models.Q(peca= peca) &
                 models.Q(origem= origem)
             )
             for c in extras: # para cada um nos sobressalentes
@@ -251,6 +254,7 @@ def pegar_front(request, escolha, personagem, origem, peca= "", percent=False):
         defesa_obj, _ = Character_attribute.objects.update_or_create(personagem= personagem, 
             posicao= i, 
             variavelTipo= "defesa", 
+            peca= peca,
             origem= origem,
             defaults={
                 "personagem": personagem,
@@ -265,6 +269,7 @@ def pegar_front(request, escolha, personagem, origem, peca= "", percent=False):
         resistencia_obj, _ = Character_attribute.objects.update_or_create(personagem= personagem, 
             posicao= i, 
             variavelTipo= "resistencia", 
+            peca= peca,
             origem= origem,
             defaults={
                 "personagem": personagem,
@@ -295,6 +300,7 @@ def pegar_front(request, escolha, personagem, origem, peca= "", percent=False):
                 models.Q(personagem= personagem) &
                 models.Q(posicao__gte=i) &
                 (models.Q(variavelTipo= "dano") | models.Q(variavelTipo= "penetracao")) &
+                models.Q(peca= peca) &
                 models.Q(origem= origem)
             )
             for c in extras: # para cada um nos sobressalentes
@@ -305,6 +311,7 @@ def pegar_front(request, escolha, personagem, origem, peca= "", percent=False):
         dano_obj, _ = Character_attribute.objects.update_or_create(personagem= personagem, 
             posicao= i, 
             variavelTipo= "dano", 
+            peca= peca,
             origem= origem,
             defaults={
                 "personagem": personagem,
@@ -319,6 +326,7 @@ def pegar_front(request, escolha, personagem, origem, peca= "", percent=False):
         penetracao_obj, _ = Character_attribute.objects.update_or_create(personagem= personagem, 
             posicao= i, 
             variavelTipo= "penetracao", 
+            peca= peca,
             origem= origem,
             defaults={
                 "personagem": personagem,
@@ -346,6 +354,7 @@ def pegar_front(request, escolha, personagem, origem, peca= "", percent=False):
                 models.Q(personagem= personagem) &
                 models.Q(posicao__gte=i) &
                 models.Q(variavelTipo= "amplificacao") &
+                models.Q(peca= peca) &
                 models.Q(origem= origem)
             )
             for c in extras: # para cada um nos sobressalentes
@@ -355,7 +364,8 @@ def pegar_front(request, escolha, personagem, origem, peca= "", percent=False):
         
         amplificacao, _ = Character_attribute.objects.update_or_create(personagem= personagem, 
             posicao= i, 
-            variavelTipo= "amplificacao", 
+            variavelTipo= "amplificacao",
+            peca= peca, 
             origem= origem,
             defaults={
                 "personagem": personagem,
