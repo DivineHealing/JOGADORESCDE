@@ -130,19 +130,19 @@ select:after {
   font-weight: bold;
 }
 
-.vida {
-  font-size: x-large;
-  text-align: center;
-  color: #0f0; /* Green */
+.vida {  
+  color: rgb(43, 255, 0); /* Light Blue */
+  font-weight: bold;
+  text-align: left;
 }
 .mana {
-  font-size: x-large;
-  text-align: center;
   color: rgb(0, 145, 202); /* Blue */
+  font-weight: bold;
+  text-align: left;
 }.vigor {
-  font-size: x-large;
-  text-align: center;
   color: rgb(255, 115, 0); /* Orange */
+  font-weight: bold;
+  text-align: left;
 }
 
 /* MIDDLE SECTION (Left and Right Columns) */
@@ -289,12 +289,14 @@ select:after {
   background-color: #444;
   color: #dfdfdf;
   border: 1px solid #555;
-  padding: 5px;
-  border-radius: 3px;
-  font-family: Courier;
-  font-size: 1em;
-  width: 40px; /* Menor width para o input de buff */
+  padding: 5px 5px;
   margin-left: 5px;
+  cursor: pointer;
+  font-size: 0.8em; /* Menor para "BUFF" */
+  vertical-align: middle;
+  margin-left: 5px;
+  width: 3em; /* Menor width para o input de buff */
+  height: 1em;
 }
 
 .buff-input.hidden {
@@ -304,7 +306,7 @@ select:after {
 .buffed-value {
   color: #00ffaa; /* Cor verde para valor buffado */
   font-weight: bold;
-  margin-left: 1em;
+  margin-left: .5em;
 }
 
 .buffed-value.hidden {

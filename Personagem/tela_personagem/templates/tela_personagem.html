@@ -51,9 +51,19 @@
 
         <div class="top-section">
             <div class="vida-mana-vigor bordered-section">
-                <div class="vida">Vida: <span id="vida">{{ tela_personagem.vida|intcomma }}</span></div>
-                <div class="mana">Mana: <span id="mana">{{ tela_personagem.mana|intcomma }}</span></div>
-                <div class="vigor">Vigor: <span id="vigor">{{ tela_personagem.vigor|intcomma }}</span></div>
+                <div class="stat vida" id="vida_container">
+                    <span style="font-size: 1.3em;">VIDA</span>
+                    <span id="vida" style="font-size: 1.3em;">{{ tela_personagem.vida|intcomma }}</span>
+                    <span id="vidaAutoBuffed" class="buffed-value hidden"></span>
+                    <span id="vidaExternalBuffed" class="buffed-value hidden"></span>
+                    <span style="font-size: 1.3em;" id="vidaFinalBuffed" class="buffed-value hidden"></span>
+                    <button class="buff-button" data-field="vida">BUFF</button>
+                    <input type="number" class="buff-input hidden" id="vidaBuffInput" placeholder="Auto-buff %">
+                    <input type="number" class="buff-input hidden" id="vidaExternalBuffInput" placeholder="Buff Externo %">
+                    <span id="vidaBonus"></span>
+                </div>
+                <div class="mana" style="font-size: 1.3em;">MANA<span id="mana">{{ tela_personagem.mana|intcomma }}</span></div>
+                <div class="vigor" style="font-size: 1.3em;">VIGOR<span id="vigor">{{ tela_personagem.vigor|intcomma }}</span></div>
             </div>
         </div>
 
@@ -61,46 +71,66 @@
             <div class="left-column">
                 <div class="attribute-stats bordered-section">
                     <div class="stat section-title">STATUS</div>
-                    <div class="stat" title="Forca" id="forca_container">FOR <span id="forca">{{ tela_personagem.forcaTotal|intcomma }}</span>
-                        <span id="forcaBuffed" class="buffed-value hidden"></span>
+                    <div class="stat" id="forca_container">
+                        FOR <span id="forca">{{ tela_personagem.forcaTotal|intcomma }}</span>
+
+                        <span id="forcaAutoBuffed" class="buffed-value hidden"></span>
+                        <span id="forcaExternalBuffed" class="buffed-value hidden"></span>
+                        <span id="forcaFinalBuffed" class="buffed-value hidden"></span>
+
                         <button class="buff-button" data-field="forca">BUFF</button>
-                        <input type="number" class="buff-input hidden" id="forcaBuffInput">
-                        <input type="number" class="buff-input hidden" id="forcaFixBuffInput">
+                        <input type="number" class="buff-input hidden" id="forcaBuffInput" placeholder="Auto-buff %">
+                        <input type="number" class="buff-input hidden" id="forcaExternalBuffInput" placeholder="Buff Externo %">                        
                         <span id="forcaBonus"></span>
                     </div>
-                    <div class="stat" title="Destreza" id="destreza_container">DES <span id="destreza">{{ tela_personagem.destrezaTotal|intcomma }}</span>
-                        <span id="destrezaBuffed" class="buffed-value hidden"></span>
+                    <div class="stat" id="destreza_container">
+                        DES <span id="destreza">{{ tela_personagem.destrezaTotal|intcomma }}</span>
+                        <span id="destrezaAutoBuffed" class="buffed-value hidden"></span>
+                        <span id="destrezaExternalBuffed" class="buffed-value hidden"></span>
+                        <span id="destrezaFinalBuffed" class="buffed-value hidden"></span>
                         <button class="buff-button" data-field="destreza">BUFF</button>
-                        <input title='Buff %' type="number" class="buff-input hidden" id="destrezaBuffInput">
-                        <input title='Buff Fixo' type="number" class="buff-input hidden" id="destrezaFixBuffInput">
+                        <input type="number" class="buff-input hidden" id="destrezaBuffInput" placeholder="Auto-buff %">
+                        <input type="number" class="buff-input hidden" id="destrezaExternalBuffInput" placeholder="Buff Externo %">
                         <span id="destrezaBonus"></span>
                     </div>
-                    <div class="stat" title="Inteligência" id="inteligencia_container">INT <span id="inteligencia">{{ tela_personagem.inteligenciaTotal|intcomma }}</span>
-                        <span id="inteligenciaBuffed" class="buffed-value hidden"></span>
+                    <div class="stat" id="inteligencia_container">
+                        INT <span id="inteligencia">{{ tela_personagem.inteligenciaTotal|intcomma }}</span>
+                        <span id="inteligenciaAutoBuffed" class="buffed-value hidden"></span>
+                        <span id="inteligenciaExternalBuffed" class="buffed-value hidden"></span>
+                        <span id="inteligenciaFinalBuffed" class="buffed-value hidden"></span>
                         <button class="buff-button" data-field="inteligencia">BUFF</button>
-                        <input type="number" class="buff-input hidden" id="inteligenciaBuffInput">
-                        <input type="number" class="buff-input hidden" id="inteligenciaFixBuffInput">
+                        <input type="number" class="buff-input hidden" id="inteligenciaBuffInput" placeholder="Auto-buff %">
+                        <input type="number" class="buff-input hidden" id="inteligenciaExternalBuffInput" placeholder="Buff Externo %">
                         <span id="inteligenciaBonus"></span>
                     </div>
-                    <div class="stat" title="Determinação" id="determinacao_container">DET <span id="determinacao">{{ tela_personagem.determinacaoTotal|intcomma }}</span>
-                        <span id="determinacaoBuffed" class="buffed-value hidden"></span>
+                    <div class="stat" id="determinacao_container">
+                        DET <span id="determinacao">{{ tela_personagem.determinacaoTotal|intcomma }}</span>
+                        <span id="determinacaoAutoBuffed" class="buffed-value hidden"></span>
+                        <span id="determinacaoExternalBuffed" class="buffed-value hidden"></span>
+                        <span id="determinacaoFinalBuffed" class="buffed-value hidden"></span>
                         <button class="buff-button" data-field="determinacao">BUFF</button>
-                        <input type="number" class="buff-input hidden" id="determinacaoBuffInput">
-                        <input type="number" class="buff-input hidden" id="determinacaoFixBuffInput">
+                        <input type="number" class="buff-input hidden" id="determinacaoBuffInput" placeholder="Auto-buff %">
+                        <input type="number" class="buff-input hidden" id="determinacaoExternalBuffInput" placeholder="Buff Externo %">
                         <span id="determinacaoBonus"></span>
                     </div>
-                    <div class="stat" title="Perspicácia" id="perspicacia_container">PER <span id="perspicacia">{{ tela_personagem.perspicaciaTotal|intcomma }}</span>
-                        <span id="perspicaciaBuffed" class="buffed-value hidden"></span>
+                    <div class="stat" id="perspicacia_container">
+                        PER <span id="perspicacia">{{ tela_personagem.perspicaciaTotal|intcomma }}</span>
+                        <span id="perspicaciaAutoBuffed" class="buffed-value hidden"></span>
+                        <span id="perspicaciaExternalBuffed" class="buffed-value hidden"></span>
+                        <span id="perspicaciaFinalBuffed" class="buffed-value hidden"></span>
                         <button class="buff-button" data-field="perspicacia">BUFF</button>
-                        <input type="number" class="buff-input hidden" id="perspicaciaBuffInput">
-                        <input type="number" class="buff-input hidden" id="perspicaciaFixBuffInput">
+                        <input type="number" class="buff-input hidden" id="perspicaciaBuffInput" placeholder="Auto-buff %">
+                        <input type="number" class="buff-input hidden" id="perspicaciaExternalBuffInput" placeholder="Buff Externo %">
                         <span id="perspicaciaBonus"></span>
                     </div>
-                    <div class="stat" title="Carisma" id="carisma_container">CAR <span id="carisma">{{ tela_personagem.carismaTotal|intcomma }}</span>
-                        <span id="carismaBuffed" class="buffed-value hidden"></span>
+                    <div class="stat" id="carisma_container">
+                        CAR <span id="carisma">{{ tela_personagem.carismaTotal|intcomma }}</span>
+                        <span id="carismaAutoBuffed" class="buffed-value hidden"></span>
+                        <span id="carismaExternalBuffed" class="buffed-value hidden"></span>
+                        <span id="carismaFinalBuffed" class="buffed-value hidden"></span>
                         <button class="buff-button" data-field="carisma">BUFF</button>
-                        <input type="number" class="buff-input hidden" id="carismaBuffInput">
-                        <input type="number" class="buff-input hidden" id="carismaFixBuffInput">
+                        <input type="number" class="buff-input hidden" id="carismaBuffInput" placeholder="Auto-buff %">
+                        <input type="number" class="buff-input hidden" id="carismaExternalBuffInput" placeholder="Buff Externo %">
                         <span id="carismaBonus"></span>
                     </div>
                 </div>
@@ -263,24 +293,43 @@
             // ---------------- DANOS e PENETRAÇÕES ----------------
             listaDanos.forEach((danoObj, i) => {
                 const penObj = listaPenetracoes[i];
-        
+
                 if (!danoObj || !penObj || !danoObj.fields || !penObj.fields) return;
-        
+
                 const dano = danoObj.fields;
                 const pen = penObj.fields;
-        
+
                 if (dano.variavelValor > 0) {
-                    const divDano = criarDiv('damage', `danoFixo${i + 1}_container`, `Dano Fixo ${dano.variavelPropriedade}`, dano.variavelValor);
+                    const divDano = document.createElement('div');
+                    divDano.className = 'damage';
+                    divDano.id = `danoFixo${i + 1}_container`;
+                    const valor = Number(dano.variavelValor).toLocaleString('pt-BR');
+                    const idBase = `danoFixo_${i + 1}`;
+                    divDano.innerHTML = `
+                        Dano Fixo ${dano.variavelPropriedade} 
+                        <span id="${idBase}">${valor}</span>
+                        <span id="${idBase}AutoBuffed" class="buffed-value hidden"></span>
+                        <span id="${idBase}ExternalBuffed" class="buffed-value hidden"></span>
+                        <span id="${idBase}FinalBuffed" class="buffed-value hidden"></span>
+                        <button class="buff-button" data-field="${idBase}">BUFF</button>
+                        <input type="number" class="buff-input hidden" id="${idBase}BuffInput" placeholder="Auto-buff %">
+                        <input type="number" class="buff-input hidden" id="${idBase}ExternalBuffInput" placeholder="Buff Externo %">
+                    `;
                     danoArea.appendChild(divDano);
                 }
+
                 if (pen.variavelValor > 0) {
-                    const divPen = criarDiv('damage', `penetracao${i + 1}_container`, `Penetração ${pen.variavelPropriedade}`, pen.variavelValor, '%');
+                    const divPen = document.createElement('div');
+                    divPen.className = 'damage';
+                    divPen.id = `penetracao${i + 1}_container`;
+                    divPen.innerHTML = `
+                        Penetração ${pen.variavelPropriedade} 
+                        <span id="penetracao_${i + 1}">${Number(pen.variavelValor).toLocaleString('pt-BR')}</span>%
+                    `;
                     danoArea.appendChild(divPen);
                 }
-        
-                danoArea.appendChild(divDano);
-                danoArea.appendChild(divPen);
             });
+
         
             // ---------------- DEFESAS e RESISTENCIA ----------------
 
@@ -299,7 +348,18 @@
                     const divDef = document.createElement('div');
                     divDef.className = 'defense';
                     divDef.id = `defesaFixa${i + 1}_container`;
-                    divDef.innerHTML = `Defesa Fixa ${def.variavelPropriedade} <span id="defesaFixa_${i + 1}">${Number(def.variavelValor).toLocaleString('pt-BR')}</span>`;
+                    const valor = Number(def.variavelValor).toLocaleString('pt-BR');
+                    const idBase = `defesaFixa_${i + 1}`;
+                    divDef.innerHTML = `
+                        Dano Fixo ${def.variavelPropriedade} 
+                        <span id="${idBase}">${valor}</span>
+                        <span id="${idBase}AutoBuffed" class="buffed-value hidden"></span>
+                        <span id="${idBase}ExternalBuffed" class="buffed-value hidden"></span>
+                        <span id="${idBase}FinalBuffed" class="buffed-value hidden"></span>
+                        <button class="buff-button" data-field="${idBase}">BUFF</button>
+                        <input type="number" class="buff-input hidden" id="${idBase}BuffInput" placeholder="Pessoal">
+                        <input type="number" class="buff-input hidden" id="${idBase}ExternalBuffInput" placeholder="Externo">
+                    `;
                     defArea.appendChild(divDef);
                 }
                 if (res.variavelValor > 0) {
@@ -309,26 +369,25 @@
                     divRes.innerHTML = `Resistência ${res.variavelPropriedade} <span id="resistencia_${i + 1}">${Number(res.variavelValor).toLocaleString('pt-BR')}</span>%`;
                     defArea.appendChild(divRes);
                 }
-                defArea.appendChild(divDef);
-                defArea.appendChild(divRes);
             });        
             // ---------------- ROLAGENS ----------------
             listaRolagens.forEach((roll, i) => {
                 const info = roll.fields;
-                if (roll.variavelValor > 0) {
+                if (info.variavelValor > 0) {
                     const div = criarDiv('roll', `rolagem${i + 1}_container`, `${info.variavelPropriedade}`, info.variavelValor, '');
                     rollArea.appendChild(div);
                 }
-            });        
+            });
+      
             // ---------------- AMPLIFICAÇÕES ----------------
             listaAmplificacoes.forEach((amp, i) => {
                 const info = amp.fields;
-            if (amp.variavelValor > 0) {
-                const div = criarDiv('amp', `amplificacao${i + 1}_container`, `${info.variavelPropriedade}`, info.variavelValor, '%');
-                ampArea.appendChild(div);
-            }
+                if (info.variavelValor > 0) {
+                    const div = criarDiv('amp', `amplificacao${i + 1}_container`, `${info.variavelPropriedade}`, info.variavelValor, '%');
+                    ampArea.appendChild(div);
+                }
+            });
         });
     </script>
-        
 </body>
 </html>

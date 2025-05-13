@@ -6,7 +6,7 @@ from .models import Conjunto
 from .forms import EquipamentoForm
 from lib.utilitarios import *
 
-tipoEquipamento = "TIPO DO EQUIPAMENTO"
+tipoEquipamento = ""
 
 def conjunto(request):    
     personagem_id = obter_personagem_sessao(request)
@@ -14,10 +14,10 @@ def conjunto(request):
     if not personagem_id:
         return redirect('exibir_personagem')
 
-    tela_personagem = get_object_or_404(Conjunto, pk=personagem_id)
+    pecas_conjunto = Conjunto.objects.filter(personagem=personagem_id)
 
     context = {
-        'tela_personagem': tela_personagem
+        'tela_personagem': pecas_conjunto
     }
     return render(request, 'conjunto.html', context)
 
@@ -40,7 +40,8 @@ def cadastrar_equipamento(request, tipo):
     if not personagem_id:
         return redirect('exibir_personagem')
 
-    tela_personagem = get_object_or_404(Conjunto, pk=personagem_id)
+    tela_personagem = get_object_or_404(Conjunto, personagem=personagem_id, peca=tipo)
+
 
     return render(request, 'cadastrar_atributos_conj.html', {'form': form, 'tipo': tipo, 'tela_personagem': tela_personagem})
 
@@ -61,7 +62,7 @@ def cadastrar_efeitos(request, tipo):
     if not personagem_id:
         return redirect('exibir_personagem')
 
-    tela_personagem = get_object_or_404(Arma, pk=personagem_id)
+    tela_personagem = get_object_or_404(Conjunto, personagem=personagem_id, peca=tipo)
 
     return render(request, 'cadastrar_efeitos_conj.html', {'form': form, 'tipo': tipo, 'tela_personagem': tela_personagem})
 

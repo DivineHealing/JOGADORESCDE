@@ -14,7 +14,7 @@ def arma(request):
     if not personagem_id:
         return redirect('exibir_personagem')
 
-    tela_personagem = get_object_or_404(Conjunto, pk=personagem_id)
+    tela_personagem = Arma.objects.filter(personagem=personagem_id)
 
     context = {
         'tela_personagem': tela_personagem
@@ -40,8 +40,8 @@ def cadastrar_equipamento_armas(request, tipo):
     if not personagem_id:
         return redirect('exibir_personagem')
 
-    tela_personagem = get_object_or_404(Arma, pk=personagem_id)
-    arma = get_object_or_404(Arma, pk=personagem_id)
+    tela_personagem = get_object_or_404(Tela_personagem, personagem=personagem_id)
+    arma = get_object_or_404(Arma, personagem=personagem_id, peca=tipo)
 
     return render(request, 'cadastrar_atributos_arma.html', {'form': form, 'tipo': tipo, 'tela_personagem': tela_personagem, 'arma': arma})
 

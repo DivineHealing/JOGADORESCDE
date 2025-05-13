@@ -3,10 +3,11 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 
 from .models import Acessorios
+from base_personagem.models import Base_personagem
 from .forms import EquipamentoForm
 from lib.utilitarios import *
 
-tipoEquipamento = "TIPO DO EQUIPAMENTO"
+tipoEquipamento = ""
 
 def acessorios(request):
     personagem_id = obter_personagem_sessao(request)
@@ -14,8 +15,8 @@ def acessorios(request):
     if not personagem_id:
         return redirect('exibir_personagem')
 
-    tela_personagem = get_object_or_404(Tela_personagem, pk=personagem_id)
-    acessorios = get_object_or_404(Acessorios, pk=personagem_id)   
+    tela_personagem = get_object_or_404(Tela_personagem, personagem=personagem_id)
+    acessorios = Conjunto.objects.filter(personagem=personagem_id)
 
     return render(request, 'acessorios.html', {'tela_personagem': tela_personagem, 'acessorios': acessorios})
 
@@ -38,8 +39,8 @@ def cadastrar_equipamento_acessorios(request, tipo):
     if not personagem_id:
         return redirect('exibir_personagem')
 
-    tela_personagem = get_object_or_404(Tela_personagem, pk=personagem_id)
-    acessorios = get_object_or_404(Acessorios, pk=personagem_id)   
+    tela_personagem = get_object_or_404(Tela_personagem, personagem=personagem_id)
+    acessorios = get_object_or_404(Acessorios, personagem=personagem_id, peca=tipo)
 
     return render(request, 'cadastrar_atributos_acessorios.html', {'form': form, 'tipo': tipo, 'tela_personagem': tela_personagem, 'acessorios': acessorios})
 
@@ -60,7 +61,7 @@ def cadastrar_efeitos_acessorios(request, tipo):
     if not personagem_id:
         return redirect('exibir_personagem')
 
-    tela_personagem = get_object_or_404(Arma, pk=personagem_id)
+    tela_personagem = get_object_or_404(Acessorios, personagem=personagem_id)
 
     return render(request, 'cadastrar_efeitos_acessorios.html', {'form': form, 'tipo': tipo, 'tela_personagem': tela_personagem})
 
@@ -83,7 +84,7 @@ def salvar_acessorio_atributos(request):
         pegar_atributos(personagem_id)
         print('acessorios')
 
-    return redirect('arma')
+    return redirect('acessorios')
 
 def salvar_acessorio_efeitos(request):
     if request.method == "POST":   

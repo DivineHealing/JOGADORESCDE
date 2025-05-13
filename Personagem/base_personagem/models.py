@@ -5,12 +5,12 @@ class Base_personagem(models.Model):
     personagem = models.CharField(max_length=100, default="", unique=True)
 
     # ATRIBUTOS e REGENERAÇÃO
-    vida = models.IntegerField(default=0, blank=True)
+    vida = models.IntegerField(default=100, blank=True)
     vidaBase = models.IntegerField(default=0, blank=True)
     regenVida = models.IntegerField(default=0, blank=True)
-    mana = models.IntegerField(default=0, blank=True)
+    mana = models.IntegerField(default=100, blank=True)
     regenMana = models.IntegerField(default=0, blank=True)
-    vigor = models.IntegerField(default=0, blank=True)
+    vigor = models.IntegerField(default=100, blank=True)
     regenVigor = models.IntegerField(default=0, blank=True)
 
     # STATUS

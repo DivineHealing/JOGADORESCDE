@@ -149,85 +149,68 @@ document.addEventListener("DOMContentLoaded", function () {
     atualizarTela();
 });
 
-// FUNÇÃO DE BUFF
-document.addEventListener('DOMContentLoaded', function () {
-    const buffButtons = document.querySelectorAll('.buff-button');
+    // FUNÇÃO DE BUFF
+document.addEventListener('click', function (event) {
+    if (!event.target.matches('.buff-button')) return;
 
-    buffButtons.forEach(button => {
-        button.addEventListener('click', function (event) {
-            event.preventDefault();
-            const fieldName = this.dataset.field;
-            const buffInput = document.getElementById(`${fieldName}BuffInput`);
-            const buffedValueSpan = document.getElementById(`${fieldName}Buffed`);
-            const originalValueSpan = document.getElementById(fieldName);
+    event.preventDefault();
 
-            originalValueSpan.classList.add('hidden');  // Esconde o valor original
-            buffInput.classList.remove('hidden');       // Mostra o input
-            buffInput.focus();
+    const field = event.target.dataset.field;
+    const baseSpan = document.getElementById(field);
+    const autoBuffInput = document.getElementById(`${field}BuffInput`);
+    const externalBuffInput = document.getElementById(`${field}ExternalBuffInput`);
+    const finalBuffSpan = document.getElementById(`${field}FinalBuffed`);
 
-            // Remove os listeners existentes (se houver)
-            buffInput.removeEventListener('blur', handleBuff);
-            buffInput.removeEventListener('keydown', handleEnter);
-            buffInput.removeEventListener('keypress', handleF);
+    if (!baseSpan || !autoBuffInput || !externalBuffInput || !finalBuffSpan) return;
 
-            // Adiciona os novos listeners
-            buffInput.addEventListener('blur', handleBuff);
-            buffInput.addEventListener('keydown', handleEnter);
-            buffInput.addEventListener('keypress', handleF);
+    const baseValue = parseInt(baseSpan.textContent.replace(/\./g, '')) || 0;
 
-            function handleBuff() {
-                buffInput.removeEventListener('blur', handleBuff);
-                buffInput.removeEventListener('keydown', handleEnter); // Remove também o listener de Enter
-                buffInput.removeEventListener('keypress', handleF); // Remove também o listener de Enter
+    baseSpan.classList.add('hidden');
+    autoBuffInput.classList.remove('hidden');
+    externalBuffInput.classList.remove('hidden');
+    finalBuffSpan.classList.add('hidden');
+    autoBuffInput.focus();
 
-                const buffValue = parseInt(buffInput.value, 10) || 0;
-                const originalValue = parseInt(originalValueSpan.textContent.replace(/\./g, ''), 10) || 0;
+    function calcularFinalBuff() {
+        const autoPercent = parseFloat(autoBuffInput.value) || 0;
+        const externalPercent = parseFloat(externalBuffInput.value) || 0;
 
-                const totalValue = Math.trunc(originalValue * ((buffValue / 100) + 1));
+        let total = baseValue;
 
-                buffedValueSpan.textContent = totalValue.toLocaleString('pt-BR');
-                buffedValueSpan.classList.remove('hidden');
-
-                buffInput.classList.add('hidden');
-                originalValueSpan.classList.remove('hidden');
-
-                buffInput.value = '';
+        if (autoPercent && externalPercent) {
+            if (autoPercent >= externalPercent) {
+                total += Math.floor(baseValue * (autoPercent / 100));
+                total += Math.floor(baseValue * (externalPercent / 200));
+            } else {
+                total += Math.floor(baseValue * (autoPercent / 200));
+                total += Math.floor(baseValue * (externalPercent / 100));
             }
+        } else if (autoPercent) {
+            total += Math.floor(baseValue * (autoPercent / 100));
+        } else if (externalPercent) {
+            total += Math.floor(baseValue * (externalPercent / 100));
+        }
 
-            function handleBuffFixo() {
-                buffInput.removeEventListener('blur', handleBuff);
-                buffInput.removeEventListener('keypress', handleF); // Remove também o listener de Enter
-                buffInput.removeEventListener('keydown', handleEnter); // Remove também o listener de Enter
+        finalBuffSpan.textContent = total.toLocaleString('pt-BR');
+        finalBuffSpan.classList.remove('hidden');
+        autoBuffInput.classList.add('hidden');
+        externalBuffInput.classList.add('hidden');
+        baseSpan.classList.remove('hidden');
+    }
 
-                const buffValue = parseInt(buffInput.value, 10) || 0;
-                const originalValue = parseInt(originalValueSpan.textContent.replace(/\./g, ''), 10) || 0;
+    // Limpa handlers antigos (para evitar múltiplos)
+    autoBuffInput.onkeydown = null;
+    externalBuffInput.onkeydown = null;
 
-                const totalValue = Math.trunc(originalValue + buffValue);
-
-                buffedValueSpan.textContent = totalValue.toLocaleString('pt-BR');
-                buffedValueSpan.classList.remove('hidden');
-
-                buffInput.classList.add('hidden');
-                originalValueSpan.classList.remove('hidden');
-
-                buffInput.value = '';
-            }
-
-            function handleEnter(event) {
-                if (event.key === 'Enter') {
-                    handleBuff();
-                    event.preventDefault();
-                }            
-            }
-            function handleF(event) {
-                if (event.key === 'F') {
-                    handleBuffFixo();
-                    event.preventDefault();
-                }
-            }
-        });
-    });
+    autoBuffInput.onkeydown = function (e) {
+        if (e.key === 'Enter') calcularFinalBuff();
+    };
+    externalBuffInput.onkeydown = function (e) {
+        if (e.key === 'Enter') calcularFinalBuff();
+    };
 });
+
+
 
 
 const cadastroNovo = document.getElementById("cadastrarNovo");

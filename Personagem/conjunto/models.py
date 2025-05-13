@@ -10,7 +10,6 @@ class Conjunto(models.Model):
         ('pernas', 'Calcas'),
         ('botas', 'Bota'),
     ]
-
    
     peca = models.CharField(max_length=25, choices=TIPO_CHOICES, default='principal')
 
@@ -48,5 +47,5 @@ class Conjunto(models.Model):
     defesaFixaEspiritual = models.IntegerField(default=0, blank=True)
     reducaoEspiritual = models.IntegerField(default=0, blank=True)
 
-    def __str__(self):
-        return self.personagem
+    """def __str__(self):
+        return self.personagem"""
