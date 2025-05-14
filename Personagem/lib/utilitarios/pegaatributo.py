@@ -436,7 +436,6 @@ def status_perc(personagem_id):
         setattr(personagem, f'{status[i]}Total', calc)  # salvando no campo apropriado
         personagem.save()
 
-
 def to_int(value, default=0):
     try:
         return int(value)

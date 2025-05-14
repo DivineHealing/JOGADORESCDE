@@ -11,6 +11,8 @@ class Tela_personagem(models.Model):
     vida = models.IntegerField(default=100, blank=True)
     mana = models.IntegerField(default=100, blank=True)
     vigor = models.IntegerField(default=100, blank=True)
+    vidaTotalCalc = models.IntegerField(default=0, blank=True)
+    vidaBaseCalc = models.IntegerField(default=0, blank=True)
     regenVida = models.IntegerField(default=0, blank=True)
     regenMana = models.IntegerField(default=0, blank=True)
     regenVigor = models.IntegerField(default=0, blank=True)

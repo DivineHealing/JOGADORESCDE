@@ -178,11 +178,11 @@ document.addEventListener('click', function (event) {
         let total = baseValue;
 
         if (autoPercent && externalPercent) {
-            if (autoPercent >= externalPercent) {
+            if (autoPercent > 0 || externalPercent > 0) {
                 total += Math.floor(baseValue * (autoPercent / 100));
                 total += Math.floor(baseValue * (externalPercent / 200));
             } else {
-                total += Math.floor(baseValue * (autoPercent / 200));
+                total += Math.floor(baseValue * (autoPercent / 100));
                 total += Math.floor(baseValue * (externalPercent / 100));
             }
         } else if (autoPercent) {
@@ -198,16 +198,86 @@ document.addEventListener('click', function (event) {
         baseSpan.classList.remove('hidden');
     }
 
+    function calcularFinalBuffFixo() {
+        const autoPercent = parseInt(autoBuffInput.value) || 0;
+        const externalPercent = parseInt(externalBuffInput.value) || 0;
+
+        let total = baseValue;
+
+        if (autoPercent && externalPercent) {
+            if (autoPercent > 0 || externalPercent > 0) {
+                total += autoPercent;
+                total += Math.floor(externalPercent/2);
+            }
+        } else if (autoPercent) {
+            total += autoPercent; 
+        } else if (externalPercent) {
+            total += externalPercent;
+        }
+
+        finalBuffSpan.textContent = total.toLocaleString('pt-BR');
+        finalBuffSpan.classList.remove('hidden');
+        autoBuffInput.classList.add('hidden');
+        externalBuffInput.classList.add('hidden');
+        baseSpan.classList.remove('hidden');
+    }
+
+    function calcularFinalBuffAryah() {
+        const autoPercent = parseFloat(autoBuffInput.value) || 0;
+        const externalPercent = parseInt(externalBuffInput.value) || 0;
+        console.log(autoPercent)
+        console.log(externalPercent)
+        console.log(baseValue)
+
+        let total = baseValue;
+
+        if (autoPercent && externalPercent) {
+            if (autoPercent > 0 || externalPercent > 0) {
+                total += Math.floor(baseValue * (autoPercent / 100));
+                total += Math.floor(externalPercent / 2);
+            } else {
+                total += Math.floor(baseValue * (autoPercent / 100));
+                total += Math.floor(externalPercent / 2);
+            }
+        } else if (autoPercent) {
+            total += Math.floor(baseValue * (autoPercent / 100));
+        } else if (externalPercent) {
+            total += externalPercent;
+        }
+
+        finalBuffSpan.textContent = total.toLocaleString('pt-BR');
+        finalBuffSpan.classList.remove('hidden');
+        autoBuffInput.classList.add('hidden');
+        externalBuffInput.classList.add('hidden');
+        baseSpan.classList.remove('hidden');
+    }
+
     // Limpa handlers antigos (para evitar múltiplos)
     autoBuffInput.onkeydown = null;
     externalBuffInput.onkeydown = null;
 
     autoBuffInput.onkeydown = function (e) {
-        if (e.key === 'Enter') calcularFinalBuff();
-    };
+    if (e.key === 'Enter') {
+        calcularFinalBuff();
+        console.log("Percentual")
+    } else if (e.key === 'F') {
+        calcularFinalBuffFixo();
+        console.log('Fixo')        
+    } else if (e.key === 'A') {
+            calcularFinalBuffAryah();
+    }
+};
+
     externalBuffInput.onkeydown = function (e) {
-        if (e.key === 'Enter') calcularFinalBuff();
-    };
+        if (e.key === 'Enter') {
+            calcularFinalBuff();
+        } else if (e.key === 'F') {
+            calcularFinalBuffFixo();
+        } else if (e.key === 'A') {
+            calcularFinalBuffAryah();
+        }
+};
+
 });
 
 
