@@ -74,6 +74,7 @@ def exibir_personagem(request, personagem_id=None):
     if tela_personagem:
         request.session['personagem_id'] = tela_personagem.id
         status_perc(tela_personagem.id)
+        vida_perc(tela_personagem.id)
     else:
         request.session['personagem_id'] = None
     

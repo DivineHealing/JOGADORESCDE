@@ -8,11 +8,13 @@ class Tela_personagem(models.Model):
     nome = models.CharField(max_length=25, blank=True, default="")
 
     # ATRIBUTOS e REGENERAÇÃO
-    vida = models.IntegerField(default=100, blank=True)
-    mana = models.IntegerField(default=100, blank=True)
-    vigor = models.IntegerField(default=100, blank=True)
-    vidaTotalCalc = models.IntegerField(default=0, blank=True)
-    vidaBaseCalc = models.IntegerField(default=0, blank=True)
+    vidaFixaBase = models.IntegerField(default=0, blank=True) # Valor fixo base de Lv.
+    vida = models.IntegerField(default=0, blank=True) # Valor fixo de Equipamentos.
+    vidaBase = models.IntegerField(default=0, blank=True) # Valor Percentual a ser aplicado a Base.
+    vidaTotal = models.IntegerField(default=0, blank=True) # Valor Percentual a ser aplicado ao Total da Vida.
+    vidaFinal = models.IntegerField(default=0, blank=True) # Valor a ser exibido.
+    mana = models.IntegerField(default=0, blank=True)
+    vigor = models.IntegerField(default=0, blank=True)
     regenVida = models.IntegerField(default=0, blank=True)
     regenMana = models.IntegerField(default=0, blank=True)
     regenVigor = models.IntegerField(default=0, blank=True)

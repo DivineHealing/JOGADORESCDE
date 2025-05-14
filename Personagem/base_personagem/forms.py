@@ -7,7 +7,7 @@ class BaseForm(forms.ModelForm):
     class Meta:
         model = Base
         fields = [
-    'vida',
+    'vidaFixaBase',
     'vidaBase',
     'regenVida',
     'mana',

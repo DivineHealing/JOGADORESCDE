@@ -25,7 +25,7 @@
         <div class="top-section">             
             <div class="vida-mana-vigor bordered-section">
                 <div class="formGroupRed field">
-                    <input type="number" maxlength="12" name="vida" id="vida" placeholder="Valor da Vida" value="{{ base_personagem.vida }}" onkeypress="if (!isNaN(String.fromCharCode(window.event.keyCode))) return true; else return false;"/>
+                    <input type="number" maxlength="12" name="vidaFixaBase" id="vidaFixaBase" placeholder="Valor da Vida" value="{{ base_personagem.vidaFixaBase }}" onkeypress="if (!isNaN(String.fromCharCode(window.event.keyCode))) return true; else return false;"/>
                     <input style="margin-Left: 1em" pattern="[0-9]+$" type="number" placeholder="Aumento de Vida Base" name='vidaBase' id='vidaBase' value="{{ base_personagem.vidaBase }}" />
                     <label style="margin-Left: 13.5em; width: 13.5em" for="vidaBase" class="formLabel">Aumento de Vida Base</label>
                     <label style="width: 13em" for="vida" class="formLabel">Vida Máxima</label>

@@ -10,7 +10,7 @@ from cadastro.models import Maestria
 from math import floor
 
 campos_personagem = [
-    "regenVida", "regenMana", "regenVigor", "vida", "vidaBase", "vidaTotal", "mana", "vigor",
+    "regenVida", "regenMana", "regenVigor", "vida", "vidaFixaBase", "vidaBase", "vidaTotal", "mana", "vigor",
     "forca", "destreza", "inteligencia", "determinacao", "perspicacia", "carisma",
     "forcaPer", "destrezaPer", "inteligenciaPer", "determinacaoPer", "perspicaciaPer", "carismaPer",
     # DEFESA
@@ -116,6 +116,7 @@ def pegar_front(request, escolha, personagem, origem, peca= "", percent=False):
     # ATRIBUTOS BASE
     campos = { # guardando os campos em um dicionario(esquerda é onde salvara no banco|direita é o que vai pegar no request)
         "vida": "vida",
+        'vidaFixaBase': "vidaFixaBase",
         "vidaBase": "vidaBase",
         "vidaTotal": "vidaTotal",
         "vigor": "vigor",
@@ -435,6 +436,19 @@ def status_perc(personagem_id):
         calc = floor(flat + flat * perc / 100)  # fazendo o calculo
         setattr(personagem, f'{status[i]}Total', calc)  # salvando no campo apropriado
         personagem.save()
+
+def vida_perc(personagem_id):
+    personagem = Tela_personagem.objects.get(id=personagem_id) 
+    vidaEquips = getattr(personagem, 'vida')
+    vidaBase = getattr(personagem, 'vidaFixaBase')
+    vidaBasePerc = getattr(personagem, 'vidaBase')
+    vidaTotal = getattr(personagem, 'vidaTotal')
+
+    base = floor(vidaBase+(vidaBase*(vidaBasePerc/100)))
+    calc = floor(vidaEquips + base + (vidaEquips * vidaTotal / 100))
+
+    setattr(personagem, 'vidaFinal', calc)  # salvando no campo apropriado
+    personagem.save()
 
 def to_int(value, default=0):
     try:
