@@ -445,7 +445,7 @@ def vida_perc(personagem_id):
     vidaTotal = getattr(personagem, 'vidaTotal')
 
     base = floor(vidaBase+(vidaBase*(vidaBasePerc/100)))
-    calc = floor(vidaEquips + base + (vidaEquips * vidaTotal / 100))
+    calc = floor(vidaEquips + base + (vidaEquips + base) * vidaTotal / 100)
 
     setattr(personagem, 'vidaFinal', calc)  # salvando no campo apropriado
     personagem.save()
