@@ -12,9 +12,9 @@ function selecionarPersonagem() {
 document.addEventListener('DOMContentLoaded', function () {
     const maxPorTipo = {
         defesa: 5,
-        dano: 5,
-        rolagem: 5,
-        amplificacao: 5,
+        dano: 8,
+        rolagem: 10,
+        amplificacao: 10,
         regeneracao: 3
     };
 

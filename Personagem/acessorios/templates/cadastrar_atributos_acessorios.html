@@ -25,7 +25,7 @@
             <div class="vida-mana-vigor bordered-section">
                 <div class="formGroupRed field">
                     <input type="number" maxlength="12" name="vida" id="vida" placeholder="Valor da Vida" value="{{ acessorios.vida }}" onkeypress="if (!isNaN(String.fromCharCode(window.event.keyCode))) return true; else return false;"/>
-                    <input style="margin-Left: 1em" pattern="[0-9]+$" type="number" placeholder="Aumento de Vida (%)" name='vidaTotal' id='vidaTotal' value="{{ acessorios.vidaBase }}" />
+                    <input style="margin-Left: 1em" pattern="[0-9]+$" type="number" placeholder="Aumento de Vida (%)" name='vidaTotal' id='vidaTotal' value="{{ acessorios.vidaTotal }}" />
                     <label style="margin-Left: 13.5em; width: 13.5em" for="vidaTotal" class="formLabel">Aumento de Vida (%)</label>
                     <label style="width: 13em" for="vida" class="formLabel">Aumento de Vida</label>
                 </div>
