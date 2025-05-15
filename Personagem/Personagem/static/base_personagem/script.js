@@ -7,146 +7,191 @@ function selecionarPersonagem() {
     }
 }
 
+// TENTATIVA DE EXIBIR OS DADOS DINAMICOS
 
-const addDefesaBtn = document.getElementById('addDefesa');
-const defesaContainer = document.getElementById('defesaContainer');
-let defesaCount = 0; // Counter to keep track of attribute rows
+document.addEventListener('DOMContentLoaded', function () {
+    const maxPorTipo = {
+        defesa: 5,
+        dano: 5,
+        rolagem: 5,
+        amplificacao: 5,
+        regeneracao: 3
+    };
 
-addDefesaBtn.addEventListener('click', function () {
-    defesaCount++; // Increment counter for each new attribute row
-
-    const atributoRow = document.createElement('div');
-    if (defesaCount <= 5) {
-        atributoRow.classList.add('defesa-row');
-        atributoRow.innerHTML = `
-            <div>
-                <label for="elementoDefesa${defesaCount}">Elemento</label>
-                <input type="text" id="elementoDefesa${defesaCount}" name="elementoDefesa${defesaCount}" placeholder="Ex: Fogo">
-            </div>
-            <div>
-                <label for="defesa${defesaCount}">Defesa Fixa</label>
-                <input type="number" id="defesa${defesaCount}" name="defesa${defesaCount}" value="0">
-            </div>
-            <div>
-                <label for="resistencia${defesaCount}">Resistência</label>
-                <input type="number" id="resistencia${defesaCount}" name="resistencia${defesaCount}" value="0">
-            </div>
-        `;
-
-        defesaContainer.appendChild(atributoRow);
+    function safeParse(id) {
+        try {
+            return JSON.parse(document.getElementById(id).textContent);
+        } catch {
+            return [];
+        }
     }
-});
+    
+    const defesas = safeParse("defesas-preexistentes-json");
+    const resistencias = safeParse("resistencias-preexistentes-json");
+    const danos = safeParse("danos-preexistentes-json");
+    const penetracoes = safeParse("penetracoes-preexistentes-json");
+    const rolagens = safeParse("rolagens-preexistentes-json");
+    const amplificacoes = safeParse("amplificacoes-preexistentes-json");
+    const regeneracoes = safeParse("regeneracoes-preexistentes-json");
 
-const addAtributoBtn = document.getElementById('addAtributo');
-const atributosContainer = document.getElementById('atributosContainer');
-let danoCount = 0; // Counter to keep track of attribute rows
+    function criarLinha(container, index, tipo, dados = {}) {
+        let linha = document.createElement('div');
+        linha.className = `${tipo}-row`;
 
-addAtributoBtn.addEventListener('click', function () {
-    danoCount++; // Increment counter for each new attribute row
+        switch (tipo) {
+            case 'defesa':
+                linha.innerHTML = `
+                    <div>
+                        <label for="elementoDefesa${index}">Elemento</label>
+                        <input type="text" id="elementoDefesa${index}" name="elementoDefesa${index}" value="${dados.elemento || ''}">
+                    </div>
+                    <div>
+                        <label for="defesa${index}">Defesa Fixa</label>
+                        <input type="number" id="defesa${index}" name="defesa${index}" value="${dados.defesa || 0}">
+                    </div>
+                    <div>
+                        <label for="resistencia${index}">Resistência</label>
+                        <input type="number" id="resistencia${index}" name="resistencia${index}" value="${dados.resistencia || 0}">
+                    </div>
+                `;
+                break;
 
-    const atributoRow = document.createElement('div');
-    if (danoCount <= 5) {
-        atributoRow.classList.add('dano-row');
-        atributoRow.innerHTML = `
-            <div>
-                <label for="elementoDano${danoCount}">Elemento</label>
-                <input type="text" id="elementoDano${danoCount}" name="elementoDano${danoCount}" placeholder="Ex: Fogo">
-            </div>
-            <div>
-                <label for="dano${danoCount}">Dano Fixo</label>
-                <input type="number" id="dano${danoCount}" name="dano${danoCount}" value="0">
-            </div>
-            <div>
-                <label for="penetracao${danoCount}">Penetração</label>
-                <input type="number" id="penetracao${danoCount}" name="penetracao${danoCount}" value="0">
-            </div>
-        `;
+            case 'dano':
+                linha.innerHTML = `
+                    <div>
+                        <label for="elementoDano${index}">Elemento</label>
+                        <input type="text" id="elementoDano${index}" name="elementoDano${index}" value="${dados.elemento || ''}">
+                    </div>
+                    <div>
+                        <label for="dano${index}">Dano Fixo</label>
+                        <input type="number" id="dano${index}" name="dano${index}" value="${dados.dano || 0}">
+                    </div>
+                    <div>
+                        <label for="penetracao${index}">Penetração</label>
+                        <input type="number" id="penetracao${index}" name="penetracao${index}" value="${dados.penetracao || 0}">
+                    </div>
+                `;
+                break;
 
-        atributosContainer.appendChild(atributoRow);
+            case 'rolagem':
+                linha.innerHTML = `
+                    <div>
+                        <label for="rolagemTipo${index}">Tipo</label>
+                        <input type="text" id="rolagemTipo${index}" name="rolagemTipo${index}" value="${dados.tipo || ''}">
+                    </div>
+                    <div>
+                        <label for="rolagem${index}">Valor</label>
+                        <input type="number" id="rolagem${index}" name="rolagem${index}" value="${dados.valor || 0}">
+                    </div>
+                `;
+                break;
+
+            case 'amplificacao':
+                linha.innerHTML = `
+                    <div>
+                        <label for="amplificacaoTipo${index}">Tipo</label>
+                        <input style="width: 17em" type="text" id="amplificacaoTipo${index}" name="amplificacaoTipo${index}" value="${dados.tipo || ''}">
+                    </div>
+                    <div>
+                        <label for="amplificacao${index}">Valor</label>
+                        <input type="number" id="amplificacao${index}" name="amplificacao${index}" value="${dados.valor || 0}">
+                    </div>
+                `;
+                break;
+
+            case 'regeneracao':
+                linha.innerHTML = `
+                    <div>
+                        <label for="regeneracaoTipo${index}">Tipo</label>
+                        <select class='personagem_select' id="regeneracaoTipo${index}" name="regeneracaoTipo${index}">
+                            <option value="regenVida" ${dados.tipo === 'regenVida' ? 'selected' : ''}>Vida</option>
+                            <option value="regenMana" ${dados.tipo === 'regenMana' ? 'selected' : ''}>Mana</option>
+                            <option value="regenVigor" ${dados.tipo === 'regenVigor' ? 'selected' : ''}>Vigor</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="regeneracao${index}">Valor</label>
+                        <input type="number" id="regeneracao${index}" name="regeneracao${index}" value="${dados.valor || 0}">
+                    </div>
+                `;
+                break;
+        }
+
+        container.appendChild(linha);
     }
+
+    // Mapeamento de tipo → dados → container → botão → contador
+    const configuracoes = [
+        {
+            tipo: 'defesa',
+            dados: defesas.map((d, i) => ({
+                elemento: d.variavelPropriedade,
+                defesa: d.variavelValor,
+                resistencia: resistencias[i]?.variavelValor || 0
+            })),
+            container: document.getElementById('defesaContainer'),
+            botao: document.getElementById('addDefesa'),
+            contador: 0
+        },
+        {
+            tipo: 'dano',
+            dados: danos.map((d, i) => ({
+                elemento: d.variavelPropriedade,
+                dano: d.variavelValor,
+                penetracao: penetracoes[i]?.variavelValor || 0
+            })),
+            container: document.getElementById('atributosContainer'),
+            botao: document.getElementById('addAtributo'),
+            contador: 0
+        },
+        {
+            tipo: 'rolagem',
+            dados: rolagens.map(d => ({
+                tipo: d.variavelPropriedade,
+                valor: d.variavelValor
+            })),
+            container: document.getElementById('rolagemContainer'),
+            botao: document.getElementById('addRolagem'),
+            contador: 0
+        },
+        {
+            tipo: 'amplificacao',
+            dados: amplificacoes.map(d => ({
+                tipo: d.variavelPropriedade,
+                valor: d.variavelValor
+            })),
+            container: document.getElementById('amplificacaoContainer'),
+            botao: document.getElementById('addAmplificacao'),
+            contador: 0
+        },
+        {
+            tipo: 'regeneracao',
+            dados: regeneracoes.map(d => ({
+                tipo: d.variavelPropriedade,
+                valor: d.variavelValor
+            })),
+            container: document.getElementById('regeneracaoContainer'),
+            botao: document.getElementById('addRegeneracao'),
+            contador: 0
+        }
+    ];
+
+    configuracoes.forEach(config => {
+        // Preenche com dados existentes
+        if (config.container && config.botao) {
+            config.dados.forEach(dados => {
+                config.contador++;
+                if (config.contador <= maxPorTipo[config.tipo]) {
+                    criarLinha(config.container, config.contador, config.tipo, dados);
+                }
+            });
+
+            config.botao.addEventListener('click', () => {
+                config.contador++;
+                if (config.contador <= maxPorTipo[config.tipo]) {
+                    criarLinha(config.container, config.contador, config.tipo);
+                }
+            });
+        };
+    });
 });
-
-
-const addRolagemBtn = document.getElementById('addRolagem');
-const rolagemContainer = document.getElementById('rolagemContainer');
-let rolagemCount = 0; // Counter to keep track of attribute rows
-
-addRolagemBtn.addEventListener('click', function () {
-    rolagemCount++; // Increment counter for each new attribute row
-
-    const rolagemRow = document.createElement('div');
-    if (rolagemCount <= 5) {
-        rolagemRow.classList.add('rolagem-row');
-        rolagemRow.innerHTML = `
-            <div>
-                <label for="rolagemTipo${rolagemCount}">Tipo</label>
-                <input type="text" id="rolagemTipo${rolagemCount}" name="rolagemTipo${rolagemCount}" placeholder="Ex: Invocação">
-            </div>
-            <div>
-                <label for="rolagem${rolagemCount}">Valor</label>
-                <input type="number" id="rolagem${rolagemCount}" name="rolagem${rolagemCount}" value="0">
-            </div>
-        `;
-
-        rolagemContainer.appendChild(rolagemRow);
-    }
-});
-
-
-const addAmplificacaoBtn = document.getElementById('addAmplificacao');
-const amplificacaoContainer = document.getElementById('amplificacaoContainer');
-let amplificacaoCount = 0; // Counter to keep track of attribute rows
-
-addAmplificacaoBtn.addEventListener('click', function () {
-    amplificacaoCount++; // Increment counter for each new attribute row
-
-    const amplificacaoRow = document.createElement('div');
-    if (amplificacaoCount <= 5) {
-        amplificacaoRow.classList.add('amplificacao-row');
-        amplificacaoRow.innerHTML = `
-            <div>
-                <label for="amplificacaoTipo${amplificacaoCount}">Tipo</label>
-                <input style="width: 17em" type="text" id="amplificacaoTipo${amplificacaoCount}" name="amplificacaoTipo${amplificacaoCount}" placeholder="Ex: Fogo">
-            </div>
-            <div>
-                <label for="amplificacao${amplificacaoCount}">Valor</label>
-                <input type="number" id="amplificacao${amplificacaoCount}" name="amplificacao${amplificacaoCount}" value="0">
-            </div>
-        `;
-
-        amplificacaoContainer.appendChild(amplificacaoRow);
-    }
-});
-
-
-const addRegeneracaoBtn = document.getElementById('addRegeneracao');
-const regeneracaoContainer = document.getElementById('regeneracaoContainer');
-let regeneracaoCount = 0; // Counter to keep track of attribute rows
-
-addRegeneracaoBtn.addEventListener('click', function () {
-    regeneracaoCount++; // Increment counter for each new attribute row
-
-    const regeneracaoRow = document.createElement('div');
-    if (regeneracaoCount <= 3) {
-        regeneracaoRow.classList.add('regeneracao-row');
-        regeneracaoRow.innerHTML =
-        `   <div>
-                <label for="regeneracaoTipo${regeneracaoCount}">Tipo</label>
-                <select class='personagem_select' id="regeneracaoTipo${regeneracaoCount}" name="regeneracaoTipo${regeneracaoCount}">                        
-                    <option value="regenVida" selected>Vida</option>
-                    <option value="regenMana">Mana</option>
-                    <option value="regenVigor">Vigor</option>
-                </select>
-            </div>
-            <div>
-                <label for="regeneracao${regeneracaoCount}">Valor</label>
-                <input type="number" id="regeneracao${regeneracaoCount}" name="regeneracao${regeneracaoCount}" value="0">
-            </div>
-        `;
-
-        regeneracaoContainer.appendChild(regeneracaoRow);
-    }
-});
-
-
-

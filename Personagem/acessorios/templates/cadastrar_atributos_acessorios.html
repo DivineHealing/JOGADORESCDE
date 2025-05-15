@@ -109,6 +109,14 @@
     </form> 
     </div>
     {% endlocalize %}
-    <script src="{% static 'acessorios\script.js' %}"></script>
+    {{ defesas_json|json_script:"defesas-preexistentes-json" }}
+    {{ resistencias_json|json_script:"resistencias-preexistentes-json" }}
+    {{ danos_json|json_script:"danos-preexistentes-json" }}
+    {{ penetracoes_json|json_script:"penetracoes-preexistentes-json" }}
+    {{ rolagens_json|json_script:"rolagens-preexistentes-json" }}
+    {{ amplificacoes_json|json_script:"amplificacoes-preexistentes-json" }}
+    {{ regeneracoes_json|json_script:"regeneracoes-preexistentes-json" }}
+
+    <script src="{% static 'base_personagem\script.js' %}"></script>
 </body>
 </html>

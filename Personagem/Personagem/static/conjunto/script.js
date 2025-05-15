@@ -7,12 +7,6 @@ function selecionarPersonagem() {
     }
 }
 
-function selecionarPersonagem() {
-    var select = document.getElementById("personagem_select");
-    var personagem_id = select.value;
-    window.location.href = "/" + personagem_id + "/";
-}
-
 const addAtributoBtn = document.getElementById('addAtributo');
 const atributosContainer = document.getElementById('atributosContainer');
 let atributoCount = 0; // Counter to keep track of attribute rows

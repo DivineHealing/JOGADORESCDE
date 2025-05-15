@@ -99,12 +99,12 @@
                         </div>
                             
                         <div class="formGroup field">
-                            <input pattern="[0-9]+$" type="number" placeholder="Redução de Dano" id='reducao' />
+                            <input pattern="[0-9]+$" type="number" placeholder="Redução de Dano" id='reducao' value="{{ arma.reducao }}"/>
                             <label for="reducao" class="formLabel">Redução</label>
                         </div>
                         <div class="formGroupRed field">
-                            <input pattern="[0-9]+$" type="number" placeholder="Defesa Espiritual" id='defEspiritual' />
-                            <input pattern="[0-9]+$" type="number" placeholder="Redução Espiritual" id='redEspiritual' />
+                            <input pattern="[0-9]+$" type="number" placeholder="Defesa Espiritual" id='defEspiritual' value="{{ arma.defesaFixaEspiritual }}"/>
+                            <input pattern="[0-9]+$" type="number" placeholder="Redução Espiritual" id='redEspiritual' value="{{ arma.reducaoEspiritual }}"/>
                             <label for="defEspiritual" class="formLabel">Espiritual</label>
                         </div>    
                     </div>
@@ -118,19 +118,19 @@
                         
                         
                         <div class="formGroup field">
-                            <input pattern="[0-9]+$" type="number" placeholder="Esmagamento" id='esmagamento' />
+                            <input pattern="[0-9]+$" type="number" placeholder="Esmagamento" id='esmagamento' value="{{ arma.esmagamento }}"/>
                             <label for="esmagamento" class="formLabel">Esmagamento</label>
                         </div>
                         <div class="formGroup field">
-                            <input pattern="[0-9]+$" type="number" placeholder="Penetração Extra" id='penExtra' />
+                            <input pattern="[0-9]+$" type="number" placeholder="Penetração Extra" id='penExtra' value="{{ arma.penExtra }}"/>
                             <label for="penExtra" class="formLabel">Penetração Extra</label>
                         </div>
                         <div class="formGroupRed field">
-                            <input pattern="[0-9]+$" type="number" placeholder="Dano Final" id='dmgFinal' />
+                            <input pattern="[0-9]+$" type="number" placeholder="Dano Final" id='dmgFinal' value="{{ arma.danoFinal }}"/>
                             <label for="dmgFinal" class="formLabel">Dano Final</label>
                         </div>                    
                         <div class="formGroupRed field">
-                            <input pattern="[0-9]+$" type="number" placeholder="Dano Espiritual" id='dmgEspiritual' />
+                            <input pattern="[0-9]+$" type="number" placeholder="Dano Espiritual" id='dmgEspiritual' value="{{ arma.espiritualFixo }}"/>
                             <label for="dmgEspiritual" class="formLabel">Espiritual</label>
                         </div>
 
@@ -161,6 +161,25 @@
     </form>
     </div>
     {% endlocalize %}
-    <script src="{% static 'arma\script.js' %}"></script>
+
+    {{ defesas_json|json_script:"defesas-preexistentes-json" }}
+    {{ resistencias_json|json_script:"resistencias-preexistentes-json" }}
+    {{ danos_json|json_script:"danos-preexistentes-json" }}
+    {{ penetracoes_json|json_script:"penetracoes-preexistentes-json" }}
+    {{ rolagens_json|json_script:"rolagens-preexistentes-json" }}
+    {{ amplificacoes_json|json_script:"amplificacoes-preexistentes-json" }}
+    {{ regeneracoes_json|json_script:"regeneracoes-preexistentes-json" }}
+
+    <script src="{% static 'base_personagem\script.js' %}"></script>
+
+    <script>
+        const atrOfensivo = document.getElementById("atributosOfensivo");
+        const atrDefensivo = document.getElementById("atributosDefensivo");
+
+        function definirAtr(alterarAtr) {
+            atrOfensivo.style.display = alterarAtr.checked ? "block" : "none";
+            atrDefensivo.style.display = alterarAtr.checked ? "none" : "block";
+        };
+    </script>
 </body>
 </html>

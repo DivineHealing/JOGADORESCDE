@@ -28,7 +28,7 @@ def cadastrar_equipamento_armas(request, tipo):
     if request.method == 'POST':
         form = EquipamentoForm(request.POST)
         if form.is_valid():
-            equipamento = form.save(commit=False)
+            equipamento = form.save(commit=True)
             equipamento.tipo = tipo  # Define o tipo com base na URL
             equipamento.save()
             return redirect('cadastrar_atributos_armas')  # Redireciona para a lista (você ainda vai criar)
@@ -43,7 +43,34 @@ def cadastrar_equipamento_armas(request, tipo):
     tela_personagem = get_object_or_404(Tela_personagem, personagem=personagem_id)
     arma = get_object_or_404(Arma, personagem=personagem_id, peca=tipo)
 
-    return render(request, 'cadastrar_atributos_arma.html', {'form': form, 'tipo': tipo, 'tela_personagem': tela_personagem, 'arma': arma})
+    def get_attrs(atributo):
+        return list(Character_attribute.objects.filter(
+            personagem=personagem_id,
+            variavelTipo=atributo,
+            origem="arma",
+            peca=tipoEquipamento,
+        ).values("variavelPropriedade", "variavelValor"))
+    
+    regeneracoes_json = [
+        {"variavelPropriedade": nome, "variavelValor": getattr(arma, nome)}
+        for nome in ["regenVida", "regenMana", "regenVigor"]
+        if getattr(arma, nome) is not None
+]
+        
+    context = {
+        'tela_personagem': tela_personagem,
+        'arma': arma,
+        'defesas_json': get_attrs("defesa"),
+        'resistencias_json': get_attrs("resistencia"),
+        'danos_json': get_attrs("dano"),
+        'penetracoes_json': get_attrs("penetracao"),
+        'rolagens_json': get_attrs("rolagem"),
+        'amplificacoes_json': get_attrs("amplificacao"),
+        'regeneracoes_json': regeneracoes_json,
+        'form': form,
+        'tipo': tipo
+    }
+    return render(request, 'cadastrar_atributos_arma.html', context)
 
 
 def cadastrar_efeitos_armas(request, tipo):

@@ -28,7 +28,7 @@ def cadastrar_equipamento(request, tipo):
     if request.method == 'POST':
         form = EquipamentoForm(request.POST)
         if form.is_valid():
-            equipamento = form.save(commit=False)
+            equipamento = form.save(commit=True)
             equipamento.tipo = tipo  # Define o tipo com base na URL
             equipamento.save()
             return redirect('cadastrar_atributos')  # Redireciona para a lista (você ainda vai criar)
@@ -40,17 +40,43 @@ def cadastrar_equipamento(request, tipo):
     if not personagem_id:
         return redirect('exibir_personagem')
 
-    tela_personagem = get_object_or_404(Conjunto, personagem=personagem_id, peca=tipo)
+    tela_personagem = get_object_or_404(Tela_personagem, personagem=personagem_id)
+    conj = get_object_or_404(Conjunto, personagem=personagem_id, peca=tipo)
 
-
-    return render(request, 'cadastrar_atributos_conj.html', {'form': form, 'tipo': tipo, 'tela_personagem': tela_personagem})
+    def get_attrs(atributo):
+        return list(Character_attribute.objects.filter(
+            personagem=personagem_id,
+            variavelTipo=atributo,
+            origem="conj",
+            peca=tipoEquipamento,
+        ).values("variavelPropriedade", "variavelValor"))
+    
+    regeneracoes_json = [
+        {"variavelPropriedade": nome, "variavelValor": getattr(conj, nome)}
+        for nome in ["regenVida", "regenMana", "regenVigor"]
+        if getattr(conj, nome) is not None
+    ]
+    
+    context = {
+        'tela_personagem': tela_personagem,
+        'conjunto': conj,
+        'defesas_json': get_attrs("defesa"),
+        'resistencias_json': get_attrs("resistencia"),
+        'rolagens_json': get_attrs("rolagem"),
+        'amplificacoes_json': get_attrs("amplificacao"),
+        'regeneracoes_json': regeneracoes_json,
+        'form': form,
+        'tipo': tipo
+    }
+    
+    return render(request, 'cadastrar_atributos_conj.html', context)
 
 
 def cadastrar_efeitos(request, tipo):
     if request.method == 'POST':
         form = EquipamentoForm(request.POST)
         if form.is_valid():
-            equipamento = form.save(commit=False)
+            equipamento = form.save(commit=True)
             equipamento.tipo = tipo  # Define o tipo com base na URL
             equipamento.save()
             return redirect('cadastrar_efeitos')  # Redireciona para a lista (você ainda vai criar)
@@ -62,7 +88,7 @@ def cadastrar_efeitos(request, tipo):
     if not personagem_id:
         return redirect('exibir_personagem')
 
-    tela_personagem = get_object_or_404(Conjunto, personagem=personagem_id, peca=tipo)
+    tela_personagem = get_object_or_404(Conjunto, pk=personagem_id)
 
     return render(request, 'cadastrar_efeitos_conj.html', {'form': form, 'tipo': tipo, 'tela_personagem': tela_personagem})
 
@@ -98,7 +124,6 @@ def salvar_conjunto_efeitos(request):
 
         personagem = Base_personagem.objects.get(id=personagem_id)
         pegar_efeito(request, personagem, "conj", tipoEquipamento)
-        print('FUNCIONA')
         return redirect('conjunto')
 
     return redirect('conjunto')

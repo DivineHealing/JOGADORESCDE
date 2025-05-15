@@ -12,7 +12,7 @@ def habilidade(request, personagem_id):
 
     if not personagem_id:
         return redirect('exibir_personagem')
-
+        
     tela_personagem = get_object_or_404(Tela_personagem, pk=personagem_id)
     habilidade = get_object_or_404(Habilidade, personagem_id=personagem_id)  # <- Aqui está a mudança chave
     
