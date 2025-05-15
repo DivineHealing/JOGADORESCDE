@@ -73,6 +73,9 @@ def cadastrar_equipamento(request, tipo):
 
 
 def cadastrar_efeitos(request, tipo):
+    global tipoEquipamento
+    tipoEquipamento = tipo
+
     if request.method == 'POST':
         form = EquipamentoForm(request.POST)
         if form.is_valid():

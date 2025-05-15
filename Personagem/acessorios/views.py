@@ -73,6 +73,9 @@ def cadastrar_equipamento_acessorios(request, tipo):
 
 
 def cadastrar_efeitos_acessorios(request, tipo):
+    global tipoEquipamento
+    tipoEquipamento = tipo
+
     if request.method == 'POST':
         form = EquipamentoForm(request.POST)
         if form.is_valid():

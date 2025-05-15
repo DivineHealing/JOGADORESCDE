@@ -74,6 +74,9 @@ def cadastrar_equipamento_armas(request, tipo):
 
 
 def cadastrar_efeitos_armas(request, tipo):
+    global tipoEquipamento
+    tipoEquipamento = tipo
+
     if request.method == 'POST':
         form = EquipamentoForm(request.POST)
         if form.is_valid():
