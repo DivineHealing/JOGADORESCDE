@@ -73,6 +73,7 @@ function formatarAtributo(atributo) {
     }
 
     let valorTexto = element.innerText; // Obtém o texto do elemento
+    
     valorTexto = valorTexto.replace(/\./g, ''); // Remove todos os pontos (separadores de milhar)
     let valor = parseFloat(valorTexto);
 
@@ -451,3 +452,78 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 }); // Fim do DOMContentLoaded
+
+
+// FUNÇÃO DE EXIBIÇÃO DOS EFEITOS
+document.addEventListener("DOMContentLoaded", function () {
+    const containers = {
+        ativo: document.getElementById('area-ativo'),
+        passivo: document.getElementById('area-passivo'),
+        aura: document.getElementById('area-aura'),
+        nucleo: document.getElementById('area-nucleo'),
+        triunfo: document.getElementById('area-triunfo')
+    };
+
+    const jsonIds = {
+        ativo: 'ativo-json',
+        passivo: 'passivo-json',
+        aura: 'aura-json',
+        nucleo: 'nucleo-json',
+        triunfo: 'triunfo-json'
+    };
+
+    const listas = {};
+
+    for (const tipo in jsonIds) {
+        try {
+            const el = document.getElementById(jsonIds[tipo]);
+            if (el && el.textContent.trim() !== '') {
+                listas[tipo] = JSON.parse(JSON.parse(el.textContent));
+                //console.log(`✔️ Efeitos carregados para tipo "${tipo}":`, listas[tipo]);
+            } else {
+                //console.warn(`⚠️ Elemento JSON "${jsonIds[tipo]}" não encontrado ou vazio.`);
+                listas[tipo] = [];
+            }
+        } catch (e) {
+            //console.error(`❌ Erro ao parsear JSON para tipo "${tipo}":`, e);
+            listas[tipo] = [];
+        }
+    }
+    
+    //console.log("🎯 Listas finalizadas:", listas);
+
+
+    function criarCardEfeito({ nome, descricao }, index) {
+        const div = document.createElement('div');
+        div.className = 'efeito-card';
+        div.id = `efeito_${index}`;
+
+        div.innerHTML = `
+            <div class="efeito-nome"><strong>${nome || 'Sem nome'}</strong></div>
+            <div class="efeito-descricao">${descricao || 'Sem descrição'}</div>
+        `;
+        return div;
+    }
+
+
+    // Itera sobre cada tipo (ativo, passivo, etc)
+    for (const tipo in listas) {
+    const lista = listas[tipo];
+    const container = containers[tipo];
+
+    //console.log(`→ Verificando tipo: ${tipo}`);
+    //console.log('→ Lista:', lista);
+    //console.log('→ Container:', container);
+
+    if (!container || !Array.isArray(lista)) continue;
+
+    lista.forEach((efeitoObj, i) => {
+        const { nome, descricao } = efeitoObj;
+        const card = criarCardEfeito({ nome, descricao }, i + 1);
+        container.appendChild(card);
+    });
+}
+
+
+
+});

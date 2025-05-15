@@ -1,14 +1,16 @@
 # tela_personagens/views.py
 from collections import defaultdict
+import json
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, JsonResponse
 from habilidade.models import Habilidade
 from base_personagem.models import Base_personagem
-from .models import Tela_personagem, Character_attribute
+from .models import Tela_personagem, Character_attribute, Character_effects
 from django.apps import apps
 from lib.utilitarios import criar_personagem_completo
 from django.db.models import Sum
 from lib.utilitarios import *
+from django.core.serializers.json import DjangoJSONEncoder
 
 
 def exibir_personagem(request, personagem_id=None):
@@ -86,6 +88,8 @@ def exibir_personagem(request, personagem_id=None):
         dados_dano = []
         dados_penetracao = []
         dados_amplificacao = []
+        dados_efeitosAtivos = []
+        dados_efeitosPassivos = []
         habilidades_data_formatada = []
 
     if base_personagem:
@@ -97,12 +101,37 @@ def exibir_personagem(request, personagem_id=None):
                 variavelValor=Sum("variavelValor")
             ).order_by("variavelPropriedade")
         
-        dados_rolagens = agrupar_variaveis("rolagem")
-        dados_defesas = agrupar_variaveis("defesa")
-        dados_resistencias = agrupar_variaveis("resistencia")
-        dados_dano = agrupar_variaveis("dano")
-        dados_penetracao = agrupar_variaveis("penetracao")
-        dados_amplificacao = agrupar_variaveis("amplificacao")
+        def agrupar_efeitos(efeito):
+            return Character_effects.objects.filter(
+            personagem=personagem_id,
+            variavelTipo=efeito
+            ).values("variavelNome", "variavelDescricao")        
+        
+        # DADOS DE EFEITOS
+        try:
+            dados_rolagens = agrupar_variaveis("rolagem")
+            dados_defesas = agrupar_variaveis("defesa")
+            dados_resistencias = agrupar_variaveis("resistencia")
+            dados_dano = agrupar_variaveis("dano")
+            dados_penetracao = agrupar_variaveis("penetracao")
+            dados_amplificacao = agrupar_variaveis("amplificacao")
+        except Character_attribute.DoesNotExist:
+            dados_rolagens = []
+            dados_defesas = []
+            dados_resistencias = []
+            dados_dano = []
+            dados_penetracao = []
+            dados_amplificacao = []
+
+            # DADOS DE EFEITOS
+        try:
+            dados_efeitosAtivos = agrupar_efeitos("efeitoAtivo")
+            dados_efeitosPassivos = agrupar_efeitos("efeitoPassivo")
+        except Character_attribute.DoesNotExist:
+            dados_efeitosAtivos = []
+            dados_efeitosPassivos = []
+            print(f"!!! ERRO: Falha ao acessar dados de efeitos para Base_personagem ID={base_personagem.id} !!!")
+        
 
         # --- Lógica para formatar os dados das Habilidades (SÓ SE habilidades_obj foi encontrado) ---
         habilidades_data_formatada = formatar_habilidades(habilidades_obj)
@@ -116,6 +145,22 @@ def exibir_personagem(request, personagem_id=None):
     danos_json = formatar_para_json(dados_dano)
     penetracoes_json = formatar_para_json(dados_penetracao)
     amplificacoes_json = formatar_para_json(dados_amplificacao)
+    
+    def formatar_efeito_json(lista):
+        return json.dumps([
+            {
+                "nome": item["variavelNome"],
+                "descricao": item.get("variavelDescricao", "")
+            }
+            for item in lista
+        ], cls=DjangoJSONEncoder)
+
+    efeitos_ativos_json = formatar_efeito_json(dados_efeitosAtivos)
+    efeitos_passivos_json = formatar_efeito_json(dados_efeitosPassivos)
+
+  #  print(f"--- Dados formatados para JSON ---")
+  #  print(f"Efeitos Ativos JSON: {efeitos_ativos_json}")
+  #  print(f"Efeitos Passivos JSON: {efeitos_passivos_json}")
 
     context = {
         'tela_personagem': tela_personagem,
@@ -123,13 +168,16 @@ def exibir_personagem(request, personagem_id=None):
         'base_personagem': base_personagem,
         'habilidades_raw': habilidades_obj,
         'lista_habilidades_data': habilidades_data_formatada,
-
+        # ATRIBUTOS
         'rolagens_json': rolagens_json,
         'defesas_json': defesas_json,
         'resistencias_json': resistencias_json,
         'danos_json': danos_json,
         'penetracoes_json': penetracoes_json,
         'amplificacoes_json': amplificacoes_json,
+        # EFEITOS
+        'efeitos_ativos_json': efeitos_ativos_json,
+        'efeitos_passivos_json': efeitos_passivos_json,
 }
     
     return render(request, 'tela_personagem.html', context)

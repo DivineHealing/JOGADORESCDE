@@ -219,7 +219,9 @@
                 <div class="character-equipment bordered-section">
                     <div class="equipment section-title">EQUIPAMENTOS</div>
                     <div class="equipment-content">
-                        
+                        <div id="area-ativo"></div>
+                        <div id="area-passivo"></div>
+
                     </div>
                 </div>
             </div>
@@ -239,13 +241,15 @@
     </div>
     
     {% endlocalize %}
-    <script src="{% static 'tela_personagem\script.js' %}"></script>
     {{ danos_json|json_script:"danos-json" }}
     {{ penetracoes_json|json_script:"penetracoes-json" }}
     {{ rolagens_json|json_script:"rolagens-json" }}
     {{ defesas_json|json_script:"defesas-json" }}
     {{ resistencias_json|json_script:"resistencias-json" }}
     {{ amplificacoes_json|json_script:"amplificacoes-json" }}
+    {{ efeitos_ativos_json|safe|json_script:"ativo-json" }}
+    {{ efeitos_passivos_json|safe|json_script:"passivo-json" }}
+
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const danoArea = document.getElementById('area-danos');
@@ -389,5 +393,6 @@
             });
         });
     </script>
+    <script src="{% static 'tela_personagem\script.js' %}"></script>
 </body>
 </html>

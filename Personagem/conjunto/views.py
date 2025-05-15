@@ -91,7 +91,7 @@ def cadastrar_efeitos(request, tipo):
     if not personagem_id:
         return redirect('exibir_personagem')
 
-    tela_personagem = get_object_or_404(Conjunto, pk=personagem_id)
+    tela_personagem = get_object_or_404(Conjunto, pk=personagem_id)    
 
     return render(request, 'cadastrar_efeitos_conj.html', {'form': form, 'tipo': tipo, 'tela_personagem': tela_personagem})
 

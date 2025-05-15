@@ -493,4 +493,11 @@ area {
   display: block;
 }
 
-/* ... (demais regras internas para .nivel-info, p, strong, em) ... */
+.efeito-card {
+    background: #111;
+    border: 1px solid #888;
+    padding: 10px;
+    margin-bottom: 8px;
+    color: white; /* para fundos escuros */
+}
+
