@@ -49,7 +49,7 @@ def cadastrar_equipamento_armas(request, tipo):
             variavelTipo=atributo,
             origem="arma",
             peca=tipoEquipamento,
-        ).values("variavelPropriedade", "variavelValor"))
+        ).order_by('-variavelValor').values("variavelPropriedade", "variavelValor"))
     
     regeneracoes_json = [
         {"variavelPropriedade": nome, "variavelValor": getattr(arma, nome)}

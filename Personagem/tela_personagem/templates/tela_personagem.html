@@ -270,12 +270,12 @@
             let listaAmplificacoes = [];
         
             try {
-                listaDanos = JSON.parse(danosJsonEl.textContent);
-                listaPenetracoes = JSON.parse(penetracoesJsonEl.textContent);
-                listaRolagens = JSON.parse(rolagensJsonEl.textContent);
-                listaDefesas = JSON.parse(defesasJsonEl.textContent);
-                listaResistencias = JSON.parse(resistenciasJsonEl.textContent);
-                listaAmplificacoes = JSON.parse(amplificacoesJsonEl.textContent);
+                listaDanos = JSON.parse(danosJsonEl.textContent).sort((a, b) => b.fields.variavelValor - a.fields.variavelValor);
+                listaPenetracoes = JSON.parse(penetracoesJsonEl.textContent).sort((a, b) => b.fields.variavelValor - a.fields.variavelValor);
+                listaRolagens = JSON.parse(rolagensJsonEl.textContent).sort((a, b) => b.fields.variavelValor - a.fields.variavelValor);
+                listaDefesas = JSON.parse(defesasJsonEl.textContent).sort((a, b) => b.fields.variavelValor - a.fields.variavelValor);
+                listaResistencias = JSON.parse(resistenciasJsonEl.textContent).sort((a, b) => b.fields.variavelValor - a.fields.variavelValor);
+                listaAmplificacoes = JSON.parse(amplificacoesJsonEl.textContent).sort((a, b) => b.fields.variavelValor - a.fields.variavelValor);
             } catch (e) {
                 console.error("Erro ao fazer parse dos dados JSON!", e);
                 return;

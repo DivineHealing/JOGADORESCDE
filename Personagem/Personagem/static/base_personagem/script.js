@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', function () {
             dados: rolagens.map(d => ({
                 tipo: d.variavelPropriedade,
                 valor: d.variavelValor
-            })),
+            })).sort((a, b) => b.valor - a.valor),
             container: document.getElementById('rolagemContainer'),
             botao: document.getElementById('addRolagem'),
             contador: 0
@@ -159,7 +159,8 @@ document.addEventListener('DOMContentLoaded', function () {
             dados: amplificacoes.map(d => ({
                 tipo: d.variavelPropriedade,
                 valor: d.variavelValor
-            })),
+            }))
+            .sort((a, b) => b.valor - a.valor),
             container: document.getElementById('amplificacaoContainer'),
             botao: document.getElementById('addAmplificacao'),
             contador: 0
@@ -169,7 +170,8 @@ document.addEventListener('DOMContentLoaded', function () {
             dados: regeneracoes.map(d => ({
                 tipo: d.variavelPropriedade,
                 valor: d.variavelValor
-            })),
+            }))
+            .sort((a, b) => b.valor - a.valor),
             container: document.getElementById('regeneracaoContainer'),
             botao: document.getElementById('addRegeneracao'),
             contador: 0
