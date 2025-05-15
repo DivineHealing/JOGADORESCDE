@@ -493,17 +493,41 @@ document.addEventListener("DOMContentLoaded", function () {
     //console.log("🎯 Listas finalizadas:", listas);
 
 
-    function criarCardEfeito({ nome, descricao }, index) {
-        const div = document.createElement('div');
-        div.className = 'efeito-card';
-        div.id = `efeito_${index}`;
+function criarCardEfeito({ nome, descricao }, index) {
+    const div = document.createElement('div');
+    div.className = 'efeito-card';
+    div.id = `efeito_${index}`;
 
-        div.innerHTML = `
-            <div class="efeito-nome"><strong>${nome || 'Sem nome'}</strong></div>
-            <div class="efeito-descricao">${descricao || 'Sem descrição'}</div>
-        `;
-        return div;
-    }
+    // Renderiza o HTML com suporte a <b>, <i>, etc.
+    div.innerHTML = `
+        <div class="efeito-nome">
+            <strong>${nome}</strong>
+            <span class="efeito-underline"></span>
+        </div>
+        <div class="efeito-descricao">${descricao}</div>
+    `;
+
+    const nomeDiv = div.querySelector('.efeito-nome');
+    const descricaoDiv = div.querySelector('.efeito-descricao');
+
+    nomeDiv.addEventListener('click', function () {
+        const visivel = descricaoDiv.classList.contains('ativo');
+
+        // Fecha todos os outros
+        document.querySelectorAll('.efeito-descricao').forEach(el => el.classList.remove('ativo'));
+        document.querySelectorAll('.efeito-card').forEach(el => el.classList.remove('ativo-card'));
+
+        // Se não estava visível, abre este
+        if (!visivel) {
+            descricaoDiv.classList.add('ativo');
+            div.classList.add('ativo-card');
+        }
+    });
+
+    return div;
+}
+
+
 
 
     // Itera sobre cada tipo (ativo, passivo, etc)

@@ -493,11 +493,101 @@ area {
   display: block;
 }
 
-.efeito-card {
-    background: #111;
-    border: 1px solid #888;
-    padding: 10px;
-    margin-bottom: 8px;
-    color: white; /* para fundos escuros */
+/* ESTILO PARA OS EFEITOS */
+
+.efeito-titulo {
+  font-size: 1.1em;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: #ffe36e;
+  text-transform: uppercase;
+  margin: 1.5em 0 0.5em 0;
+  position: relative;
+  padding-bottom: 0.4em;
+  text-shadow: 0 0 8px #ffe36e55;
 }
 
+.efeito-titulo::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #ffe36e, #7f6fff, transparent);
+  border-radius: 2px;
+  opacity: 0.9;
+}
+
+.efeito-card {
+  background: transparent;
+  margin-bottom: 1em;
+  padding: 0.5em 0.5em 0 0.5em;
+  border: none;
+  color: white;
+  transition: background 0.5s ease;
+  border-radius: 0;
+  overflow: hidden;
+}
+
+.efeito-card.ativo-card {
+  background: linear-gradient(
+    to top,
+    rgba(0, 207, 227, 0.25),
+    rgba(127, 111, 255, 0.1),
+    transparent
+  );
+  border-radius: 0 0 1em 1em;
+  box-shadow: 0 0 10px rgba(127, 111, 255, 0.3);
+}
+
+.efeito-nome {
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1em;
+  position: relative;
+  display: inline-block;
+  color: #ffe36e;
+  padding-bottom: 4px;
+  transition: color 0.3s ease;
+}
+
+.efeito-nome:hover {
+  color: #00cfe3;
+  text-shadow: 0 0 6px #00cfe3aa;
+}
+
+.efeito-underline {
+  height: 2px;
+  width: 100%;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    #ffe36e 30%,
+    #00cfe3 70%,
+    transparent 100%
+  );
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transition: width 0.5s ease;
+  border-radius: 2px;
+}
+
+.efeito-descricao {
+  margin-top: 10px;
+  color: #eaeaea;
+  font-weight: normal;
+  white-space: pre-line;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.5s ease;
+  padding: 0;
+}
+
+.efeito-descricao.ativo {
+  max-height: 300px;
+  opacity: 1;
+  padding: 0.5em 0;
+}

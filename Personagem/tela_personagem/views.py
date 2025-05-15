@@ -127,9 +127,15 @@ def exibir_personagem(request, personagem_id=None):
         try:
             dados_efeitosAtivos = agrupar_efeitos("efeitoAtivo")
             dados_efeitosPassivos = agrupar_efeitos("efeitoPassivo")
+            dados_efeitosAura = agrupar_efeitos("efeitoAura")
+            dados_efeitosNucleo = agrupar_efeitos("nucleo")
+            dados_efeitosTriunfo = agrupar_efeitos("trunfo")
         except Character_attribute.DoesNotExist:
             dados_efeitosAtivos = []
             dados_efeitosPassivos = []
+            dados_efeitosAura = []
+            dados_efeitosNucleo = []
+            dados_efeitosTriunfo = []
             print(f"!!! ERRO: Falha ao acessar dados de efeitos para Base_personagem ID={base_personagem.id} !!!")
         
 
@@ -157,9 +163,12 @@ def exibir_personagem(request, personagem_id=None):
 
     efeitos_ativos_json = formatar_efeito_json(dados_efeitosAtivos)
     efeitos_passivos_json = formatar_efeito_json(dados_efeitosPassivos)
+    efeitos_aura_json = formatar_efeito_json(dados_efeitosAura)
+    efeitos_nucleo_json = formatar_efeito_json(dados_efeitosNucleo)
+    efeitos_trunfo_json = formatar_efeito_json(dados_efeitosTriunfo)
 
   #  print(f"--- Dados formatados para JSON ---")
-  #  print(f"Efeitos Ativos JSON: {efeitos_ativos_json}")
+  #  print(f"Efeitos Nucleo JSON: {efeitos_nucleo_json}")
   #  print(f"Efeitos Passivos JSON: {efeitos_passivos_json}")
 
     context = {
@@ -178,6 +187,9 @@ def exibir_personagem(request, personagem_id=None):
         # EFEITOS
         'efeitos_ativos_json': efeitos_ativos_json,
         'efeitos_passivos_json': efeitos_passivos_json,
+        'efeitos_aura_json': efeitos_aura_json,
+        'efeitos_nucleo_json': efeitos_nucleo_json,
+        'efeitos_trunfo_json': efeitos_trunfo_json,
 }
     
     return render(request, 'tela_personagem.html', context)

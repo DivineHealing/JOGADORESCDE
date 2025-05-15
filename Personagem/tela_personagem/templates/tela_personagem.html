@@ -217,11 +217,26 @@
                 </div>
 
                 <div class="character-equipment bordered-section">
-                    <div class="equipment section-title">EQUIPAMENTOS</div>
+                    <div class="equipment section-title">EFEITOS DE EQUIPAMENTOS</div>
                     <div class="equipment-content">
+                        <div class="efeito-titulo">ATIVO</div>
                         <div id="area-ativo"></div>
+                    </div>
+                    <div class="equipment-content">
+                        <div class="efeito-titulo">PASSIVO</div>
                         <div id="area-passivo"></div>
-
+                    </div>
+                    <div class="equipment-content">
+                        <div class="efeito-titulo">AURA</div>
+                        <div id="area-aura"></div>
+                    </div>
+                    <div class="equipment-content">
+                        <div class="efeito-titulo">NUCLEO</div>
+                        <div id="area-nucleo"></div>
+                    </div>
+                    <div class="equipment-content">
+                        <div class="efeito-titulo">TRIUNFO</div>
+                        <div id="area-triunfo"></div>
                     </div>
                 </div>
             </div>
@@ -247,8 +262,12 @@
     {{ defesas_json|json_script:"defesas-json" }}
     {{ resistencias_json|json_script:"resistencias-json" }}
     {{ amplificacoes_json|json_script:"amplificacoes-json" }}
+
     {{ efeitos_ativos_json|safe|json_script:"ativo-json" }}
     {{ efeitos_passivos_json|safe|json_script:"passivo-json" }}
+    {{ efeitos_aura_json|safe|json_script:"aura-json" }}
+    {{ efeitos_nucleo_json|safe|json_script:"nucleo-json" }}
+    {{ efeitos_triunfo_json|safe|json_script:"triunfo-json" }}
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {

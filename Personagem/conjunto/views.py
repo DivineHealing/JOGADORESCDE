@@ -50,7 +50,7 @@ def cadastrar_equipamento(request, tipo):
             origem="conj",
             peca=tipoEquipamento,
          ).order_by('-variavelValor').values("variavelPropriedade", "variavelValor"))
-    
+     
     regeneracoes_json = [
         {"variavelPropriedade": nome, "variavelValor": getattr(conj, nome)}
         for nome in ["regenVida", "regenMana", "regenVigor"]

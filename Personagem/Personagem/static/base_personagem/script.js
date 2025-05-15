@@ -12,9 +12,9 @@ function selecionarPersonagem() {
 document.addEventListener('DOMContentLoaded', function () {
     const maxPorTipo = {
         defesa: 5,
-        dano: 8,
-        rolagem: 10,
-        amplificacao: 10,
+        dano: 5,
+        rolagem: 15,
+        amplificacao: 15,
         regeneracao: 3
     };
 
@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', function () {
             dados: rolagens.map(d => ({
                 tipo: d.variavelPropriedade,
                 valor: d.variavelValor
-            })).sort((a, b) => b.valor - a.valor),
+            })),
             container: document.getElementById('rolagemContainer'),
             botao: document.getElementById('addRolagem'),
             contador: 0
@@ -159,8 +159,7 @@ document.addEventListener('DOMContentLoaded', function () {
             dados: amplificacoes.map(d => ({
                 tipo: d.variavelPropriedade,
                 valor: d.variavelValor
-            }))
-            .sort((a, b) => b.valor - a.valor),
+            })),
             container: document.getElementById('amplificacaoContainer'),
             botao: document.getElementById('addAmplificacao'),
             contador: 0
@@ -170,8 +169,7 @@ document.addEventListener('DOMContentLoaded', function () {
             dados: regeneracoes.map(d => ({
                 tipo: d.variavelPropriedade,
                 valor: d.variavelValor
-            }))
-            .sort((a, b) => b.valor - a.valor),
+            })),
             container: document.getElementById('regeneracaoContainer'),
             botao: document.getElementById('addRegeneracao'),
             contador: 0
@@ -179,14 +177,21 @@ document.addEventListener('DOMContentLoaded', function () {
     ];
 
     configuracoes.forEach(config => {
+
         // Preenche com dados existentes
         if (config.container && config.botao) {
             config.dados.forEach(dados => {
+            const valor = dados.valor ?? dados.defesa ?? dados.resistencia ?? dados.dano ?? dados.penetracao ?? 0;
+
+            // Só exibe se o valor for diferente de zero
+            if (valor !== 0) {
                 config.contador++;
                 if (config.contador <= maxPorTipo[config.tipo]) {
                     criarLinha(config.container, config.contador, config.tipo, dados);
+                    console.log(`${dados.tipo || 'tipo'}${config.contador}`);
                 }
-            });
+            }
+        });;
 
             config.botao.addEventListener('click', () => {
                 config.contador++;
