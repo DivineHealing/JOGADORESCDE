@@ -447,7 +447,7 @@ area {
   background: rgba(30, 40, 70, 0.25);
   border: 1px solid #728cff;
   border-radius: 10px;
-  padding: 0.8em 1.2em;
+  padding: 0.5em 1em;
   box-shadow: 0 0 15px rgba(78, 175, 255, 0.3);
   backdrop-filter: blur(3px);
 }
@@ -456,7 +456,7 @@ area {
 .habilidade-titulo {
   cursor: pointer;
   font-weight: bold;
-  font-size: 1.15em;
+  font-size: .90em;
   color: #a4cfff;
   text-transform: uppercase;
   margin-bottom: 0.5em;
@@ -485,7 +485,7 @@ area {
 /* Container dos níveis */
 .habilidade-niveis {
   display: none;
-  margin-top: 0.5em;
+  margin-top: 0.25em;
   padding-left: 1em;
 }
 
@@ -517,12 +517,12 @@ area {
   display: none;
   background: rgba(50, 60, 110, 0.15);
   border-left: 2px solid #7f6fff;
-  padding: 12px;
-  margin-top: 0.4em;
+  padding: .5em;
+  margin-top: 0.25em;
   border-radius: 5px;
-  font-size: 0.95em;
+  font-size: 1em;
   color: #e0e0e0;
-  line-height: 1.45;
+  line-height: 1.15;
 }
 
 .nivel-detalhes.visible {
@@ -532,7 +532,7 @@ area {
 /* --- EFEITOS --- */
 
 .efeito-titulo {
-  font-size: 1.1em;
+  font-size: 1.2em;
   font-weight: bold;
   letter-spacing: 1px;
   color: #84caff;
@@ -557,7 +557,7 @@ area {
 
 .efeito-card {
   background: transparent;
-  margin-bottom: 1em;
+  margin-bottom: .5em;
   padding: 0.5em 0.5em 0 0.5em;
   color: #e0e6ff;
   transition: background 0.5s ease;
@@ -568,11 +568,12 @@ area {
 .efeito-card.ativo-card {
   background: linear-gradient(
     to top,
-    rgba(0, 207, 255, 0.15),
-    rgba(127, 111, 255, 0.1),
+    rgba(89, 0, 255, 0.308),
+    rgba(128, 111, 255, 0.116),
+    rgba(128, 111, 255, 0),
     transparent
   );
-  border-left: 3px solid #7f6fff;
+  border-bottom: 3px solid #7f6fff;
   box-shadow: 0 0 10px rgba(127, 111, 255, 0.3);
   border-radius: 6px;
 }
@@ -580,7 +581,7 @@ area {
 .efeito-nome {
   cursor: pointer;
   font-weight: bold;
-  font-size: 1em;
+  font-size: 1.1em;
   position: relative;
   display: inline-block;
   color: #99cfff;
@@ -626,4 +627,12 @@ area {
   max-height: 300px;
   opacity: 1;
   padding: 0.5em 0;
+}
+.habilidade-detalhes {
+  display: none !important; /* força o sumiço */
+  /* ... restante das propriedades ... */
+}
+
+.habilidade-detalhes.visible {
+  display: block !important; /* mostra quando visível */
 }

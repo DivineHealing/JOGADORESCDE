@@ -320,144 +320,105 @@ btnCad.addEventListener('click', function(){
 
 */
 
-document.addEventListener('DOMContentLoaded', function() {
-    // 1. Obter os dados formatados das habilidades
+document.addEventListener('DOMContentLoaded', function () {
     const habilidadesDataElement = document.getElementById('all-habilidades-data');
     let allHabilidadesData = {};
-    let dataArray = []; // INICIALIZA COMO ARRAY VAZIO POR PADRÃO
+    let dataArray = [];
 
     if (habilidadesDataElement && habilidadesDataElement.textContent) {
         try {
             const parsedData = JSON.parse(habilidadesDataElement.textContent);
-
-            // *** VERIFICAÇÃO CRÍTICA ***
-            // Checa se o resultado do parse é realmente um array
             if (Array.isArray(parsedData)) {
-                dataArray = parsedData; // Usa o array parseado
+                dataArray = parsedData;
             } else {
-                 // Se não for array (pode ser null, objeto, etc.), mantém dataArray como []
-                 console.warn("Os dados parseados de 'all-habilidades-data' não são um array. Tratando como vazio.", parsedData);
+                console.warn("Dados de habilidade não são array.");
             }
-
         } catch (e) {
             console.error("Erro ao parsear dados das habilidades:", e);
-            // Mantém dataArray como [] em caso de erro de parse
         }
-    } else {
-        console.warn("Elemento 'all-habilidades-data' ou seu conteúdo não encontrado. Tratando como vazio.");
-        // Mantém dataArray como []
     }
 
-    // Converte o array (possivelmente vazio) em um objeto/map
-    dataArray.forEach(hab => { // Agora seguro usar forEach
+    dataArray.forEach(hab => {
         allHabilidadesData[hab.id] = hab;
     });
 
-
     const titulos = document.querySelectorAll('.habilidade-titulo');
-    const allDetalhesDivs = document.querySelectorAll('.habilidade-detalhes');
 
-    // --- O resto do seu código continua aqui ---
-    // (A lógica de adicionar listeners e popular os detalhes)
-    // ...
-
-     titulos.forEach(titulo => {
+    titulos.forEach(titulo => {
         const slotId = titulo.dataset.slotId;
         const detalhesDiv = document.querySelector(`.habilidade-detalhes[data-details-for="${slotId}"]`);
-
-        if (!detalhesDiv) {
-            console.warn(`Div de detalhes não encontrado para slot ID: ${slotId}`);
-            return;
-        }
+        let conteudoGerado = false;
 
         titulo.addEventListener('click', (event) => {
             event.stopPropagation();
+            const isVisible = detalhesDiv.classList.contains('visible');
 
-            const isCurrentlyVisible = detalhesDiv.classList.contains('visible');
+            // Se já estiver visível, simplesmente fecha
+            if (isVisible) {
+                detalhesDiv.classList.remove('visible');
+                console.log("Fechou detalhes da habilidade");
+                return;
+            }
 
-            allDetalhesDivs.forEach(div => {
-                if (div !== detalhesDiv) {
-                    div.classList.remove('visible');
-                }
-            });
-
-            if (!isCurrentlyVisible) {
+            // Caso contrário, abre
+            if (!conteudoGerado) {
                 const habilidadeData = allHabilidadesData[slotId];
                 if (!habilidadeData || !habilidadeData.niveis) {
                     detalhesDiv.innerHTML = '<p>Detalhes não disponíveis.</p>';
-                    detalhesDiv.classList.add('visible');
-                    return;
+                } else {
+                    habilidadeData.niveis.forEach(nivelData => {
+                        const nivelWrapper = document.createElement('div');
+                        nivelWrapper.classList.add('nivel-wrapper');
+
+                        const nivelId = `h${slotId}-n${nivelData.nivel}`;
+
+                        const nivelTitulo = document.createElement('div');
+                        nivelTitulo.classList.add('nivel-titulo');
+                        nivelTitulo.setAttribute('data-nivel-id', nivelId);
+                        nivelTitulo.innerHTML = `<strong>Nível ${nivelData.nivel}</strong>`;
+
+                        const nivelDetalhes = document.createElement('div');
+                        nivelDetalhes.classList.add('nivel-detalhes');
+                        nivelDetalhes.id = `detalhes-${nivelId}`;
+
+                        nivelDetalhes.innerHTML = `
+                            ${nivelData.custo ? `<p><strong style="color: #61d6ff;">Custo:</strong> ${nivelData.custo}</p>` : ''}
+                            ${nivelData.tipo ? `<p><strong style="color: #61d6ff;">Tipo:</strong> ${nivelData.tipo}</p>` : ''}
+                            ${nivelData.descricao ? `
+                                <p><strong style="color: #61d6ff;">Descrição:</strong></p>
+                                <div style="font-style: italic;">${nivelData.descricao.replace(/\n/g, "<br>")}</div>
+                            ` : ''}
+                        `;
+
+                        nivelTitulo.addEventListener('click', () => {
+                            nivelDetalhes.classList.toggle('visible');
+                        });
+                        
+
+                        nivelWrapper.appendChild(nivelTitulo);
+                        nivelWrapper.appendChild(nivelDetalhes);
+                        detalhesDiv.appendChild(nivelWrapper);
+                    });
                 }
 
-                detalhesDiv.innerHTML = ''; // Limpa conteúdo anterior
-
-                habilidadeData.niveis.forEach(nivelData => {
-                    const nivelWrapper = document.createElement('div');
-                    nivelWrapper.classList.add('nivel-wrapper');
-
-                    const nivelTitulo = document.createElement('div');
-                    nivelTitulo.classList.add('nivel-titulo');
-                    nivelTitulo.innerHTML = `<strong>Nível ${nivelData.nivel}</strong>`;
-
-                    const nivelDetalhes = document.createElement('div');
-                    nivelDetalhes.classList.add('nivel-detalhes');
-
-                    nivelDetalhes.innerHTML = `
-                        ${nivelData.custo ? `<p><strong style="color: red;">Custo:</strong> ${nivelData.custo}</p>` : ''}
-                        ${nivelData.tipo ? `<p><strong style="color: red;">Tipo:</strong> ${nivelData.tipo}</p>` : ''}
-                        ${nivelData.descricao ? `
-                            <p><strong style="color: red;">Descrição:</strong></p>
-                            <div style="font-style: italic;">${nivelData.descricao}</div>
-                        ` : ''}
-                    `;
-
-                    nivelTitulo.addEventListener('click', () => {
-                        nivelDetalhes.classList.toggle('visible');
-                        nivelTitulo.classList.toggle('active');
-                    });
-
-                    nivelWrapper.appendChild(nivelTitulo);
-                    nivelWrapper.appendChild(nivelDetalhes);
-                    detalhesDiv.appendChild(nivelWrapper);
-                });
-
-                detalhesDiv.classList.add('visible');
-            } else {
-                detalhesDiv.classList.remove('visible');
+                conteudoGerado = true;
             }
-        });
 
-         detalhesDiv.addEventListener('click', (event) => {
-             event.stopPropagation();
-         });
-    });
-
-    // Fecha ao clicar fora
-    document.addEventListener('click', () => {
-        allDetalhesDivs.forEach(div => {
-            div.classList.remove('visible');
+            detalhesDiv.classList.add('visible');
         });
     });
 
     // Acessibilidade com Teclado
-     titulos.forEach(titulo => {
+    titulos.forEach(titulo => {
         titulo.addEventListener('keydown', (event) => {
-             if (event.key === 'Enter' || event.key === ' ') {
-                 event.preventDefault();
-                 titulo.click();
-             }
-             if (event.key === 'Escape') {
-                 const slotId = titulo.dataset.slotId;
-                 const detalhesDiv = document.querySelector(`.habilidade-detalhes[data-details-for="${slotId}"]`);
-                 if (detalhesDiv && detalhesDiv.classList.contains('visible')) {
-                     detalhesDiv.classList.remove('visible');
-                 }
-             }
-         });
-     });
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                titulo.click();
+            }
+        });
+    });
+});
 
-
-}); // Fim do DOMContentLoaded
 
 
 // FUNÇÃO DE EXIBIÇÃO DOS EFEITOS
@@ -545,59 +506,10 @@ function criarCardEfeito({ nome, descricao }, index) {
 
     lista.forEach((efeitoObj, i) => {
         const { nome, descricao } = efeitoObj;
-        console.log(descricao)
         if (descricao != undefined && descricao != null && descricao != "") {
             const card = criarCardEfeito({ nome, descricao }, i + 1);
             container.appendChild(card);
             }        
         });
     }
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-    const camposBuffaveis = [
-        'forca', 'destreza', 'inteligencia', 'determinacao', 'perspicacia', 'carisma',
-        'vida', 'esmagamento', 'penExtra', 'danoFinal',
-        'espiritualFixo', 'espiritualPerc', 'defesaFixaEspiritual', 'reducaoEspiritual', 'reducao'
-    ];
-
-    camposBuffaveis.forEach(campo => {
-        const container = document.getElementById(`${campo}_container`);
-        if (!container) return;
-
-        const valorSpan = document.createElement('span');
-        valorSpan.className = 'buffed-value hidden';
-        valorSpan.id = `${campo}AutoBuffed`;
-        container.appendChild(valorSpan);
-
-        const valorExterno = document.createElement('span');
-        valorExterno.className = 'buffed-value hidden';
-        valorExterno.id = `${campo}ExternalBuffed`;
-        container.appendChild(valorExterno);
-
-        const valorFinal = document.createElement('span');
-        valorFinal.className = 'buffed-value hidden';
-        valorFinal.id = `${campo}FinalBuffed`;
-        container.appendChild(valorFinal);
-
-        const botao = document.createElement('button');
-        botao.className = 'buff-button';
-        botao.dataset.field = campo;
-        botao.textContent = 'BUFF';
-        container.appendChild(botao);
-
-        const input1 = document.createElement('input');
-        input1.type = 'number';
-        input1.className = 'buff-input hidden';
-        input1.id = `${campo}BuffInput`;
-        input1.placeholder = 'Auto-buff %';
-        container.appendChild(input1);
-
-        const input2 = document.createElement('input');
-        input2.type = 'number';
-        input2.className = 'buff-input hidden';
-        input2.id = `${campo}ExternalBuffInput`;
-        input2.placeholder = 'Buff Externo %';
-        container.appendChild(input2);
-    });
 });

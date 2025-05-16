@@ -406,25 +406,6 @@
             });
         });
     </script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-        document.querySelectorAll(".habilidade-titulo").forEach(titulo => {
-            titulo.addEventListener("click", () => {
-            const slotId = titulo.dataset.slotId;
-            const container = document.getElementById("niveis-" + slotId);
-            container.classList.toggle("visible");
-            });
-        });
-
-        document.querySelectorAll(".nivel-titulo").forEach(nivel => {
-            nivel.addEventListener("click", () => {
-            const id = nivel.dataset.nivelId;
-            const detalhes = document.getElementById("detalhes-" + id);
-            detalhes.classList.toggle("visible");
-            });
-        });
-        });
-    </script>
     <script src="{% static 'tela_personagem\script.js' %}"></script>
 </body>
 </html>
