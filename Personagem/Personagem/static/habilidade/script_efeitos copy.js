@@ -24,55 +24,45 @@ const habilidadeCounters = {
     // Adicione mais grupos conforme necessário
 };
 
-function createHabilidadeRow(grupo) {
-    if (!(grupo in habilidadeCounters)) {
-        console.warn(`Grupo "${grupo}" não está registrado.`);
+function createHabilidadeRow(grupo, nivel, dados = {}) {
+    if (!grupo || !nivel) {
+        console.error("❌ Erro: Grupo ou Nível não fornecido corretamente!", { grupo, nivel, dados });
         return;
     }
 
     const container = document.getElementById(`${grupo}Container`);
-    const count = ++habilidadeCounters[grupo];
 
-    if (count > 6) {
-        alert(`Você só pode adicionar até 6 habilidades para ${grupo.toUpperCase()}.`);
-        return;
-    }
+    const tipo = dados.tipo || 'habilidadePassivo';
+    const nome = dados.nome || '';
+    const custo = dados.custo || '';
+    const descricao = dados.descricao || '';
 
     const row = document.createElement('div');
     row.classList.add('habilidade-row');
 
     row.innerHTML = `
-        <div class='habilidade-row-container'>
+        <div class='habilidade-row-container'>        
             <div class='habilidade-row-miniContainer'>
-                <label for="${grupo}Tipo${count}">Tipo da Habilidade</label>
-                <select class='personagem_select' id="${grupo}Tipo${count}" name="${grupo}Tipo${count}">
-                    <option value="habilidadePassivo" selected>Habilidade Passivo</option>
-                    <option value="habilidadeAtivo">Habilidade Ativo</option>
-                    <option value="habilidadeAura">Habilidade Aura</option>
-                </select>
-
-                <label for="${grupo}Nivel${count}">Nível da Habilidade</label>
-                <select class='personagem_select' id="${grupo}Nivel${count}" name="${grupo}Nivel${count}_">
-                    <option value="nivel2" selected>Nível 2</option>
-                    <option value="nivel3">Nível 3</option>
-                    <option value="nivel4">Nível 4</option>
-                    <option value="nivel5">Nível 5</option>
-                    <option value="nivel6">Nível 6</option>
+                <span style="margin-bottom: 1.2em; font-size:1.5em" name="${grupo}Nome${nivel}"><strong>Nível ${nivel}</strong></span>
+                <label for="${grupo}Tipo${nivel}">Tipo da Habilidade</label>
+                <select class='personagem_select' id="${grupo}Tipo${nivel}" name="${grupo}Tipo${nivel}">
+                    <option value="Passivo" ${tipo === 'habilidadePassivo' ? 'selected' : ''}>Habilidade Passivo</option>
+                    <option value="Ativo" ${tipo === 'habilidadeAtivo' ? 'selected' : ''}>Habilidade Ativo</option>
+                    <option value="Aura" ${tipo === 'habilidadeAura' ? 'selected' : ''}>Habilidade Aura</option>
                 </select>
             </div>
 
             <div class='habilidade-row-miniContainer'>
-                <label for="${grupo}Nome${count}">Nome da Habilidade:</label>
-                <input style="width: 100%;" type="text" id="${grupo}Nome${count}" name="${grupo}Nome${count}" placeholder="Nome da Habilidade">
+                <label for="${grupo}Nome${nivel}">Nome da Habilidade:</label>
+                <input style="width: 100%;" type="text" id="${grupo}Nome${nivel}" name="${grupo}Nome${nivel}" value="${nome}">
 
-                <label for="${grupo}Custo${count}">Custo da Habilidade:</label>
-                <input style="width: 50%;" type="text" id="${grupo}Custo${count}" name="${grupo}Custo${count}" placeholder="Custo da Habilidade">
+                <label for="${grupo}Custo${nivel}">Custo da Habilidade:</label>
+                <input style="width: 50%;" type="text" id="${grupo}Custo${nivel}" name="${grupo}Custo${nivel}" value="${custo}">
             </div>
 
             <div class='habilidade-row-miniContainer'>
-                <label for="${grupo}Desc${count}">Descrição da Habilidade:</label>
-                <textarea style="width: 100%; height: 10em;" id="${grupo}Desc${count}" name="${grupo}Desc${count}" placeholder="Descrição da Habilidade" wrap="hard"
-                ></textarea>
+                <label for="${grupo}Desc${nivel}">Descrição da Habilidade:</label>
+                <textarea style="width: 100%; height: 10em;" id="${grupo}Desc${nivel}" name="${grupo}Desc${nivel}" wrap="hard">${descricao}</textarea>
             </div>
         </div>
     `;
@@ -80,9 +70,33 @@ function createHabilidadeRow(grupo) {
     container.appendChild(row);
 }
 
-document.querySelectorAll('.add-atributo-btn').forEach(button => {
-    button.addEventListener('click', () => {
-        const grupo = button.dataset.group;
-        createHabilidadeRow(grupo);
+
+document.addEventListener("DOMContentLoaded", function () {
+    const habilidadesElement = document.getElementById('all-habilidades-data');
+    const habilidadesArray = JSON.parse(habilidadesElement.textContent);
+
+    habilidadesArray.forEach(dado => {
+        const id = dado.id; // Ex: 1
+        dado.niveis.forEach(nivelData => {
+            const nivelNumero = nivelData.nivel;
+            createHabilidadeRow(`habilidade${id}`, nivelNumero, nivelData);
+            habilidadeCounters[`habilidade${id}`] = nivelNumero; // Atualiza o contador
+        });
+    });
+
+    document.querySelectorAll('.add-atributo-btn').forEach(button => {
+        button.addEventListener('click', () => {
+            const grupo = button.dataset.group;
+            habilidadeCounters[grupo]++; // agora será só uma vez
+            const count = habilidadeCounters[grupo];
+
+            console.log(`Grupo: ${grupo}, Contador: ${count}`);
+
+            if (count <= 6) {
+                createHabilidadeRow(grupo, count);
+            } else {
+                alert("Você já adicionou todas as habilidades até o nível 6.");
+            }
+        });
     });
 });

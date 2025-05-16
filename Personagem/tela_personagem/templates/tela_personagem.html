@@ -6,7 +6,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ficha - Cronicas de Errat</title>
-
     <link rel="stylesheet" type="text/css" href="{% static 'tela_personagem/style.css' %}">
 </head>
 <body>
@@ -195,15 +194,10 @@
                         {% if lista_habilidades_data %}
                         {% for habilidade in lista_habilidades_data %}
                             <div class="habilidade-container">
-                                 <span class="habilidade-titulo"
-                                       tabindex="0"
-                                       data-slot-id="{{ habilidade.id }}">
-                                     {{ forloop.counter }} – {{ habilidade.nome }}
-                                 </span>
-                                 <div class="habilidade-detalhes"
-                                      data-details-for="{{ habilidade.id }}">
-                                      <!-- Conteúdo será gerado dinamicamente -->
-                                 </div>
+                                <span class="habilidade-titulo" data-slot-id="{{ habilidade.id }}">
+                                    {{ forloop.counter }} – {{ habilidade.nome }}
+                                </span>
+                                <div class="habilidade-detalhes" data-details-for="{{ habilidade.id }}"></div>
                             </div>
                         {% endfor %}
                     {% else %}
@@ -410,6 +404,25 @@
                     ampArea.appendChild(div);
                 }
             });
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".habilidade-titulo").forEach(titulo => {
+            titulo.addEventListener("click", () => {
+            const slotId = titulo.dataset.slotId;
+            const container = document.getElementById("niveis-" + slotId);
+            container.classList.toggle("visible");
+            });
+        });
+
+        document.querySelectorAll(".nivel-titulo").forEach(nivel => {
+            nivel.addEventListener("click", () => {
+            const id = nivel.dataset.nivelId;
+            const detalhes = document.getElementById("detalhes-" + id);
+            detalhes.classList.toggle("visible");
+            });
+        });
         });
     </script>
     <script src="{% static 'tela_personagem\script.js' %}"></script>

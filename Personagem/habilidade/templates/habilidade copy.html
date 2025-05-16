@@ -37,9 +37,9 @@
                                 {% with "hab"|concat:i|stringformat:"s"|concat:"_1_tipo" as attr_nome %}
                                     <label for="habilidade{{ i }}Tipo1">Tipo da Habilidade</label>
                                     <select class="personagem_select" id="habilidade{{ i }}Tipo1" name="habilidade{{ i }}Tipo1">
-                                        <option value="habilidadePassivo" {% if habilidade|get_attr:attr_tipo == "habilidadePassivo" %}selected{% endif %}>Habilidade Passivo</option>
-                                        <option value="habilidadeAtivo" {% if habilidade|get_attr:attr_tipo == "habilidadeAtivo" %}selected{% endif %}>Habilidade Ativo</option>
-                                        <option value="habilidadeAura" {% if habilidade|get_attr:attr_tipo == "habilidadeAura" %}selected{% endif %}>Habilidade Aura</option>
+                                        <option value="Passivo" {% if habilidade|get_attr:attr_tipo == "habilidadePassivo" %}selected{% endif %}>Habilidade Passivo</option>
+                                        <option value="Ativo" {% if habilidade|get_attr:attr_tipo == "habilidadeAtivo" %}selected{% endif %}>Habilidade Ativo</option>
+                                        <option value="Aura" {% if habilidade|get_attr:attr_tipo == "habilidadeAura" %}selected{% endif %}>Habilidade Aura</option>
                                     </select>
                                 {% endwith %}
                             </div>
@@ -78,6 +78,7 @@
         </form>
     <div>
     {% endlocalize %}
+    {{ habilidades_json|json_script:"all-habilidades-data" }}
     <script src="{% static 'habilidade/script_efeitos copy.js' %}"></script>
 </body>
 </html>

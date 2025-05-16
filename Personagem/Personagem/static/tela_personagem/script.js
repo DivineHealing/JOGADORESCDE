@@ -382,40 +382,46 @@ document.addEventListener('DOMContentLoaded', function() {
             });
 
             if (!isCurrentlyVisible) {
-                const habilidadeData = allHabilidadesData[slotId]; // Busca pelo slot ID
-                // Verifica se ENCONTROU os dados para este slot específico
+                const habilidadeData = allHabilidadesData[slotId];
                 if (!habilidadeData || !habilidadeData.niveis) {
-                    console.error(`Dados formatados não encontrados no objeto JS para slot ID: ${slotId}`);
                     detalhesDiv.innerHTML = '<p>Detalhes não disponíveis.</p>';
                     detalhesDiv.classList.add('visible');
                     return;
                 }
 
-                // --- Restante da lógica para popular detalhes ---
-                detalhesDiv.innerHTML = ''; // Limpa
+                detalhesDiv.innerHTML = ''; // Limpa conteúdo anterior
+
                 habilidadeData.niveis.forEach(nivelData => {
-                    // ... (código para criar nivelDiv e nivelHTML) ...
-                     const nivelDiv = document.createElement('div');
-                    nivelDiv.classList.add('nivel-info');
+                    const nivelWrapper = document.createElement('div');
+                    nivelWrapper.classList.add('nivel-wrapper');
 
-                    let nivelHTML = `<p style="color: Orange;"><strong>Nível ${nivelData.nivel}:</strong></p>`;
-                    if (nivelData.custo) { nivelHTML += `<p><strong style="color: red;">Custo:</strong> ${nivelData.custo}</p>`; }
-                    if (nivelData.tipo) { nivelHTML += `<p><strong style="color: red;">Tipo:</strong> ${nivelData.tipo}</p>`; }
-                    if (nivelData.descricao) {
-                        const descFormatada = nivelData.descricao.replace(/\r\n|\r|\n/g, '<br>');
-                        nivelHTML += `<p><strong style="color: red;">Descrição:</strong></p>`;
-                        nivelHTML += `<span style="font-style: Italic">${descFormatada}</span>`;
-                        nivelHTML += `<p>_______________________________________________________</p>`
-                    }
-                     // if (nivelData.notas) { nivelHTML += `<p><em>${nivelData.notas}</em></p>`; }
+                    const nivelTitulo = document.createElement('div');
+                    nivelTitulo.classList.add('nivel-titulo');
+                    nivelTitulo.innerHTML = `<strong>Nível ${nivelData.nivel}</strong>`;
 
-                    nivelDiv.innerHTML = nivelHTML;
-                    detalhesDiv.appendChild(nivelDiv);
+                    const nivelDetalhes = document.createElement('div');
+                    nivelDetalhes.classList.add('nivel-detalhes');
+
+                    nivelDetalhes.innerHTML = `
+                        ${nivelData.custo ? `<p><strong style="color: red;">Custo:</strong> ${nivelData.custo}</p>` : ''}
+                        ${nivelData.tipo ? `<p><strong style="color: red;">Tipo:</strong> ${nivelData.tipo}</p>` : ''}
+                        ${nivelData.descricao ? `
+                            <p><strong style="color: red;">Descrição:</strong></p>
+                            <div style="font-style: italic;">${nivelData.descricao}</div>
+                        ` : ''}
+                    `;
+
+                    nivelTitulo.addEventListener('click', () => {
+                        nivelDetalhes.classList.toggle('visible');
+                        nivelTitulo.classList.toggle('active');
+                    });
+
+                    nivelWrapper.appendChild(nivelTitulo);
+                    nivelWrapper.appendChild(nivelDetalhes);
+                    detalhesDiv.appendChild(nivelWrapper);
                 });
-                 // --- Fim da lógica para popular detalhes ---
 
                 detalhesDiv.classList.add('visible');
-
             } else {
                 detalhesDiv.classList.remove('visible');
             }
@@ -546,4 +552,52 @@ function criarCardEfeito({ nome, descricao }, index) {
             }        
         });
     }
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const camposBuffaveis = [
+        'forca', 'destreza', 'inteligencia', 'determinacao', 'perspicacia', 'carisma',
+        'vida', 'esmagamento', 'penExtra', 'danoFinal',
+        'espiritualFixo', 'espiritualPerc', 'defesaFixaEspiritual', 'reducaoEspiritual', 'reducao'
+    ];
+
+    camposBuffaveis.forEach(campo => {
+        const container = document.getElementById(`${campo}_container`);
+        if (!container) return;
+
+        const valorSpan = document.createElement('span');
+        valorSpan.className = 'buffed-value hidden';
+        valorSpan.id = `${campo}AutoBuffed`;
+        container.appendChild(valorSpan);
+
+        const valorExterno = document.createElement('span');
+        valorExterno.className = 'buffed-value hidden';
+        valorExterno.id = `${campo}ExternalBuffed`;
+        container.appendChild(valorExterno);
+
+        const valorFinal = document.createElement('span');
+        valorFinal.className = 'buffed-value hidden';
+        valorFinal.id = `${campo}FinalBuffed`;
+        container.appendChild(valorFinal);
+
+        const botao = document.createElement('button');
+        botao.className = 'buff-button';
+        botao.dataset.field = campo;
+        botao.textContent = 'BUFF';
+        container.appendChild(botao);
+
+        const input1 = document.createElement('input');
+        input1.type = 'number';
+        input1.className = 'buff-input hidden';
+        input1.id = `${campo}BuffInput`;
+        input1.placeholder = 'Auto-buff %';
+        container.appendChild(input1);
+
+        const input2 = document.createElement('input');
+        input2.type = 'number';
+        input2.className = 'buff-input hidden';
+        input2.id = `${campo}ExternalBuffInput`;
+        input2.placeholder = 'Buff Externo %';
+        container.appendChild(input2);
+    });
 });
