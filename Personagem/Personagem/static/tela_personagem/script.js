@@ -526,10 +526,6 @@ function criarCardEfeito({ nome, descricao }, index) {
 
     return div;
 }
-
-
-
-
     // Itera sobre cada tipo (ativo, passivo, etc)
     for (const tipo in listas) {
     const lista = listas[tipo];
@@ -543,11 +539,11 @@ function criarCardEfeito({ nome, descricao }, index) {
 
     lista.forEach((efeitoObj, i) => {
         const { nome, descricao } = efeitoObj;
-        const card = criarCardEfeito({ nome, descricao }, i + 1);
-        container.appendChild(card);
-    });
-}
-
-
-
+        console.log(descricao)
+        if (descricao != undefined && descricao != null && descricao != "") {
+            const card = criarCardEfeito({ nome, descricao }, i + 1);
+            container.appendChild(card);
+            }        
+        });
+    }
 });

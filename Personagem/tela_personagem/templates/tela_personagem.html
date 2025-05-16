@@ -396,7 +396,7 @@
             // ---------------- ROLAGENS ----------------
             listaRolagens.forEach((roll, i) => {
                 const info = roll.fields;
-                if (info.variavelValor > 0) {
+                if (info.variavelValor != 0) {
                     const div = criarDiv('roll', `rolagem${i + 1}_container`, `${info.variavelPropriedade}`, info.variavelValor, '');
                     rollArea.appendChild(div);
                 }

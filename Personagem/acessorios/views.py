@@ -1,11 +1,16 @@
+import json
 from pyexpat.errors import messages
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 
 from .models import Acessorios
+from tela_personagem.models import Character_attribute
 from base_personagem.models import Base_personagem
 from .forms import EquipamentoForm
 from lib.utilitarios import *
+
+from tela_personagem.models import Character_effects
+import json
 
 tipoEquipamento = ""
 
@@ -16,7 +21,7 @@ def acessorios(request):
         return redirect('exibir_personagem')
 
     tela_personagem = get_object_or_404(Tela_personagem, personagem=personagem_id)
-    acessorios = Conjunto.objects.filter(personagem=personagem_id)
+    acessorios = Acessorios.objects.filter(personagem=personagem_id)
 
     return render(request, 'acessorios.html', {'tela_personagem': tela_personagem, 'acessorios': acessorios})
 
@@ -48,7 +53,7 @@ def cadastrar_equipamento_acessorios(request, tipo):
             variavelTipo=atributo,
             origem="aces",
             peca=tipoEquipamento,
-          ).order_by('-variavelValor').values("variavelPropriedade", "variavelValor"))
+          ))
 
     regeneracoes_json = [
     {"variavelPropriedade": nome, "variavelValor": getattr(acessorios, nome)}
@@ -80,20 +85,42 @@ def cadastrar_efeitos_acessorios(request, tipo):
         form = EquipamentoForm(request.POST)
         if form.is_valid():
             equipamento = form.save(commit=True)
-            equipamento.tipo = tipo  # Define o tipo com base na URL
+            equipamento.tipo = tipo
             equipamento.save()
-            return redirect('cadastrar_efeitos_acessorios')  # Redireciona para a lista (você ainda vai criar)
+            return redirect('cadastrar_efeitos_acessorios')  # Ajustar se necessário
     else:
-        form = EquipamentoForm(initial={'tipo': tipo})  # Pré-preenche o tipo
+        form = EquipamentoForm(initial={'tipo': tipo})
 
     personagem_id = obter_personagem_sessao(request)
 
     if not personagem_id:
         return redirect('exibir_personagem')
 
-    tela_personagem = get_object_or_404(Acessorios, pk=personagem_id)
+    tela_personagem = get_object_or_404(Tela_personagem, personagem=personagem_id)
+    acessorios = Acessorios.objects.filter(personagem=personagem_id)
 
-    return render(request, 'cadastrar_efeitos_acessorios.html', {'form': form, 'tipo': tipo, 'tela_personagem': tela_personagem})
+    def get_all_effects():
+        tipos = ["efeitoAtivo", "efeitoPassivo", "efeitoAura", "nucleo", "triunfo"]
+        efeitos = []
+        for tipo in tipos:
+            efeitos += list(Character_effects.objects.filter(
+                personagem=personagem_id,
+                variavelTipo=tipo,
+                origem="aces",
+                peca=tipoEquipamento
+            ).values("variavelTipo", "variavelNome", "variavelDescricao"))
+        return efeitos
+
+    context = {
+        'tela_personagem': tela_personagem,
+        'acessorios': acessorios,
+        'efeitos_acessorios_json': get_all_effects(),
+        'form': form,
+        'tipo': tipo
+    }
+
+    return render(request, 'cadastrar_efeitos_acessorios.html', context)
+
 
 
 def perfil(request, user_id):

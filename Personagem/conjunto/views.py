@@ -6,6 +6,9 @@ from .models import Conjunto
 from .forms import EquipamentoForm
 from lib.utilitarios import *
 
+from tela_personagem.models import Character_effects
+import json
+
 tipoEquipamento = ""
 
 def conjunto(request):    
@@ -91,9 +94,30 @@ def cadastrar_efeitos(request, tipo):
     if not personagem_id:
         return redirect('exibir_personagem')
 
-    tela_personagem = get_object_or_404(Conjunto, pk=personagem_id)    
+    tela_personagem = get_object_or_404(Tela_personagem, personagem=personagem_id)
+    conjunto = Conjunto.objects.filter(personagem=personagem_id)
 
-    return render(request, 'cadastrar_efeitos_conj.html', {'form': form, 'tipo': tipo, 'tela_personagem': tela_personagem})
+    def get_all_effects():
+        tipos = ["efeitoAtivo", "efeitoPassivo", "efeitoAura", "nucleo", "triunfo"]
+        efeitos = []
+        for tipo in tipos:
+            efeitos += list(Character_effects.objects.filter(
+                personagem=personagem_id,
+                variavelTipo=tipo,
+                origem="conj",
+                peca=tipoEquipamento
+            ).values("variavelTipo", "variavelNome", "variavelDescricao"))
+        return efeitos
+
+    context = {
+        'tela_personagem': tela_personagem,
+        'conjunto': conjunto,
+        'efeitos_acessorios_json': get_all_effects(),
+        'form': form,
+        'tipo': tipo
+    }
+
+    return render(request, 'cadastrar_efeitos_conj.html', context)
 
 
 def perfil(request, user_id):

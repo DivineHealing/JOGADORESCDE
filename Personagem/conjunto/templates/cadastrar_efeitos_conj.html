@@ -15,29 +15,33 @@
         <form method="POST" action="{% url 'salvar_conjunto_efeitos' %}">
             {% csrf_token %}
         <div class="header">
-            <div class="name" style="color: white;">
-              <span >Nome do Personagem: {{ tela_personagem.personagem }}</span>
-          </div>
-        </div>
-
-        <div class="top-section">
-            <div class="vida-mana-vigor bordered-section">                  
-                <div class="abilities section-title">EFEITOS DO EQUIPAMENTO</div>
-                <button type="button" class="add-atributo-btn" id="addEfeito">Add</button>
-                <div class="atributos-added-container" id="efeitosContainer">
-                      <!-- Atributos serão adicionados aqui dinamicamente -->
+                <div class="name" style="color: white;">
+                    <span >Nome do Personagem: {{ tela_personagem.personagem }}</span>
                 </div>
             </div>
+
+            <div class="top-section">
+                <div class="vida-mana-vigor bordered-section">                  
+                    <div class="abilities section-title">EFEITOS DO EQUIPAMENTO</div>
+                    <button  type="button" class="add-atributo-btn" id="addEfeitoAcessorios">Add</button>
+                    <div class="atributos-added-container" id="efeitosAcessoriosContainer">
+                        <!-- Atributos serão adicionados aqui dinamicamente -->
+                    </div>
+                </div>
+            </div>
+        <div class="formGroupRed">        
+            <a href="{% url 'conjunto' %}"><button type="button" class="button" role="button">Voltar</button></a>
+            <a href="{% url 'exibir_personagem' %}" class="buttonLink"><button  type="button" class="button" role="button">Personagem</button></a>
+            
+                <button type="submit" class="button" role="button">Salvar</button>           
         </div>
-    <div class="formGroupRed">
-        <a href="{% url 'conjunto'%}"><button type="button" class="button" role="button">Voltar</button></a>
-        <a href="{% url 'exibir_personagem' %}" class="buttonLink"><button type="button" class="button" role="button">Personagem</button></a>
-        <button type="submit" class="button" role="button" id="save">Salvar</button>        
-    </div>
     </form>
-</div>
+    </div>  
     {% endlocalize %}
-    <script src="{% static 'Conjunto\script_efeitos.js' %}"></script>
+    
+    {{ efeitos_acessorios_json|json_script:"efeitos-acessorios-json" }}
+
+    <script src="{% static 'base_personagem\script.js' %}"></script>
 </body>
 </html>
 

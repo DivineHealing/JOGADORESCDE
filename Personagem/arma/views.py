@@ -6,6 +6,9 @@ from .models import Arma
 from .forms import EquipamentoForm
 from lib.utilitarios import *
 
+from tela_personagem.models import Character_effects
+import json
+
 tipoEquipamento = ""
 
 def arma(request):   
@@ -89,12 +92,30 @@ def cadastrar_efeitos_armas(request, tipo):
 
     personagem_id = obter_personagem_sessao(request)
 
-    if not personagem_id:
-        return redirect('exibir_personagem')
+    tela_personagem = get_object_or_404(Tela_personagem, personagem=personagem_id)
+    arma = Arma.objects.filter(personagem=personagem_id)
 
-    tela_personagem = get_object_or_404(Conjunto, pk=personagem_id)
+    def get_all_effects():
+        tipos = ["efeitoAtivo", "efeitoPassivo", "efeitoAura", "nucleo", "triunfo"]
+        efeitos = []
+        for tipo in tipos:
+            efeitos += list(Character_effects.objects.filter(
+                personagem=personagem_id,
+                variavelTipo=tipo,
+                origem="arma",
+                peca=tipoEquipamento
+            ).values("variavelTipo", "variavelNome", "variavelDescricao"))
+        return efeitos
 
-    return render(request, 'cadastrar_efeitos_arma.html', {'form': form, 'tipo': tipo, 'tela_personagem': tela_personagem})
+    context = {
+        'tela_personagem': tela_personagem,
+        'arma': arma,
+        'efeitos_acessorios_json': get_all_effects(),
+        'form': form,
+        'tipo': tipo
+    }
+
+    return render(request, 'cadastrar_efeitos_arma.html', context)
 
 
 def perfil(request, user_id):

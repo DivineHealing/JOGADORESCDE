@@ -103,7 +103,7 @@ def exibir_personagem(request, personagem_id=None):
         
         def agrupar_efeitos(efeito):
             return Character_effects.objects.filter(
-            personagem=personagem_id,
+            personagem=base_personagem,
             variavelTipo=efeito
             ).values("variavelNome", "variavelDescricao")        
         

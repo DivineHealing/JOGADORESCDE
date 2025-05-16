@@ -36,8 +36,12 @@
                 <button type="submit" class="button" role="button">Salvar</button>           
         </div>
     </form>
+    </div>  
     {% endlocalize %}
-    <script src="{% static 'acessorios\script_efeitos.js' %}"></script>
+    
+    {{ efeitos_acessorios_json|json_script:"efeitos-acessorios-json" }}
+
+    <script src="{% static 'base_personagem\script.js' %}"></script>
 </body>
 </html>
 

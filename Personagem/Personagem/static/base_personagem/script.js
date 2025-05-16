@@ -202,3 +202,70 @@ document.addEventListener('DOMContentLoaded', function () {
         };
     });
 });
+document.addEventListener("DOMContentLoaded", function () {
+    const container = document.getElementById('efeitosAcessoriosContainer');
+    const botao = document.getElementById('addEfeitoAcessorios');
+    const dadosEfeitos = JSON.parse(document.getElementById('efeitos-acessorios-json').textContent || "[]");
+
+    let count = 0;
+    const MAX = 20;
+
+    function criarLinhaEfeito(index, dados = {}) {
+        const efeitoRow = document.createElement("div");
+        efeitoRow.classList.add("efeito-row");
+
+        const tipo = dados.variavelTipo || "efeitoPassivo";
+        const nome = dados.variavelNome || "";
+        const descricao = dados.variavelDescricao || "";
+
+
+        efeitoRow.innerHTML = `
+        <div class="parent">
+            <div class="div1">
+                <label for="efeitoTipo${index}">Tipo do Efeito</label>        
+            </div>
+            <div class="div2">
+                <select class='personagem_select' id="efeitoTipo${index}" name="efeitoTipo${index}">
+                    <option value="efeitoPassivo" ${tipo === 'efeitoPassivo' ? 'selected' : ''}>Efeito Passivo</option>
+                    <option value="efeitoAtivo" ${tipo === 'efeitoAtivo' ? 'selected' : ''}>Efeito Ativo</option>
+                    <option value="efeitoAura" ${tipo === 'efeitoAura' ? 'selected' : ''}>Efeito Aura</option>
+                    <option value="nucleo" ${tipo === 'nucleo' ? 'selected' : ''}>Núcleo</option>
+                    <option value="triunfo" ${tipo === 'triunfo' ? 'selected' : ''}>Triunfo</option>        
+                </select>
+            </div>
+            <div class="div3">
+                <label for="efeitoNome${index}">Nome do Efeito:</label>
+            </div>
+            <div class="div4">
+                <input style="width: 100%;" type="text" id="efeitoNome${index}" name="efeitoNome${index}" placeholder="Nome do efeito" value="${nome}">
+            </div>
+            <div class="div5">
+                <label for="efeitoDesc${index}">Descrição do Efeito:</label>
+            </div>
+            <div class="div6">
+                <textarea style="width: 100%; height: 10em;" id="efeitoDesc${index}" name="efeitoDesc${index}" placeholder="Descrição do Efeito">${descricao}</textarea>
+            </div>
+        </div>
+    `;
+ 
+
+        return efeitoRow;
+    }
+    console.log('Efeitos carregados:', dadosEfeitos);
+    // Carrega efeitos existentes
+    if (Array.isArray(dadosEfeitos)) {
+        dadosEfeitos.forEach(dado => {
+            count++;
+            const linha = criarLinhaEfeito(count, dado);
+            container.appendChild(linha);
+        });
+    }
+
+    // Botão para adicionar novos
+    botao.addEventListener('click', () => {
+        if (count >= MAX) return;
+        count++;
+        const novaLinha = criarLinhaEfeito(count);
+        container.appendChild(novaLinha);
+    });
+});
