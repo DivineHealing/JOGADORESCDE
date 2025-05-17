@@ -167,11 +167,11 @@ def pegar_front(request, escolha, personagem, origem, peca= "", percent=False):
             break
         
         if tipo == "regenVida":
-            escolha.regenVida = valor
+            escolha.regenVida = valor or 0
         elif tipo == "regenMana":
-            escolha.regenMana = valor
+            escolha.regenMana = valor or 0
         elif tipo == "regenVigor":
-            escolha.regenVigor = valor
+            escolha.regenVigor = valor or 0
         i += 1
 
     i = 1
@@ -184,11 +184,11 @@ def pegar_front(request, escolha, personagem, origem, peca= "", percent=False):
             break
         
         if tipo == "dreno":
-            escolha.dreno = valor
+            escolha.dreno = valor or 0
         elif tipo == "exaustao":
-            escolha.exaustao = valor
+            escolha.exaustao = valor or 0
         elif tipo == "murchamento":
-            escolha.murchamento = valor
+            escolha.murchamento = valor or 0
         i += 1
     escolha.save()
 
@@ -222,7 +222,7 @@ def pegar_front(request, escolha, personagem, origem, peca= "", percent=False):
                 "personagem": personagem,
                 "variavelTipo": "rolagem",
                 "variavelPropriedade": tipo.strip().capitalize(),
-                "variavelValor": valor,
+                "variavelValor": valor or 0,
                 "posicao": i,
                 "peca": peca,
                 "origem": origem
@@ -261,7 +261,7 @@ def pegar_front(request, escolha, personagem, origem, peca= "", percent=False):
                 "personagem": personagem,
                 "variavelTipo": "defesa",
                 "variavelPropriedade": elemento.strip().capitalize(),
-                "variavelValor": defesa,
+                "variavelValor": defesa or 0,
                 "posicao": i,
                 "peca": peca,
                 "origem": origem
@@ -276,7 +276,7 @@ def pegar_front(request, escolha, personagem, origem, peca= "", percent=False):
                 "personagem": personagem,
                 "variavelTipo": "resistencia",
                 "variavelPropriedade": elemento.strip().capitalize(),
-                "variavelValor": resistencia,
+                "variavelValor": resistencia or 0,
                 "posicao": i,
                 "peca": peca,
                 "origem": origem
@@ -318,7 +318,7 @@ def pegar_front(request, escolha, personagem, origem, peca= "", percent=False):
                 "personagem": personagem,
                 "variavelTipo": "dano",
                 "variavelPropriedade": elemento.strip().capitalize(),
-                "variavelValor": dano,
+                "variavelValor": dano or 0,
                 "posicao": i,
                 "peca": peca,
                 "origem": origem
@@ -333,7 +333,7 @@ def pegar_front(request, escolha, personagem, origem, peca= "", percent=False):
                 "personagem": personagem,
                 "variavelTipo": "penetracao",
                 "variavelPropriedade": elemento.strip().capitalize(),
-                "variavelValor": penetracao,
+                "variavelValor": penetracao or 0,
                 "posicao": i,
                 "peca": peca,
                 "origem": origem
@@ -372,7 +372,7 @@ def pegar_front(request, escolha, personagem, origem, peca= "", percent=False):
                 "personagem": personagem,
                 "variavelTipo": "amplificacao",
                 "variavelPropriedade": tipo.strip().capitalize(),
-                "variavelValor": valor,
+                "variavelValor": valor or 0,
                 "posicao": i,
                 "peca": peca,
                 "origem": origem
