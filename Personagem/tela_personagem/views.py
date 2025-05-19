@@ -130,15 +130,14 @@ def exibir_personagem(request, personagem_id=None):
             dados_efeitosAura = agrupar_efeitos("efeitoAura")
             dados_efeitosNucleo = agrupar_efeitos("nucleo")
             dados_efeitosTriunfo = agrupar_efeitos("trunfo")
-        except Character_attribute.DoesNotExist:
+        except Character_effects.DoesNotExist:
             dados_efeitosAtivos = []
             dados_efeitosPassivos = []
             dados_efeitosAura = []
             dados_efeitosNucleo = []
             dados_efeitosTriunfo = []
             print(f"!!! ERRO: Falha ao acessar dados de efeitos para Base_personagem ID={base_personagem.id} !!!")
-        
-
+    
         # --- Lógica para formatar os dados das Habilidades (SÓ SE habilidades_obj foi encontrado) ---
         habilidades_data_formatada = formatar_habilidades(habilidades_obj)
 
@@ -161,11 +160,11 @@ def exibir_personagem(request, personagem_id=None):
             for item in lista
         ], cls=DjangoJSONEncoder)
 
-    efeitos_ativos_json = formatar_efeito_json(dados_efeitosAtivos)
-    efeitos_passivos_json = formatar_efeito_json(dados_efeitosPassivos)
-    efeitos_aura_json = formatar_efeito_json(dados_efeitosAura)
-    efeitos_nucleo_json = formatar_efeito_json(dados_efeitosNucleo)
-    efeitos_trunfo_json = formatar_efeito_json(dados_efeitosTriunfo)
+    efeitos_ativos_json = formatar_efeito_json(dados_efeitosAtivos) if base_personagem else "[]"
+    efeitos_passivos_json = formatar_efeito_json(dados_efeitosPassivos) if base_personagem else "[]"
+    efeitos_aura_json = formatar_efeito_json(dados_efeitosAura) if base_personagem else "[]"
+    efeitos_nucleo_json = formatar_efeito_json(dados_efeitosNucleo) if base_personagem else "[]"
+    efeitos_trunfo_json = formatar_efeito_json(dados_efeitosTriunfo) if base_personagem else "[]"
 
   #  print(f"--- Dados formatados para JSON ---")
   #  print(f"Efeitos Nucleo JSON: {efeitos_nucleo_json}")

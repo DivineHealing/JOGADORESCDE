@@ -78,7 +78,7 @@ class Character_effects(models.Model):
     variavelTipo = models.CharField(max_length=50, default="", blank=True) # efeitoTipo
     variavelNome = models.CharField(max_length=50, default="", blank=True) # efeitoNome
     variavelDescricao = models.CharField(max_length=1000, default="", blank=True) # efeitoDescricao
-    posicao = models.IntegerField()
+    posicao = models.IntegerField(default=0)
     peca = models.CharField(max_length=50, default="", blank=True)
     origem = models.CharField(max_length=50, default="", blank=True)
 

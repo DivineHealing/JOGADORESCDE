@@ -43,7 +43,6 @@ if errorlevel 1 (
     pause
     exit /b
 )
-
 :: Instala dependências SOMENTE se necessário
 if exist requirements.txt (
     echo 📦 Checando dependências...
@@ -74,6 +73,14 @@ cd personagem
 
 :: Abre o navegador
 start http://127.0.0.1:8000/
+
+:: Executa o Migrate
+python manage.py migrate
+if errorlevel 1 (
+    echo ❌ Erro ao executar o migrate.
+    pause
+    exit /b
+)
 
 :: Inicia o servidor
 python manage.py runserver

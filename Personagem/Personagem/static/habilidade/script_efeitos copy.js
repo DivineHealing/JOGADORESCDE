@@ -45,7 +45,7 @@ function createHabilidadeRow(grupo, nivel, dados = {}) {
             <div class='habilidade-row-miniContainer'>
                 <span style="margin-bottom: 1.2em; font-size:1.5em" name="${grupo}Nome${nivel}"><strong>Nível ${nivel}</strong></span>
                 <label for="${grupo}Tipo${nivel}">Tipo da Habilidade</label>
-                <select class='personagem_select' id="${grupo}Tipo${nivel}" name="${grupo}Tipo${nivel}">
+                <select class='personagem_select' id="${grupo}Tipo${nivel}" name="${grupo}Tipo${nivel}" value="${tipo}">
                     <option value="Passivo" ${tipo === 'habilidadePassivo' ? 'selected' : ''}>Habilidade Passivo</option>
                     <option value="Ativo" ${tipo === 'habilidadeAtivo' ? 'selected' : ''}>Habilidade Ativo</option>
                     <option value="Aura" ${tipo === 'habilidadeAura' ? 'selected' : ''}>Habilidade Aura</option>

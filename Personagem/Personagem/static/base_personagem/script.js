@@ -247,8 +247,6 @@ document.addEventListener("DOMContentLoaded", function () {
             </div>
         </div>
     `;
- 
-
         return efeitoRow;
     }
     console.log('Efeitos carregados:', dadosEfeitos);
