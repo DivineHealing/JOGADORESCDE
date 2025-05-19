@@ -26,7 +26,7 @@ def base_personagem(request, personagem_id):
             personagem=base_personagem,
             variavelTipo=atributo,
             origem="base_p"
-          ).order_by('-variavelValor').values("variavelPropriedade", "variavelValor"))
+          ).order_by('posicao').values("variavelPropriedade", "variavelValor"))
     
     regeneracoes_json = [
         {"variavelPropriedade": nome, "variavelValor": getattr(base_personagem, nome)}
