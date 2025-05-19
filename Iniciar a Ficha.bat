@@ -75,9 +75,16 @@ cd personagem
 start http://127.0.0.1:8000/
 
 :: Executa o Migrate
+python manage.py makemigrations
+if errorlevel 1 (
+    echo ❌ Falha ao executar o makemigrations. Verifique o banco de dados.
+    pause
+    exit /b
+)
+
 python manage.py migrate
 if errorlevel 1 (
-    echo ❌ Erro ao executar o migrate.
+    echo ❌ Falha ao executar o migrate. Verifique o banco de dados.
     pause
     exit /b
 )
