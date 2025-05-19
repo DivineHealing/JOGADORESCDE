@@ -43,7 +43,7 @@ def cadastrar_maestria(request, tipo, personagem_id):
             variavelTipo=atributo,
             origem="maestria",
             peca=maestriaTipo,
-        ).order_by('-variavelValor').values("variavelPropriedade", "variavelValor"))
+        ).order_by('posicao').values("variavelPropriedade", "variavelValor"))
 
     # Coletar regenerações diretamente do modelo Maestria
     regeneracoes_json = [

@@ -53,7 +53,7 @@ def cadastrar_equipamento_acessorios(request, tipo):
             variavelTipo=atributo,
             origem="aces",
             peca=tipoEquipamento,
-          ))
+          ).order_by('posicao').values("variavelPropriedade", "variavelValor"))
 
     regeneracoes_json = [
     {"variavelPropriedade": nome, "variavelValor": getattr(acessorios, nome)}

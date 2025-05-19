@@ -181,10 +181,10 @@ document.addEventListener('DOMContentLoaded', function () {
         // Preenche com dados existentes
         if (config.container && config.botao) {
             config.dados.forEach(dados => {
-            const valor = dados.valor ?? dados.defesa ?? dados.resistencia ?? dados.dano ?? dados.penetracao ?? 0;
+            //const valor = dados.valor ?? dados.defesa ?? dados.resistencia ?? dados.dano ?? dados.penetracao ?? 0;
 
             // Só exibe se o valor for diferente de zero
-            if (valor !== 0) {
+            if (dados.valor !== 0 && (dados.defesa !== 0 || dados.resistencia !==0) && (dados.dano !== 0 || dados.penetracao !== 0)) {
                 config.contador++;
                 if (config.contador <= maxPorTipo[config.tipo]) {
                     criarLinha(config.container, config.contador, config.tipo, dados);
